@@ -3,6 +3,8 @@ package br.com.pjcase.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -15,7 +17,9 @@ public class Caso {
 	String dataDeAbertura;
 	String dataDeFechamento;
 	String menssagem;
-//	Usuario usuario;
+	@OneToOne
+	Usuario usuario;
 	String status;
-//	Cliente cliente;
+	@ManyToOne
+	Contato cliente;
 }

@@ -11,7 +11,5 @@ public class TesteConexao {
 		}catch (Exception e) {
 			System.out.println("Erro :"+e);
 		}
-		
 	}
-
 }
