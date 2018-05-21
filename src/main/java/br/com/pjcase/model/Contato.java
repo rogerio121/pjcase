@@ -8,4 +8,12 @@ public class Contato extends Pessoa{
 	
 	@ManyToOne
 	Empresa empresa;
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
 }
