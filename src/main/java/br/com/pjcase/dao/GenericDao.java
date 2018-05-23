@@ -19,7 +19,7 @@ public class GenericDao <Entidade, IdEntidade>{
 	}
 
 
-
+	/*---------------------CRUDE---------------------*/
 	public void insert(Entidade entidade){
 		try {
 			manager.getTransaction().begin();
@@ -43,7 +43,7 @@ public class GenericDao <Entidade, IdEntidade>{
 	}
 
 	public void delete(IdEntidade id) {
-		Entidade entidade = getObjectById(id);
+		Entidade entidade = buscaObjetoPorId(id);
 
 		if(entidade != null) {
 			try {
@@ -58,7 +58,7 @@ public class GenericDao <Entidade, IdEntidade>{
 		}
 	}
 
-	public Entidade getObjectById(IdEntidade id) {
+	public Entidade buscaObjetoPorId(IdEntidade id) {
 		try {
 			Entidade entidade = manager.find(classeDaObjeto, id);
 
@@ -69,5 +69,6 @@ public class GenericDao <Entidade, IdEntidade>{
 
 			return null;
 		}
-	} 
+	}
+	/*-----------------FIM-CRUDE---------------------*/
 }
