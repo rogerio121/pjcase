@@ -6,7 +6,7 @@ import br.com.pjcase.model.Contato;
 import br.com.pjcase.model.Empresa;
 
 public class TesteContato {
-   /* public static void main(String[] args) {
+    public static void main(String[] args) {
         Empresa empresa = new Empresa();
 
         empresa.setNome("Empresa teste");
@@ -39,7 +39,7 @@ public class TesteContato {
 
     }
 
-    /*public static void updateCliente() {
+    public static void updateCliente() {
         Empresa empresa = new Empresa();
 
         empresa.setNome("Empresa editada");
@@ -65,5 +65,5 @@ public class TesteContato {
 
         daoEmpresa.delete(empresa.getCnpj());
 
-    }*/
+    }
 }
