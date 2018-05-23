@@ -6,7 +6,7 @@ import br.com.pjcase.model.Contato;
 import br.com.pjcase.model.Empresa;
 
 public class TesteContato {
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         Empresa empresa = new Empresa();
 
         empresa.setNome("Empresa teste");
