@@ -3,7 +3,8 @@ package br.com.pjcase.testes;
 import br.com.pjcase.dao.DaoCaso;
 import br.com.pjcase.dao.DaoEmpresa;
 import br.com.pjcase.model.Caso;
-import br.com.pjcase.model.Contato;
+import br.com.pjcase.model.Cliente;
+import br.com.pjcase.model.Cliente;
 import br.com.pjcase.model.Usuario;
 
 import javax.persistence.ManyToOne;
@@ -54,12 +55,12 @@ public class TesteCaso {
     }
 
     public static void updateCaso() {
-        Contato contato = new Contato();
+        Cliente cliente = new Cliente();
 
-        contato.setNome("ClienteTeste");
-        contato.setCpf("906.879.450-70");
-        contato.setEmail("clienteemail@teste.com");
-        contato.setRg("12.001.929-2");
+        cliente.setNome("ClienteTeste");
+        cliente.setCpf("906.879.450-70");
+        cliente.setEmail("clienteemail@teste.com");
+        cliente.setRg("12.001.929-2");
         //contato.setEmpresa(empresa);
 
 
@@ -69,7 +70,7 @@ public class TesteCaso {
         caso.setDataDeFechamento("2018-05-20");
         caso.setMenssagem("Menssagem de erro ");
         caso.setIdCaso(1);
-        caso.setCliente(contato);
+        caso.setCliente(cliente);
         caso.setStatus("Fechado");
 
 

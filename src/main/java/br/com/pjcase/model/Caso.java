@@ -19,9 +19,11 @@ public class Caso {
 	String menssagem;
 	@OneToOne
 	Usuario usuario;
+	@OneToOne
+	Empresa empresa;
 	String status;
 	@ManyToOne
-	Contato cliente;
+	Cliente cliente;
 
 	public int getIdCaso() {
 		return idCaso;
@@ -77,11 +79,11 @@ public class Caso {
 	}
 
 
-	public Contato getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Contato cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 }
