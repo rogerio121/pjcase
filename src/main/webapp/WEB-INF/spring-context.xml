@@ -14,9 +14,7 @@
 	<context:component-scan base-package="br.com.pjcase" />
 	<!-- Possibilita as anotaçoes -->
 	<mvc:annotation-driven />
-	<!-- Defino onde vai ser minha pastaresourxe para o mvc -->
-	<mvc:resources mapping="/resources/**" location="/resources/"/>
-
+	
 	<!-- Mapeia as paginas html -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

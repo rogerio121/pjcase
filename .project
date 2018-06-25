@@ -3,6 +3,7 @@
 	<name>pjcase</name>
 	<comment></comment>
 	<projects>
+		<project>geracontrato</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

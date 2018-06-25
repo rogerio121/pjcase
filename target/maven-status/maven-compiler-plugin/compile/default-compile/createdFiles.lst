@@ -1,6 +1,16 @@
+br\com\pjcase\dao\DaoEmpresa.class
+br\com\pjcase\testes\TesteCliente.class
+br\com\pjcase\dao\DaoCliente.class
+br\com\pjcase\testes\TesteEmpresa.class
 br\com\pjcase\dao\GenericDao.class
 br\com\pjcase\model\Caso.class
+br\com\pjcase\testes\TesteConexao.class
+br\com\pjcase\dao\DaoUsuario.class
+br\com\pjcase\model\Empresa.class
+br\com\pjcase\testes\TesteUsuario.class
+br\com\pjcase\dao\DaoCaso.class
 br\com\pjcase\model\Usuario.class
 br\com\pjcase\model\Pessoa.class
-br\com\pjcase\testes\TesteConexao.class
+br\com\pjcase\controller\ControllerPjCase.class
+br\com\pjcase\testes\TesteCaso.class
 br\com\pjcase\model\Cliente.class

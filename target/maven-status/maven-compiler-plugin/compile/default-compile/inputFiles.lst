@@ -1,6 +1,16 @@
 C:\Users\roger\eclipse-workspace\pjcase\src\main\java\br\com\pjcase\testes\TesteConexao.java
 C:\Users\roger\eclipse-workspace\pjcase\src\main\java\br\com\pjcase\dao\GenericDao.java
 C:\Users\roger\eclipse-workspace\pjcase\src\main\java\br\com\pjcase\model\Usuario.java
+C:\Users\roger\eclipse-workspace\pjcase\src\main\java\br\com\pjcase\testes\TesteUsuario.java
+C:\Users\roger\eclipse-workspace\pjcase\src\main\java\br\com\pjcase\controller\ControllerPjCase.java
 C:\Users\roger\eclipse-workspace\pjcase\src\main\java\br\com\pjcase\model\Cliente.java
-C:\Users\roger\eclipse-workspace\pjcase\src\main\java\br\com\pjcase\model\Caso.java
+C:\Users\roger\eclipse-workspace\pjcase\src\main\java\br\com\pjcase\testes\TesteCliente.java
+C:\Users\roger\eclipse-workspace\pjcase\src\main\java\br\com\pjcase\dao\DaoEmpresa.java
 C:\Users\roger\eclipse-workspace\pjcase\src\main\java\br\com\pjcase\model\Pessoa.java
+C:\Users\roger\eclipse-workspace\pjcase\src\main\java\br\com\pjcase\dao\DaoUsuario.java
+C:\Users\roger\eclipse-workspace\pjcase\src\main\java\br\com\pjcase\testes\TesteCaso.java
+C:\Users\roger\eclipse-workspace\pjcase\src\main\java\br\com\pjcase\dao\DaoCliente.java
+C:\Users\roger\eclipse-workspace\pjcase\src\main\java\br\com\pjcase\model\Empresa.java
+C:\Users\roger\eclipse-workspace\pjcase\src\main\java\br\com\pjcase\testes\TesteEmpresa.java
+C:\Users\roger\eclipse-workspace\pjcase\src\main\java\br\com\pjcase\dao\DaoCaso.java
+C:\Users\roger\eclipse-workspace\pjcase\src\main\java\br\com\pjcase\model\Caso.java
