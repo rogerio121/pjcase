@@ -1,13 +1,8 @@
 package br.com.pjcase.model;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-
-@Entity
 public class Usuario extends Pessoa{
 	
 	String senha;
-	@OneToOne
 	Empresa empresaCliente;
 
 

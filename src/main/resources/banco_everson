@@ -1,0 +1,29 @@
+create database banco_everson;
+
+create table empresa (
+	emp_cnpj varchar(18) primary key not null,
+	emp_nome varchar(30),
+	emp_logradouro varchar(50),
+	emp_bairro varchar(30),
+	emp_cidade varchar(30),
+	emp_estado varchar (2)
+);
+
+create table usuario (
+	usu_email varchar(50) primary key not null,
+	usu_nome varchar(50),
+	usu_senha varchar(8)
+);
+
+create table usuario_empresa (
+	emp_cnpj varchar(18) not null,
+	usu_email varchar(50) not null,
+
+        constraint pk_usuario_empresa primary key (emp_cnpj, usu_email),
+
+        constraint fk_empresa_usuario foreign key (emp_cnpj)
+			references usuario (usu_email),
+
+        constraint fk_usuario_empresa foreign key (usu_email)
+			references empresa (emp_cnpj)
+);
