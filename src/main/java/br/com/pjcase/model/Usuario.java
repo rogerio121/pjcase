@@ -1,9 +1,10 @@
 package br.com.pjcase.model;
 
-public class Usuario extends Pessoa{
+public class Usuario {
 	
 	String senha;
 	Empresa empresaCliente;
+	DadosPessoais dadosPessoais;
 
 
 	public Empresa getEmpresaCliente() {
@@ -22,5 +23,12 @@ public class Usuario extends Pessoa{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
+
+
+	public DadosPessoais getDadosPessoais() {
+		return dadosPessoais;
+	}
+	public void setDadosPessoais(DadosPessoais dadosPessoais) {
+		this.dadosPessoais = dadosPessoais;
+	}
 }

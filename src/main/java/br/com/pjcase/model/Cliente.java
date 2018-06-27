@@ -1,13 +1,11 @@
 package br.com.pjcase.model;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 
-@Entity
-public class Cliente extends Pessoa{
 
-    @ManyToOne
+public class Cliente extends DadosPessoais {
+
     Empresa empresa;
+    DadosPessoais dadosPessoais;
 
     public Empresa getEmpresa() {
         return empresa;
@@ -15,5 +13,12 @@ public class Cliente extends Pessoa{
 
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
+    }
+
+    public DadosPessoais getDadosPessoais() {
+        return dadosPessoais;
+    }
+    public void setDadosPessoais(DadosPessoais dadosPessoais) {
+        this.dadosPessoais = dadosPessoais;
     }
 }

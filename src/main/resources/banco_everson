@@ -27,3 +27,23 @@ create table usuario_empresa (
         constraint fk_usuario_empresa foreign key (usu_email)
 			references empresa (emp_cnpj)
 );
+
+create table cliente (
+	cli_cpf varchar(14) primary key not null,
+	cli_nome varchar(50),
+    cli_email varchar(50)
+);
+
+create table cliente_empresa(
+	emp_cnpj varchar(18) not null,
+	cli_cpf varchar(14) not null,
+
+        constraint pk_cliente_empresa primary key (emp_cnpj, cli_cpf),
+
+        constraint fk_empresa_cliente foreign key (emp_cnpj)
+			references cliente (cli_cpf),
+
+        constraint fk_cliente_empresa foreign key (cli_cpf)
+			references empresa (emp_cnpj)
+)
+

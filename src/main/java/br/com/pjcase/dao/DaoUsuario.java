@@ -1,7 +1,7 @@
 package br.com.pjcase.dao;
 
 import br.com.pjcase.conexao.ConexaoBanco;
-import br.com.pjcase.model.Empresa;
+import br.com.pjcase.model.DadosPessoais;
 import br.com.pjcase.model.Usuario;
 
 import java.sql.Connection;
@@ -12,18 +12,20 @@ import java.sql.SQLException;
 public class DaoUsuario{
 
 	Connection conexao;
+
 	public DaoUsuario() {
 		conexao = ConexaoBanco.getConexao();
 	}
 
+	/*----------------CRUD----------------*/
 	public void insert(Usuario usuario){
 		try {
 			String sql = "INSERT INTO usuario (usu_email, usu_nome, usu_senha)" +
 					"VALUES (?, ?, ?)";
 
 			PreparedStatement pstm = conexao.prepareStatement(sql);
-			pstm.setString(1, usuario.getEmail());
-			pstm.setString(2, usuario.getNome());
+			pstm.setString(1, usuario.getDadosPessoais().getEmail());
+			pstm.setString(2, usuario.getDadosPessoais().getNome());
 			pstm.setString(3, usuario.getSenha());
 
 			pstm.execute();
@@ -40,10 +42,10 @@ public class DaoUsuario{
 					"WHERE usu_email = ?";
 
 			PreparedStatement pstm = conexao.prepareStatement(sql);
-			pstm.setString(1, usuario.getEmail());
-			pstm.setString(2, usuario.getNome());
+			pstm.setString(1, usuario.getDadosPessoais().getEmail());
+			pstm.setString(2, usuario.getDadosPessoais().getNome());
 			pstm.setString(3, usuario.getSenha());
-			pstm.setString(4, usuario.getEmail());
+			pstm.setString(4, usuario.getDadosPessoais().getEmail());
 
 			pstm.execute();
 		}catch (SQLException erro){
@@ -76,9 +78,12 @@ public class DaoUsuario{
 
 			Usuario usuario = new Usuario();
 			if (rs.next()){
-				usuario.setNome(rs.getString("usu_nome"));
-				usuario.setEmail(rs.getString("usu_email"));
+				DadosPessoais dadosPessoais = new DadosPessoais();
+
+				dadosPessoais.setNome(rs.getString("usu_nome"));
+				dadosPessoais.setEmail(rs.getString("usu_email"));
 				usuario.setSenha(rs.getString("usu_senha"));
+				usuario.setDadosPessoais(dadosPessoais);
 			}
 
 			return usuario;
@@ -90,11 +95,12 @@ public class DaoUsuario{
 	}
 
 	public void upsert(Usuario usuario){
-		Usuario usuarioCadastrado = getById(usuario.getEmail());
+		Usuario usuarioCadastrado = getById(usuario.getDadosPessoais().getEmail());
 
-		if (usuarioCadastrado.getEmail() == null)
+		if (usuarioCadastrado.getDadosPessoais().getEmail() == null)
 			insert(usuario);
 		else
 			update(usuario);
 	}
+	/*------------FIM-CRUD----------------*/
 }

@@ -16,6 +16,7 @@ public class DaoEmpresa{
 		conexao = ConexaoBanco.getConexao();
 	}
 
+	/*----------------CRUD----------------*/
 	public void insert(Empresa empresa){
 		try {
 			String sql = "INSERT INTO empresa (emp_cnpj, emp_nome, emp_logradouro, emp_bairro, emp_cidade, emp_estado)" +
@@ -106,4 +107,5 @@ public class DaoEmpresa{
 		else
 			update(empresa);
 	}
+	/*------------FIM-CRUD----------------*/
 }
