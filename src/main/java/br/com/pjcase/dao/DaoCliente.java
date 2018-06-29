@@ -96,9 +96,9 @@ public class DaoCliente {
     }
 
     public void upsert(Cliente cliente) {
-        Cliente clienteCadastrado = getById(cliente.getDadosPessoais().getEmail());
-
-        if (clienteCadastrado.getDadosPessoais().getEmail() == null)
+        Cliente clienteCadastrado = getById(cliente.getDadosPessoais().getCpf());
+        System.out.println(clienteCadastrado.getDadosPessoais());
+        if (clienteCadastrado.getDadosPessoais() == null)
             insert(cliente);
         else
             update(cliente);

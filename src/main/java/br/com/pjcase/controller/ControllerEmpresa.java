@@ -43,6 +43,6 @@ public class ControllerEmpresa {
 		daoEmpresa.upsert(empresa);
 
 		ConexaoBanco.FecharConexao();
-		return "salvar";
+		return "cadastro";
 	}
 }
