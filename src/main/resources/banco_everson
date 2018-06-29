@@ -47,3 +47,14 @@ create table cliente_empresa(
 			references empresa (emp_cnpj)
 )
 
+create table caso (
+	cas_id varchar (5) primary key not null,
+    cas_data_de_abertura date,
+    cas_data_de_fechamento date,
+    cas_menssagem varchar (255),
+    cas_status varchar (20),
+    emp_cnpj varchar (18),
+    usu_email varchar(50),
+    foreign key (usu_email) references usuario (usu_email),
+    foreign key (emp_cnpj) references empresa (emp_cnpj)
+);

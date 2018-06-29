@@ -15,9 +15,10 @@ import static java.lang.System.out;
 
 
 @Controller
-public class ControllerPjCase {
+@RequestMapping("/empresa")
+public class ControllerEmpresa {
 
-	@RequestMapping("/")
+	@RequestMapping("/cadastro")
 	public String chamarTelaEmpresa() {
 		return "empresa";
 	}
@@ -27,7 +28,7 @@ public class ControllerPjCase {
 	 * caso não exista será feita a inserção
 	 * a existencia da empresa será comprovada com uma pesquisa no banco com o CNPJ*/
 
-	@RequestMapping("salvarempresa")
+	@RequestMapping("salvar")
 	public String salvarEmpresa(HttpServletRequest request) {
 		Empresa empresa = new Empresa();
 		empresa.setNome(request.getParameter("nome"));
@@ -40,14 +41,7 @@ public class ControllerPjCase {
 		DaoEmpresa daoEmpresa = new DaoEmpresa();
 
 		daoEmpresa.upsert(empresa);
-		out.println("<script>https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js</script>");
-		out.println("<script>https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js</script>");
-		out.println("<script>");
-		out.println("$(document).ready(functio(){");
-		out.println("swal('WELCOMW','successfull', 'successs');");
-		out.println("});");
-		out.println("</script>");
-
+		
 		ConexaoBanco.FecharConexao();
 		return "salvarempresa";
 	}

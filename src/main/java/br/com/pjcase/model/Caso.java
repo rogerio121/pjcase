@@ -1,8 +1,6 @@
 package br.com.pjcase.model;
 
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-
+import java.sql.Date;
 
 public class Caso {
 
@@ -10,10 +8,9 @@ public class Caso {
     String dataDeAbertura;
     String dataDeFechamento;
     String menssagem;
-    Usuario usuario;
-    Empresa empresa;
     String status;
-    //String ;
+    String idEmpresaRelacionada;
+    String idUsuarioRelacionado;
 
     public int getIdCaso() {
         return idCaso;
@@ -42,6 +39,22 @@ public class Caso {
     }
 
 
+    public String getIdEmpresaRelacionada() {
+        return idEmpresaRelacionada;
+    }
+
+    public void setIdEmpresaRelacionada(String idEmpresaRelacionada) {
+        this.idEmpresaRelacionada = idEmpresaRelacionada;
+    }
+
+    public String getIdUsuarioRelacionado() {
+        return idUsuarioRelacionado;
+    }
+
+    public void setIdUsuarioRelacionado(String idUsuarioRelacionado) {
+        this.idUsuarioRelacionado = idUsuarioRelacionado;
+    }
+
     public String getMenssagem() {
         return menssagem;
     }
@@ -51,13 +64,6 @@ public class Caso {
     }
 
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 
 
     public String getStatus() {

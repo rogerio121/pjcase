@@ -3,7 +3,6 @@ import br.com.pjcase.dao.DaoCliente;
 import br.com.pjcase.dao.DaoUsuario;
 import br.com.pjcase.model.Cliente;
 import br.com.pjcase.model.DadosPessoais;
-import br.com.pjcase.model.Usuario;
 
 public class TesteDaoCliente {
     public static void main(String[] args) {
