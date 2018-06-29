@@ -20,8 +20,8 @@ public class DaoCaso {
     /*----------------CRUD----------------*/
     public void insert(Caso caso) {
         try {
-            String sql = "INSERT INTO caso (cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, usu_email)" +
-                    "VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO caso (cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, usu_email, cli_cpf)" +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
             pstm.setString(1, caso.getDataDeAbertura());
@@ -30,6 +30,7 @@ public class DaoCaso {
             pstm.setString(4, caso.getStatus());
             pstm.setString(5, caso.getIdEmpresaRelacionada());
             pstm.setString(6, caso.getIdUsuarioRelacionado());
+            pstm.setString(7, caso.getIdClienteRelacionado());
 
             pstm.execute();
         } catch (SQLException erro) {
@@ -39,7 +40,7 @@ public class DaoCaso {
 
     public void update(Caso caso) {
         try {
-            String sql = "UPDATE caso SET cas_data_de_abertura = ?, cas_data_de_fechamento = ?, cas_menssagem = ?, cas_status = ?, " +
+            String sql = "UPDATE caso SET cas_data_de_abertura = ?, cas_data_de_fechamento = ?, cas_menssagem = ?, cas_status = ?, cli_cnpj " +
                     "emp_cnpj = ?, usu_email = ? " +
                     "WHERE cas_id = ?";
 
@@ -51,7 +52,8 @@ public class DaoCaso {
             pstm.setString(4, caso.getStatus());
             pstm.setString(5, caso.getIdEmpresaRelacionada());
             pstm.setString(6, caso.getIdUsuarioRelacionado());
-            pstm.setInt(7, caso.getIdCaso());
+            pstm.setString(7, caso.getIdClienteRelacionado());
+            pstm.setInt(8, caso.getIdCaso());
 
             pstm.execute();
         } catch (SQLException erro) {
@@ -74,7 +76,7 @@ public class DaoCaso {
 
     public Caso getById(String idCaso) {
         try {
-            String sql = "SELECT cas_id, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, usu_email " +
+            String sql = "SELECT cas_id, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, usu_email, cli_cnpj " +
                     "FROM caso " +
                     "WHERE cas_id = ?";
 

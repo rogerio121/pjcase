@@ -6,7 +6,7 @@
 <title>Empresa</title>
 </head>
 <body>
-	<form action="salvarempresa" method="post">
+	<form action="/empresa/salvar" method="post">
 		<label>Nome</label> <input type="text" name="nome"> <br>
 		<label>CNPJ</label> <input type="text" name="cnpj"> <br>
 		<label>Logradouro</label> <input type="text" name="logradouro"> <br>

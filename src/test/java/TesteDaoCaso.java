@@ -23,6 +23,7 @@ public class TesteDaoCaso {
         caso.setMenssagem("Menssgem");
         caso.setStatus("Fechado");
         caso.setIdEmpresaRelacionada("3131");
+        caso.setIdClienteRelacionado("123123");
         caso.setIdUsuarioRelacionado("admin@admin.com");
 
         DaoCaso daoCaso = new DaoCaso();

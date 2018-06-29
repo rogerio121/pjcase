@@ -3,104 +3,106 @@ package br.com.pjcase.dao;
 import br.com.pjcase.conexao.ConexaoBanco;
 import br.com.pjcase.model.DadosPessoais;
 import br.com.pjcase.model.Usuario;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DaoUsuario{
 
-	Connection conexao;
+public class DaoUsuario {
 
-	public DaoUsuario() {
-		conexao = ConexaoBanco.getConexao();
-	}
+    Connection conexao;
 
-	/*----------------CRUD----------------*/
-	public void insert(Usuario usuario){
-		try {
-			String sql = "INSERT INTO usuario (usu_email, usu_nome, usu_senha)" +
-					"VALUES (?, ?, ?)";
+    public DaoUsuario() {
+        conexao = ConexaoBanco.getConexao();
+    }
 
-			PreparedStatement pstm = conexao.prepareStatement(sql);
-			pstm.setString(1, usuario.getDadosPessoais().getEmail());
-			pstm.setString(2, usuario.getDadosPessoais().getNome());
-			pstm.setString(3, usuario.getSenha());
+    /*----------------CRUD----------------*/
+    public void insert(Usuario usuario) {
+        try {
+            String sql = "INSERT INTO usuario (usu_email, usu_nome, usu_senha)" +
+                    "VALUES (?, ?, ?)";
 
-			pstm.execute();
-		}catch (SQLException erro){
-			System.out.println("Erro ao inserir Usuario: " + erro);
-		}
-	}
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setString(1, usuario.getDadosPessoais().getEmail());
+            pstm.setString(2, usuario.getDadosPessoais().getNome());
+            pstm.setString(3, usuario.getSenha());
 
-	public void update(Usuario usuario){
-		try {
-			//Empresa empresaCadastrada = getById(empresa.getCnpj());
+            pstm.execute();
+        } catch (SQLException erro) {
+            System.out.println("Erro ao inserir Usuario: " + erro);
+        }
+    }
 
-			String sql = "UPDATE usuario SET usu_email = ?, usu_nome = ?, usu_senha = ?"+
-					"WHERE usu_email = ?";
+    public void update(Usuario usuario) {
+        try {
+            //Empresa empresaCadastrada = getById(empresa.getCnpj());
 
-			PreparedStatement pstm = conexao.prepareStatement(sql);
-			pstm.setString(1, usuario.getDadosPessoais().getEmail());
-			pstm.setString(2, usuario.getDadosPessoais().getNome());
-			pstm.setString(3, usuario.getSenha());
-			pstm.setString(4, usuario.getDadosPessoais().getEmail());
+            String sql = "UPDATE usuario SET usu_email = ?, usu_nome = ?, usu_senha = ?" +
+                    "WHERE usu_email = ?";
 
-			pstm.execute();
-		}catch (SQLException erro){
-			System.out.println("Erro ao atualizar Usuario: " + erro);
-		}
-	}
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setString(1, usuario.getDadosPessoais().getEmail());
+            pstm.setString(2, usuario.getDadosPessoais().getNome());
+            pstm.setString(3, usuario.getSenha());
+            pstm.setString(4, usuario.getDadosPessoais().getEmail());
 
-	public void delete(String idUsuario){
-		try {
-			String sql = "DELETE FROM usuario WHERE usu_email = ?";
+            pstm.execute();
+        } catch (SQLException erro) {
+            System.out.println("Erro ao atualizar Usuario: " + erro);
+        }
+    }
 
-			PreparedStatement pstm = conexao.prepareStatement(sql);
-			pstm.setString(1, idUsuario);
+    public void delete(String idUsuario) {
+        try {
+            String sql = "DELETE FROM usuario WHERE usu_email = ?";
 
-			pstm.execute();
-		}catch (SQLException erro){
-			System.out.println("Erro ao deletar Usuario: " + erro);
-		}
-	}
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setString(1, idUsuario);
 
-	public Usuario getById(String idUsuario){
-		try {
-			String sql = "SELECT usu_email, usu_nome, usu_senha " +
-						 "FROM usuario " +
-						 "WHERE usu_email = ?";
+            pstm.execute();
+        } catch (SQLException erro) {
+            System.out.println("Erro ao deletar Usuario: " + erro);
+        }
+    }
 
-			PreparedStatement pstm = conexao.prepareStatement(sql);
-			pstm.setString(1, idUsuario);
-			ResultSet rs = pstm.executeQuery();
+    public Usuario getById(String idUsuario) {
+        try {
+            String sql = "SELECT usu_email, usu_nome, usu_senha " +
+                    "FROM usuario " +
+                    "WHERE usu_email = ?";
 
-			Usuario usuario = new Usuario();
-			if (rs.next()){
-				DadosPessoais dadosPessoais = new DadosPessoais();
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setString(1, idUsuario);
+            ResultSet rs = pstm.executeQuery();
 
-				dadosPessoais.setNome(rs.getString("usu_nome"));
-				dadosPessoais.setEmail(rs.getString("usu_email"));
-				usuario.setSenha(rs.getString("usu_senha"));
-				usuario.setDadosPessoais(dadosPessoais);
-			}
+            Usuario usuario = new Usuario();
+            if (rs.next()) {
+                DadosPessoais dadosPessoais = new DadosPessoais();
 
-			return usuario;
-		}catch (SQLException erro){
-			System.out.println("Erro ao buscar Usuario por Id: " + erro);
-		}
+                dadosPessoais.setNome(rs.getString("usu_nome"));
+                dadosPessoais.setEmail(rs.getString("usu_email"));
+                usuario.setSenha(rs.getString("usu_senha"));
+                usuario.setDadosPessoais(dadosPessoais);
+            }
 
-		return null;
-	}
+            return usuario;
+        } catch (SQLException erro) {
+            System.out.println("Erro ao buscar Usuario por Id: " + erro);
+        }
 
-	public void upsert(Usuario usuario){
-		Usuario usuarioCadastrado = getById(usuario.getDadosPessoais().getEmail());
+        return null;
+    }
 
-		if (usuarioCadastrado.getDadosPessoais().getEmail() == null)
-			insert(usuario);
-		else
-			update(usuario);
-	}
-	/*------------FIM-CRUD----------------*/
+    public void upsert(Usuario usuario) {
+        Usuario usuarioCadastrado = getById(usuario.getDadosPessoais().getEmail());
+
+        if (usuarioCadastrado.getDadosPessoais() == null)
+            insert(usuario);
+        else
+            update(usuario);
+    }
+    /*------------FIM-CRUD----------------*/
 }

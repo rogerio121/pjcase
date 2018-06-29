@@ -11,6 +11,7 @@ public class Caso {
     String status;
     String idEmpresaRelacionada;
     String idUsuarioRelacionado;
+    String idClienteRelacionado;
 
     public int getIdCaso() {
         return idCaso;
@@ -55,6 +56,14 @@ public class Caso {
         this.idUsuarioRelacionado = idUsuarioRelacionado;
     }
 
+    public String getIdClienteRelacionado() {
+        return idClienteRelacionado;
+    }
+
+    public void setIdClienteRelacionado(String idClienteRelacionado) {
+        this.idClienteRelacionado = idClienteRelacionado;
+    }
+
     public String getMenssagem() {
         return menssagem;
     }
@@ -62,8 +71,6 @@ public class Caso {
     public void setMenssagem(String menssagem) {
         this.menssagem = menssagem;
     }
-
-
 
 
     public String getStatus() {

@@ -28,7 +28,7 @@ public class ControllerEmpresa {
 	 * caso não exista será feita a inserção
 	 * a existencia da empresa será comprovada com uma pesquisa no banco com o CNPJ*/
 
-	@RequestMapping("salvar")
+	@RequestMapping("/salvar")
 	public String salvarEmpresa(HttpServletRequest request) {
 		Empresa empresa = new Empresa();
 		empresa.setNome(request.getParameter("nome"));
@@ -41,8 +41,8 @@ public class ControllerEmpresa {
 		DaoEmpresa daoEmpresa = new DaoEmpresa();
 
 		daoEmpresa.upsert(empresa);
-		
+
 		ConexaoBanco.FecharConexao();
-		return "salvarempresa";
+		return "salvar";
 	}
 }
