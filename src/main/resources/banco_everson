@@ -1,4 +1,5 @@
-create database banco_everson;
+
+[]create database banco_everson;
 
 create table empresa (
 	emp_cnpj varchar(18) primary key not null,
@@ -18,43 +19,46 @@ create table usuario (
 create table usuario_empresa (
 	emp_cnpj varchar(18) not null,
 	usu_email varchar(50) not null,
-
+		
         constraint pk_usuario_empresa primary key (emp_cnpj, usu_email),
-
+		
         constraint fk_empresa_usuario foreign key (emp_cnpj)
 			references usuario (usu_email),
-
+		
         constraint fk_usuario_empresa foreign key (usu_email)
 			references empresa (emp_cnpj)
 );
 
 create table cliente (
-	cli_cpf varchar(14) primary key not null,
-	cli_nome varchar(50),
-    cli_email varchar(50)
+	cli_email varchar(50) primary key not null,
+	cli_nome varchar(50)
 );
 
-create table cliente_empresa(
-	emp_cnpj varchar(18) not null,
-	cli_cpf varchar(14) not null,
 
-        constraint pk_cliente_empresa primary key (emp_cnpj, cli_cpf),
+create table cliente_empresa (
+	emp_cnpj varchar(18) not null,
+	cli_email varchar(50) not null,
+
+        constraint pk_cliente_empresa primary key (emp_cnpj, cli_email),
 
         constraint fk_empresa_cliente foreign key (emp_cnpj)
-			references cliente (cli_cpf),
+			references cliente (cli_email),
 
-        constraint fk_cliente_empresa foreign key (cli_cpf)
+        constraint fk_cliente_empresa foreign key (cli_email)
 			references empresa (emp_cnpj)
-)
+);
 
 create table caso (
-	cas_id varchar (5) primary key not null,
+	cas_id integer primary key auto_increment,
     cas_data_de_abertura date,
     cas_data_de_fechamento date,
     cas_menssagem varchar (255),
     cas_status varchar (20),
+    cas_assusnto varchar(30),
     emp_cnpj varchar (18),
     usu_email varchar(50),
+    cli_email varchar(50),
     foreign key (usu_email) references usuario (usu_email),
-    foreign key (emp_cnpj) references empresa (emp_cnpj)
+    foreign key (emp_cnpj) references empresa (emp_cnpj),
+    foreign key (cli_email) references cliente (cli_email)
 );

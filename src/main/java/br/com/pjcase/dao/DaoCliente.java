@@ -21,13 +21,12 @@ public class DaoCliente {
     /*----------------CRUD----------------*/
     public void insert(Cliente cliente) {
         try {
-            String sql = "INSERT INTO cliente (cli_cpf, cli_nome, cli_email)" +
-                    "VALUES (?, ?, ?)";
+            String sql = "INSERT INTO cliente (cli_nome, cli_email)" +
+                    "VALUES (?, ?)";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, cliente.getDadosPessoais().getCpf());
-            pstm.setString(2, cliente.getDadosPessoais().getNome());
-            pstm.setString(3, cliente.getDadosPessoais().getEmail());
+            pstm.setString(1, cliente.getDadosPessoais().getNome());
+            pstm.setString(2, cliente.getDadosPessoais().getEmail());
 
             pstm.execute();
         } catch (SQLException erro) {
@@ -39,14 +38,13 @@ public class DaoCliente {
         try {
             //Empresa empresaCadastrada = getById(empresa.getCnpj());
 
-            String sql = "UPDATE cliente SET cli_cpf = ?, cli_nome = ?, cli_email = ?" +
-                    "WHERE cli_cpf = ?";
+            String sql = "UPDATE cliente SET cli_nome = ?, cli_email = ?" +
+                    "WHERE cli_email = ?";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, cliente.getDadosPessoais().getCpf());
-            pstm.setString(2, cliente.getDadosPessoais().getNome());
+            pstm.setString(1, cliente.getDadosPessoais().getNome());
+            pstm.setString(2, cliente.getDadosPessoais().getEmail());
             pstm.setString(3, cliente.getDadosPessoais().getEmail());
-            pstm.setString(4, cliente.getDadosPessoais().getCpf());
 
             pstm.execute();
         } catch (SQLException erro) {
@@ -56,7 +54,7 @@ public class DaoCliente {
 
     public void delete(String idCliente) {
         try {
-            String sql = "DELETE FROM cliente WHERE cli_cpf = ?";
+            String sql = "DELETE FROM cliente WHERE cli_email = ?";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
             pstm.setString(1, idCliente);
@@ -69,9 +67,9 @@ public class DaoCliente {
 
     public Cliente getById(String idCliente) {
         try {
-            String sql = "SELECT cli_cpf, cli_nome, cli_email " +
+            String sql = "SELECT cli_nome, cli_email " +
                          "FROM cliente " +
-                         "WHERE cli_cpf = ?";
+                         "WHERE cli_email = ?";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
             pstm.setString(1, idCliente);
@@ -81,7 +79,6 @@ public class DaoCliente {
             if (rs.next()) {
                 DadosPessoais dadosPessoais = new DadosPessoais();
 
-                dadosPessoais.setCpf(rs.getString("cli_cpf"));
                 dadosPessoais.setNome(rs.getString("cli_nome"));
                 dadosPessoais.setEmail(rs.getString("cli_email"));
                 cliente.setDadosPessoais(dadosPessoais);
@@ -96,8 +93,8 @@ public class DaoCliente {
     }
 
     public void upsert(Cliente cliente) {
-        Cliente clienteCadastrado = getById(cliente.getDadosPessoais().getCpf());
-        System.out.println(clienteCadastrado.getDadosPessoais());
+        Cliente clienteCadastrado = getById(cliente.getDadosPessoais().getEmail());
+
         if (clienteCadastrado.getDadosPessoais() == null)
             insert(cliente);
         else

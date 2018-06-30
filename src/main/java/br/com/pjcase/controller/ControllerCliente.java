@@ -25,7 +25,6 @@ public class ControllerCliente {
 
         dadosPessoais.setNome(request.getParameter("nome"));
         dadosPessoais.setEmail(request.getParameter("email"));
-        dadosPessoais.setCpf(request.getParameter("cpf"));
 
         cliente.setDadosPessoais(dadosPessoais);
         daoCliente.upsert(cliente);

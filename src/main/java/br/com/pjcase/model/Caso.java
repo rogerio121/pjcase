@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Caso {
 
     int idCaso;
+    String Assunto;
     String dataDeAbertura;
     String dataDeFechamento;
     String menssagem;
@@ -12,6 +13,15 @@ public class Caso {
     String idEmpresaRelacionada;
     String idUsuarioRelacionado;
     String idClienteRelacionado;
+
+
+    public String getAssunto() {
+        return Assunto;
+    }
+
+    public void setAssunto(String assunto) {
+        Assunto = assunto;
+    }
 
     public int getIdCaso() {
         return idCaso;

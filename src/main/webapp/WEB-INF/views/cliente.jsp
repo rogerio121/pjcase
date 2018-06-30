@@ -6,7 +6,6 @@
     <body>
         <form action="/cliente/salvar" method="post">
             <label>Nome</label> <input type="text" name="nome"> <br>
-            <label>CPF</label> <input type="text" name="cpf"> <br>
             <label>E-mail</label> <input type="email" name="email"> <br>
 
             <button type="submit">Salvar</button>

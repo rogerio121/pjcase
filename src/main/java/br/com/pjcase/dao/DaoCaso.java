@@ -20,17 +20,18 @@ public class DaoCaso {
     /*----------------CRUD----------------*/
     public void insert(Caso caso) {
         try {
-            String sql = "INSERT INTO caso (cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, usu_email, cli_cpf)" +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO caso (cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, usu_email, cli_email)" +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, caso.getDataDeAbertura());
-            pstm.setString(2, caso.getDataDeFechamento());
-            pstm.setString(3, caso.getMenssagem());
-            pstm.setString(4, caso.getStatus());
-            pstm.setString(5, caso.getIdEmpresaRelacionada());
-            pstm.setString(6, caso.getIdUsuarioRelacionado());
-            pstm.setString(7, caso.getIdClienteRelacionado());
+            pstm.setString(1, caso.getAssunto());
+            pstm.setString(2, caso.getDataDeAbertura());
+            pstm.setString(3, caso.getDataDeFechamento());
+            pstm.setString(4, caso.getMenssagem());
+            pstm.setString(5, caso.getStatus());
+            pstm.setString(6, caso.getIdEmpresaRelacionada());
+            pstm.setString(7, caso.getIdUsuarioRelacionado());
+            pstm.setString(8, caso.getIdClienteRelacionado());
 
             pstm.execute();
         } catch (SQLException erro) {
@@ -40,20 +41,21 @@ public class DaoCaso {
 
     public void update(Caso caso) {
         try {
-            String sql = "UPDATE caso SET cas_data_de_abertura = ?, cas_data_de_fechamento = ?, cas_menssagem = ?, cas_status = ?, cli_cnpj " +
-                    "emp_cnpj = ?, usu_email = ? " +
+            String sql = "UPDATE caso SET cas_assusnto = ?, cas_data_de_abertura = ?, cas_data_de_fechamento = ?, cas_menssagem = ?, cas_status = ?, " +
+                    "emp_cnpj = ?, usu_email = ?, cli_email = ?  " +
                     "WHERE cas_id = ?";
 
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, caso.getDataDeAbertura());
-            pstm.setString(2, caso.getDataDeFechamento());
-            pstm.setString(3, caso.getMenssagem());
-            pstm.setString(4, caso.getStatus());
-            pstm.setString(5, caso.getIdEmpresaRelacionada());
-            pstm.setString(6, caso.getIdUsuarioRelacionado());
-            pstm.setString(7, caso.getIdClienteRelacionado());
-            pstm.setInt(8, caso.getIdCaso());
+            pstm.setString(1, caso.getAssunto());
+            pstm.setString(2, caso.getDataDeAbertura());
+            pstm.setString(3, caso.getDataDeFechamento());
+            pstm.setString(4, caso.getMenssagem());
+            pstm.setString(5, caso.getStatus());
+            pstm.setString(6, caso.getIdEmpresaRelacionada());
+            pstm.setString(7, caso.getIdUsuarioRelacionado());
+            pstm.setString(8, caso.getIdClienteRelacionado());
+            pstm.setInt(9, caso.getIdCaso());
 
             pstm.execute();
         } catch (SQLException erro) {
@@ -76,7 +78,7 @@ public class DaoCaso {
 
     public Caso getById(String idCaso) {
         try {
-            String sql = "SELECT cas_id, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, usu_email, cli_cnpj " +
+            String sql = "SELECT cas_id, cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, usu_email, cli_email " +
                     "FROM caso " +
                     "WHERE cas_id = ?";
 
@@ -89,12 +91,14 @@ public class DaoCaso {
                 DadosPessoais dadosPessoais = new DadosPessoais();
 
                 caso.setIdCaso(rs.getInt("cas_id"));
+                caso.setAssunto(rs.getString("cas_assusnto"));
                 caso.setDataDeAbertura(rs.getString("cas_data_de_abertura"));
                 caso.setDataDeFechamento(rs.getString("cas_data_de_fechamento"));
                 caso.setMenssagem(rs.getString("cas_menssagem"));
                 caso.setStatus(rs.getString("cas_status"));
                 caso.setIdUsuarioRelacionado(rs.getString("usu_email"));
                 caso.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
+                caso.setIdClienteRelacionado(rs.getString("cli_email"));
             }
 
             return caso;
@@ -107,7 +111,7 @@ public class DaoCaso {
 
     public void upsert(Caso caso) {
         Caso casoCadastrado = getById(String.valueOf(caso.getIdCaso()));
-        if (casoCadastrado == null)
+        if (casoCadastrado.getIdCaso() == 0)
             insert(caso);
         else
             update(caso);
