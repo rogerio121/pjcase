@@ -105,4 +105,33 @@ public class DaoUsuario {
             update(usuario);
     }
     /*------------FIM-CRUD----------------*/
+
+    public Usuario getByEmailESenha(String idUsuario, String senha) {
+        try {
+            String sql = "SELECT usu_email, usu_nome, usu_senha " +
+                    "FROM usuario " +
+                    "WHERE usu_email = ? AND usu_senha = ?";
+
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setString(1, idUsuario);
+            pstm.setString(2, senha);
+            ResultSet rs = pstm.executeQuery();
+
+            Usuario usuario = new Usuario();
+            if (rs.next()) {
+                DadosPessoais dadosPessoais = new DadosPessoais();
+
+                dadosPessoais.setNome(rs.getString("usu_nome"));
+                dadosPessoais.setEmail(rs.getString("usu_email"));
+                usuario.setSenha(rs.getString("usu_senha"));
+                usuario.setDadosPessoais(dadosPessoais);
+            }
+
+            return usuario;
+        } catch (SQLException erro) {
+            System.out.println("Erro ao buscar Usuario por Id: " + erro);
+        }
+
+        return null;
+    }
 }
