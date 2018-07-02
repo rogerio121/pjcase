@@ -3,6 +3,7 @@ package br.com.pjcase.controller;
 import br.com.pjcase.dao.DaoUsuario;
 import br.com.pjcase.model.Usuario;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.ServletException;
@@ -20,20 +21,23 @@ public class ControllerLogin {
         return "login";
     }
 
+
+
     @RequestMapping("logar")
     public String logar(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
         DaoUsuario daoUsuario = new DaoUsuario();
         Usuario usuario = daoUsuario.getByEmailESenha(request.getParameter("email"), request.getParameter("senha"));
-        System.out.println(usuario.getSenha());
 
-        if(usuario != null) {
+        if(usuario.getDadosPessoais() != null) {
             HttpSession sessao = request.getSession();
             sessao.setAttribute("usuarioLogado", usuario);
 			//sessao.setMaxInactiveInterval(3000);
-
+            System.out.println("If: " + response.getStatus());
             return "telaInicial";
         }else{
-            return "redirect:login";
+            response.setStatus(201);
+            System.out.println("Else: "+ response.getStatus());
+            return "redirect:/";
         }
     }
 }
