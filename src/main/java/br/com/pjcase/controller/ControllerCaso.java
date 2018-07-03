@@ -26,7 +26,8 @@ public class ControllerCaso {
         caso.setStatus(request.getParameter("status"));
         caso.setIdClienteRelacionado(request.getParameter("idClienteRelacionado"));
         caso.setIdEmpresaRelacionada(request.getParameter("idEmpresaRelacionada"));
-        System.out.println(caso.getAssunto());
+        caso.setIdUsuarioRelacionado(request.getParameter("idUsuarioRelacionado"));
+
         daoCaso.upsert(caso);
 
         return "caso";

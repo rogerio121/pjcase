@@ -20,7 +20,7 @@ public class Caso {
     }
 
     public void setAssunto(String assunto) {
-        assunto = assunto;
+        this.assunto = assunto;
     }
 
     public int getIdCaso() {

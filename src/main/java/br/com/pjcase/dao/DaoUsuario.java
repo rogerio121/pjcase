@@ -130,8 +130,7 @@ public class DaoUsuario {
             return usuario;
         } catch (SQLException erro) {
             System.out.println("Erro ao buscar Usuario por Id: " + erro);
+            return null;
         }
-
-        return null;
     }
 }

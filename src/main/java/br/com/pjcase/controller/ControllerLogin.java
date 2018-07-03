@@ -2,6 +2,7 @@ package br.com.pjcase.controller;
 
 import br.com.pjcase.dao.DaoUsuario;
 import br.com.pjcase.model.Usuario;
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,24 +17,29 @@ import java.io.IOException;
 public class ControllerLogin {
 
     @RequestMapping("/")
-    public String chamaTelalogin(){
+    public String chamaTelalogin() {
         return "login";
     }
 
     @RequestMapping("logar")
     public String logar(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
         DaoUsuario daoUsuario = new DaoUsuario();
-        Usuario usuario = daoUsuario.getByEmailESenha(request.getParameter("email"), request.getParameter("senha"));
-        System.out.println(usuario.getSenha());
+        Usuario usuario = new Usuario();
 
-        if(usuario != null) {
-            HttpSession sessao = request.getSession();
-            sessao.setAttribute("usuarioLogado", usuario);
-			//sessao.setMaxInactiveInterval(3000);
+        System.out.println("chamou");
+        try {
+            usuario = daoUsuario.getByEmailESenha(request.getParameter("email"), request.getParameter("senha"));
 
+            if (usuario.getDadosPessoais().getEmail() != null) {
+
+                HttpSession sessao = request.getSession();
+                sessao.setAttribute("usuarioLogado", usuario);
+                //sessao.setMaxInactiveInterval(3000);
+            }
             return "telaInicial";
-        }else{
-            return "redirect:login";
+
+        } catch (Exception e) {
+            return "redirect:/";
         }
     }
 }
