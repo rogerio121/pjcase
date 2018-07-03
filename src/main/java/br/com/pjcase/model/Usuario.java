@@ -28,7 +28,18 @@ public class Usuario {
 	public DadosPessoais getDadosPessoais() {
 		return dadosPessoais;
 	}
+
 	public void setDadosPessoais(DadosPessoais dadosPessoais) {
 		this.dadosPessoais = dadosPessoais;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Usuario{" +
+				"senha='" + senha + '\'' +
+				", empresaCliente=" + empresaCliente +
+				", dadosPessoais=" + dadosPessoais +
+				'}';
 	}
 }

@@ -4,14 +4,16 @@ import br.com.pjcase.dao.DaoCliente;
 import br.com.pjcase.model.*;
 
 import java.util.Date;
+import java.util.List;
 
 
 public class TesteDaoCaso {
     public static void main(String[] args) {
-         insertCliente();
+         //insertCliente();
         //updateCliente();
         //deleteCliente();
         //buscaCliente();
+        buscaCasosSemDono();
         ConexaoBanco.FecharConexao();
     }
 
@@ -54,5 +56,13 @@ public class TesteDaoCaso {
         DaoCaso daoCaso = new DaoCaso();
         Caso caso = daoCaso.getById("1");
         System.out.println(caso.getStatus());
+    }
+
+    public static void buscaCasosSemDono(){
+        DaoCaso daoCaso = new DaoCaso();
+        List<Caso> casos = daoCaso.listarCasosSemProprietarios();
+
+        System.out.println(casos.size());
+
     }
 }

@@ -91,4 +91,19 @@ public class Caso {
         this.status = status;
     }
 
+
+    @Override
+    public String toString() {
+        return "Caso{" +
+                "idCaso=" + idCaso +
+                ", assunto='" + assunto + '\'' +
+                ", dataDeAbertura='" + dataDeAbertura + '\'' +
+                ", dataDeFechamento='" + dataDeFechamento + '\'' +
+                ", menssagem='" + menssagem + '\'' +
+                ", status='" + status + '\'' +
+                ", idEmpresaRelacionada='" + idEmpresaRelacionada + '\'' +
+                ", idUsuarioRelacionado='" + idUsuarioRelacionado + '\'' +
+                ", idClienteRelacionado='" + idClienteRelacionado + '\'' +
+                '}';
+    }
 }
