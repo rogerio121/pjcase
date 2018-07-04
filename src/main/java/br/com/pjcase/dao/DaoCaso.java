@@ -121,19 +121,20 @@ public class DaoCaso {
 
     public List<Caso> listarCasosSemProprietarios() {
         try {
-            String sql = "SELECT cas_id, cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, usu_email, cli_email " +
-                    "FROM caso " +
-                    "WHERE usu_email IS NULL";
+            String sql = "SELECT cas_id, cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, cli_email " +
+                        "FROM caso " +
+                        "WHERE usu_email IS NULL";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
 
-            Caso caso = new Caso();
+            Caso caso;
             List<Caso> casos = new ArrayList<Caso>();
 
             while (rs.next()) {
                 DadosPessoais dadosPessoais = new DadosPessoais();
 
+                caso = new Caso();
                 caso.setIdCaso(rs.getInt("cas_id"));
                 caso.setAssunto(rs.getString("cas_assusnto"));
                 caso.setDataDeAbertura(rs.getString("cas_data_de_abertura"));
@@ -145,7 +146,7 @@ public class DaoCaso {
 
                 casos.add(caso);
             }
-
+            System.out.println("Enviados: " + casos);
             return casos;
         } catch (SQLException erro) {
             System.out.println("Erro ao buscar Caso por Id: " + erro);

@@ -28,7 +28,7 @@
                         <td>${caso.idCaso }</td>
                         <td>${caso.assunto }</td>
                         <td>${caso.dataDeAbertura }</td>
-                        <!-- td><a href="produto/'$'{produto.id }" class="btn btn-info">Alterar</a></td -->
+                        <td><a href="/caso/cadastro'$'{caso.idCaso }" class="btn btn-info">Alterar</a></td -->
                         <!-- td><a onclick="excluir('$'{produto.id})" class="btn btn-danger">Excluir</a></td-->
                     </tr>
                 </c:forEach>

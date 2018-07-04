@@ -1,11 +1,16 @@
 package br.com.pjcase.controller;
 
+import br.com.pjcase.conexao.ConexaoBanco;
 import br.com.pjcase.dao.DaoCaso;
 import br.com.pjcase.model.Caso;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/caso")
@@ -30,6 +35,25 @@ public class ControllerCaso {
 
         daoCaso.upsert(caso);
 
+        ConexaoBanco.FecharConexao();
         return "caso";
+    }
+
+    @GetMapping("/{id}")
+    public ModelAndView chamaTelaEditar(@PathVariable("id") Optional<Integer> id, Caso caso){
+        ModelAndView mv = new ModelAndView("testeCaso");
+        DaoCaso daoCaso = new DaoCaso();
+
+        try{
+            caso = daoCaso.getById(String.valueOf(id));
+
+            mv.addObject(caso);
+
+            return mv;
+        }catch (Exception e){
+            System.out.println("Erro ao chamar tela de edição de caso: " + e);
+
+            return null;
+        }
     }
 }
