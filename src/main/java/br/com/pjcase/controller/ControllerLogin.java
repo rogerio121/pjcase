@@ -47,7 +47,7 @@ public class ControllerLogin {
                 System.out.println(daoCaso.listarCasosSemProprietarios());
                 mv = new ModelAndView("telaInicial");
                 mv.addObject(usuario);
-                mv.addObject("x", casosSemProprietaio);
+                mv.addObject("casosSemProprietaio", casosSemProprietaio);
             }
             else
                 mv = new ModelAndView("redirect:/");
