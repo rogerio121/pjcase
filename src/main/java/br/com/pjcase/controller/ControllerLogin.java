@@ -44,7 +44,6 @@ public class ControllerLogin {
                 //sessao.setMaxInactiveInterval(3000);
                 casosSemProprietaio = daoCaso.listarCasosSemProprietarios();
 
-                System.out.println(daoCaso.listarCasosSemProprietarios());
                 mv = new ModelAndView("telaInicial");
                 mv.addObject(usuario);
                 mv.addObject("casosSemProprietaio", casosSemProprietaio);

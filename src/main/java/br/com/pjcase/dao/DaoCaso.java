@@ -36,6 +36,7 @@ public class DaoCaso {
             pstm.setString(8, caso.getIdClienteRelacionado());
 
             pstm.execute();
+            pstm.close();
         } catch (SQLException erro) {
             System.out.println("Erro ao inserir Caso: " + erro);
         }
@@ -60,6 +61,7 @@ public class DaoCaso {
             pstm.setInt(9, caso.getIdCaso());
 
             pstm.execute();
+            pstm.close();
         } catch (SQLException erro) {
             System.out.println("Erro ao atualizar Caso: " + erro);
         }
@@ -73,6 +75,7 @@ public class DaoCaso {
             pstm.setString(1, idCaso);
 
             pstm.execute();
+            pstm.close();
         } catch (SQLException erro) {
             System.out.println("Erro ao deletar Caso: " + erro);
         }
@@ -146,7 +149,8 @@ public class DaoCaso {
 
                 casos.add(caso);
             }
-            System.out.println("Enviados: " + casos);
+
+            pstm.close();
             return casos;
         } catch (SQLException erro) {
             System.out.println("Erro ao buscar Caso por Id: " + erro);

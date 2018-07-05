@@ -6,6 +6,7 @@ import br.com.pjcase.model.Caso;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -39,8 +40,9 @@ public class ControllerCaso {
         return "caso";
     }
 
-    @GetMapping("/{id}")
-    public ModelAndView chamaTelaEditar(@PathVariable("id") Optional<Integer> id, Caso caso){
+    @PostMapping("/cadastro/{id}")
+    public void pegarCaso(@PathVariable("id") Optional<Integer> id, Caso caso){
+        System.out.println("Chamou Post");
         ModelAndView mv = new ModelAndView("testeCaso");
         DaoCaso daoCaso = new DaoCaso();
 
@@ -49,11 +51,28 @@ public class ControllerCaso {
 
             mv.addObject(caso);
 
-            return mv;
         }catch (Exception e){
             System.out.println("Erro ao chamar tela de edição de caso: " + e);
 
-            return null;
         }
+
     }
+
+    /*@GetMapping("/cadastro/{id}")
+    public void pegarCaso(@PathVariable("id") Optional<Integer> id, Caso caso){
+        ModelAndView mv = new ModelAndView("testeCaso");
+        DaoCaso daoCaso = new DaoCaso();
+
+        try{
+            caso = daoCaso.getById(String.valueOf(id));
+
+            mv.addObject(caso);
+
+        }catch (Exception e){
+            System.out.println("Erro ao chamar tela de edição de caso: " + e);
+
+        }
+
+    }*/
+
 }

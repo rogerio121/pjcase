@@ -9,10 +9,10 @@
     <list default="true" id="61cbec97-094f-4ff1-92a2-1e58ce4b3756" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCaso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCaso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoCaso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoCaso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/casos-abertos-sem-proprietario.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/testeCaso.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/telaInicial.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/telaInicial.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/pjcase.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/pjcase.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/pjcase.war" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,11 +24,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Caso.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/model/Caso.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="58">
+              <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
+              <folding>
+                <element signature="e#339#340#0" expanded="true" />
+                <element signature="e#369#370#0" expanded="true" />
+                <element signature="e#415#416#0" expanded="true" />
+                <element signature="e#453#454#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ControllerCaso.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCaso.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
+            <state relative-caret-position="205">
+              <caret line="44" column="39" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#salvarCaso#0;class#ControllerCaso#0" />
@@ -37,57 +52,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ControllerLogin.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerLogin.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="46" column="70" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="70" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DaoCaso.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DaoCaso.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoCaso.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="136" column="34" lean-forward="true" selection-start-line="136" selection-start-column="34" selection-end-line="136" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TesteDaoCaso.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/TesteDaoCaso.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
+            <state relative-caret-position="239">
+              <caret line="124" column="52" selection-start-line="124" selection-start-column="52" selection-end-line="124" selection-end-column="52" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#insertCliente#0;class#TesteDaoCaso#0" />
-                <element signature="method#updateCliente#0;class#TesteDaoCaso#0" />
-                <element signature="method#deleteCliente#0;class#TesteDaoCaso#0" />
-                <element signature="method#buscaCliente#0;class#TesteDaoCaso#0" />
+                <element signature="method#insert#0;class#DaoCaso#0" />
+                <element signature="method#update#0;class#DaoCaso#0" />
+                <element signature="method#delete#0;class#DaoCaso#0" />
+                <element signature="method#getById#0;class#DaoCaso#0" />
+                <element signature="method#upsert#0;class#DaoCaso#0" />
+                <element signature="method#listarCasosSemProprietarios#0;class#DaoCaso#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="telaInicial.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="telaInicial.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/telaInicial.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="30" column="66" selection-start-line="30" selection-start-column="66" selection-end-line="30" selection-end-column="66" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="testeCaso.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/testeCaso.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="66" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
+            <state relative-caret-position="289">
+              <caret line="44" column="29" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -95,8 +81,8 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1666">
-              <caret line="98" selection-start-line="98" selection-end-line="98" />
+            <state relative-caret-position="273">
+              <caret line="90" column="25" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -118,6 +104,7 @@
       <find>setDate</find>
       <find>setd</find>
       <find>cpf</find>
+      <find>sys</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -168,13 +155,13 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/casos-abertos-sem-proprietario.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/model/Usuario.java" />
         <option value="$PROJECT_DIR$/src/test/java/TesteDaoCaso.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/model/Caso.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerLogin.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/telaInicial.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/testeCaso.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCaso.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerLogin.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoCaso.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCaso.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/telaInicial.jsp" />
       </list>
     </option>
   </component>
@@ -202,8 +189,8 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="330" />
+    <option name="y" value="-22" />
     <option name="width" value="697" />
     <option name="height" value="735" />
   </component>
@@ -672,12 +659,12 @@
       <workItem from="1530390994625" duration="1455000" />
       <workItem from="1530460861328" duration="15978000" />
       <workItem from="1530662408099" duration="1645000" />
-      <workItem from="1530664303031" duration="4793000" />
+      <workItem from="1530664303031" duration="10694000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98201000" />
+    <option name="totallyTimeSpent" value="104102000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -799,14 +786,6 @@
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCaso.java</url>
-          <line>24</line>
-          <properties class="br.com.pjcase.controller.ControllerCaso" method="salvarCaso">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="14" />
@@ -1048,47 +1027,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/model/Usuario.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1666">
-          <caret line="98" selection-start-line="98" selection-end-line="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/model/Caso.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
-          <folding>
-            <element signature="e#339#340#0" expanded="true" />
-            <element signature="e#369#370#0" expanded="true" />
-            <element signature="e#415#416#0" expanded="true" />
-            <element signature="e#453#454#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/telaInicial.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="30" column="66" selection-start-line="30" selection-start-column="66" selection-end-line="30" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/testeCaso.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="66" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/TesteDaoCaso.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
@@ -1103,10 +1041,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/testeCaso.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="66" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/model/Usuario.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerLogin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="54" column="19" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="90" column="25" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/model/Caso.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
+          <folding>
+            <element signature="e#339#340#0" expanded="true" />
+            <element signature="e#369#370#0" expanded="true" />
+            <element signature="e#415#416#0" expanded="true" />
+            <element signature="e#453#454#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoCaso.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="124" column="52" selection-start-line="124" selection-start-column="52" selection-end-line="124" selection-end-column="52" />
+          <folding>
+            <element signature="method#insert#0;class#DaoCaso#0" />
+            <element signature="method#update#0;class#DaoCaso#0" />
+            <element signature="method#delete#0;class#DaoCaso#0" />
+            <element signature="method#getById#0;class#DaoCaso#0" />
+            <element signature="method#upsert#0;class#DaoCaso#0" />
+            <element signature="method#listarCasosSemProprietarios#0;class#DaoCaso#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCaso.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
+        <state relative-caret-position="205">
+          <caret line="44" column="39" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#salvarCaso#0;class#ControllerCaso#0" />
@@ -1114,20 +1111,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerLogin.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/telaInicial.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="46" column="70" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoCaso.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="136" column="34" lean-forward="true" selection-start-line="136" selection-start-column="34" selection-end-line="136" selection-end-column="34" />
+        <state relative-caret-position="289">
+          <caret line="44" column="29" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="29" />
         </state>
       </provider>
     </entry>
