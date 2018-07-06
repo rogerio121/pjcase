@@ -2,7 +2,7 @@ package br.com.pjcase.model;
 
 
 
-public class Cliente extends DadosPessoais {
+public class Cliente {
 
     Empresa empresa;
     DadosPessoais dadosPessoais;

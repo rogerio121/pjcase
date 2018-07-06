@@ -27,8 +27,8 @@
                         <td>${caso.idCaso }</td>
                         <td>${caso.assunto }</td>
                         <td>${caso.dataDeAbertura }</td>
-                        <td><a onclick="pegarCaso(${caso.idCaso})" class="btn btn-info">Pegar Caso</a></td -->
-                        <td><a href="/caso/cadastro/${caso.idCaso}" class="btn btn-info">Pegar Caso GET</a></td -->
+                        <td><a onclick="pegarCaso(${caso.idCaso}, '${usuarioLogado.dadosPessoais.email}')" class="btn btn-info">Pegar Caso</a></td>
+                        <td><a href="/caso/cadastro/${caso.idCaso}" class="btn btn-info">Pegar Caso GET</a></td>
                         <!-- td><a onclick="excluir('$'{produto.id})" class="btn btn-danger">Excluir</a></td-->
                     </tr>
                 </c:forEach>
@@ -37,13 +37,18 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
-            function pegarCaso(id){
+
+            function pegarCaso(id, emailUsuario){
                 var url = window.location.href;
                 console.log(id);
+                console.log(emailUsuario);
+                console.log(JSON.stringify(emailUsuario))
 
                 $.ajax({
                     url:"caso/cadastro/" + id,
-                    type: 'POST',
+                    type: 'PUT',
+                    contentType: "text/plain",
+                    data: emailUsuario,
                     success: function(result){
                         window.location.href = url;
                     }

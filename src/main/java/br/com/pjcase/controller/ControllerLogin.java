@@ -26,7 +26,7 @@ public class ControllerLogin {
         return "login";
     }
 
-    @RequestMapping("logar")
+    @RequestMapping("telainicial")
     public ModelAndView logar(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
         DaoUsuario daoUsuario = new DaoUsuario();
         DaoCaso daoCaso = new DaoCaso();

@@ -3,11 +3,10 @@ package br.com.pjcase.controller;
 import br.com.pjcase.conexao.ConexaoBanco;
 import br.com.pjcase.dao.DaoCaso;
 import br.com.pjcase.model.Caso;
+import br.com.pjcase.model.Usuario;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,12 +39,39 @@ public class ControllerCaso {
         return "caso";
     }
 
-    @PostMapping("/cadastro/{id}")
-    public void pegarCaso(@PathVariable("id") Optional<Integer> id, Caso caso){
-        System.out.println("Chamou Post");
+
+    @PutMapping("/cadastro/{id}")
+    public ResponseEntity<Caso> pegarCaso(@PathVariable("id") Long id, @RequestBody String emailUsuario){
+        System.out.println("Chamou Put: " + id);
+        System.out.println(emailUsuario);
+
+        try{
+            DaoCaso daoCaso = new DaoCaso();
+            Caso caso = new Caso();
+            caso = daoCaso.getById(String.valueOf(id));
+            caso.setIdUsuarioRelacionado(emailUsuario);
+            System.out.println(emailUsuario);
+            System.out.println(caso);
+            daoCaso.update(caso);
+
+            return (ResponseEntity<Caso>) ResponseEntity.status(200);
+
+        }catch (Exception e){
+            System.out.println("Erro na controller caso: statuscode 500 \n" + e);
+            return (ResponseEntity<Caso>) ResponseEntity.status(500);
+        }
+
+
+    }
+
+
+    /*@PostMapping("/cadastro/{id}")
+    public void pegarCaso(@PathVariable("id") Optional<Integer> id, String emailUsuario){
+        System.out.println("Chamou Post: " id);
         ModelAndView mv = new ModelAndView("testeCaso");
         DaoCaso daoCaso = new DaoCaso();
-
+        Caso caso = new Caso();
+        System.out.println(emailUsuario);
         try{
             caso = daoCaso.getById(String.valueOf(id));
 
@@ -56,7 +82,7 @@ public class ControllerCaso {
 
         }
 
-    }
+    }*/
 
     /*@GetMapping("/cadastro/{id}")
     public void pegarCaso(@PathVariable("id") Optional<Integer> id, Caso caso){

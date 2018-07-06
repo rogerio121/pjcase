@@ -10,10 +10,10 @@ import java.util.List;
 public class TesteDaoCaso {
     public static void main(String[] args) {
          //insertCliente();
-        //updateCliente();
+        updateCliente();
         //deleteCliente();
         //buscaCliente();
-        buscaCasosSemDono();
+        //buscaCasosSemDono();
         ConexaoBanco.FecharConexao();
     }
 
@@ -35,7 +35,7 @@ public class TesteDaoCaso {
     public static void updateCliente() {
         Caso caso = new Caso();
 
-        caso.setIdCaso(1);
+        caso.setIdCaso(13);
         caso.setDataDeAbertura("2018-12-03");
         caso.setDataDeFechamento("2018-12-03");
         caso.setMenssagem("Menssgem Editada");

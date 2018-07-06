@@ -1,8 +1,5 @@
 package br.com.pjcase.model;
 
-import javax.persistence.MappedSuperclass;
-
-@MappedSuperclass
 public class DadosPessoais {
 	
 	
@@ -31,6 +28,13 @@ public class DadosPessoais {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "DadosPessoais{" +
+				"nome='" + nome + '\'' +
+				", email='" + email + '\'' +
+				", cpf='" + cpf + '\'' +
+				'}';
+	}
 }
