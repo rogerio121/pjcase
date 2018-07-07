@@ -22,21 +22,41 @@ public class DaoCaso {
     /*----------------CRUD----------------*/
     public void insert(Caso caso) {
         try {
-            String sql = "INSERT INTO caso (cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, usu_email, cli_email)" +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql;
+            if (!caso.getIdUsuarioRelacionado().isEmpty()) {
+                sql = "INSERT INTO caso (cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, usu_email, cli_email)" +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-            PreparedStatement pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, caso.getAssunto());
-            pstm.setString(2, caso.getDataDeAbertura());
-            pstm.setString(3, caso.getDataDeFechamento());
-            pstm.setString(4, caso.getMenssagem());
-            pstm.setString(5, caso.getStatus());
-            pstm.setString(6, caso.getIdEmpresaRelacionada());
-            pstm.setString(7, caso.getIdUsuarioRelacionado());
-            pstm.setString(8, caso.getIdClienteRelacionado());
+                PreparedStatement pstm = conexao.prepareStatement(sql);
+                pstm.setString(1, caso.getAssunto());
+                pstm.setString(2, caso.getDataDeAbertura());
+                pstm.setString(3, caso.getDataDeFechamento());
+                pstm.setString(4, caso.getMenssagem());
+                pstm.setString(5, caso.getStatus());
+                pstm.setString(6, caso.getIdEmpresaRelacionada());
+                pstm.setString(7, caso.getIdUsuarioRelacionado());
+                pstm.setString(8, caso.getIdClienteRelacionado());
 
-            pstm.execute();
-            pstm.close();
+                pstm.execute();
+                pstm.close();
+            }else {
+                sql = "INSERT INTO caso (cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, cli_email)" +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+                PreparedStatement pstm = conexao.prepareStatement(sql);
+                pstm.setString(1, caso.getAssunto());
+                pstm.setString(2, caso.getDataDeAbertura());
+                pstm.setString(3, caso.getDataDeFechamento());
+                pstm.setString(4, caso.getMenssagem());
+                pstm.setString(5, caso.getStatus());
+                pstm.setString(6, caso.getIdEmpresaRelacionada());
+                pstm.setString(7, caso.getIdClienteRelacionado());
+
+                pstm.execute();
+                pstm.close();
+            }
+
+
         } catch (SQLException erro) {
             System.out.println("Erro ao inserir Caso: " + erro);
         }

@@ -1,7 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
+    <meta charset="UTF-8" />
     <head>
         <title>Login</title>
+    </head>
+    <body>
+        <form action="/logar" method="post">
+            <label>Email</label> <input type="email" name="email" required><br>
+            <label>Senha</label> <input type="password" name="senha" required><br>
+
+            <button type="submit" onclick="x()">Logar</button>
+        </form>
+
+
         <script>
             function x() {
                 //  alert("func")
@@ -19,16 +31,6 @@
                     })
             }
         </script>
-
-    </head>
-    <body>
-        <form action="/logar" method="post">
-            <label>Email</label> <input type="email" name="email" required><br>
-            <label>Senha</label> <input type="password" name="senha" required><br>
-
-            <button type="submit" onclick="x()">Logar</button>
-        </form>
-
 
     </body>
 </html>
