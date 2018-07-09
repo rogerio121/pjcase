@@ -1,5 +1,4 @@
-
-[]create database banco_everson;
+create database banco_everson;
 
 create table empresa (
 	emp_cnpj varchar(18) primary key not null,
@@ -7,7 +6,7 @@ create table empresa (
 	emp_logradouro varchar(50),
 	emp_bairro varchar(30),
 	emp_cidade varchar(30),
-	emp_estado varchar (2)
+	emp_estado varchar (15)
 );
 
 create table usuario (

@@ -6,15 +6,21 @@
         <title>Caso</title>
     </head>
     <body>
-    <form action="/caso/salvar"method="post">
-        <label>Assunto</label> <input type="text" name="assunto"> <br>
-        <label>Menssagem</label> <input type="text" name="menssagem"> <br>
-        <label>Email do cliente</label> <input type="email" name="idClienteRelacionado" required> <br>
-        <label>Status</label> <input type="text" name="status"> <br>
-        <label>Empresa</label><input type="text" name="idEmpresaRelacionada" required> <br>
-        <label>Usuário</label><input type="email" name="idUsuarioRelacionado"> <br>
+        <form action="/caso/salvar"method="post">
+            <label>Assunto</label> <input type="text" name="assunto"> <br>
+            <label>Menssagem</label> <input type="text" name="menssagem"> <br>
+            <label>Email do cliente</label> <input type="email" name="idClienteRelacionado" required> <br>
+            <label>Status</label>
+            <select name="status">
+                <option value="Aberto" >Aberto</option>
+                <option value="Em atendimento" >Em atendimento</option>
+                <option value="Fechado">Fechado</option>
+            </select>
+            <br>
+            <label>Empresa</label><input type="text" name="idEmpresaRelacionada" required> <br>
+            <label>Usuário</label><input type="email" name="idUsuarioRelacionado"> <br>
 
-        <button type="submit">Salvar</button>
-    </form>
+            <button type="submit">Salvar</button>
+        </form>
     </body>
 </html>
