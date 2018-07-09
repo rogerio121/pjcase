@@ -6,6 +6,7 @@
         <title>Caso</title>
     </head>
     <body>
+
         <form action="/caso/salvar"method="post">
             <label>Assunto</label> <input type="text" name="assunto"> <br>
             <label>Menssagem</label> <input type="text" name="menssagem"> <br>
@@ -18,7 +19,7 @@
             </select>
             <br>
             <label>Empresa</label><input type="text" name="idEmpresaRelacionada" required> <br>
-            <label>Usuário</label><input type="email" name="idUsuarioRelacionado"> <br>
+            <input type="email" value="${usuarioLogado.dadosPessoais.email}" name="idUsuarioRelacionado" hidden> <br>
 
             <button type="submit">Salvar</button>
         </form>
