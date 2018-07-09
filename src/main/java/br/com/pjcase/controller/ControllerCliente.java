@@ -5,6 +5,7 @@ import br.com.pjcase.model.Cliente;
 import br.com.pjcase.model.DadosPessoais;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,11 +15,11 @@ public class ControllerCliente {
 
     @RequestMapping("/cadastro")
     public String chamarTelaCliente(){
-        return "cliente";
+        return "cliente/cliente";
     }
 
     @RequestMapping("/salvar")
-    public String salvarCliente(HttpServletRequest request){
+    public ModelAndView salvarCliente(HttpServletRequest request){
         Cliente cliente = new Cliente();
         DadosPessoais dadosPessoais = new DadosPessoais();
         DaoCliente daoCliente = new DaoCliente();
@@ -28,7 +29,8 @@ public class ControllerCliente {
 
         cliente.setDadosPessoais(dadosPessoais);
         daoCliente.upsert(cliente);
-
-        return "cliente";
+        ModelAndView mv = new ModelAndView("cliente/clienteView");
+        mv.addObject("cliente",cliente);
+        return mv;
     }
 }

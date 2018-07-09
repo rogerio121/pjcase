@@ -3,7 +3,6 @@ package br.com.pjcase.controller;
 import br.com.pjcase.conexao.ConexaoBanco;
 import br.com.pjcase.dao.DaoCaso;
 import br.com.pjcase.model.Caso;
-import br.com.pjcase.model.Usuario;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,19 +10,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/caso")
 public class ControllerCaso {
 
     @RequestMapping("/cadastro")
-    public String chamaTelaCaso(){
-        return "caso";
+    public String chamaTelaCaso() {
+        return "caso/caso";
     }
 
     @RequestMapping("/salvar")
-    public String salvarCaso(HttpServletRequest request) {
+    public ModelAndView salvarCaso(HttpServletRequest request) {
         Caso caso = new Caso();
         DaoCaso daoCaso = new DaoCaso();
         try {
@@ -40,18 +38,20 @@ public class ControllerCaso {
         caso.setIdUsuarioRelacionado(request.getParameter("idUsuarioRelacionado"));
 
         daoCaso.upsert(caso);
+        ModelAndView mv = new ModelAndView("caso/casoView");
+        mv.addObject("caso",caso);
 
         ConexaoBanco.FecharConexao();
-        return "caso";
+        return mv;
     }
 
 
     @PutMapping("/cadastro/{id}")
-    public ResponseEntity<Caso> pegarCaso(@PathVariable("id") Long id, @RequestBody String emailUsuario){
+    public ResponseEntity<Caso> pegarCaso(@PathVariable("id") Long id, @RequestBody String emailUsuario) {
         System.out.println("Chamou Put: " + id);
         System.out.println(emailUsuario);
 
-        try{
+        try {
             DaoCaso daoCaso = new DaoCaso();
             Caso caso = new Caso();
             caso = daoCaso.getById(String.valueOf(id));
@@ -62,7 +62,7 @@ public class ControllerCaso {
 
             return (ResponseEntity<Caso>) ResponseEntity.status(200);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Erro na controller caso: statuscode 500 \n" + e);
             return (ResponseEntity<Caso>) ResponseEntity.status(500);
         }

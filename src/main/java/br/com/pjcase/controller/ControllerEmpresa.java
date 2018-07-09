@@ -4,14 +4,12 @@ package br.com.pjcase.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import br.com.pjcase.conexao.ConexaoBanco;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.pjcase.dao.DaoEmpresa;
 import br.com.pjcase.model.Empresa;
-
-import static java.lang.System.out;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -20,7 +18,7 @@ public class ControllerEmpresa {
 
 	@RequestMapping("/cadastro")
 	public String chamarTelaEmpresa() {
-		return "empresa";
+		return "empresa/empresa";
 	}
 
 
@@ -29,7 +27,7 @@ public class ControllerEmpresa {
 	 * a existencia da empresa será comprovada com uma pesquisa no banco com o CNPJ*/
 
 	@RequestMapping("/salvar")
-	public String salvarEmpresa(HttpServletRequest request) {
+	public ModelAndView salvarEmpresa(HttpServletRequest request) {
 		Empresa empresa = new Empresa();
 		empresa.setNome(request.getParameter("nome"));
 		empresa.setCnpj(request.getParameter("cnpj"));
@@ -41,8 +39,10 @@ public class ControllerEmpresa {
 		DaoEmpresa daoEmpresa = new DaoEmpresa();
 
 		daoEmpresa.upsert(empresa);
+        ModelAndView mv = new ModelAndView("empresa/empresaView");
+        mv.addObject("empresa",empresa);
 
-		ConexaoBanco.FecharConexao();
-		return "cadastro";
+        ConexaoBanco.FecharConexao();
+		return mv;
 	}
 }

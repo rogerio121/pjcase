@@ -15,7 +15,7 @@
 
         <script>
             function logar(){
-                alert('y')
+               // alert('y')
                 let form = document.getElementById("form-login")
 
                 form.send()

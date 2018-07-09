@@ -6,6 +6,7 @@ import br.com.pjcase.model.DadosPessoais;
 import br.com.pjcase.model.Usuario;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,11 +16,11 @@ public class ControllerUsuario {
 
     @RequestMapping("/cadastro")
     public String chamarTelaUsuario(){
-        return "usuario";
+        return "usuario/usuario";
     }
 
     @RequestMapping("/salvar")
-    public String chamarTelaUsuario(HttpServletRequest request){
+    public ModelAndView chamarTelaUsuario(HttpServletRequest request){
         Usuario usuario = new Usuario();
         DadosPessoais dadosPessoais = new DadosPessoais();
         DaoUsuario daoUsuario = new DaoUsuario();
@@ -30,10 +31,12 @@ public class ControllerUsuario {
         usuario.setSenha(request.getParameter("senha"));
 
         usuario.setDadosPessoais(dadosPessoais);
-        daoUsuario.upsert(usuario);
-
+        //daoUsuario.upsert(usuario);
         ConexaoBanco.FecharConexao();
 
-        return "usuario";
+        ModelAndView mv = new ModelAndView("usuario/usuarioView");
+        mv.addObject("usuario",usuario);
+
+        return mv;
     }
 }
