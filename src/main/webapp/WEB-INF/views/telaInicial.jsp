@@ -13,7 +13,7 @@
             <a href="/caso/cadastro">Caso</a>
             <a href="/empresa/cadastro">Empresa</a>
             <a href="/cliente/cadastro">Cliente</a>
-            <a href="">Sair</a>
+            <a href="/logout">Sair</a>
 
         </div>
 

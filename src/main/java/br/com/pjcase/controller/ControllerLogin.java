@@ -27,7 +27,7 @@ public class ControllerLogin {
     }
 
     @RequestMapping("telainicial")
-    public ModelAndView logar(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
+    public ModelAndView login(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
         DaoUsuario daoUsuario = new DaoUsuario();
         DaoCaso daoCaso = new DaoCaso();
         Usuario usuario = new Usuario();
@@ -37,7 +37,7 @@ public class ControllerLogin {
         try {
             usuario = daoUsuario.getByEmailESenha(request.getParameter("email"), request.getParameter("senha"));
 
-            if (usuario != null) {
+            if (usuario.getDadosPessoais() != null) {
 
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("usuarioLogado", usuario);
@@ -56,4 +56,11 @@ public class ControllerLogin {
                 return  null;
         }
     }
+
+    @RequestMapping("logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
+    }
+
 }

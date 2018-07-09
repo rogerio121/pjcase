@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.Optional;
 
 @Controller
@@ -22,9 +23,14 @@ public class ControllerCaso {
     }
 
     @RequestMapping("/salvar")
-    public String salvarCaso(HttpServletRequest request){
+    public String salvarCaso(HttpServletRequest request) {
         Caso caso = new Caso();
         DaoCaso daoCaso = new DaoCaso();
+        try {
+            request.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            System.out.println("Erro no charset ControllerCaso: " + e);
+        }
 
         caso.setAssunto(request.getParameter("assunto"));
         caso.setMenssagem(request.getParameter("menssagem"));
