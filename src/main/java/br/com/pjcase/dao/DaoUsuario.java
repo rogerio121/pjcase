@@ -22,13 +22,14 @@ public class DaoUsuario {
     /*----------------CRUD----------------*/
     public void insert(Usuario usuario) {
         try {
-            String sql = "INSERT INTO usuario (usu_email, usu_nome, usu_senha)" +
-                    "VALUES (?, ?, ?)";
+            String sql = "INSERT INTO usuario (usu_email, usu_nome, usu_senha, usu_admin)" +
+                    "VALUES (?, ?, ?, ?)";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
             pstm.setString(1, usuario.getDadosPessoais().getEmail());
             pstm.setString(2, usuario.getDadosPessoais().getNome());
             pstm.setString(3, usuario.getSenha());
+            pstm.setBoolean(4, usuario.getAdmin());
 
             pstm.execute();
         } catch (SQLException erro) {
@@ -40,14 +41,15 @@ public class DaoUsuario {
         try {
             //Empresa empresaCadastrada = getById(empresa.getCnpj());
 
-            String sql = "UPDATE usuario SET usu_email = ?, usu_nome = ?, usu_senha = ?" +
+            String sql = "UPDATE usuario SET usu_email = ?, usu_nome = ?, usu_senha = ?, usu_admin = ?" +
                     "WHERE usu_email = ?";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
             pstm.setString(1, usuario.getDadosPessoais().getEmail());
             pstm.setString(2, usuario.getDadosPessoais().getNome());
             pstm.setString(3, usuario.getSenha());
-            pstm.setString(4, usuario.getDadosPessoais().getEmail());
+            pstm.setBoolean(4, usuario.getAdmin());
+            pstm.setString(5, usuario.getDadosPessoais().getEmail());
 
             pstm.execute();
         } catch (SQLException erro) {
@@ -70,7 +72,7 @@ public class DaoUsuario {
 
     public Usuario getById(String idUsuario) {
         try {
-            String sql = "SELECT usu_email, usu_nome, usu_senha " +
+            String sql = "SELECT usu_email, usu_nome, usu_senha , usu_admin " +
                     "FROM usuario " +
                     "WHERE usu_email = ?";
 
@@ -85,6 +87,7 @@ public class DaoUsuario {
                 dadosPessoais.setNome(rs.getString("usu_nome"));
                 dadosPessoais.setEmail(rs.getString("usu_email"));
                 usuario.setSenha(rs.getString("usu_senha"));
+                usuario.setAdmin(rs.getBoolean("usu_admin"));
                 usuario.setDadosPessoais(dadosPessoais);
             }
 
@@ -108,7 +111,7 @@ public class DaoUsuario {
 
     public Usuario getByEmailESenha(String idUsuario, String senha) {
         try {
-            String sql = "SELECT usu_email, usu_nome, usu_senha " +
+            String sql = "SELECT usu_email, usu_nome, usu_senha, usu_admin " +
                     "FROM usuario " +
                     "WHERE usu_email = ? AND usu_senha = ?";
 
@@ -124,6 +127,7 @@ public class DaoUsuario {
                 dadosPessoais.setNome(rs.getString("usu_nome"));
                 dadosPessoais.setEmail(rs.getString("usu_email"));
                 usuario.setSenha(rs.getString("usu_senha"));
+                usuario.setAdmin(rs.getBoolean("usu_admin"));
                 usuario.setDadosPessoais(dadosPessoais);
             }
 

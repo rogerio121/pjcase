@@ -5,6 +5,7 @@ public class Usuario {
 	String senha;
 	Empresa empresaCliente;
 	DadosPessoais dadosPessoais;
+	Boolean admin;
 
 
 	public Empresa getEmpresaCliente() {
@@ -34,12 +35,21 @@ public class Usuario {
 	}
 
 
+	public Boolean getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario{" +
 				"senha='" + senha + '\'' +
 				", empresaCliente=" + empresaCliente +
 				", dadosPessoais=" + dadosPessoais +
+				", admin=" + admin +
 				'}';
 	}
 }

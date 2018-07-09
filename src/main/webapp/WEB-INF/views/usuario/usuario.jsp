@@ -10,6 +10,7 @@
             <label>Nome</label> <input type="text" name="nome"> <br>
             <label>E-mail</label> <input type="email" name="email"> <br>
             <label>senha</label> <input type="password" name="senha"> <br>
+            <label>Administrador</label> <input type="checkbox" name="admin"> <br>
 
             <button type="submit">Salvar</button>
         </form>

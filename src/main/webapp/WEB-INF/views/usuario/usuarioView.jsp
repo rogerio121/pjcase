@@ -6,9 +6,22 @@
     <title>Usuario</title>
 </head>
     <body>
-        <form action="/usuario/salvar" method="post">
-            <label>Nome</label> ${usuario.dadosPessoais.nome} <br>
-            <label>E-mail</label> ${usuario.dadosPessoais.email} <br>
+        <form id="usuario-salvo">
         </form>
     </body>
+
+    <script>
+        var admin = ${usuario.admin}
+        console.log(admin)
+        document.getElementById('usuario-salvo').innerHTML = '' +
+            ' <label>Nome</label> ${usuario.dadosPessoais.nome} <br>\n' +
+            '            <label>E-mail</label> ${usuario.dadosPessoais.email} <br>\n'
+        if(admin)
+            document.getElementById('usuario-salvo').innerHTML += '' +
+                '<label>Administrador</label> <input name="admin" type="checkbox" checked><br>'
+        else
+            document.getElementById('usuario-salvo').innerHTML += '' +
+                '<label>Administrador</label> <input name="admin" type="checkbox"><br>'
+
+    </script>
 </html>

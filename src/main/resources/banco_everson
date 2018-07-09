@@ -12,7 +12,8 @@ create table empresa (
 create table usuario (
 	usu_email varchar(50) primary key not null,
 	usu_nome varchar(50),
-	usu_senha varchar(8)
+	usu_senha varchar(8),
+    usu_admin boolean
 );
 
 create table usuario_empresa (
