@@ -44,17 +44,20 @@
                 var url = window.location.href;
                 console.log(id);
                 console.log(emailUsuario);
-                console.log(JSON.stringify(emailUsuario))
 
-                $.ajax({
-                    url:"caso/cadastro/" + id,
-                    type: 'PUT',
-                    contentType: "text/plain",
-                    data: emailUsuario,
-                    success: function(result){
-                        window.location.href = url;
-                    }
-                });
+                fetch('caso/cadastro/' + id,
+                    {
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'text/plain'
+                        },
+                        method: "PUT",
+                        body: emailUsuario
+                    })
+                    .then(function (res) {
+                        console.log(res)
+                        //window.location = window.location.href+"telainicial";
+                    })
             }
         </script>
     </body>

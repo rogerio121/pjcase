@@ -48,8 +48,7 @@ public class ControllerCaso {
 
     @PutMapping("/cadastro/{id}")
     public ResponseEntity<Caso> pegarCaso(@PathVariable("id") Long id, @RequestBody String emailUsuario) {
-        System.out.println("Chamou Put: " + id);
-        System.out.println(emailUsuario);
+        ResponseEntity<Caso> responseEntity = null;
 
         try {
             DaoCaso daoCaso = new DaoCaso();
@@ -60,11 +59,15 @@ public class ControllerCaso {
             System.out.println(caso);
             daoCaso.update(caso);
 
-            return (ResponseEntity<Caso>) ResponseEntity.status(200);
+            responseEntity.ok(caso);
+            responseEntity.status(200);
+
+            return responseEntity;
 
         } catch (Exception e) {
+            responseEntity.status(500);
             System.out.println("Erro na controller caso: statuscode 500 \n" + e);
-            return (ResponseEntity<Caso>) ResponseEntity.status(500);
+            return responseEntity;
         }
 
 
