@@ -57,7 +57,7 @@ public class ControllerCaso {
             caso.setIdUsuarioRelacionado(emailUsuario);
             System.out.println(emailUsuario);
             System.out.println(caso);
-            //daoCaso.update(caso);
+            daoCaso.update(caso);
 
             responseEntity.ok(caso);
             responseEntity.status(200);
