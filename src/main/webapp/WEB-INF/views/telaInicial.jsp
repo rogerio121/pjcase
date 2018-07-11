@@ -6,7 +6,7 @@
     <head>
         <title>Tela inicial</title>
     </head>
-    <body>
+    <body onload="criarTabelaCasos()">
         <h3>Bem vindo ${usuarioLogado.dadosPessoais.nome}</h3>
 
         <div>
@@ -16,6 +16,18 @@
             <a href="/logout">Sair</a>
 
         </div>
+
+        <table id="tb-casos-sem-proprietario">
+            <thead>
+                <th>Id</th>
+                <th>Assunto</th>
+                <th>Data de Abertura</th>
+            </thead>
+            <tbody>
+            
+            </tbody>
+        </table>
+
 
         <table>
             <tr>
@@ -29,7 +41,7 @@
                         <td>${caso.idCaso }</td>
                         <td>${caso.assunto }</td>
                         <td>${caso.dataDeAbertura }</td>
-                        <td><a onclick="pegarCaso(${caso.idCaso}, '${usuarioLogado.dadosPessoais.email}')" class="btn btn-info">Pegar Caso</a></td>
+                        <td onclick="deleteRow(this)"><a onclick="pegarCaso(${caso.idCaso},'${usuarioLogado.dadosPessoais.email}')"  id="${caso.idCaso}" class="btn btn-info">Pegar Caso</a></td>
                         <td><a href="/caso/cadastro/${caso.idCaso}" class="btn btn-info">Pegar Caso GET</a></td>
                         <!-- td><a onclick="excluir('$'{produto.id})" class="btn btn-danger">Excluir</a></td-->
                     </tr>
@@ -39,6 +51,25 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
+            
+            function criarTabelaCasos() {
+                console.log("chamo")
+                var tbody = document.getElementById('id="tb-casos-sem-proprietario"').getElementsByTagName('tbody')[0]
+
+                var novaLinha   = tbody.insertRow(tbody.rows.length);
+
+                var novaCelula  = novaLinha.insertCell(0);
+                var newText  = document.createTextNode('New row');
+                novaCelula.appendChild(newText);
+
+            }
+            
+            function deleteRow(r) {
+
+                var i = r.parentNode.parentNode.rowIndex;
+                alert(i)
+                document.getElementById("tb-casos-sem-proprietario").deleteRow(i);
+            }
 
             function pegarCaso(id, emailUsuario){
                 var url = window.location.href;
@@ -56,7 +87,7 @@
                     })
                     .then(function (res) {
                         console.log(res)
-                        //window.location = window.location.href+"telainicial";
+                        //linha.deleteCell(0)
                     })
             }
         </script>
