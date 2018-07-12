@@ -3,19 +3,18 @@ package br.com.pjcase.model;
 public class Usuario {
 	
 	String senha;
-	Empresa empresaCliente;
+	String idEmpresaRelacionada;
 	DadosPessoais dadosPessoais;
 	Boolean admin;
 
 
-	public Empresa getEmpresaCliente() {
-		return empresaCliente;
+	public String getIdEmpresaRelacionada() {
+		return idEmpresaRelacionada;
 	}
 
-	public void setEmpresaCliente(Empresa empresaCliente) {
-		this.empresaCliente = empresaCliente;
+	public void setIdEmpresaRelacionada(String idEmpresaRelacionada) {
+		this.idEmpresaRelacionada = idEmpresaRelacionada;
 	}
-
 
 	public String getSenha() {
 		return senha;
@@ -43,11 +42,12 @@ public class Usuario {
 		this.admin = admin;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Usuario{" +
 				"senha='" + senha + '\'' +
-				", empresaCliente=" + empresaCliente +
+				", idEmpresaRelacionada='" + idEmpresaRelacionada + '\'' +
 				", dadosPessoais=" + dadosPessoais +
 				", admin=" + admin +
 				'}';

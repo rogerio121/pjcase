@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DaoCliente {
 
@@ -101,4 +103,38 @@ public class DaoCliente {
             update(cliente);
     }
     /*------------FIM-CRUD----------------*/
+
+    public List<Cliente> buscaClientesPertecentesEmpresa(String idEmpresa) {
+        List<Cliente> clientes = new ArrayList<Cliente>();
+
+        try {
+            String sql = "SELECT * " +
+                    "FROM cliente c " +
+                    "JOIN cliente_de_empresa ce " +
+                    "ON c.cli_email = ce.cli_email " +
+                    "WHERE ce.emp_cnpj = ?";
+
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setString(1, idEmpresa);
+            ResultSet rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+                DadosPessoais dadosPessoais = new DadosPessoais();
+
+                dadosPessoais.setNome(rs.getString("cli_nome"));
+                dadosPessoais.setEmail(rs.getString("cli_email"));
+                cliente.setDadosPessoais(dadosPessoais);
+
+                clientes.add(cliente);
+            }
+
+            return clientes;
+        } catch (SQLException erro) {
+            System.out.println("Erro ao Clientes vinculados a empresa do usuário: " + erro);
+        }
+
+        return null;
+    }
+
 }

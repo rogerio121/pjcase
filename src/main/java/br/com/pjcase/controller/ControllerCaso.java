@@ -3,13 +3,17 @@ package br.com.pjcase.controller;
 import br.com.pjcase.conexao.ConexaoBanco;
 import br.com.pjcase.dao.DaoCaso;
 import br.com.pjcase.model.Caso;
+import br.com.pjcase.model.Usuario;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/caso")
@@ -39,7 +43,7 @@ public class ControllerCaso {
 
         daoCaso.upsert(caso);
         ModelAndView mv = new ModelAndView("caso/casoView");
-        mv.addObject("caso",caso);
+        mv.addObject("caso", caso);
 
         ConexaoBanco.FecharConexao();
         return mv;
@@ -55,8 +59,7 @@ public class ControllerCaso {
             Caso caso = new Caso();
             caso = daoCaso.getById(String.valueOf(id));
             caso.setIdUsuarioRelacionado(emailUsuario);
-            System.out.println(emailUsuario);
-            System.out.println(caso);
+
             daoCaso.update(caso);
 
             responseEntity.ok(caso);
@@ -73,6 +76,31 @@ public class ControllerCaso {
 
     }
 
+
+    @RequestMapping("/meuscasos")
+    public ModelAndView buscaMeusCasos(HttpServletRequest request, HttpServletResponse response) {
+        DaoCaso daoCaso = new DaoCaso();
+        List<Caso> casosDoUsuarioLogado = new ArrayList<Caso>();
+
+        ModelAndView mv;
+        try {
+            Usuario usuario = new Usuario();
+            usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
+
+            casosDoUsuarioLogado = daoCaso.listarCasosPorProprietarios(usuario.getDadosPessoais().getEmail());
+
+            mv = new ModelAndView("caso/meusCasos");
+            mv.addObject("casosDoUsuarioLogado", casosDoUsuarioLogado);
+            System.out.println(casosDoUsuarioLogado.get(0));
+            return mv;
+
+        }catch(Exception e)
+
+    {
+        System.out.println("Erro ao carregar 'meusCasos': " + e);
+        return null;
+    }
+}
 
     /*@PostMapping("/cadastro/{id}")
     public void pegarCaso(@PathVariable("id") Optional<Integer> id, String emailUsuario){

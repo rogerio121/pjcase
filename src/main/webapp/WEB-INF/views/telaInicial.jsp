@@ -11,25 +11,15 @@
 
         <div>
             <a href="/caso/cadastro">Caso</a>
+            <a href="/caso/cadastro">Meus Casos</a>
             <a href="/empresa/cadastro">Empresa</a>
             <a href="/cliente/cadastro">Cliente</a>
-            <a href="/logout">Sair</a>
-
+            <a href="/logout">Sair</a> <br>
+            <a href="/caso/meuscasos">Meus Casos</a>
+            <a href="/cliente/clientes">Clientes</a>
         </div>
 
-        <table id="tb-casos-sem-proprietario">
-            <thead>
-                <th>Id</th>
-                <th>Assunto</th>
-                <th>Data de Abertura</th>
-            </thead>
-            <tbody>
-            
-            </tbody>
-        </table>
-
-
-        <table>
+       <table>
             <tr>
                 <td>Id</td>
                 <td>Assunto</td>
@@ -71,6 +61,8 @@
                         console.log(res)
                         if(res.status == 200)
                             location.reload()
+                        else
+                            alert('Erro ao pegar o caso, consulte um administrador')
                     })
             }
         </script>

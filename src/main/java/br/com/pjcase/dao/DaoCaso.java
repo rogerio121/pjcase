@@ -173,7 +173,45 @@ public class DaoCaso {
             pstm.close();
             return casos;
         } catch (SQLException erro) {
-            System.out.println("Erro ao buscar Caso por Id: " + erro);
+            System.out.println("Erro ao buscar Caso sem proprietário: " + erro);
+            return null;
+        }
+    }
+
+    public List<Caso> listarCasosPorProprietarios(String idUsuario) {
+        try {
+            String sql = "SELECT cas_id, cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, cli_email, usu_email " +
+                    "FROM caso " +
+                    "WHERE usu_email = ?";
+
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setString(1, idUsuario);
+            ResultSet rs = pstm.executeQuery();
+
+            Caso caso;
+            List<Caso> casos = new ArrayList<Caso>();
+
+            while (rs.next()) {
+                DadosPessoais dadosPessoais = new DadosPessoais();
+
+                caso = new Caso();
+                caso.setIdCaso(rs.getInt("cas_id"));
+                caso.setAssunto(rs.getString("cas_assusnto"));
+                caso.setDataDeAbertura(rs.getString("cas_data_de_abertura"));
+                caso.setDataDeFechamento(rs.getString("cas_data_de_fechamento"));
+                caso.setMenssagem(rs.getString("cas_menssagem"));
+                caso.setStatus(rs.getString("cas_status"));
+                caso.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
+                caso.setIdClienteRelacionado(rs.getString("cli_email"));
+                caso.setIdUsuarioRelacionado(rs.getString("usu_email"));
+
+                casos.add(caso);
+            }
+
+            pstm.close();
+            return casos;
+        } catch (SQLException erro) {
+            System.out.println("Erro ao buscar Casos por Id do usuario: " + erro);
             return null;
         }
     }

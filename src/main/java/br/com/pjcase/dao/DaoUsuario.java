@@ -72,7 +72,7 @@ public class DaoUsuario {
 
     public Usuario getById(String idUsuario) {
         try {
-            String sql = "SELECT usu_email, usu_nome, usu_senha , usu_admin " +
+            String sql = "SELECT usu_email, usu_nome, usu_senha, usu_admin, emp_cnpj" +
                     "FROM usuario " +
                     "WHERE usu_email = ?";
 
@@ -88,6 +88,7 @@ public class DaoUsuario {
                 dadosPessoais.setEmail(rs.getString("usu_email"));
                 usuario.setSenha(rs.getString("usu_senha"));
                 usuario.setAdmin(rs.getBoolean("usu_admin"));
+                usuario.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
                 usuario.setDadosPessoais(dadosPessoais);
             }
 
@@ -111,7 +112,7 @@ public class DaoUsuario {
 
     public Usuario getByEmailESenha(String idUsuario, String senha) {
         try {
-            String sql = "SELECT usu_email, usu_nome, usu_senha, usu_admin " +
+            String sql = "SELECT * " +
                     "FROM usuario " +
                     "WHERE usu_email = ? AND usu_senha = ?";
 
@@ -128,12 +129,15 @@ public class DaoUsuario {
                 dadosPessoais.setEmail(rs.getString("usu_email"));
                 usuario.setSenha(rs.getString("usu_senha"));
                 usuario.setAdmin(rs.getBoolean("usu_admin"));
+                usuario.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
                 usuario.setDadosPessoais(dadosPessoais);
+                System.out.println(rs.getString("emp_cnpj"));
+                System.out.println(usuario);
             }
 
             return usuario;
         } catch (SQLException erro) {
-            System.out.println("Erro ao buscar Usuario por Id: " + erro);
+            System.out.println("Erro ao buscar Usuario por usuario e senha: " + erro);
             return null;
         }
     }

@@ -13,21 +13,11 @@ create table usuario (
 	usu_email varchar(50) primary key not null,
 	usu_nome varchar(50),
 	usu_senha varchar(8),
-    usu_admin boolean
+    usu_admin boolean,
+    emp_cnpj varchar(18),
+    foreign key (emp_cnpj) references empresa (emp_cnpj)
 );
 
-create table usuario_empresa (
-	emp_cnpj varchar(18) not null,
-	usu_email varchar(50) not null,
-		
-        constraint pk_usuario_empresa primary key (emp_cnpj, usu_email),
-		
-        constraint fk_empresa_usuario foreign key (emp_cnpj)
-			references usuario (usu_email),
-		
-        constraint fk_usuario_empresa foreign key (usu_email)
-			references empresa (emp_cnpj)
-);
 
 create table cliente (
 	cli_email varchar(50) primary key not null,
