@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DaoEmpresa{
 
@@ -108,4 +110,35 @@ public class DaoEmpresa{
 			update(empresa);
 	}
 	/*------------FIM-CRUD----------------*/
+
+	public List<Empresa> buscaEmpresasCadastradas(){
+		try {
+			String sql = "SELECT emp_cnpj, emp_nome, emp_logradouro, emp_bairro, emp_cidade, emp_estado " +
+					"FROM empresa ";
+
+			PreparedStatement pstm = conexao.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+
+			List<Empresa> empresasCadastradas = new ArrayList<Empresa>();
+
+			while (rs.next()){
+				Empresa empresa = new Empresa();
+
+				empresa.setCnpj(rs.getString("emp_cnpj"));
+				empresa.setNome(rs.getString("emp_nome"));
+				empresa.setLogradouro(rs.getString("emp_logradouro"));
+				empresa.setBairro(rs.getString("emp_bairro"));
+				empresa.setCidade(rs.getString("emp_cidade"));
+				empresa.setEstado(rs.getString("emp_estado"));
+
+				empresasCadastradas.add(empresa);
+			}
+
+			return empresasCadastradas;
+		}catch (SQLException erro){
+			System.out.println("Erro ao buscar Empresa por Id: " + erro);
+		}
+
+		return null;
+	}
 }

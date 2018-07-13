@@ -5,7 +5,6 @@
         <title>Clientes</title>
     </head>
     <body>
-    ${clientes}
         <table>
             <tr>
                 <td>Nome</td>
