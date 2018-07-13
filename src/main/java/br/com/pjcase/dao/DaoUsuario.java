@@ -131,8 +131,6 @@ public class DaoUsuario {
                 usuario.setAdmin(rs.getBoolean("usu_admin"));
                 usuario.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
                 usuario.setDadosPessoais(dadosPessoais);
-                System.out.println(rs.getString("emp_cnpj"));
-                System.out.println(usuario);
             }
 
             return usuario;

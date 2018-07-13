@@ -32,8 +32,6 @@
                         <td>${caso.assunto }</td>
                         <td>${caso.dataDeAbertura }</td>
                         <td><a onclick="pegarCaso(${caso.idCaso},'${usuarioLogado.dadosPessoais.email}')"  id="${caso.idCaso}" class="btn btn-info">Pegar Caso</a></td>
-                        <td><a href="/caso/cadastro/${caso.idCaso}" class="btn btn-info">Pegar Caso GET</a></td>
-                        <!-- td><a onclick="excluir('$'{produto.id})" class="btn btn-danger">Excluir</a></td-->
                     </tr>
                 </c:forEach>
             </c:if>

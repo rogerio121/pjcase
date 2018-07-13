@@ -42,13 +42,12 @@ public class ControllerCliente {
         List<Cliente> clientes = new ArrayList<Cliente>();
         DaoCliente daoCliente = new DaoCliente();
 
+
         Usuario usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
-        System.out.println(usuarioLogado.getIdEmpresaRelacionada());
         clientes = daoCliente.buscaClientesPertecentesEmpresa(usuarioLogado.getIdEmpresaRelacionada());
 
         ModelAndView mv = new ModelAndView("cliente/clientes");
         mv.addObject("clientes",clientes);
-        System.out.println(clientes.get(0));
         return mv;
     }
 }
