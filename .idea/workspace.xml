@@ -7,12 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="61cbec97-094f-4ff1-92a2-1e58ce4b3756" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerEmpresa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoEmpresa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clientes.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clientes.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresas.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresas.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/menu.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/telaInicial.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/telaInicial.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/pjcase/dao/DaoCliente.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,71 +20,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ControllerCliente.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCliente.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="48" column="60" selection-start-line="48" selection-start-column="60" selection-end-line="48" selection-end-column="60" />
-              <folding>
-                <element signature="e#1351#1360#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="clientes.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clientes.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="11" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="21" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="empresas.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresas.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DaoEmpresa.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoEmpresa.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="133" column="39" selection-start-line="133" selection-start-column="39" selection-end-line="133" selection-end-column="39" />
-              <folding>
-                <element signature="method#insert#0;class#DaoEmpresa#0" />
-                <element signature="method#update#0;class#DaoEmpresa#0" />
-                <element signature="method#delete#0;class#DaoEmpresa#0" />
-                <element signature="method#getById#0;class#DaoEmpresa#0" />
-                <element signature="method#upsert#0;class#DaoEmpresa#0" />
-                <element signature="e#3533#3542#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="telaInicial.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="telaInicial.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/telaInicial.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+            <state>
+              <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ControllerEmpresa.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerEmpresa.java">
+      <file leaf-file-name="menu.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/menu.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
-              <folding>
-                <element signature="method#salvarEmpresa#0;class#ControllerEmpresa#0" />
-                <element signature="e#1645#1654#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="255">
+              <caret line="15" column="58" selection-start-line="15" selection-start-column="58" selection-end-line="15" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -121,7 +66,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cadastrodeempresa" />
         <option value="$USER_HOME$/.m2/settings.xml" />
         <option value="$PROJECT_DIR$/profiles.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/teste.jsp" />
@@ -172,6 +116,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clientes.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresas.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/telaInicial.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/menu.jsp" />
       </list>
     </option>
   </component>
@@ -272,16 +217,6 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pjcase" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pjcase" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="empresa" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pjcase" type="b2602c69:ProjectViewProjectNode" />
@@ -671,12 +606,12 @@
       <workItem from="1531096094935" duration="5283000" />
       <workItem from="1531268708983" duration="6677000" />
       <workItem from="1531348344191" duration="12340000" />
-      <workItem from="1531439728124" duration="6003000" />
+      <workItem from="1531439728124" duration="7344000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165145000" />
+    <option name="totallyTimeSpent" value="166486000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -702,7 +637,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="13" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32838285" />
-      <window_info anchor="bottom" id="Run" order="5" visible="true" weight="0.32750398" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" visible="true" weight="0.32750398" />
       <window_info anchor="bottom" id="Spring" order="1" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.3290938" />
       <window_info id="Persistence" order="7" side_tool="true" />
@@ -836,13 +771,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="68" selection-start-line="15" selection-start-column="68" selection-end-line="15" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/model/Cliente" />
     <entry file="file://$PROJECT_DIR$/src/test/java/TesteCaso.java" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cadastrodeempresa" />
@@ -1145,16 +1073,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCliente.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="48" column="60" selection-start-line="48" selection-start-column="60" selection-end-line="48" selection-end-column="60" />
-          <folding>
-            <element signature="e#1351#1360#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoUsuario.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
@@ -1193,6 +1111,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clientes.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCliente.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="48" column="60" selection-start-line="48" selection-start-column="60" selection-end-line="48" selection-end-column="60" />
+          <folding>
+            <element signature="e#1351#1360#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresas.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1200,17 +1135,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clientes.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/telaInicial.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="11" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="21" selection-end-column="11" />
+        <state>
+          <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/telaInicial.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/menu.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+        <state relative-caret-position="255">
+          <caret line="15" column="58" selection-start-line="15" selection-start-column="58" selection-end-line="15" selection-end-column="58" />
         </state>
       </provider>
     </entry>

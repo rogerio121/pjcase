@@ -9,16 +9,7 @@
     <body onload="funcoesDeAdminNoMenu()">
         <h3>Bem vindo ${usuarioLogado.dadosPessoais.nome}</h3>
 
-        <div id="menu" >
-            <a href="/caso/cadastro">Caso</a>
-            <a href="/caso/cadastro">Meus Casos</a>
-            <a href="/empresa/cadastro">Empresa</a>
-            <a href="/cliente/cadastro">Cliente</a>
-            <a href="/logout">Sair</a> <br><br>
-
-            <a href="/caso/meuscasos">Meus Casos</a>
-            <a href="/cliente/clientes">Clientes</a>
-        </div>
+        <c:import url="menu.jsp"></c:import>
 
        <table>
             <tr>
@@ -38,9 +29,7 @@
             </c:if>
         </table>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
-            
 
             function pegarCaso(id, emailUsuario){
                 var url = window.location.href;
@@ -63,14 +52,6 @@
                         else
                             alert('Erro ao pegar o caso, consulte um administrador')
                     })
-            }
-
-            function funcoesDeAdminNoMenu() {
-                var admin = ${usuarioLogado.admin}
-                console.log(admin)
-
-                if(admin)
-                    document.getElementById('menu').innerHTML += '<a href="/empresa/empresas">Empresas</a>'
             }
         </script>
     </body>
