@@ -24,7 +24,7 @@ public class DaoCaso {
         try {
             String sql;
             if (!caso.getIdUsuarioRelacionado().isEmpty()) {
-                sql = "INSERT INTO caso (cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, usu_email, cli_email)" +
+                sql = "INSERT INTO caso (cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, usu_email, cli_cpf)" +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
                 PreparedStatement pstm = conexao.prepareStatement(sql);
@@ -40,7 +40,7 @@ public class DaoCaso {
                 pstm.execute();
                 pstm.close();
             }else {
-                sql = "INSERT INTO caso (cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, cli_email)" +
+                sql = "INSERT INTO caso (cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, cli_cpf)" +
                         "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
                 PreparedStatement pstm = conexao.prepareStatement(sql);
@@ -103,7 +103,7 @@ public class DaoCaso {
 
     public Caso getById(String idCaso) {
         try {
-            String sql = "SELECT cas_id, cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, usu_email, cli_email " +
+                String sql = "SELECT cas_id, cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, usu_email, cli_cpf " +
                     "FROM caso " +
                     "WHERE cas_id = ?";
 
@@ -123,7 +123,7 @@ public class DaoCaso {
                 caso.setStatus(rs.getString("cas_status"));
                 caso.setIdUsuarioRelacionado(rs.getString("usu_email"));
                 caso.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
-                caso.setIdClienteRelacionado(rs.getString("cli_email"));
+                caso.setIdClienteRelacionado(rs.getString("cli_cpf"));
             }
 
             return caso;
@@ -144,7 +144,7 @@ public class DaoCaso {
 
     public List<Caso> listarCasosSemProprietarios() {
         try {
-            String sql = "SELECT cas_id, cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, cli_email " +
+            String sql = "SELECT cas_id, cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, cli_cpf " +
                         "FROM caso " +
                         "WHERE usu_email IS NULL";
 
@@ -165,7 +165,7 @@ public class DaoCaso {
                 caso.setMenssagem(rs.getString("cas_menssagem"));
                 caso.setStatus(rs.getString("cas_status"));
                 caso.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
-                caso.setIdClienteRelacionado(rs.getString("cli_email"));
+                caso.setIdClienteRelacionado(rs.getString("cli_cpf"));
 
                 casos.add(caso);
             }
@@ -180,7 +180,7 @@ public class DaoCaso {
 
     public List<Caso> listarCasosPorProprietarios(String idUsuario) {
         try {
-            String sql = "SELECT cas_id, cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, cli_email, usu_email " +
+            String sql = "SELECT cas_id, cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, cli_cpf, usu_email " +
                     "FROM caso " +
                     "WHERE usu_email = ?";
 
@@ -202,7 +202,7 @@ public class DaoCaso {
                 caso.setMenssagem(rs.getString("cas_menssagem"));
                 caso.setStatus(rs.getString("cas_status"));
                 caso.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
-                caso.setIdClienteRelacionado(rs.getString("cli_email"));
+                caso.setIdClienteRelacionado(rs.getString("cli_cpf"));
                 caso.setIdUsuarioRelacionado(rs.getString("usu_email"));
 
                 casos.add(caso);

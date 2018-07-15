@@ -7,9 +7,9 @@
         <form>
             <label>Assunto: </label> ${caso.assunto} <br>
             <label>Menssagem: </label> ${caso.menssagem} <br>
-            <label>Email do cliente: </label> ${caso.idClienteRelacionado} <br>
+            <label>CPF do cliente: </label> ${caso.idClienteRelacionado} <br>
             <label>Status: </label> ${caso.status} <br>
-            <label>Empresa: </label> ${caso.idEmpresaRelacionada} <br>
+            <label>CNPJ da Empresa: </label> ${caso.idEmpresaRelacionada} <br>
             <label>Usuario: </label> ${caso.idUsuarioRelacionado} <br>
         </form>
     </body>

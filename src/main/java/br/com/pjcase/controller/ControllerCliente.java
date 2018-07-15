@@ -18,12 +18,12 @@ import java.util.List;
 public class ControllerCliente {
 
     @RequestMapping("/cadastro")
-    public String chamarTelaCliente(){
+    public String chamarTelaCliente() {
         return "cliente/cliente";
     }
 
     @RequestMapping("/salvar")
-    public ModelAndView salvarCliente(HttpServletRequest request){
+    public ModelAndView salvarCliente(HttpServletRequest request) {
         Cliente cliente = new Cliente();
         DadosPessoais dadosPessoais = new DadosPessoais();
         DaoCliente daoCliente = new DaoCliente();
@@ -47,24 +47,27 @@ public class ControllerCliente {
 
         daoCliente.insert(cliente);
         ModelAndView mv = new ModelAndView("cliente/clienteView");
-        mv.addObject("cliente",cliente);
+        mv.addObject("cliente", cliente);
         return mv;
     }
 
     @RequestMapping("/clientes")
-    public ModelAndView buscaClientes(HttpServletRequest request){
+    public ModelAndView buscaClientes(HttpServletRequest request) {
         List<Cliente> clientes = new ArrayList<Cliente>();
         DaoCliente daoCliente = new DaoCliente();
 
         try {
             Usuario usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
-            System.out.println(usuarioLogado);
-            clientes = daoCliente.buscaClientesPertecentesEmpresa(usuarioLogado.getIdEmpresaRelacionada());
-            System.out.println(clientes);
+
+            if (usuarioLogado.getAdmin())
+                clientes = daoCliente.buscaTodosClientes();
+            else
+                clientes = daoCliente.buscaClientesPertecentesEmpresa(usuarioLogado.getIdEmpresaRelacionada());
+
             ModelAndView mv = new ModelAndView("cliente/clientes");
-            mv.addObject("clientes",clientes);
+            mv.addObject("clientes", clientes);
             return mv;
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Erro ao listar clientes: " + e);
             return null;
         }
