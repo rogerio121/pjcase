@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +28,24 @@ public class ControllerCliente {
         DadosPessoais dadosPessoais = new DadosPessoais();
         DaoCliente daoCliente = new DaoCliente();
 
+        try {
+            request.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            System.out.println("Erro no charset ControllerCaso: " + e);
+        }
+
+        dadosPessoais.setCpf(request.getParameter("cpf"));
         dadosPessoais.setNome(request.getParameter("nome"));
         dadosPessoais.setEmail(request.getParameter("email"));
+        dadosPessoais.setLogradouro(request.getParameter("logradouro"));
+        dadosPessoais.setBairro(request.getParameter("bairro"));
+        dadosPessoais.setCidade(request.getParameter("cidade"));
+        dadosPessoais.setEstado(request.getParameter("estado"));
+        dadosPessoais.setCep(request.getParameter("cep"));
 
         cliente.setDadosPessoais(dadosPessoais);
-        daoCliente.upsert(cliente);
+
+        daoCliente.insert(cliente);
         ModelAndView mv = new ModelAndView("cliente/clienteView");
         mv.addObject("cliente",cliente);
         return mv;

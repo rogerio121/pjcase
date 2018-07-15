@@ -43,6 +43,7 @@
 				<option value="Sergipe">Sergipe</option>
 				<option value="Tocantins">Tocantins</option>
 			</select> <br>
+			<label>CEP</label> <input type="text" name="cep"> <br>
 
 			<button type="submit">Salvar</button>
 		</form>
