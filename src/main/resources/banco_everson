@@ -20,23 +20,30 @@ create table usuario (
 
 
 create table cliente (
-	cli_email varchar(50) primary key not null,
-	cli_nome varchar(50)
+	cli_cpf varchar(18) primary key not null,
+	cli_email varchar(50),
+	cli_nome varchar(50),
+    cli_logradouro varchar(50),
+    cli_bairro varchar(30),
+    cli_cidade varchar(30),
+    cli_estado varchar(15),
+    cli_cep varchar(9)
 );
 
 
 create table cliente_empresa (
 	emp_cnpj varchar(18) not null,
-	cli_email varchar(50) not null,
+	cli_cpf varchar(18) not null,
 
-        constraint pk_cliente_empresa primary key (emp_cnpj, cli_email),
+        constraint pk_cliente_empresa primary key (emp_cnpj, cli_cpf),
 
         constraint fk_empresa_cliente foreign key (emp_cnpj)
-			references cliente (cli_email),
+			references cliente (cli_cpf),
 
-        constraint fk_cliente_empresa foreign key (cli_email)
+        constraint fk_cliente_empresa foreign key (cli_cpf)
 			references empresa (emp_cnpj)
 );
+
 
 create table caso (
 	cas_id integer primary key auto_increment,
@@ -47,8 +54,8 @@ create table caso (
     cas_assusnto varchar(30),
     emp_cnpj varchar (18),
     usu_email varchar(50),
-    cli_email varchar(50),
+    cli_cpf varchar(18),
     foreign key (usu_email) references usuario (usu_email),
     foreign key (emp_cnpj) references empresa (emp_cnpj),
-    foreign key (cli_email) references cliente (cli_email)
+    foreign key (cli_cpf) references cliente (cli_cpf)
 );

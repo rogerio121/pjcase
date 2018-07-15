@@ -23,14 +23,21 @@ public class DaoCliente {
     /*----------------CRUD----------------*/
     public void insert(Cliente cliente) {
         try {
-            String sql = "INSERT INTO cliente (cli_nome, cli_email)" +
-                    "VALUES (?, ?)";
+            String sql = "INSERT INTO cliente (cli_cpf, cli_nome, cli_email, cli_logradouro, cli_bairro, cli_cidade, cli_estado, cli_cep)" +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, cliente.getDadosPessoais().getNome());
-            pstm.setString(2, cliente.getDadosPessoais().getEmail());
+            pstm.setString(1, cliente.getDadosPessoais().getCpf());
+            pstm.setString(2, cliente.getDadosPessoais().getNome());
+            pstm.setString(3, cliente.getDadosPessoais().getEmail());
+            pstm.setString(4, cliente.getDadosPessoais().getLogradouro());
+            pstm.setString(5, cliente.getDadosPessoais().getBairro());
+            pstm.setString(6, cliente.getDadosPessoais().getCidade());
+            pstm.setString(7, cliente.getDadosPessoais().getEstado());
+            pstm.setString(8, cliente.getDadosPessoais().getCep());
 
             pstm.execute();
+            pstm.close();
         } catch (SQLException erro) {
             System.out.println("Erro ao inserir Cliente: " + erro);
         }
@@ -40,15 +47,23 @@ public class DaoCliente {
         try {
             //Empresa empresaCadastrada = getById(empresa.getCnpj());
 
-            String sql = "UPDATE cliente SET cli_nome = ?, cli_email = ?" +
+            String sql = "UPDATE cliente SET cli_cpf = ?, cli_nome = ?, cli_email = ?, cli_logradouro = ?, cli_bairro = ?," +
+                    " cli_cidade = ?, cli_estado = ?, cli_cep = ? " +
                     "WHERE cli_email = ?";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, cliente.getDadosPessoais().getNome());
-            pstm.setString(2, cliente.getDadosPessoais().getEmail());
+            pstm.setString(1, cliente.getDadosPessoais().getCpf());
+            pstm.setString(2, cliente.getDadosPessoais().getNome());
             pstm.setString(3, cliente.getDadosPessoais().getEmail());
+            pstm.setString(4, cliente.getDadosPessoais().getLogradouro());
+            pstm.setString(5, cliente.getDadosPessoais().getBairro());
+            pstm.setString(6, cliente.getDadosPessoais().getCidade());
+            pstm.setString(7, cliente.getDadosPessoais().getEstado());
+            pstm.setString(8, cliente.getDadosPessoais().getCep());
+            pstm.setString(9, cliente.getDadosPessoais().getEmail());
 
             pstm.execute();
+            pstm.close();
         } catch (SQLException erro) {
             System.out.println("Erro ao atualizar Cliente: " + erro);
         }
@@ -56,7 +71,7 @@ public class DaoCliente {
 
     public void delete(String idCliente) {
         try {
-            String sql = "DELETE FROM cliente WHERE cli_email = ?";
+            String sql = "DELETE FROM cliente WHERE cli_cpf = ?";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
             pstm.setString(1, idCliente);
@@ -69,33 +84,40 @@ public class DaoCliente {
 
     public Cliente getById(String idCliente) {
         try {
-            String sql = "SELECT cli_nome, cli_email " +
+            String sql = "SELECT * " +
                          "FROM cliente " +
-                         "WHERE cli_email = ?";
+                         "WHERE cli_cpf = ?";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
             pstm.setString(1, idCliente);
             ResultSet rs = pstm.executeQuery();
 
-            Cliente cliente = new Cliente();
+            Cliente cliente = null;
             if (rs.next()) {
+                cliente = new Cliente();
                 DadosPessoais dadosPessoais = new DadosPessoais();
 
+                dadosPessoais.setCpf(rs.getString("cli_cpf"));
                 dadosPessoais.setNome(rs.getString("cli_nome"));
                 dadosPessoais.setEmail(rs.getString("cli_email"));
+                dadosPessoais.setLogradouro(rs.getString("cli_logradouro"));
+                dadosPessoais.setBairro(rs.getString("cli_bairro"));
+                dadosPessoais.setCidade(rs.getString("cli_cidade"));
+                dadosPessoais.setEstado(rs.getString("cli_estado"));
+                dadosPessoais.setCep(rs.getString("cli_cep"));
                 cliente.setDadosPessoais(dadosPessoais);
             }
 
+            pstm.close();
             return cliente;
         } catch (SQLException erro) {
             System.out.println("Erro ao buscar Cliente por Id: " + erro);
+            return null;
         }
-
-        return null;
     }
 
     public void upsert(Cliente cliente) {
-        Cliente clienteCadastrado = getById(cliente.getDadosPessoais().getEmail());
+        Cliente clienteCadastrado = getById(cliente.getDadosPessoais().getCpf());
 
         if (clienteCadastrado.getDadosPessoais() == null)
             insert(cliente);
@@ -122,8 +144,14 @@ public class DaoCliente {
                 Cliente cliente = new Cliente();
                 DadosPessoais dadosPessoais = new DadosPessoais();
 
+                dadosPessoais.setCpf(rs.getString("cli_cpf"));
                 dadosPessoais.setNome(rs.getString("cli_nome"));
                 dadosPessoais.setEmail(rs.getString("cli_email"));
+                dadosPessoais.setLogradouro(rs.getString("cli_logradouro"));
+                dadosPessoais.setBairro(rs.getString("cli_bairro"));
+                dadosPessoais.setCidade(rs.getString("cli_cidade"));
+                dadosPessoais.setEstado(rs.getString("cli_estado"));
+                dadosPessoais.setCep(rs.getString("cli_cep"));
                 cliente.setDadosPessoais(dadosPessoais);
 
                 clientes.add(cliente);

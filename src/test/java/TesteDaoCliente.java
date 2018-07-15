@@ -3,50 +3,98 @@ import br.com.pjcase.dao.DaoCliente;
 import br.com.pjcase.dao.DaoUsuario;
 import br.com.pjcase.model.Cliente;
 import br.com.pjcase.model.DadosPessoais;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class TesteDaoCliente {
-    public static void main(String[] args) {
-        insertCliente();
-        //updateCliente();
-        //deleteCliente();
-        //buscaCliente();
-        ConexaoBanco.FecharConexao();
-    }
 
-    public static void insertCliente() {
+    @Test
+    public void insertCliente() {
         Cliente cliente = new Cliente();
+        Cliente clienteInserido = new Cliente();
+
         DadosPessoais dadosPessoais = new DadosPessoais();
 
         dadosPessoais.setNome("cliete");
         dadosPessoais.setEmail("cliente@cliente.com");
-        dadosPessoais.setCpf("123123");
+        dadosPessoais.setCpf("123");
+        dadosPessoais.setLogradouro("Rua das dores n 1");
+        dadosPessoais.setBairro("Bairro b");
+        dadosPessoais.setCidade("São Paulo");
+        dadosPessoais.setEstado("SP");
         cliente.setDadosPessoais(dadosPessoais);
 
         DaoCliente daoCliente = new DaoCliente();
         daoCliente.insert(cliente);
+
+        clienteInserido = daoCliente.getById("123");
+        Boolean clienteFoiCriado = clienteInserido != null;
+        System.out.println(clienteInserido != null);
+
+        Assert.assertEquals(clienteFoiCriado, true);
     }
 
-    public static void updateCliente() {
+    @Test
+    public void updateCliente() {
         Cliente cliente = new Cliente();
+        Cliente clienteEditado = new Cliente();
         DadosPessoais dadosPessoais = new DadosPessoais();
 
         dadosPessoais.setNome("cliete Editado");
-        dadosPessoais.setEmail("cliente@editado.com");
-        dadosPessoais.setCpf("123123");
+        dadosPessoais.setEmail("cliente@cliente.com");
+        dadosPessoais.setCpf("123");
+        dadosPessoais.setLogradouro("Rua Nossa Senhora  das Dores n 12");
+        dadosPessoais.setBairro("Bairro Jardims");
+        dadosPessoais.setCidade("São Paulo");
+        dadosPessoais.setEstado("SP");
         cliente.setDadosPessoais(dadosPessoais);
 
         DaoCliente daoCliente = new DaoCliente();
         daoCliente.update(cliente);
+
+        clienteEditado = daoCliente.getById("123");
+
+        Boolean clienteFoiEditado = cliente != clienteEditado;
+
+        Assert.assertEquals(clienteFoiEditado, true);
+
     }
 
-    public static void deleteCliente(){
+    @Test
+    public void deleteCliente() {
         DaoCliente daoCliente = new DaoCliente();
-        daoCliente.delete("123123");
+        daoCliente.delete("123");
+
+        Cliente cliente = null;
+
+        cliente = daoCliente.getById("123");
+
+        Boolean clienteFoiExcluido = cliente == null;
+
+        Assert.assertEquals(clienteFoiExcluido, true);
     }
 
-    public static void buscaCliente(){
+    @Test
+    public void buscaCliente() {
         DaoCliente daoCliente = new DaoCliente();
-        Cliente cliente = daoCliente.getById("123123");
-        System.out.println(cliente.getDadosPessoais().getNome());
+        DadosPessoais dadosPessoais = new DadosPessoais();
+        Cliente cliente = new Cliente();
+        Cliente clienteInserido = null;
+
+        dadosPessoais.setNome("cliete");
+        dadosPessoais.setEmail("cliente@cliente.com");
+        dadosPessoais.setCpf("123");
+        dadosPessoais.setLogradouro("Rua das dores n 1");
+        dadosPessoais.setBairro("Bairro b");
+        dadosPessoais.setCidade("São Paulo");
+        dadosPessoais.setEstado("SP");
+        cliente.setDadosPessoais(dadosPessoais);
+
+        daoCliente.insert(cliente);
+
+        clienteInserido = daoCliente.getById("123");
+
+        Boolean clienteFoiEncontrado = clienteInserido != null;
+        Assert.assertEquals(clienteFoiEncontrado, true);
     }
 }

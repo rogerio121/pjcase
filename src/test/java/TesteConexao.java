@@ -1,10 +1,12 @@
 import br.com.pjcase.conexao.ConexaoBanco;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class TesteConexao {
 
-    public static void main(String[] args) {
+    @Test
+    public void cenexao(){
         ConexaoBanco.getConexao();
-
-        System.out.println(ConexaoBanco.statusBanco);
+        Assert.assertEquals("STATUS--->Conectado com sucesso!", ConexaoBanco.statusBanco);
     }
 }
