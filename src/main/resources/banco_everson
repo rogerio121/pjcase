@@ -31,16 +31,16 @@ create table cliente (
 );
 
 
-create table cliente_empresa (
+create table cliente_da_empresa (
 	emp_cnpj varchar(18) not null,
 	cli_cpf varchar(18) not null,
 
-        constraint pk_cliente_empresa primary key (emp_cnpj, cli_cpf),
+        constraint pk_cliente_da_empresa primary key (emp_cnpj, cli_cpf),
 
-        constraint fk_empresa_cliente foreign key (emp_cnpj)
+        constraint fk_empresa_cliente foreign key (cli_cpf)
 			references cliente (cli_cpf),
 
-        constraint fk_cliente_empresa foreign key (cli_cpf)
+        constraint fk_cliente_empresa foreign key (emp_cnpj)
 			references empresa (emp_cnpj)
 );
 

@@ -8,9 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="61cbec97-094f-4ff1-92a2-1e58ce4b3756" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/cliente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/cliente.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clienteView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clienteView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresa.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresa.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/banco_everson" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/banco_everson" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,13 +38,25 @@
       <file leaf-file-name="ControllerCliente.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCliente.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="46" selection-start-line="46" selection-end-line="46" />
+            <state relative-caret-position="123">
+              <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
+              <folding>
+                <element signature="method#salvarCliente#0;class#ControllerCliente#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clienteView.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="banco_everson" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/banco_everson">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="282">
+              <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clienteView.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clienteView.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
@@ -163,11 +173,11 @@
         <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/model/DadosPessoais.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoCliente.java" />
         <option value="$PROJECT_DIR$/src/test/java/TesteDaoCliente.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/banco_everson" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresa.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/cliente.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCliente.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clienteView.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCliente.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/banco_everson" />
       </list>
     </option>
   </component>
@@ -255,6 +265,21 @@
               <item name="pjcase" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pjcase" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pjcase" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pjcase" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pjcase" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -273,26 +298,6 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pjcase" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pjcase" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="cliente" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pjcase" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pjcase" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="empresa" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -689,7 +694,7 @@
       <workItem from="1531268708983" duration="6677000" />
       <workItem from="1531348344191" duration="12340000" />
       <workItem from="1531439728124" duration="7612000" />
-      <workItem from="1531617125699" duration="9232000" />
+      <workItem from="1531617125699" duration="9828000" />
     </task>
     <servers />
   </component>
@@ -726,7 +731,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175986000" />
+    <option name="totallyTimeSpent" value="176582000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1193,13 +1198,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/banco_everson">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/model/Empresa.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1234,13 +1232,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCliente.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clientes.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1262,6 +1253,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCliente.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
+          <folding>
+            <element signature="method#salvarCliente#0;class#ControllerCliente#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/banco_everson">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
         </state>
       </provider>
     </entry>

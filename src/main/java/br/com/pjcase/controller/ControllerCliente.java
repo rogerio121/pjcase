@@ -56,12 +56,17 @@ public class ControllerCliente {
         List<Cliente> clientes = new ArrayList<Cliente>();
         DaoCliente daoCliente = new DaoCliente();
 
-
-        Usuario usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
-        clientes = daoCliente.buscaClientesPertecentesEmpresa(usuarioLogado.getIdEmpresaRelacionada());
-
-        ModelAndView mv = new ModelAndView("cliente/clientes");
-        mv.addObject("clientes",clientes);
-        return mv;
+        try {
+            Usuario usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
+            System.out.println(usuarioLogado);
+            clientes = daoCliente.buscaClientesPertecentesEmpresa(usuarioLogado.getIdEmpresaRelacionada());
+            System.out.println(clientes);
+            ModelAndView mv = new ModelAndView("cliente/clientes");
+            mv.addObject("clientes",clientes);
+            return mv;
+        }catch (Exception e){
+            System.out.println("Erro ao listar clientes: " + e);
+            return null;
+        }
     }
 }
