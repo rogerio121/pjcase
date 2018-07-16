@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <meta charset="UTF-8" />
@@ -6,6 +7,8 @@
         <title>Caso</title>
     </head>
     <body>
+        <c:import url="../menu.jsp"></c:import>
+
         <form action="/caso/salvar" method="POST">
             <label>Assunto</label> <input type="text" name="assunto" value="${caso.assunto}"> <br>
             <label>Mensagem</label> <input type="text" name="mensagem" value="${caso.mensagem}"> <br>

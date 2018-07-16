@@ -5,6 +5,7 @@
         <title>Casos do(a) ${usuarioLogado.dadosPessoais.nome}</title>
     </head>
     <body>
+    <c:import url="../menu.jsp"></c:import>
         <table>
             <tr>
                 <td>Id</td>

@@ -6,7 +6,7 @@
     <head>
         <title>Tela inicial</title>
     </head>
-    <body onload="funcoesDeAdminNoMenu()">
+    <body>
         <h3>Bem vindo ${usuarioLogado.dadosPessoais.nome}</h3>
 
         <c:import url="menu.jsp"></c:import>

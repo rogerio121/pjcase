@@ -6,6 +6,8 @@
 </div>
 
 <script>
+    funcoesDeAdminNoMenu()
+
     function funcoesDeAdminNoMenu() {
         var admin = ${usuarioLogado.admin}
 
