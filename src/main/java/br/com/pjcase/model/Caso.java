@@ -8,7 +8,7 @@ public class Caso {
     String assunto;
     String dataDeAbertura;
     String dataDeFechamento;
-    String menssagem;
+    String mensagem;
     String status;
     String idEmpresaRelacionada;
     String idUsuarioRelacionado;
@@ -74,12 +74,12 @@ public class Caso {
         this.idClienteRelacionado = idClienteRelacionado;
     }
 
-    public String getMenssagem() {
-        return menssagem;
+    public String getMensagem() {
+        return mensagem;
     }
 
-    public void setMenssagem(String menssagem) {
-        this.menssagem = menssagem;
+    public void setMensagem(String menssagem) {
+        this.mensagem = menssagem;
     }
 
 
@@ -99,7 +99,7 @@ public class Caso {
                 ", assunto='" + assunto + '\'' +
                 ", dataDeAbertura='" + dataDeAbertura + '\'' +
                 ", dataDeFechamento='" + dataDeFechamento + '\'' +
-                ", menssagem='" + menssagem + '\'' +
+                ", menssagem='" + mensagem + '\'' +
                 ", status='" + status + '\'' +
                 ", idEmpresaRelacionada='" + idEmpresaRelacionada + '\'' +
                 ", idUsuarioRelacionado='" + idUsuarioRelacionado + '\'' +

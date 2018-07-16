@@ -5,12 +5,26 @@
     </head>
     <body>
         <form>
-            <label>Assunto: </label> ${caso.assunto} <br>
-            <label>Menssagem: </label> ${caso.menssagem} <br>
-            <label>CPF do cliente: </label> ${caso.idClienteRelacionado} <br>
-            <label>Status: </label> ${caso.status} <br>
-            <label>CNPJ da Empresa: </label> ${caso.idEmpresaRelacionada} <br>
-            <label>Usuario: </label> ${caso.idUsuarioRelacionado} <br>
+            <label>Assunto</label>
+            <input type="text" name="assunto" value="${caso.assunto}" disabled> <br>
+            <label>Mensagem</label>
+            <input type="text" name="mensagem" value="${caso.mensagem}" disabled> <br>
+            <label>CPF do cliente </label>
+            <input type="text" name="idClienteRelacionado" value="${caso.idClienteRelacionado}" disabled> <br>
+            <label>Status: </label>
+            <input type="text" name="status" value="${caso.status}" disabled> <br>
+            <label>CNPJ da empresa</label>
+            <input type="text" name="idEmpresaRelacionada" value="${caso.idEmpresaRelacionada}" disabled> <br>
+            <label>Usuario: </label>
+            <input type="email" value="${usuarioLogado.dadosPessoais.email}" name="idUsuarioRelacionado" disabled> <br>
         </form>
+
+        <button onclick="editarCaso(${caso.idCaso})">Editar</button>
     </body>
+    <script>
+        function editarCaso(idCaso) {
+            console.log(idCaso)
+            window.location = '/caso/cadastro/editar/'+idCaso
+        }
+    </script>
 </html>

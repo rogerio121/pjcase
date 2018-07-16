@@ -27,7 +27,9 @@ public class ControllerCaso {
     @RequestMapping("/salvar")
     public ModelAndView salvarCaso(HttpServletRequest request) {
         Caso caso = new Caso();
+        Caso casoExistente = null;
         DaoCaso daoCaso = new DaoCaso();
+
         try {
             request.setCharacterEncoding("UTF-8");
         } catch (UnsupportedEncodingException e) {
@@ -35,13 +37,23 @@ public class ControllerCaso {
         }
 
         caso.setAssunto(request.getParameter("assunto"));
-        caso.setMenssagem(request.getParameter("menssagem"));
+        caso.setMensagem(request.getParameter("mensagem"));
         caso.setStatus(request.getParameter("status"));
         caso.setIdClienteRelacionado(request.getParameter("idClienteRelacionado"));
         caso.setIdEmpresaRelacionada(request.getParameter("idEmpresaRelacionada"));
         caso.setIdUsuarioRelacionado(request.getParameter("idUsuarioRelacionado"));
+        //Caso seja uma edição o campo IdCaso será populado, do Contrário não
+        try {
+            caso.setIdCaso(Integer.parseInt(request.getParameter("idCaso")));
+        }catch (Exception e){
+
+        }
+
+
+        System.out.println("Salvar caso: " + caso);
 
         daoCaso.upsert(caso);
+
         ModelAndView mv = new ModelAndView("caso/casoView");
         mv.addObject("caso", caso);
 
@@ -94,48 +106,50 @@ public class ControllerCaso {
             System.out.println(casosDoUsuarioLogado.get(0));
             return mv;
 
-        }catch(Exception e)
+        } catch (Exception e)
 
-    {
-        System.out.println("Erro ao carregar 'meusCasos': " + e);
-        return null;
+        {
+            System.out.println("Erro ao carregar 'meusCasos': " + e);
+            return null;
+        }
     }
-}
 
-    /*@PostMapping("/cadastro/{id}")
-    public void pegarCaso(@PathVariable("id") Optional<Integer> id, String emailUsuario){
-        System.out.println("Chamou Post: " id);
-        ModelAndView mv = new ModelAndView("testeCaso");
+
+    @GetMapping("/cadastro/{id}")
+    public ModelAndView verCaso(@PathVariable("id") Long id) {
+        ModelAndView mv = new ModelAndView("caso/casoView");
+        DaoCaso daoCaso = new DaoCaso();
+
+        try {
+            Caso caso = new Caso();
+            caso = daoCaso.getById(String.valueOf(id));
+
+            mv.addObject("caso", caso);
+
+        } catch (Exception e) {
+            System.out.println("Erro ao chamar tela de edição de caso: " + e);
+
+        }
+
+        return mv;
+    }
+
+    @GetMapping("/cadastro/editar/{id}")
+    public ModelAndView editarCaso(@PathVariable("id") Long id) {
+
+        ModelAndView mv = new ModelAndView("caso/caso");
         DaoCaso daoCaso = new DaoCaso();
         Caso caso = new Caso();
-        System.out.println(emailUsuario);
-        try{
+
+        try {
             caso = daoCaso.getById(String.valueOf(id));
 
             mv.addObject(caso);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Erro ao chamar tela de edição de caso: " + e);
 
         }
-
-    }*/
-
-    /*@GetMapping("/cadastro/{id}")
-    public void pegarCaso(@PathVariable("id") Optional<Integer> id, Caso caso){
-        ModelAndView mv = new ModelAndView("testeCaso");
-        DaoCaso daoCaso = new DaoCaso();
-
-        try{
-            caso = daoCaso.getById(String.valueOf(id));
-
-            mv.addObject(caso);
-
-        }catch (Exception e){
-            System.out.println("Erro ao chamar tela de edição de caso: " + e);
-
-        }
-
-    }*/
-
+        return mv;
+    }
 }

@@ -31,7 +31,7 @@ public class DaoCaso {
                 pstm.setString(1, caso.getAssunto());
                 pstm.setString(2, caso.getDataDeAbertura());
                 pstm.setString(3, caso.getDataDeFechamento());
-                pstm.setString(4, caso.getMenssagem());
+                pstm.setString(4, caso.getMensagem());
                 pstm.setString(5, caso.getStatus());
                 pstm.setString(6, caso.getIdEmpresaRelacionada());
                 pstm.setString(7, caso.getIdUsuarioRelacionado());
@@ -47,7 +47,7 @@ public class DaoCaso {
                 pstm.setString(1, caso.getAssunto());
                 pstm.setString(2, caso.getDataDeAbertura());
                 pstm.setString(3, caso.getDataDeFechamento());
-                pstm.setString(4, caso.getMenssagem());
+                pstm.setString(4, caso.getMensagem());
                 pstm.setString(5, caso.getStatus());
                 pstm.setString(6, caso.getIdEmpresaRelacionada());
                 pstm.setString(7, caso.getIdClienteRelacionado());
@@ -65,7 +65,7 @@ public class DaoCaso {
     public void update(Caso caso) {
         try {
             String sql = "UPDATE caso SET cas_assusnto = ?, cas_data_de_abertura = ?, cas_data_de_fechamento = ?, cas_menssagem = ?, cas_status = ?, " +
-                    "emp_cnpj = ?, usu_email = ?, cli_email = ?  " +
+                    "emp_cnpj = ?, usu_email = ?, cli_cpf = ?  " +
                     "WHERE cas_id = ?";
 
 
@@ -73,7 +73,7 @@ public class DaoCaso {
             pstm.setString(1, caso.getAssunto());
             pstm.setString(2, caso.getDataDeAbertura());
             pstm.setString(3, caso.getDataDeFechamento());
-            pstm.setString(4, caso.getMenssagem());
+            pstm.setString(4, caso.getMensagem());
             pstm.setString(5, caso.getStatus());
             pstm.setString(6, caso.getIdEmpresaRelacionada());
             pstm.setString(7, caso.getIdUsuarioRelacionado());
@@ -111,21 +111,22 @@ public class DaoCaso {
             pstm.setString(1, idCaso);
             ResultSet rs = pstm.executeQuery();
 
-            Caso caso = new Caso();
+            Caso caso = null;
             if (rs.next()) {
+                caso = new Caso();
                 DadosPessoais dadosPessoais = new DadosPessoais();
 
                 caso.setIdCaso(rs.getInt("cas_id"));
                 caso.setAssunto(rs.getString("cas_assusnto"));
                 caso.setDataDeAbertura(rs.getString("cas_data_de_abertura"));
                 caso.setDataDeFechamento(rs.getString("cas_data_de_fechamento"));
-                caso.setMenssagem(rs.getString("cas_menssagem"));
+                caso.setMensagem(rs.getString("cas_menssagem"));
                 caso.setStatus(rs.getString("cas_status"));
                 caso.setIdUsuarioRelacionado(rs.getString("usu_email"));
                 caso.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
                 caso.setIdClienteRelacionado(rs.getString("cli_cpf"));
             }
-
+            pstm.close();
             return caso;
         } catch (SQLException erro) {
             System.out.println("Erro ao buscar Caso por Id: " + erro);
@@ -134,8 +135,11 @@ public class DaoCaso {
     }
 
     public void upsert(Caso caso) {
-        Caso casoCadastrado = getById(String.valueOf(caso.getIdCaso()));
-        if (casoCadastrado.getIdCaso() == 0)
+        Caso casoCadastrado = null;
+        casoCadastrado = getById(String.valueOf(caso.getIdCaso()));
+        System.out.println(casoCadastrado == null);
+        System.out.println(casoCadastrado);
+        if (casoCadastrado == null)
             insert(caso);
         else
             update(caso);
@@ -162,7 +166,7 @@ public class DaoCaso {
                 caso.setAssunto(rs.getString("cas_assusnto"));
                 caso.setDataDeAbertura(rs.getString("cas_data_de_abertura"));
                 caso.setDataDeFechamento(rs.getString("cas_data_de_fechamento"));
-                caso.setMenssagem(rs.getString("cas_menssagem"));
+                caso.setMensagem(rs.getString("cas_menssagem"));
                 caso.setStatus(rs.getString("cas_status"));
                 caso.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
                 caso.setIdClienteRelacionado(rs.getString("cli_cpf"));
@@ -199,7 +203,7 @@ public class DaoCaso {
                 caso.setAssunto(rs.getString("cas_assusnto"));
                 caso.setDataDeAbertura(rs.getString("cas_data_de_abertura"));
                 caso.setDataDeFechamento(rs.getString("cas_data_de_fechamento"));
-                caso.setMenssagem(rs.getString("cas_menssagem"));
+                caso.setMensagem(rs.getString("cas_menssagem"));
                 caso.setStatus(rs.getString("cas_status"));
                 caso.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
                 caso.setIdClienteRelacionado(rs.getString("cli_cpf"));

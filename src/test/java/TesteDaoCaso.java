@@ -14,7 +14,7 @@ public class TesteDaoCaso {
 
         caso.setDataDeAbertura("2018-12-03");
         caso.setDataDeFechamento("2018-12-03");
-        caso.setMenssagem("Menssgem");
+        caso.setMensagem("Menssgem");
         caso.setStatus("Fechado");
         caso.setIdEmpresaRelacionada("3131");
         caso.setIdClienteRelacionado("123123");
@@ -38,7 +38,7 @@ public class TesteDaoCaso {
         caso.setIdCaso(13);
         caso.setDataDeAbertura("2018-12-03");
         caso.setDataDeFechamento("2018-12-03");
-        caso.setMenssagem("Menssgem Editada");
+        caso.setMensagem("Menssgem Editada");
         caso.setStatus("Aberto");
         caso.setIdEmpresaRelacionada("3131");
         caso.setIdUsuarioRelacionado("admin@admin.com");
