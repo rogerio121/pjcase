@@ -6,6 +6,7 @@ public class Usuario {
 	String idEmpresaRelacionada;
 	DadosPessoais dadosPessoais;
 	Boolean admin;
+	int identificacao;
 
 
 	public String getIdEmpresaRelacionada() {
@@ -43,6 +44,15 @@ public class Usuario {
 	}
 
 
+	public int getIdentificacao() {
+		return identificacao;
+	}
+
+	public void setIdentificacao(int identificacao) {
+		this.identificacao = identificacao;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Usuario{" +
@@ -50,6 +60,7 @@ public class Usuario {
 				", idEmpresaRelacionada='" + idEmpresaRelacionada + '\'' +
 				", dadosPessoais=" + dadosPessoais +
 				", admin=" + admin +
+				", identificacao=" + identificacao +
 				'}';
 	}
 }

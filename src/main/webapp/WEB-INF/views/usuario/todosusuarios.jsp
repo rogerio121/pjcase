@@ -18,7 +18,7 @@
             <c:if test="${not empty usuarios}">
                 <c:forEach items="${usuarios}" var="usuario">
                     <tr>
-                        <td onclick="chamaTelaEditarUsuariio('${usuario.dadosPessoais.email}')">${usuario.dadosPessoais.nome}</td>
+                        <td onclick="chamaTelaEditarUsuariio(${usuario.identificacao})">${usuario.dadosPessoais.nome}</td>
                         <td>${usuario.dadosPessoais.email}</td>
                         <td>${usuario.idEmpresaRelacionada}</td>
                     </tr>

@@ -64,7 +64,6 @@ public class ControllerUsuario {
     public ModelAndView verUsuario(@PathVariable("id") Long id){
         ModelAndView mv = new ModelAndView("usuario/usuarioView");
         DaoUsuario daoUsuario = new DaoUsuario();
-        System.out.println("verUsuario: " + id);
 
         try {
             Usuario usuario = new Usuario();
@@ -72,7 +71,24 @@ public class ControllerUsuario {
 
             mv.addObject("usuario", usuario);
 
-            System.out.println(usuario);
+        } catch (Exception e) {
+            System.out.println("Erro ao chamar tela de edição de usuario: " + e);
+
+        }
+        return mv;
+
+    }
+
+    @GetMapping("/cadastro/editar/{id}")
+    public ModelAndView editarUsuario(@PathVariable("id") Long id){
+        ModelAndView mv = new ModelAndView("usuario/usuario");
+        DaoUsuario daoUsuario = new DaoUsuario();
+
+        try {
+            Usuario usuario = new Usuario();
+            usuario = daoUsuario.buscaPorIdentificador(Math.toIntExact(id));
+
+            mv.addObject("usuario", usuario);
 
         } catch (Exception e) {
             System.out.println("Erro ao chamar tela de edição de usuario: " + e);

@@ -7,21 +7,21 @@
 </head>
     <body>
         <form id="usuario-salvo">
+            <label>Nome</label> <input type="text" disabled value="${usuario.dadosPessoais.nome}" ><br>
+            <label>E-mail</label> <input type="text" disabled value="${usuario.dadosPessoais.email}" ><br>
+            <label>Administrador</label> <input id="admin" name="admin" type="checkbox"><br>
         </form>
+        <button onclick="chamarTelaEditarUsuario(${usuario.identificacao})">Editar</button>
     </body>
 
     <script>
-        var admin = ${usuario.admin}
-        console.log(admin)
-        document.getElementById('usuario-salvo').innerHTML = '' +
-            ' <label>Nome</label> <input type='+'text'+' disabled value='+"${usuario.dadosPessoais.nome}"+' ><br>' +
-            '<label>E-mail</label> <input type='+'text'+' disabled value='+"${usuario.dadosPessoais.email}"+' ><br>'
-        if(admin)
-            document.getElementById('usuario-salvo').innerHTML += '' +
-                '<label>Administrador</label> <input name="admin" type="checkbox" checked><br>'
-        else
-            document.getElementById('usuario-salvo').innerHTML += '' +
-                '<label>Administrador</label> <input name="admin" type="checkbox"><br>'
+        if(${usuario.admin})
+        document.getElementById('admin').checked = true
 
+
+        function chamarTelaEditarUsuario(idUsuario) {
+            console.log(idUsuario)
+            window.location = '/usuario/cadastro/editar/' + idUsuario
+        }
     </script>
 </html>

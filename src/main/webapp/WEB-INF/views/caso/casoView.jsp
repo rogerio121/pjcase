@@ -26,6 +26,7 @@
         <button onclick="editarCaso(${caso.idCaso})">Editar</button>
     </body>
     <script>
+
         function editarCaso(idCaso) {
             console.log(idCaso)
             window.location = '/caso/cadastro/editar/'+idCaso
