@@ -5,10 +5,14 @@ import br.com.pjcase.dao.DaoUsuario;
 import br.com.pjcase.model.DadosPessoais;
 import br.com.pjcase.model.Usuario;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/usuario")
@@ -41,5 +45,40 @@ public class ControllerUsuario {
         mv.addObject("usuario", usuario);
 
         return mv;
+    }
+
+    @RequestMapping("/usuarios")
+    public ModelAndView listarUsuarios(){
+        List<Usuario> usuarios = new ArrayList<>();
+        DaoUsuario daoUsuario = new DaoUsuario();
+
+        usuarios = daoUsuario.buscarTodosUsuarios();
+
+        ModelAndView mv = new ModelAndView("usuario/todosusuarios");
+        mv.addObject("usuarios", usuarios);
+
+        return mv;
+    }
+
+    @GetMapping("/cadastro/{id}")
+    public ModelAndView verUsuario(@PathVariable("id") Long id){
+        ModelAndView mv = new ModelAndView("usuario/usuarioView");
+        DaoUsuario daoUsuario = new DaoUsuario();
+        System.out.println("verUsuario: " + id);
+
+        try {
+            Usuario usuario = new Usuario();
+            usuario = daoUsuario.buscaPorIdentificador(Math.toIntExact(id));
+
+            mv.addObject("usuario", usuario);
+
+            System.out.println(usuario);
+
+        } catch (Exception e) {
+            System.out.println("Erro ao chamar tela de edição de usuario: " + e);
+
+        }
+        return mv;
+
     }
 }

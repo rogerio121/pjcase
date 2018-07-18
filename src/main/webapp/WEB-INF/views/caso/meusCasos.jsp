@@ -4,15 +4,25 @@
     <head>
         <title>Casos do(a) ${usuarioLogado.dadosPessoais.nome}</title>
     </head>
+    <header>
+        <c:import url="../menu.jsp"></c:import>
+    </header>
     <body>
-    <c:import url="../menu.jsp"></c:import>
-        <table>
+        <label>Só ver casos que o status seja: </label>
+        <select name="status" id="status" onclick="filtrarCasos()">
+            <option value="" >Todos os Casos</option>
+            <option value="Aberto" >Casos em aberto</option>
+            <option value="Em atendimento" >Casos em atendimento</option>
+            <option value="Fechado">Casos fechado</option>
+        </select>
+
+        <table id="tb-casos">
             <tr>
-                <td>Id</td>
-                <td>Assunto</td>
-                <td>Status</td>
-                <td>Data de Abertura</td>
-                <td>Data de Fechamento</td>
+                <th>Id</th>
+                <th>Assunto</th>
+                <th>Status</th>
+                <th>Data de Abertura</th>
+                <th>Data de Fechamento</th>
             </tr>
             <c:if test="${not empty casosDoUsuarioLogado}">
                 <c:forEach items="${casosDoUsuarioLogado}" var="caso">
@@ -29,8 +39,25 @@
     </body>
     <script>
         function chamaTelaEditarCaso(id) {
-            console.log(id)
             window.location = '/caso/cadastro/' + id;
+        }
+
+        function filtrarCasos() {
+            var filtro, tabela, linhas, coluna
+
+            filtro = document.getElementById('status').value
+            tabela = document.getElementById('tb-casos')
+            linhas = tabela.getElementsByTagName('tr')
+
+            for(i = 0; i < linhas.length; i++){
+                coluna = linhas[i].getElementsByTagName('td')[2]
+                if (coluna){
+                    if (coluna.innerHTML.indexOf(filtro) > -1)
+                        linhas[i].style.display = ''
+                    else
+                        linhas[i].style.display = 'none'
+                }
+            }
         }
     </script>
 

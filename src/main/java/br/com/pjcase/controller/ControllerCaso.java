@@ -103,12 +103,10 @@ public class ControllerCaso {
 
             mv = new ModelAndView("caso/meusCasos");
             mv.addObject("casosDoUsuarioLogado", casosDoUsuarioLogado);
-            System.out.println(casosDoUsuarioLogado.get(0));
+
             return mv;
 
-        } catch (Exception e)
-
-        {
+        } catch (Exception e){
             System.out.println("Erro ao carregar 'meusCasos': " + e);
             return null;
         }

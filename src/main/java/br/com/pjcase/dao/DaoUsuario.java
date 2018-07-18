@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DaoUsuario {
@@ -72,7 +74,7 @@ public class DaoUsuario {
 
     public Usuario getById(String idUsuario) {
         try {
-            String sql = "SELECT usu_email, usu_nome, usu_senha, usu_admin, emp_cnpj" +
+            String sql = "SELECT usu_email, usu_nome, usu_senha, usu_admin, emp_cnpj " +
                     "FROM usuario " +
                     "WHERE usu_email = ?";
 
@@ -90,6 +92,7 @@ public class DaoUsuario {
                 usuario.setAdmin(rs.getBoolean("usu_admin"));
                 usuario.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
                 usuario.setDadosPessoais(dadosPessoais);
+
             }
 
             return usuario;
@@ -138,5 +141,68 @@ public class DaoUsuario {
             System.out.println("Erro ao buscar Usuario por usuario e senha: " + erro);
             return null;
         }
+    }
+
+    public List<Usuario> buscarTodosUsuarios() {
+        List<Usuario> usuarios = new ArrayList<>();
+        try {
+            String sql = "SELECT * " +
+                    "FROM usuario ";
+
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+
+            Usuario usuario;
+            while (rs.next()) {
+                usuario = new Usuario();
+                DadosPessoais dadosPessoais = new DadosPessoais();
+
+                dadosPessoais.setNome(rs.getString("usu_nome"));
+                dadosPessoais.setEmail(rs.getString("usu_email"));
+                usuario.setSenha(rs.getString("usu_senha"));
+                usuario.setAdmin(rs.getBoolean("usu_admin"));
+                usuario.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
+                usuario.setDadosPessoais(dadosPessoais);
+
+                usuarios.add(usuario);
+            }
+        } catch (SQLException erro) {
+            System.out.println("Erro ao buscar Usuario por usuario e senha: " + erro);
+            return null;
+        }
+        return usuarios;
+    }
+
+    public Usuario buscaPorIdentificador(int idUsuario) {
+        try {
+            String sql = "SELECT usu_email, usu_nome, usu_senha, usu_admin, emp_cnpj " +
+                    "FROM usuario " +
+                    "WHERE usu_identificador = ?";
+
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setInt(1, idUsuario);
+            ResultSet rs = pstm.executeQuery();
+
+            Usuario usuario = new Usuario();
+            if (rs.next()) {
+                DadosPessoais dadosPessoais = new DadosPessoais();
+
+                dadosPessoais.setNome(rs.getString("usu_nome"));
+                dadosPessoais.setEmail(rs.getString("usu_email"));
+                usuario.setSenha(rs.getString("usu_senha"));
+                usuario.setAdmin(rs.getBoolean("usu_admin"));
+                usuario.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
+                usuario.setDadosPessoais(dadosPessoais);
+
+
+                System.out.println(usuario);
+            }
+
+            return usuario;
+        } catch (SQLException erro) {
+            System.out.println("Erro ao buscar Usuario por Id: " + erro);
+        }
+
+        return null;
     }
 }

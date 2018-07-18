@@ -14,8 +14,8 @@
         var admin = ${usuario.admin}
         console.log(admin)
         document.getElementById('usuario-salvo').innerHTML = '' +
-            ' <label>Nome</label> ${usuario.dadosPessoais.nome} <br>\n' +
-            '            <label>E-mail</label> ${usuario.dadosPessoais.email} <br>\n'
+            ' <label>Nome</label> <input type='+'text'+' disabled value='+"${usuario.dadosPessoais.nome}"+' ><br>' +
+            '<label>E-mail</label> <input type='+'text'+' disabled value='+"${usuario.dadosPessoais.email}"+' ><br>'
         if(admin)
             document.getElementById('usuario-salvo').innerHTML += '' +
                 '<label>Administrador</label> <input name="admin" type="checkbox" checked><br>'

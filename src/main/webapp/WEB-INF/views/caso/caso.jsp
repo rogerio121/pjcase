@@ -6,8 +6,10 @@
     <head>
         <title>Caso</title>
     </head>
-    <body>
+    <header>
         <c:import url="../menu.jsp"></c:import>
+    </header>
+    <body>
 
         <form action="/caso/salvar" method="POST">
             <label>Assunto</label> <input type="text" name="assunto" value="${caso.assunto}"> <br>
