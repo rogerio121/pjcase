@@ -23,11 +23,12 @@
             </select>
             <br>
             <label>CNPJ da empresa</label><input type="text" name="idEmpresaRelacionada" required value="${caso.idEmpresaRelacionada}"> <br>
-            <input type="email" value="${usuarioLogado.dadosPessoais.email}" name="idUsuarioRelacionado" hidden> <br>
+
             <input type="text" value="${caso.idCaso}" name="idCaso" hidden> <br>
 
             <button type="submit">Salvar</button>
         </form>
+        <div hidden> ${usuarioLogado} <div>
     </body>
     <script>
         pegarStatus()

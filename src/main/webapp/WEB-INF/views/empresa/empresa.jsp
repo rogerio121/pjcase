@@ -1,19 +1,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<meta charset="UTF-8" />
-<head>
-	<title>Empresa</title>
-</head>
+	<meta charset="UTF-8" />
+	<head>
+		<title>Empresa</title>
+	</head>
+	<header>
+		<c:import url="../menu.jsp"></c:import>
+	</header>
 	<body>
 		<form action="/empresa/salvar" method="post">
-			<label>Nome</label> <input type="text" name="nome"> <br>
-			<label>CNPJ</label> <input type="text" name="cnpj"> <br>
-			<label>Logradouro</label> <input type="text" name="logradouro"> <br>
-			<label>Bairrro</label> <input type="text" name="bairro"> <br>
-			<label>Cidade</label> <input type="text" name="cidade"> <br>
+			<label>Nome</label> <input type="text" name="nome" value="${empresa.nome}"> <br>
+			<label>CNPJ</label> <input type="text" name="cnpj" value="${empresa.cnpj}"> <br>
+			<label>Logradouro</label> <input type="text" name="logradouro" value="${empresa.logradouro}"> <br>
+			<label>Bairrro</label> <input type="text" name="bairro" value="${empresa.bairro}"> <br>
+			<label>Cidade</label> <input type="text" name="cidade" value="${empresa.cidade}"> <br>
 			<label>Estado</label>
-			<select name="estado">
+			<select id="estado" name="estado">
 				<option selected="" value="">Selecione o Estado</option>
 				<option value="Acre">Acre</option>
 				<option value="Alagoas">Alagoas</option>
@@ -43,9 +47,17 @@
 				<option value="Sergipe">Sergipe</option>
 				<option value="Tocantins">Tocantins</option>
 			</select> <br>
-			<label>CEP</label> <input type="text" name="cep"> <br>
+			<label>CEP</label> <input type="text" name="cep" value="${empresa.cep}"> <br>
 
 			<button type="submit">Salvar</button>
 		</form>
 	</body>
+	<script>
+        pegarEstado()
+
+        function pegarEstado() {
+            var estado = '${empresa.estado}'
+            document.getElementById('estado').value = estado
+        }
+	</script>
 </html>

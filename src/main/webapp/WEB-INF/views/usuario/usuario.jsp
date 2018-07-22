@@ -5,9 +5,13 @@
     <head>
         <title>Usuario</title>
     </head>
+    <header>
+        <c:import url="../menu.jsp"></c:import>
+    </header>
     <body>
     Ocultar senha na edição
         <form action="/usuario/salvar" method="post">
+            <label>Id </label> <input type="text" hidden name="id" value="${usuario.id}">
             <label>Nome</label> <input type="text" name="nome" value="${usuario.dadosPessoais.nome}"> <br>
             <label>E-mail</label> <input type="email" name="email" value="${usuario.dadosPessoais.email}"> <br>
             <label>senha</label> <input type="password" name="senha" value=""> <br>

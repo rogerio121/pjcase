@@ -36,21 +36,21 @@ public class ControllerCaso {
             System.out.println("Erro no charset ControllerCaso: " + e);
         }
 
+        Usuario usuarioLogado = new Usuario();
+        usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
+
         caso.setAssunto(request.getParameter("assunto"));
         caso.setMensagem(request.getParameter("mensagem"));
         caso.setStatus(request.getParameter("status"));
         caso.setIdClienteRelacionado(request.getParameter("idClienteRelacionado"));
         caso.setIdEmpresaRelacionada(request.getParameter("idEmpresaRelacionada"));
-        caso.setIdUsuarioRelacionado(request.getParameter("idUsuarioRelacionado"));
+        caso.setIdUsuarioRelacionado(String.valueOf(usuarioLogado.getId()));
         //Caso seja uma edição o campo IdCaso será populado, do Contrário não
         try {
             caso.setIdCaso(Integer.parseInt(request.getParameter("idCaso")));
         }catch (Exception e){
 
         }
-
-
-        System.out.println("Salvar caso: " + caso);
 
         daoCaso.upsert(caso);
 
@@ -99,10 +99,11 @@ public class ControllerCaso {
             Usuario usuario = new Usuario();
             usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
 
-            casosDoUsuarioLogado = daoCaso.listarCasosPorProprietarios(usuario.getDadosPessoais().getEmail());
+            casosDoUsuarioLogado = daoCaso.listarCasosPorProprietarios(usuario.getId());
 
             mv = new ModelAndView("caso/meusCasos");
             mv.addObject("casosDoUsuarioLogado", casosDoUsuarioLogado);
+            mv.addObject("usuario", usuario);
 
             return mv;
 

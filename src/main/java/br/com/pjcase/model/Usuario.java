@@ -6,7 +6,7 @@ public class Usuario {
 	String idEmpresaRelacionada;
 	DadosPessoais dadosPessoais;
 	Boolean admin;
-	int identificacao;
+	int id;
 
 
 	public String getIdEmpresaRelacionada() {
@@ -44,12 +44,12 @@ public class Usuario {
 	}
 
 
-	public int getIdentificacao() {
-		return identificacao;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdentificacao(int identificacao) {
-		this.identificacao = identificacao;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
@@ -60,7 +60,7 @@ public class Usuario {
 				", idEmpresaRelacionada='" + idEmpresaRelacionada + '\'' +
 				", dadosPessoais=" + dadosPessoais +
 				", admin=" + admin +
-				", identificacao=" + identificacao +
+				", id=" + id +
 				'}';
 	}
 }

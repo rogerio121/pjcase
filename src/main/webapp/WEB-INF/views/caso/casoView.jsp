@@ -20,7 +20,7 @@
             <label>CNPJ da empresa</label>
             <input type="text" name="idEmpresaRelacionada" value="${caso.idEmpresaRelacionada}" disabled> <br>
             <label>Usuario: </label>
-            <input type="email" value="${usuarioLogado.dadosPessoais.email}" name="idUsuarioRelacionado" disabled> <br>
+            <input type="email" value="${usuario.dadosPessoais.email}" name="idUsuarioRelacionado" disabled> <br>
         </form>
 
         <button onclick="editarCaso(${caso.idCaso})">Editar</button>

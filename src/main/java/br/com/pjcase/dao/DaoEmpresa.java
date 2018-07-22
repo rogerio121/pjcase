@@ -21,8 +21,8 @@ public class DaoEmpresa{
 	/*----------------CRUD----------------*/
 	public void insert(Empresa empresa){
 		try {
-			String sql = "INSERT INTO empresa (emp_cnpj, emp_nome, emp_logradouro, emp_bairro, emp_cidade, emp_estado)" +
-					"VALUES (?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO empresa (emp_cnpj, emp_nome, emp_logradouro, emp_bairro, emp_cidade, emp_estado, emp_cep)" +
+					"VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 			PreparedStatement pstm = conexao.prepareStatement(sql);
 			pstm.setString(1, empresa.getCnpj());
@@ -31,6 +31,7 @@ public class DaoEmpresa{
 			pstm.setString(4, empresa.getBairro());
 			pstm.setString(5, empresa.getCidade());
 			pstm.setString(6, empresa.getEstado());
+			pstm.setString(7, empresa.getCep());
 
 			pstm.execute();
 		}catch (SQLException erro){
@@ -42,7 +43,7 @@ public class DaoEmpresa{
 		try {
 			//Empresa empresaCadastrada = getById(empresa.getCnpj());
 
-			String sql = "UPDATE empresa SET emp_cnpj = ?, emp_nome = ?, emp_logradouro = ?, emp_bairro = ?, emp_cidade = ?, emp_estado = ?"+
+			String sql = "UPDATE empresa SET emp_cnpj = ?, emp_nome = ?, emp_logradouro = ?, emp_bairro = ?, emp_cidade = ?, emp_estado = ?, emp_cep = ? "+
 					"WHERE emp_cnpj = ?";
 
 			PreparedStatement pstm = conexao.prepareStatement(sql);
@@ -52,7 +53,8 @@ public class DaoEmpresa{
 			pstm.setString(4, empresa.getBairro());
 			pstm.setString(5, empresa.getCidade());
 			pstm.setString(6, empresa.getEstado());
-			pstm.setString(7, empresa.getCnpj());
+			pstm.setString(7, empresa.getCep());
+			pstm.setString(8, empresa.getCnpj());
 
 			pstm.execute();
 		}catch (SQLException erro){
@@ -75,7 +77,7 @@ public class DaoEmpresa{
 
 	public Empresa getById(String idEmpresa){
 		try {
-			String sql = "SELECT emp_cnpj, emp_nome, emp_logradouro, emp_bairro, emp_cidade, emp_estado " +
+			String sql = "SELECT * " +
 						 "FROM empresa " +
 						 "WHERE emp_cnpj = ?";
 
@@ -91,6 +93,7 @@ public class DaoEmpresa{
 				empresa.setBairro(rs.getString("emp_bairro"));
 				empresa.setCidade(rs.getString("emp_cidade"));
 				empresa.setEstado(rs.getString("emp_estado"));
+				empresa.setCep(rs.getString("emp_cep"));
 			}
 
 			return empresa;
@@ -113,7 +116,7 @@ public class DaoEmpresa{
 
 	public List<Empresa> buscaEmpresasCadastradas(){
 		try {
-			String sql = "SELECT emp_cnpj, emp_nome, emp_logradouro, emp_bairro, emp_cidade, emp_estado " +
+			String sql = "SELECT *" +
 					"FROM empresa ";
 
 			PreparedStatement pstm = conexao.prepareStatement(sql);
@@ -130,6 +133,7 @@ public class DaoEmpresa{
 				empresa.setBairro(rs.getString("emp_bairro"));
 				empresa.setCidade(rs.getString("emp_cidade"));
 				empresa.setEstado(rs.getString("emp_estado"));
+				empresa.setCep(rs.getString("emp_cep"));
 
 				empresasCadastradas.add(empresa);
 			}

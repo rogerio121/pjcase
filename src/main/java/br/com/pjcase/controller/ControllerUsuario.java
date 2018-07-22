@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,20 +27,32 @@ public class ControllerUsuario {
     @RequestMapping("/salvar")
     public ModelAndView chamarTelaUsuario(HttpServletRequest request) {
         Usuario usuario = new Usuario();
+        Usuario usuarioExistente = null;
         DadosPessoais dadosPessoais = new DadosPessoais();
         DaoUsuario daoUsuario = new DaoUsuario();
 
+        try {
+            request.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            System.out.println("Erro no charset ControllerCaso: " + e);
+        }
 
         dadosPessoais.setNome(request.getParameter("nome"));
         dadosPessoais.setEmail(request.getParameter("email"));
         usuario.setSenha(request.getParameter("senha"));
+        usuario.setId(Integer.parseInt(request.getParameter("id")));
+
         if (request.getParameter("admin") != null)
             usuario.setAdmin(true);
         else
             usuario.setAdmin(false);
         usuario.setDadosPessoais(dadosPessoais);
-        daoUsuario.upsert(usuario);
-        ConexaoBanco.FecharConexao();
+
+        usuarioExistente = daoUsuario.getById(usuario.getId());
+        if(usuarioExistente == null)
+            daoUsuario.insert(usuario);
+        else
+            daoUsuario.update(usuario);
 
         ModelAndView mv = new ModelAndView("usuario/usuarioView");
         mv.addObject("usuario", usuario);

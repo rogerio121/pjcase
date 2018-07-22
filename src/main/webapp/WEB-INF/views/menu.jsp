@@ -1,6 +1,5 @@
 <div id="menu" >
     <a href="/caso/cadastro">Cadastrar Caso</a>
-    <a href="/caso/cadastro">Cadastrar Caso</a>
     <a href="/caso/meuscasos">Meus Casos</a>
     <a href="/cliente/cadastro">Cadastrar Cliente</a>
     <a href="/cliente/clientes">Clientes</a>

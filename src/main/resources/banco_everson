@@ -1,16 +1,21 @@
 create database banco_everson;
 
+use banco_everson;
+
 create table empresa (
 	emp_cnpj varchar(18) primary key not null,
 	emp_nome varchar(30),
 	emp_logradouro varchar(50),
 	emp_bairro varchar(30),
 	emp_cidade varchar(30),
-	emp_estado varchar (15)
+	emp_estado varchar (15),
+    emp_cep varchar (8)
 );
 
+
 create table usuario (
-	usu_email varchar(50) primary key not null,
+	usu_id int auto_increment primary key,
+    usu_email varchar(50) unique  not null,
 	usu_nome varchar(50),
 	usu_senha varchar(8),
     usu_admin boolean,

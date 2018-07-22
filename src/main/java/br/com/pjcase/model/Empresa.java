@@ -13,6 +13,7 @@ public class Empresa {
 	String cidade;
 	String bairro;
 	String estado;
+	String cep;
 
 
 	public String getNome() {
@@ -66,5 +67,28 @@ public class Empresa {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Empresa{" +
+				"nome='" + nome + '\'' +
+				", cnpj='" + cnpj + '\'' +
+				", logradouro='" + logradouro + '\'' +
+				", cidade='" + cidade + '\'' +
+				", bairro='" + bairro + '\'' +
+				", estado='" + estado + '\'' +
+				", cep='" + cep + '\'' +
+				'}';
 	}
 }

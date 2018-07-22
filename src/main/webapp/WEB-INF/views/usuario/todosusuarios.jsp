@@ -8,7 +8,6 @@
         <c:import url="../menu.jsp"></c:import>
     </header>
     <body>
-
         <table id="tb-casos">
             <tr>
                 <th>Nome</th>
@@ -18,7 +17,7 @@
             <c:if test="${not empty usuarios}">
                 <c:forEach items="${usuarios}" var="usuario">
                     <tr>
-                        <td onclick="chamaTelaEditarUsuariio(${usuario.identificacao})">${usuario.dadosPessoais.nome}</td>
+                        <td onclick="chamaTelaEditarUsuariio(${usuario.id})">${usuario.dadosPessoais.nome}</td>
                         <td>${usuario.dadosPessoais.email}</td>
                         <td>${usuario.idEmpresaRelacionada}</td>
                     </tr>

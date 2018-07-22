@@ -4,6 +4,9 @@
     <head>
         <title>Clientes</title>
     </head>
+    <header>
+        <c:import url="../menu.jsp"></c:import>
+    </header>
     <body>
         <table>
             <tr>
@@ -13,11 +16,16 @@
             <c:if test="${not empty clientes}">
                 <c:forEach items="${clientes}" var="cliente">
                     <tr>
-                        <td>${cliente.dadosPessoais.nome}</td>
+                        <td onclick="chamaTelaViewCliente(${cliente.dadosPessoais.cpf})">${cliente.dadosPessoais.nome}</td>
                         <td>${cliente.dadosPessoais.email}</td>
                     </tr>
                 </c:forEach>
             </c:if>
         </table>
     </body>
+    <script>
+        function chamaTelaViewCliente(idConta) {
+            window.location = '/cliente/cadastro/' + idConta
+        }
+    </script>
 </html>

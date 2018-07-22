@@ -1,20 +1,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <meta charset="UTF-8" />
     <head>
         <title>Cliente</title>
     </head>
+    <header>
+        <c:import url="../menu.jsp"></c:import>
+    </header>
     <body>
         <form action="/cliente/salvar" method="post">
-            <label>Nome</label> <input type="text" name="nome"> <br>
-            <label>E-mail</label> <input type="email" name="email"> <br>
-            <label>CPF</label> <input type="text" name="cpf"> <br>
-            <label>Logradouro</label> <input type="text" name="logradouro"> <br>
-            <label>Bairrro</label> <input type="text" name="bairro"> <br>
-            <label>Cidade</label> <input type="text" name="cidade"> <br>
+            <label>Nome</label> <input type="text" name="nome" value="${cliente.dadosPessoais.nome}"> <br>
+            <label>E-mail</label> <input type="email" name="email" value="${cliente.dadosPessoais.email}"> <br>
+            <label>CPF</label> <input type="text" name="cpf" value="${cliente.dadosPessoais.cpf}"> <br>
+            <label>Logradouro</label> <input type="text" name="logradouro" value="${cliente.dadosPessoais.logradouro}"> <br>
+            <label>Bairrro</label> <input type="text" name="bairro" value="${cliente.dadosPessoais.bairro}"> <br>
+            <label>Cidade</label> <input type="text" name="cidade" value="${cliente.dadosPessoais.cidade}"> <br>
             <label>Estado</label>
-            <select name="estado">
+            <select id="estado" name="estado">
                 <option selected="" value="">Selecione o Estado</option>
                 <option value="Acre">Acre</option>
                 <option value="Alagoas">Alagoas</option>
@@ -44,9 +48,16 @@
                 <option value="Sergipe">Sergipe</option>
                 <option value="Tocantins">Tocantins</option>
             </select> <br>
-            <label>CEP</label> <input type="text" name="cep"> <br>
+            <label>CEP</label> <input type="text" name="cep" value="${cliente.dadosPessoais.cep}"> <br>
             <button type="submit">Salvar</button>
-
         </form>
     </body>
+    <script>
+        pegarEstado()
+
+        function pegarEstado() {
+            var estado = '${cliente.dadosPessoais.estado}'
+            document.getElementById('estado').value = estado
+        }
+    </script>
 </html>

@@ -34,6 +34,7 @@ public class DaoUsuario {
             pstm.setBoolean(4, usuario.getAdmin());
 
             pstm.execute();
+            pstm.close();
         } catch (SQLException erro) {
             System.out.println("Erro ao inserir Usuario: " + erro);
         }
@@ -44,42 +45,44 @@ public class DaoUsuario {
             //Empresa empresaCadastrada = getById(empresa.getCnpj());
 
             String sql = "UPDATE usuario SET usu_email = ?, usu_nome = ?, usu_senha = ?, usu_admin = ?" +
-                    "WHERE usu_email = ?";
+                    "WHERE usu_id = ?";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
             pstm.setString(1, usuario.getDadosPessoais().getEmail());
             pstm.setString(2, usuario.getDadosPessoais().getNome());
             pstm.setString(3, usuario.getSenha());
             pstm.setBoolean(4, usuario.getAdmin());
-            pstm.setString(5, usuario.getDadosPessoais().getEmail());
+            pstm.setInt(5, usuario.getId());
 
             pstm.execute();
+            pstm.close();
         } catch (SQLException erro) {
             System.out.println("Erro ao atualizar Usuario: " + erro);
         }
     }
 
-    public void delete(String idUsuario) {
+    public void delete(int idUsuario) {
         try {
-            String sql = "DELETE FROM usuario WHERE usu_email = ?";
+            String sql = "DELETE FROM usuario WHERE usu_id = ?";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, idUsuario);
+            pstm.setInt(1, idUsuario);
 
             pstm.execute();
+            pstm.close();
         } catch (SQLException erro) {
             System.out.println("Erro ao deletar Usuario: " + erro);
         }
     }
 
-    public Usuario getById(String idUsuario) {
+    public Usuario getById(int idUsuario) {
         try {
             String sql = "SELECT * " +
                     "FROM usuario " +
-                    "WHERE usu_email = ?";
+                    "WHERE usu_id = ?";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, idUsuario);
+            pstm.setInt(1, idUsuario);
             ResultSet rs = pstm.executeQuery();
 
             Usuario usuario = new Usuario();
@@ -91,11 +94,12 @@ public class DaoUsuario {
                 usuario.setSenha(rs.getString("usu_senha"));
                 usuario.setAdmin(rs.getBoolean("usu_admin"));
                 usuario.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
-                usuario.setIdentificacao(rs.getInt("usu_identificador"));
+                usuario.setId(rs.getInt("usu_id"));
                 usuario.setDadosPessoais(dadosPessoais);
 
             }
 
+            pstm.close();
             return usuario;
         } catch (SQLException erro) {
             System.out.println("Erro ao buscar Usuario por Id: " + erro);
@@ -105,7 +109,7 @@ public class DaoUsuario {
     }
 
     public void upsert(Usuario usuario) {
-        Usuario usuarioCadastrado = getById(usuario.getDadosPessoais().getEmail());
+        Usuario usuarioCadastrado = getById(usuario.getId());
 
         if (usuarioCadastrado.getDadosPessoais() == null)
             insert(usuario);
@@ -134,9 +138,11 @@ public class DaoUsuario {
                 usuario.setSenha(rs.getString("usu_senha"));
                 usuario.setAdmin(rs.getBoolean("usu_admin"));
                 usuario.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
+                usuario.setId(rs.getInt("usu_id"));
                 usuario.setDadosPessoais(dadosPessoais);
             }
 
+            pstm.close();
             return usuario;
         } catch (SQLException erro) {
             System.out.println("Erro ao buscar Usuario por usuario e senha: " + erro);
@@ -163,13 +169,15 @@ public class DaoUsuario {
                 usuario.setSenha(rs.getString("usu_senha"));
                 usuario.setAdmin(rs.getBoolean("usu_admin"));
                 usuario.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
-                usuario.setIdentificacao(rs.getInt("usu_identificador"));
+                usuario.setId(rs.getInt("usu_id"));
                 usuario.setDadosPessoais(dadosPessoais);
 
                 usuarios.add(usuario);
             }
+
+            pstm.close();
         } catch (SQLException erro) {
-            System.out.println("Erro ao buscar Usuario por usuario e senha: " + erro);
+            System.out.println("Erro ao buscar todos os usuario: " + erro);
             return null;
         }
         return usuarios;
@@ -179,7 +187,7 @@ public class DaoUsuario {
         try {
             String sql = "SELECT * " +
                     "FROM usuario " +
-                    "WHERE usu_identificador = ?";
+                    "WHERE usu_id = ?";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
             pstm.setInt(1, idUsuario);
@@ -195,10 +203,11 @@ public class DaoUsuario {
                 usuario.setAdmin(rs.getBoolean("usu_admin"));
                 usuario.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
                 usuario.setDadosPessoais(dadosPessoais);
-                usuario.setIdentificacao(rs.getInt("usu_identificador"));
+                usuario.setId(rs.getInt("usu_id"));
 
             }
 
+            pstm.close();
             return usuario;
         } catch (SQLException erro) {
             System.out.println("Erro ao buscar Usuario por Id: " + erro);

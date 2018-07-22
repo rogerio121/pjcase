@@ -44,12 +44,12 @@ public class TesteDaoUsuario {
 
     public static void deleteUsuario(){
         DaoUsuario daoUsuario = new DaoUsuario();
-        daoUsuario.delete("admin@admin.com");
+        daoUsuario.delete(1);
     }
 
     public static void buscaUsuario(){
         DaoUsuario daoUsuario = new DaoUsuario();
-        Usuario usuario = daoUsuario.getById("admin@admin.com");
+        Usuario usuario = daoUsuario.getById(1);
         System.out.println(usuario.getDadosPessoais().getNome());
     }
 }
