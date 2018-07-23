@@ -5,7 +5,10 @@ import br.com.pjcase.dao.DaoUsuario;
 import br.com.pjcase.model.Caso;
 import br.com.pjcase.model.Usuario;
 import com.sun.deploy.net.HttpResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -54,6 +57,27 @@ public class ControllerLogin {
         } catch (Exception e) {
                 System.out.println("Erro ao logar: " + e);
                 return  null;
+        }
+    }
+
+    @PostMapping("validarusuario")
+    public ResponseEntity<Usuario> validarUsuario(@RequestBody Usuario usuario) {
+        DaoUsuario daoUsuario = new DaoUsuario();
+
+        Usuario usuarioValidado = null;
+
+        try {
+            usuarioValidado = daoUsuario.getByEmailESenha(usuario.getDadosPessoais().getEmail(), usuario.getSenha());
+            System.out.println(usuarioValidado);
+            if (usuarioValidado != null)
+                return ResponseEntity.ok(usuarioValidado);
+
+            else
+                return ResponseEntity.noContent().build();
+
+        } catch (Exception e) {
+            System.out.println("Erro ao validar usuário: " + e);
+            return (ResponseEntity<Usuario>) ResponseEntity.status(500);
         }
     }
 

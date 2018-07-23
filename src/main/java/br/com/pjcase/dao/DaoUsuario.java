@@ -129,8 +129,9 @@ public class DaoUsuario {
             pstm.setString(2, senha);
             ResultSet rs = pstm.executeQuery();
 
-            Usuario usuario = new Usuario();
+            Usuario usuario = null;
             if (rs.next()) {
+                usuario = new Usuario();
                 DadosPessoais dadosPessoais = new DadosPessoais();
 
                 dadosPessoais.setNome(rs.getString("usu_nome"));

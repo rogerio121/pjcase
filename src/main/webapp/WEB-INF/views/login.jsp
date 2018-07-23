@@ -9,28 +9,43 @@
         <form action="/telainicial" method="post" id="form-login">
             <label>Email</label> <input type="email" name="email" required><br>
             <label>Senha</label> <input type="password" name="senha" required><br>
-            <button onclick="logar()">Logar</button>
+
+            <button onclick="x()">Logar</button>s
         </form>
 
 
         <script>
-            function logar(){
-               // alert('y')
-                let form = document.getElementById("form-login")
+            function x() {
+                let email = document.getElementsByName('email')[0].value
+                let senha = document.getElementsByName('senha')[0].value
+                let telaLogin = window.location
 
-                form.send()
+                if (!email || !senha)
+                    alert("Favor preencher os campos E-mail e Senha")
 
-
-                $.ajax({
-                    url:'telainicial',
-                    type: 'POST',
-                    contentType: 'applicatio/json',
-                    data: usuario,
-                    success: function(result){
-                        window.location.href = url;
-                    }
-                })
+                fetch("/validarusuario",
+                    {
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        method: "POST",
+                        body: JSON.stringify({
+                            senha: senha,
+                            dadosPessoais: {
+                                email: email
+                            }
+                        })
+                    })
+                    .then(function (res) {
+                        console.log(res.status)
+                        if (res.status == 204) {
+                            alert("Login inválido!")
+                            window.location = telaLogin;
+                        }
+                    })
             }
+
         </script>
 
     </body>
