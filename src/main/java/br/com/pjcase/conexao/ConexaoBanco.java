@@ -15,7 +15,7 @@ public class ConexaoBanco {
     public static String timezone = "?useTimezone=true&serverTimezone=UTC";
     public static String url = "jdbc:mysql://" + serverName + "/" + mydatabase + timezone;
     public static String username = "root";
-    public static String password = "";
+    public static String password = "1234";
 
     // Método que pega conec
     public static java.sql.Connection getConexao() {

@@ -8,7 +8,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DaoCaso {
@@ -137,10 +140,14 @@ public class DaoCaso {
     public void upsert(Caso caso) {
         Caso casoCadastrado = null;
         casoCadastrado = getById(String.valueOf(caso.getIdCaso()));
-        System.out.println(casoCadastrado == null);
-        System.out.println(casoCadastrado);
-        if (casoCadastrado == null)
+
+        if (casoCadastrado == null){
+            DateFormat formatoDaData = new SimpleDateFormat("yyyy-MM-dd");
+            Date data = new Date();
+            caso.setDataDeAbertura(formatoDaData.format(data));
             insert(caso);
+        }
+
         else
             update(caso);
     }
