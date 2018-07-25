@@ -14,6 +14,8 @@
 	<context:component-scan base-package="br.com.pjcase" />
 	<!-- Possibilita as anotaçoes -->
 	<mvc:annotation-driven />
+	<!-- Defino onde vai ser minha pasta resource para o mvc -->
+	<mvc:resources mapping="/resources/**" location="resources/" />
 
 	<!-- Configura o plugin do JSON como request and response -->
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
