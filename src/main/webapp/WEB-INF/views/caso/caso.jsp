@@ -11,9 +11,9 @@
     </header>
     <body>
 
-        <form action="/caso/salvar" method="POST">
+        <form action="/caso/salvar" method="POST" id="form-caso">
             <label>Assunto</label> <input type="text" name="assunto" value="${caso.assunto}"> <br>
-            <label>Mensagem</label> <input type="text" name="mensagem" value="${caso.mensagem}"> <br>
+            <label>Mensagem</label> <textarea rows="5" cols="50" name="mensagem" >${caso.mensagem}</textarea> <br>
             <label>CPF do cliente </label> <input type="text" name="idClienteRelacionado" required value="${caso.idClienteRelacionado}"> <br>
             <label>Status</label>
             <select name="status" id="status">
@@ -23,6 +23,9 @@
             </select>
             <br>
             <label>CNPJ da empresa</label><input type="text" name="idEmpresaRelacionada" required value="${caso.idEmpresaRelacionada}"> <br>
+            <label>Resolução</label>
+            <textarea rows="5" cols="50" name="resolucao">${caso.resolucao}</textarea>
+
 
             <input type="text" value="${caso.idCaso}" name="idCaso" hidden> <br>
 

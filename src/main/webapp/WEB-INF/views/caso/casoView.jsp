@@ -8,17 +8,19 @@
         <c:import url="../menu.jsp"></c:import>
     </header>
     <body>
-        <form>
+        <form id="form-caso">
             <label>Assunto</label>
             <input type="text" name="assunto" value="${caso.assunto}" disabled> <br>
             <label>Mensagem</label>
-            <input type="text" name="mensagem" value="${caso.mensagem}" disabled> <br>
+            <textarea rows="5" cols="50" name="mensagem" disabled>${caso.mensagem}</textarea> <br>
             <label>CPF do cliente </label>
             <input type="text" name="idClienteRelacionado" value="${caso.idClienteRelacionado}" disabled> <br>
             <label>Status: </label>
             <input type="text" name="status" value="${caso.status}" disabled> <br>
             <label>CNPJ da empresa</label>
             <input type="text" name="idEmpresaRelacionada" value="${caso.idEmpresaRelacionada}" disabled> <br>
+            <label>Resolução</label>
+            <textarea rows="5" cols="50" name="resolucao" disabled>${caso.resolucao}</textarea><br>
             <label>Usuario: </label>
             <input type="email" value="${usuario.dadosPessoais.email}" name="idUsuarioRelacionado" disabled> <br>
         </form>

@@ -27,18 +27,19 @@ public class DaoCaso {
         try {
             String sql;
             if (!caso.getIdUsuarioRelacionado().isEmpty()) {
-                sql = "INSERT INTO caso (cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, usu_id, cli_cpf)" +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                sql = "INSERT INTO caso (cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_resolucao, cas_status, emp_cnpj, usu_id, cli_cpf)" +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                 PreparedStatement pstm = conexao.prepareStatement(sql);
                 pstm.setString(1, caso.getAssunto());
                 pstm.setString(2, caso.getDataDeAbertura());
                 pstm.setString(3, caso.getDataDeFechamento());
                 pstm.setString(4, caso.getMensagem());
-                pstm.setString(5, caso.getStatus());
-                pstm.setString(6, caso.getIdEmpresaRelacionada());
-                pstm.setString(7, caso.getIdUsuarioRelacionado());
-                pstm.setString(8, caso.getIdClienteRelacionado());
+                pstm.setString(5,caso.getResolucao());
+                pstm.setString(6, caso.getStatus());
+                pstm.setString(7, caso.getIdEmpresaRelacionada());
+                pstm.setString(8, caso.getIdUsuarioRelacionado());
+                pstm.setString(9, caso.getIdClienteRelacionado());
 
                 pstm.execute();
                 pstm.close();
@@ -67,7 +68,7 @@ public class DaoCaso {
 
     public void update(Caso caso) {
         try {
-            String sql = "UPDATE caso SET cas_assusnto = ?, cas_data_de_abertura = ?, cas_data_de_fechamento = ?, cas_menssagem = ?, cas_status = ?, " +
+            String sql = "UPDATE caso SET cas_assusnto = ?, cas_data_de_abertura = ?, cas_data_de_fechamento = ?, cas_menssagem = ?, cas_resolucao = ?, cas_status = ?, " +
                     "emp_cnpj = ?, usu_id = ?, cli_cpf = ?  " +
                     "WHERE cas_id = ?";
 
@@ -77,11 +78,12 @@ public class DaoCaso {
             pstm.setString(2, caso.getDataDeAbertura());
             pstm.setString(3, caso.getDataDeFechamento());
             pstm.setString(4, caso.getMensagem());
-            pstm.setString(5, caso.getStatus());
-            pstm.setString(6, caso.getIdEmpresaRelacionada());
-            pstm.setString(7, caso.getIdUsuarioRelacionado());
-            pstm.setString(8, caso.getIdClienteRelacionado());
-            pstm.setInt(9, caso.getIdCaso());
+            pstm.setString(5, caso.getResolucao());
+            pstm.setString(6, caso.getStatus());
+            pstm.setString(7, caso.getIdEmpresaRelacionada());
+            pstm.setString(8, caso.getIdUsuarioRelacionado());
+            pstm.setString(9, caso.getIdClienteRelacionado());
+            pstm.setInt(10, caso.getIdCaso());
 
             pstm.execute();
             pstm.close();
@@ -106,7 +108,7 @@ public class DaoCaso {
 
     public Caso getById(String idCaso) {
         try {
-                String sql = "SELECT cas_id, cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, usu_id, cli_cpf " +
+                String sql = "SELECT *" +
                     "FROM caso " +
                     "WHERE cas_id = ?";
 
@@ -128,6 +130,7 @@ public class DaoCaso {
                 caso.setIdUsuarioRelacionado(rs.getString("usu_id"));
                 caso.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
                 caso.setIdClienteRelacionado(rs.getString("cli_cpf"));
+                caso.setResolucao(rs.getString("cas_resolucao"));
             }
             pstm.close();
             return caso;
@@ -150,7 +153,7 @@ public class DaoCaso {
         }
         else {
             caso.setDataDeAbertura(casoCadastrado.getDataDeAbertura());
-            
+
             if (!casoCadastrado.getStatus().equals("Fechado") && caso.getStatus().equals("Fechado"))
                 caso.setDataDeFechamento(formatoDaData.format(data));
             else
@@ -164,7 +167,8 @@ public class DaoCaso {
         try {
             String sql = "SELECT cas_id, cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, cli_cpf " +
                         "FROM caso " +
-                        "WHERE usu_id IS NULL";
+                        "WHERE usu_id IS NULL " +
+                        "ORDER BY cas_id desc";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
@@ -200,7 +204,8 @@ public class DaoCaso {
         try {
             String sql = "SELECT cas_id, cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, cli_cpf, usu_id " +
                     "FROM caso " +
-                    "WHERE usu_id = ?";
+                    "WHERE usu_id = ? " +
+                    "ORDER BY cas_id desc";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
             pstm.setInt(1, idUsuario);

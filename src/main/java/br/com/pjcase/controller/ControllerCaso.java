@@ -45,6 +45,8 @@ public class ControllerCaso {
         caso.setIdClienteRelacionado(request.getParameter("idClienteRelacionado"));
         caso.setIdEmpresaRelacionada(request.getParameter("idEmpresaRelacionada"));
         caso.setIdUsuarioRelacionado(String.valueOf(usuarioLogado.getId()));
+        caso.setResolucao(request.getParameter("resolucao"));
+
         //Caso seja uma edição o campo IdCaso será populado, do Contrário não
         try {
             caso.setIdCaso(Integer.parseInt(request.getParameter("idCaso")));

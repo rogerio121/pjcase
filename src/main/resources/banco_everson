@@ -57,6 +57,7 @@ create table caso (
     cas_menssagem varchar (255),
     cas_status varchar (20),
     cas_assusnto varchar(30),
+    cas_resolucao varchar(255),
     emp_cnpj varchar (18),
     usu_email varchar(50),
     cli_cpf varchar(18),

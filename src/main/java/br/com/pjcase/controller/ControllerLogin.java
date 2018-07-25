@@ -68,7 +68,6 @@ public class ControllerLogin {
 
         try {
             usuarioValidado = daoUsuario.getByEmailESenha(usuario.getDadosPessoais().getEmail(), usuario.getSenha());
-            System.out.println(usuarioValidado);
             if (usuarioValidado != null)
                 return ResponseEntity.ok(usuarioValidado);
 

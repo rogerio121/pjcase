@@ -13,6 +13,7 @@ public class Caso {
     String idEmpresaRelacionada;
     String idUsuarioRelacionado;
     String idClienteRelacionado;
+    String resolucao;
 
 
     public String getAssunto() {
@@ -92,6 +93,15 @@ public class Caso {
     }
 
 
+    public String getResolucao() {
+        return resolucao;
+    }
+
+    public void setResolucao(String resolucao) {
+        this.resolucao = resolucao;
+    }
+
+
     @Override
     public String toString() {
         return "Caso{" +
@@ -99,11 +109,12 @@ public class Caso {
                 ", assunto='" + assunto + '\'' +
                 ", dataDeAbertura='" + dataDeAbertura + '\'' +
                 ", dataDeFechamento='" + dataDeFechamento + '\'' +
-                ", menssagem='" + mensagem + '\'' +
+                ", mensagem='" + mensagem + '\'' +
                 ", status='" + status + '\'' +
                 ", idEmpresaRelacionada='" + idEmpresaRelacionada + '\'' +
                 ", idUsuarioRelacionado='" + idUsuarioRelacionado + '\'' +
                 ", idClienteRelacionado='" + idClienteRelacionado + '\'' +
+                ", resolucao='" + resolucao + '\'' +
                 '}';
     }
 }
