@@ -10,7 +10,7 @@
             <label>Email</label> <input type="email" name="email" required><br>
             <label>Senha</label> <input type="password" name="senha" required><br>
 
-            <button onclick="x()">Logar</button>s
+            <button onclick="x()">Logar</button>
         </form>
 
 

@@ -141,15 +141,22 @@ public class DaoCaso {
         Caso casoCadastrado = null;
         casoCadastrado = getById(String.valueOf(caso.getIdCaso()));
 
+        DateFormat formatoDaData = new SimpleDateFormat("yyyy-MM-dd");
+        Date data = new Date();
+
         if (casoCadastrado == null){
-            DateFormat formatoDaData = new SimpleDateFormat("yyyy-MM-dd");
-            Date data = new Date();
             caso.setDataDeAbertura(formatoDaData.format(data));
             insert(caso);
         }
-
-        else
+        else {
+            caso.setDataDeAbertura(casoCadastrado.getDataDeAbertura());
+            
+            if (!casoCadastrado.getStatus().equals("Fechado") && caso.getStatus().equals("Fechado"))
+                caso.setDataDeFechamento(formatoDaData.format(data));
+            else
+                caso.setDataDeFechamento(null);
             update(caso);
+        }
     }
     /*------------FIM-CRUD----------------*/
 
