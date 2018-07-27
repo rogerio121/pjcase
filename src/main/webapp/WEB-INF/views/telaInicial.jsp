@@ -24,7 +24,7 @@
                         <td>${caso.idCaso }</td>
                         <td>${caso.assunto }</td>
                         <td>${caso.dataDeAbertura }</td>
-                        <td><a onclick="pegarCaso(${caso.idCaso},'${usuarioLogado.dadosPessoais.email}')"  id="${caso.idCaso}" class="btn btn-info">Pegar Caso</a></td>
+                        <td><a onclick="pegarCaso(${caso.idCaso},'${usuarioLogado.id}')"  id="${caso.idCaso}" class="btn btn-info">Pegar Caso</a></td>
                     </tr>
                 </c:forEach>
             </c:if>

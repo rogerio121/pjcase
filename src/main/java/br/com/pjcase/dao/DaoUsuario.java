@@ -44,7 +44,7 @@ public class DaoUsuario {
         try {
             //Empresa empresaCadastrada = getById(empresa.getCnpj());
 
-            String sql = "UPDATE usuario SET usu_email = ?, usu_nome = ?, usu_senha = ?, usu_admin = ?" +
+            String sql = "UPDATE usuario SET usu_email = ?, usu_nome = ?, usu_senha = ?, usu_admin = ? " +
                     "WHERE usu_id = ?";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
@@ -215,5 +215,37 @@ public class DaoUsuario {
         }
 
         return null;
+    }
+
+    public Usuario getByEmail(String email) {
+        try {
+            String sql = "SELECT * " +
+                    "FROM usuario " +
+                    "WHERE usu_email = ?";
+
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setString(1, email);
+            ResultSet rs = pstm.executeQuery();
+
+            Usuario usuario = null;
+            if (rs.next()) {
+                usuario = new Usuario();
+                DadosPessoais dadosPessoais = new DadosPessoais();
+
+                dadosPessoais.setNome(rs.getString("usu_nome"));
+                dadosPessoais.setEmail(rs.getString("usu_email"));
+                usuario.setSenha(rs.getString("usu_senha"));
+                usuario.setAdmin(rs.getBoolean("usu_admin"));
+                usuario.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
+                usuario.setId(rs.getInt("usu_id"));
+                usuario.setDadosPessoais(dadosPessoais);
+            }
+
+            pstm.close();
+            return usuario;
+        } catch (SQLException erro) {
+            System.out.println("Erro ao buscar Usuario por usuario e email: " + erro);
+            return null;
+        }
     }
 }

@@ -6,7 +6,7 @@
         <title>Login</title>
     </head>
     <body>
-        <form action="/telainicial" method="post" id="form-login">
+        <form action="/logar" method="post" id="form-login">
             <label>Email</label> <input type="email" name="email" required><br>
             <label>Senha</label> <input type="password" name="senha" required><br>
 

@@ -25,7 +25,7 @@ public class ControllerUsuario {
     }
 
     @RequestMapping("/salvar")
-    public ModelAndView chamarTelaUsuario(HttpServletRequest request) {
+    public String chamarTelaUsuario(HttpServletRequest request) {
         Usuario usuario = new Usuario();
         Usuario usuarioExistente = null;
         DadosPessoais dadosPessoais = new DadosPessoais();
@@ -40,28 +40,28 @@ public class ControllerUsuario {
         dadosPessoais.setNome(request.getParameter("nome"));
         dadosPessoais.setEmail(request.getParameter("email"));
         usuario.setSenha(request.getParameter("senha"));
-        usuario.setId(Integer.parseInt(request.getParameter("id")));
+
+        if (!request.getParameter("id").equals(""))
+            usuario.setId(Integer.parseInt(request.getParameter("id")));
 
         if (request.getParameter("admin") != null)
             usuario.setAdmin(true);
         else
             usuario.setAdmin(false);
+
         usuario.setDadosPessoais(dadosPessoais);
 
-        usuarioExistente = daoUsuario.getById(usuario.getId());
-        if(usuarioExistente == null)
+        usuarioExistente = daoUsuario.getByEmail(usuario.getDadosPessoais().getEmail());
+        if (usuarioExistente == null)
             daoUsuario.insert(usuario);
         else
             daoUsuario.update(usuario);
 
-        ModelAndView mv = new ModelAndView("usuario/usuarioView");
-        mv.addObject("usuario", usuario);
-
-        return mv;
+        return "redirect:/usuario/usuarios";
     }
 
     @RequestMapping("/usuarios")
-    public ModelAndView listarUsuarios(){
+    public ModelAndView listarUsuarios() {
         List<Usuario> usuarios = new ArrayList<>();
         DaoUsuario daoUsuario = new DaoUsuario();
 
@@ -74,7 +74,7 @@ public class ControllerUsuario {
     }
 
     @GetMapping("/cadastro/{id}")
-    public ModelAndView verUsuario(@PathVariable("id") Long id){
+    public ModelAndView verUsuario(@PathVariable("id") Long id) {
         ModelAndView mv = new ModelAndView("usuario/usuarioView");
         DaoUsuario daoUsuario = new DaoUsuario();
 
@@ -93,7 +93,7 @@ public class ControllerUsuario {
     }
 
     @GetMapping("/cadastro/editar/{id}")
-    public ModelAndView editarUsuario(@PathVariable("id") Long id){
+    public ModelAndView editarUsuario(@PathVariable("id") Long id) {
         ModelAndView mv = new ModelAndView("usuario/usuario");
         DaoUsuario daoUsuario = new DaoUsuario();
 

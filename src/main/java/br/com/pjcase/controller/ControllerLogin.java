@@ -29,8 +29,13 @@ public class ControllerLogin {
         return "login";
     }
 
-    @RequestMapping("telainicial")
-    public ModelAndView login(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
+    @RequestMapping("telaInicial")
+    public  String login2(){
+        return "telaInicial";
+    }
+
+    @RequestMapping("logar")
+    public String login(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
         DaoUsuario daoUsuario = new DaoUsuario();
         DaoCaso daoCaso = new DaoCaso();
         Usuario usuario = new Usuario();
@@ -46,14 +51,12 @@ public class ControllerLogin {
                 sessao.setAttribute("usuarioLogado", usuario);
                 //sessao.setMaxInactiveInterval(3000);
                 casosSemProprietaio = daoCaso.listarCasosSemProprietarios();
-
-                mv = new ModelAndView("telaInicial");
-                mv.addObject(usuario);
-                mv.addObject("casosSemProprietaio", casosSemProprietaio);
+                sessao.setAttribute("casosSemProprietaio", casosSemProprietaio);
+                return "redirect:/telaInicial";
             }
             else
-                mv = new ModelAndView("redirect:/");
-                return mv;
+               return "redirect:/";
+
         } catch (Exception e) {
                 System.out.println("Erro ao logar: " + e);
                 return  null;

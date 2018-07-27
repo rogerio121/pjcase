@@ -7,10 +7,10 @@
         <title>Caso</title>
     </head>
     <header>
+        <link rel="stylesheet" type="text/css" href="../resources/style_menu.css">
         <c:import url="../menu.jsp"></c:import>
     </header>
     <body>
-
         <form action="/caso/salvar" method="POST" id="form-caso">
             <label>Assunto</label> <input type="text" name="assunto" value="${caso.assunto}"> <br>
             <label>Mensagem</label> <textarea rows="5" cols="50" name="mensagem" >${caso.mensagem}</textarea> <br>
