@@ -4,6 +4,7 @@
 <html>
     <meta charset="UTF-8" />
     <head>
+        <link rel="stylesheet" type="text/css" href="resources/style_menu.css">
         <title>Tela inicial</title>
     </head>
     <header>

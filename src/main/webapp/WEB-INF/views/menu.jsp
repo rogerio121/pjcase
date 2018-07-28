@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="resources/style_menu.css">
+<link rel="stylesheet" type="text/css" href="resources/css/style_menu.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <input type="checkbox" id="bt_menu">
 <label for="bt_menu">&#9776;</label>

@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,16 +67,17 @@ public class ControllerCaso {
 
 
     @PutMapping("/cadastro/{id}")
-    public ResponseEntity<Caso> pegarCaso(@PathVariable("id") Long id, @RequestBody String emailUsuario) {
+    public ResponseEntity<Caso> pegarCaso(@PathVariable("id") Long id, @RequestBody String idUsuario, HttpSession session) {
         ResponseEntity<Caso> responseEntity = null;
 
         try {
             DaoCaso daoCaso = new DaoCaso();
             Caso caso = new Caso();
             caso = daoCaso.getById(String.valueOf(id));
-            caso.setIdUsuarioRelacionado(emailUsuario);
+            caso.setIdUsuarioRelacionado(idUsuario);
 
             daoCaso.update(caso);
+            List<Caso> casosSomProprietario = new ArrayList<Caso>();
 
             responseEntity.ok(caso);
             responseEntity.status(200);

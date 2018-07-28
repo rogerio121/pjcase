@@ -5,6 +5,7 @@ import br.com.pjcase.dao.DaoUsuario;
 import br.com.pjcase.model.Caso;
 import br.com.pjcase.model.Usuario;
 import com.sun.deploy.net.HttpResponse;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,18 +31,22 @@ public class ControllerLogin {
     }
 
     @RequestMapping("telaInicial")
-    public  String login2(){
-        return "telaInicial";
+    public  ModelAndView login2(HttpServletRequest request){
+        DaoCaso daoCaso = new DaoCaso();
+        List<Caso> casosSemProprietaio = new ArrayList<Caso>();
+
+        casosSemProprietaio = daoCaso.listarCasosSemProprietarios();
+        request.setAttribute("casosSemProprietaio", casosSemProprietaio);
+
+        ModelAndView mv = new ModelAndView("telaInicial");
+        return mv;
     }
 
     @RequestMapping("logar")
     public String login(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
         DaoUsuario daoUsuario = new DaoUsuario();
-        DaoCaso daoCaso = new DaoCaso();
         Usuario usuario = new Usuario();
-        List<Caso> casosSemProprietaio = new ArrayList<Caso>();
 
-        ModelAndView mv;
         try {
             usuario = daoUsuario.getByEmailESenha(request.getParameter("email"), request.getParameter("senha"));
 
@@ -50,16 +55,14 @@ public class ControllerLogin {
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("usuarioLogado", usuario);
                 //sessao.setMaxInactiveInterval(3000);
-                casosSemProprietaio = daoCaso.listarCasosSemProprietarios();
-                sessao.setAttribute("casosSemProprietaio", casosSemProprietaio);
                 return "redirect:/telaInicial";
             }
             else
-               return "redirect:/";
+                return "redirect:/";
 
         } catch (Exception e) {
-                System.out.println("Erro ao logar: " + e);
-                return  null;
+            System.out.println("Erro ao logar: " + e);
+            return  null;
         }
     }
 
