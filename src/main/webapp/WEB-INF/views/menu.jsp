@@ -32,7 +32,7 @@
                 <li><a href="/usuario/usuarios">Todos os Usuarios</a></li>
             </ul>
         </li>
-        <li><a href=""><i class="fas fa-user-circle"></i></i></a>
+        <li><a href=""><i class="fas fa-user-circle"></i> ${usuarioLogado.dadosPessoais.nome}</a>
             <ul>
                 <li><a href="/logout">Sair</a></li>
             </ul>

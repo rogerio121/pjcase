@@ -5,7 +5,7 @@
         <title>Clientes</title>
     </head>
     <header>
-        <link rel="stylesheet" type="text/css" href="../resources/style_menu.css">
+        <link rel="stylesheet" type="text/css" href="../resources/css/style_menu.css">
         <c:import url="../menu.jsp"></c:import>
     </header>
     <body>

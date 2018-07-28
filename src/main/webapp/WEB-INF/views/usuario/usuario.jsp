@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <meta charset="UTF-8" />
@@ -6,7 +7,7 @@
         <title>Usuario</title>
     </head>
     <header>
-        <link rel="stylesheet" type="text/css" href="../resources/style_menu.css">
+        <link rel="stylesheet" type="text/css" href="../resources/css/style_menu.css">
         <c:import url="../menu.jsp"></c:import>
     </header>
     <body>
