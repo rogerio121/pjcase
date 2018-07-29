@@ -7,24 +7,46 @@
         <title>Usuario</title>
     </head>
     <header>
-        <link rel="stylesheet" type="text/css" href="../resources/css/style_menu.css">
+        <link rel="stylesheet" type="text/css" href="../../../resources/css/style_menu.css">
         <c:import url="../menu.jsp"></c:import>
     </header>
     <body>
     Ocultar senha na edição
-        <form action="/usuario/salvar" method="post">
-            <label>Id </label> <input type="text" hidden name="id" value="${usuario.id}">
+        <form id="form-usuario" action="/usuario/salvar" method="post">
+            <input type="text" hidden name="id" value="${usuario.id}">
             <label>Nome</label> <input type="text" name="nome" value="${usuario.dadosPessoais.nome}"> <br>
             <label>E-mail</label> <input type="email" name="email" value="${usuario.dadosPessoais.email}"> <br>
-            <label>senha</label> <input type="password" name="senha" value=""> <br>
-            <label>Administrador</label> <input id="admin" type="checkbox" name="admin" value="${usuario.admin}"> <br>
-
-            <button type="submit">Salvar</button>
+            <label>senha</label> <input id="senha" type="password" name="senha" value=""> <br>
+            <label>Confirme a senha</label> <input id="conf-senha" type="password" > <br>
+            <label>Administrador</label> <input id="admin" type="checkbox" name="admin"> <br>
         </form>
+
+        <button onclick="salvar()">Salvar</button>
     </body>
     <script>
-        if(${usuario.admin})
-            document.getElementById('admin').checked = true
+
+        function salvar() {
+            let form = document.getElementById('form-usuario')
+            let senha = document.getElementById('senha').value
+            let confFenha = document.getElementById('conf-senha').value
+
+            console.log(senha)
+            console.log(confFenha)
+            console.log(senha != confFenha)
+
+            if(senha != confFenha)
+                alert("Senha não confere")
+            else
+                form.submit()
+        }
+
+
+        if(window.location.href.includes('8080/usuario/cadastro/editar/'))
+            if(admin)
+                document.getElementById('admin').checked = true
+
+
+
 
     </script>
 </html>

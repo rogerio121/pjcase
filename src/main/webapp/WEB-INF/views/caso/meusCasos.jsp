@@ -25,8 +25,8 @@
                 <th>Data de Abertura</th>
                 <th>Data de Fechamento</th>
             </tr>
-            <c:if test="${not empty casosDoUsuarioLogado}">
-                <c:forEach items="${casosDoUsuarioLogado}" var="caso">
+            <c:if test="${not empty casos}">
+                <c:forEach items="${casos}" var="caso">
                     <tr>
                         <td><a onclick="chamaTelaEditarCaso(${caso.idCaso})">${caso.idCaso}</a></td>
                         <td>${caso.assunto}</td>

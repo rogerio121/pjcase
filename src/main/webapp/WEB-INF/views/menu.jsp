@@ -10,7 +10,7 @@
             <ul>
                 <li><a href="/caso/cadastro">Novo Caso</a></li>
                 <li><a href="/caso/meuscasos">Meus Casos</a></li>
-                <li id="todos-os-casos"><a href="">Todos Casos</a></li>
+                <li id="todos-os-casos"><a href="todososcasos">Todos Casos</a></li>
             </ul>
         </li>
         <li><a href=""><i class="fas fa-users"></i> Clientes</a>

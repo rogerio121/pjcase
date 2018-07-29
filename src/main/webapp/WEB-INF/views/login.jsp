@@ -3,16 +3,19 @@
 <html>
     <meta charset="UTF-8" />
     <head>
+        <link rel="stylesheet" type="text/css" href="../resources/css/style_geral.css">
+        <link rel="stylesheet" type="text/css" href="../resources/css/style_login.css">
         <title>Login</title>
     </head>
     <body>
-        <form action="/logar" method="post" id="form-login">
-            <label>Email</label> <input type="email" name="email" required><br>
-            <label>Senha</label> <input type="password" name="senha" required><br>
+        <div id="login">
+            <form action="/logar" method="post" id="form-login">
+                <label>Email</label> <input type="email" name="email" required><br>
+                <label>Senha</label> <input type="password" name="senha" required><br>
 
-            <button onclick="x()">Logar</button>
-        </form>
-
+                <button onclick="x()">Logar</button>
+            </form>
+        </div>
 
         <script>
             function x() {

@@ -238,4 +238,41 @@ public class DaoCaso {
             return null;
         }
     }
+
+    public List<Caso> listarTodosOsCasos() {
+        try {
+            String sql = "SELECT cas_id, cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, cli_cpf, usu_id " +
+                    "FROM caso " +
+                    "ORDER BY cas_id desc";
+
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+
+            Caso caso;
+            List<Caso> casos = new ArrayList<Caso>();
+
+            while (rs.next()) {
+                DadosPessoais dadosPessoais = new DadosPessoais();
+
+                caso = new Caso();
+                caso.setIdCaso(rs.getInt("cas_id"));
+                caso.setAssunto(rs.getString("cas_assusnto"));
+                caso.setDataDeAbertura(rs.getString("cas_data_de_abertura"));
+                caso.setDataDeFechamento(rs.getString("cas_data_de_fechamento"));
+                caso.setMensagem(rs.getString("cas_menssagem"));
+                caso.setStatus(rs.getString("cas_status"));
+                caso.setIdEmpresaRelacionada(rs.getString("emp_cnpj"));
+                caso.setIdClienteRelacionado(rs.getString("cli_cpf"));
+                caso.setIdUsuarioRelacionado(rs.getString("usu_id"));
+
+                casos.add(caso);
+            }
+
+            pstm.close();
+            return casos;
+        } catch (SQLException erro) {
+            System.out.println("Erro ao buscar todos os Casos : " + erro);
+            return null;
+        }
+    }
 }

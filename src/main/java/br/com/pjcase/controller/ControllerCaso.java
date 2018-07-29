@@ -118,6 +118,29 @@ public class ControllerCaso {
         }
     }
 
+    @RequestMapping("/todososcasos")
+    public ModelAndView buscaTodosOsCasos(HttpServletRequest request, HttpServletResponse response) {
+        DaoCaso daoCaso = new DaoCaso();
+        List<Caso> todosOsCasos = new ArrayList<Caso>();
+
+        ModelAndView mv;
+        try {
+            Usuario usuario = new Usuario();
+            usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
+
+            todosOsCasos = daoCaso.listarTodosOsCasos();
+
+            mv = new ModelAndView("caso/meusCasos");
+            mv.addObject("casos", todosOsCasos);
+            mv.addObject("usuario", usuario);
+
+            return mv;
+
+        } catch (Exception e){
+            System.out.println("Erro ao carregar 'todosOsCasos': " + e);
+            return null;
+        }
+    }
 
     @GetMapping("/cadastro/{id}")
     public ModelAndView verCaso(@PathVariable("id") Long id) {
