@@ -10,9 +10,9 @@ public class Caso {
     String dataDeFechamento;
     String mensagem;
     String status;
-    String idEmpresaRelacionada;
-    String idUsuarioRelacionado;
-    String idClienteRelacionado;
+    Empresa empresa;
+    Usuario usuario;
+    Cliente cliente;
     String resolucao;
 
 
@@ -51,30 +51,6 @@ public class Caso {
     }
 
 
-    public String getIdEmpresaRelacionada() {
-        return idEmpresaRelacionada;
-    }
-
-    public void setIdEmpresaRelacionada(String idEmpresaRelacionada) {
-        this.idEmpresaRelacionada = idEmpresaRelacionada;
-    }
-
-    public String getIdUsuarioRelacionado() {
-        return idUsuarioRelacionado;
-    }
-
-    public void setIdUsuarioRelacionado(String idUsuarioRelacionado) {
-        this.idUsuarioRelacionado = idUsuarioRelacionado;
-    }
-
-    public String getIdClienteRelacionado() {
-        return idClienteRelacionado;
-    }
-
-    public void setIdClienteRelacionado(String idClienteRelacionado) {
-        this.idClienteRelacionado = idClienteRelacionado;
-    }
-
     public String getMensagem() {
         return mensagem;
     }
@@ -102,6 +78,31 @@ public class Caso {
     }
 
 
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+
     @Override
     public String toString() {
         return "Caso{" +
@@ -111,9 +112,9 @@ public class Caso {
                 ", dataDeFechamento='" + dataDeFechamento + '\'' +
                 ", mensagem='" + mensagem + '\'' +
                 ", status='" + status + '\'' +
-                ", idEmpresaRelacionada='" + idEmpresaRelacionada + '\'' +
-                ", idUsuarioRelacionado='" + idUsuarioRelacionado + '\'' +
-                ", idClienteRelacionado='" + idClienteRelacionado + '\'' +
+                ", empresa=" + empresa +
+                ", usuario=" + usuario +
+                ", cliente=" + cliente +
                 ", resolucao='" + resolucao + '\'' +
                 '}';
     }

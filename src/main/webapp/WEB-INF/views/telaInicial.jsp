@@ -12,7 +12,7 @@
     </header>
     <body>
         <h3>Bem vindo ${usuarioLogado.dadosPessoais.nome}</h3>
-
+        ${usuarioLogado.id}
        <table>
             <tr>
                 <td>Id</td>
@@ -25,7 +25,7 @@
                         <td>${caso.idCaso }</td>
                         <td>${caso.assunto }</td>
                         <td>${caso.dataDeAbertura }</td>
-                        <td><a onclick="pegarCaso(${caso.idCaso},'${usuarioLogado.id}')"  id="${caso.idCaso}" class="btn btn-info">Pegar Caso</a></td>
+                        <td><a onclick="pegarCaso(${caso.idCaso})"  id="${caso.idCaso}" class="btn btn-info">Pegar Caso</a></td>
                     </tr>
                 </c:forEach>
             </c:if>
@@ -33,10 +33,11 @@
 
         <script>
 
-            function pegarCaso(id, emailUsuario){
-                var url = window.location.href;
-                console.log(id);
-                console.log(emailUsuario);
+            function pegarCaso(id){
+                var url = window.location.href
+                var usuario = "${usuarioLogado.id}"
+                console.log(id)
+                console.log(usuario)
 
                 fetch('caso/cadastro/' + id,
                     {
@@ -45,7 +46,7 @@
                             'Content-Type': 'text/plain'
                         },
                         method: "PUT",
-                        body: emailUsuario
+                        body: usuario
                     })
                     .then(function (res) {
                         console.log(res)

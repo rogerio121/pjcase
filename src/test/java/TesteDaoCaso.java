@@ -16,9 +16,23 @@ public class TesteDaoCaso {
         caso.setDataDeFechamento("2018-12-03");
         caso.setMensagem("Menssgem");
         caso.setStatus("Fechado");
-        caso.setIdEmpresaRelacionada("3131");
-        caso.setIdClienteRelacionado("123123");
-        caso.setIdUsuarioRelacionado("admin@admin.com");
+
+        Empresa empresa = new Empresa();
+        empresa.setCnpj("3131");
+
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
+
+
+        Cliente cliente = new Cliente();
+        DadosPessoais dadosPessoaisCliente = new DadosPessoais();
+        dadosPessoaisCliente.setCpf("123123");
+        cliente.setDadosPessoais(dadosPessoaisCliente);
+
+
+        caso.setEmpresa(empresa);
+        caso.setCliente(cliente);
+        caso.setUsuario(usuario);
 
 
         DaoCaso daoCaso = new DaoCaso();
@@ -38,11 +52,25 @@ public class TesteDaoCaso {
         caso.setIdCaso(13);
         caso.setDataDeAbertura("2018-12-03");
         caso.setDataDeFechamento("2018-12-03");
-        caso.setMensagem("Menssgem Editada");
-        caso.setStatus("Aberto");
-        caso.setIdEmpresaRelacionada("3131");
-        caso.setIdUsuarioRelacionado("admin@admin.com");
+        caso.setMensagem("Menssgem");
+        caso.setStatus("Fechado");
 
+        Empresa empresa = new Empresa();
+        empresa.setCnpj("3131");
+
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
+
+
+        Cliente cliente = new Cliente();
+        DadosPessoais dadosPessoaisCliente = new DadosPessoais();
+        dadosPessoaisCliente.setCpf("123123");
+        cliente.setDadosPessoais(dadosPessoaisCliente);
+
+
+        caso.setEmpresa(empresa);
+        caso.setCliente(cliente);
+        caso.setUsuario(usuario);
         DaoCaso daoCaso = new DaoCaso();
         daoCaso.update(caso);
         casoEditado = daoCaso.getById("13");

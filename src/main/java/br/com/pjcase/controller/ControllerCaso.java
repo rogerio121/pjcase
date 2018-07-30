@@ -2,8 +2,8 @@ package br.com.pjcase.controller;
 
 import br.com.pjcase.conexao.ConexaoBanco;
 import br.com.pjcase.dao.DaoCaso;
-import br.com.pjcase.model.Caso;
-import br.com.pjcase.model.Usuario;
+import br.com.pjcase.dao.DaoUsuario;
+import br.com.pjcase.model.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -44,10 +44,29 @@ public class ControllerCaso {
         caso.setAssunto(request.getParameter("assunto"));
         caso.setMensagem(request.getParameter("mensagem"));
         caso.setStatus(request.getParameter("status"));
-        caso.setIdClienteRelacionado(request.getParameter("idClienteRelacionado"));
-        caso.setIdEmpresaRelacionada(request.getParameter("idEmpresaRelacionada"));
-        caso.setIdUsuarioRelacionado(String.valueOf(usuarioLogado.getId()));
+        caso.setUsuario(usuarioLogado);
         caso.setResolucao(request.getParameter("resolucao"));
+
+        //Cliente
+        Cliente cliente = new Cliente();
+        DadosPessoais dadosPessoaisCliente = new DadosPessoais();
+        dadosPessoaisCliente.setCpf(request.getParameter("cliente.dadosPessoais.cnpj"));
+        cliente.setDadosPessoais(dadosPessoaisCliente);
+
+        //Empresa
+        Empresa empresa = new Empresa();
+        empresa.setCnpj(request.getParameter("empresa.cnpj"));
+
+        /*
+        //Usuario
+        Usuario usuario = new Usuario();
+        DadosPessoais dadosPessoaisUsuario = new DadosPessoais();
+        dadosPessoaisUsuario.setCpf(request.getParameter("usuario.dadospessoais.cpf"));
+        usuario.setDadosPessoais(dadosPessoaisCliente);
+        */
+
+        caso.setCliente(cliente);
+        caso.setEmpresa(empresa);
 
         //Caso seja uma edição o campo IdCaso será populado, do Contrário não
         try {
@@ -67,17 +86,22 @@ public class ControllerCaso {
 
 
     @PutMapping("/cadastro/{id}")
-    public ResponseEntity<Caso> pegarCaso(@PathVariable("id") Long id, @RequestBody String idUsuario, HttpSession session) {
+    public ResponseEntity<Caso> pegarCaso(@PathVariable("id") Long id, @RequestBody String idUsuario) {
         ResponseEntity<Caso> responseEntity = null;
 
         try {
             DaoCaso daoCaso = new DaoCaso();
             Caso caso = new Caso();
             caso = daoCaso.getById(String.valueOf(id));
-            caso.setIdUsuarioRelacionado(idUsuario);
 
-            daoCaso.update(caso);
-            List<Caso> casosSomProprietario = new ArrayList<Caso>();
+            DaoUsuario daoUsuario = new DaoUsuario();
+            Usuario usuario = daoUsuario.getById(Integer.parseInt(idUsuario));
+
+            caso.setUsuario(usuario);
+
+
+
+            daoCaso.pegarCaso(caso);
 
             responseEntity.ok(caso);
             responseEntity.status(200);
@@ -107,7 +131,7 @@ public class ControllerCaso {
             casosDoUsuarioLogado = daoCaso.listarCasosPorProprietarios(usuario.getId());
 
             mv = new ModelAndView("caso/meusCasos");
-            mv.addObject("casosDoUsuarioLogado", casosDoUsuarioLogado);
+            mv.addObject("casos", casosDoUsuarioLogado);
             mv.addObject("usuario", usuario);
 
             return mv;
@@ -149,8 +173,9 @@ public class ControllerCaso {
 
         try {
             Caso caso = new Caso();
-            caso = daoCaso.getById(String.valueOf(id));
+            caso = daoCaso.buscarCasoCompleto(Math.toIntExact(id));
 
+            System.out.println(caso);
             mv.addObject("caso", caso);
 
         } catch (Exception e) {
@@ -169,7 +194,7 @@ public class ControllerCaso {
         Caso caso = new Caso();
 
         try {
-            caso = daoCaso.getById(String.valueOf(id));
+            caso = daoCaso.buscarCasoCompleto(Math.toIntExact(id));
 
             mv.addObject(caso);
 
