@@ -4,7 +4,9 @@ import br.com.pjcase.conexao.ConexaoBanco;
 import br.com.pjcase.dao.DaoUsuario;
 import br.com.pjcase.model.DadosPessoais;
 import br.com.pjcase.model.Usuario;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -108,6 +110,28 @@ public class ControllerUsuario {
 
         }
         return mv;
+
+    }
+
+    @DeleteMapping("/cadastro/{id}")
+    public ResponseEntity<Usuario> deletarCliente(@PathVariable("id") Long id) {
+        ResponseEntity<Usuario> responseEntity = null;
+
+        try {
+            DaoUsuario daoUsuario = new DaoUsuario();
+            daoUsuario.delete(Math.toIntExact(id));
+
+            responseEntity.ok();
+            responseEntity.status(200);
+
+            return responseEntity;
+
+        } catch (Exception e) {
+            responseEntity.status(500);
+            System.out.println("Erro na controller caso: statuscode 500 \n" + e);
+            return responseEntity;
+        }
+
 
     }
 }

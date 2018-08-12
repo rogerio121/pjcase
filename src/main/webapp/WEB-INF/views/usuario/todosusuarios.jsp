@@ -18,17 +18,49 @@
             <c:if test="${not empty usuarios}">
                 <c:forEach items="${usuarios}" var="usuario">
                     <tr>
-                        <td onclick="chamaTelaEditarUsuariio(${usuario.id})">${usuario.dadosPessoais.nome}</td>
+                        <td onclick="chamaTelaViewUsuariio(${usuario.id})">${usuario.dadosPessoais.nome}</td>
                         <td>${usuario.dadosPessoais.email}</td>
                         <td>${usuario.idEmpresaRelacionada}</td>
+                        <td>
+                            <button onclick="chamaTelaEditarUsuariio(${usuario.id})">Editar</button>
+                            <button onclick="chamaExcluirUsuario(${usuario.id})">Excluir</button>
+                        </td>
                     </tr>
                 </c:forEach>
             </c:if>
         </table>
     </body>
     <script>
-        function chamaTelaEditarUsuariio(idUsuario) {
-            window.location = '/usuario/cadastro/' + idUsuario
+        function chamaTelaViewUsuariio(id) {
+            window.location = '/usuario/cadastro/' + id
+        }
+
+        function chamaTelaEditarUsuariio(id) {
+            window.location = '/usuario/cadastro/editar/' + id
+        }
+
+
+        function chamaExcluirUsuario(id) {
+            var realmenteQuerExcluir
+            realmenteQuerExcluir = confirm('Deseja realmente excluir o usuário ?')
+
+            if (realmenteQuerExcluir) {
+                fetch('/usuario/cadastro/' + id,
+                    {
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'String'
+                        },
+                        method: "DELETE",
+                    }).then(function (res) {
+                    if (res.status == 200) {
+                        var pagina = window.location.href;
+                        window.location = pagina;
+                    } else {
+                        alert('Erro ao excluir o usuário: ' + id)
+                    }
+                })
+            }
         }
     </script>
 </html>
