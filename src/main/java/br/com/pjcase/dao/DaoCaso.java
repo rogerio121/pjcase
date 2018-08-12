@@ -23,10 +23,9 @@ public class DaoCaso {
 
     /*----------------CRUD----------------*/
     public void insert(Caso caso) {
-        System.out.println(caso);
         try {
             String sql;
-            if (caso.getUsuario() != null ) {
+            if (caso.getUsuario() != null) {
                 sql = "INSERT INTO caso (cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_resolucao, cas_status, emp_cnpj, usu_id, cli_cpf)" +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -36,7 +35,7 @@ public class DaoCaso {
                 pstm.setString(2, caso.getDataDeAbertura());
                 pstm.setString(3, caso.getDataDeFechamento());
                 pstm.setString(4, caso.getMensagem());
-                pstm.setString(5,caso.getResolucao());
+                pstm.setString(5, caso.getResolucao());
                 pstm.setString(6, caso.getStatus());
                 pstm.setString(7, caso.getEmpresa().getCnpj());
                 pstm.setInt(8, caso.getUsuario().getId());
@@ -44,7 +43,7 @@ public class DaoCaso {
 
                 pstm.execute();
                 pstm.close();
-            }else {
+            } else {
                 sql = "INSERT INTO caso (cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_status, emp_cnpj, cli_cpf)" +
                         "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -109,9 +108,9 @@ public class DaoCaso {
 
     public Caso getById(String idCaso) {
         try {
-                String sql = "SELECT *" +
-                            "FROM caso " +
-                            "WHERE cas_id = ? ";
+            String sql = "SELECT *" +
+                    "FROM caso " +
+                    "WHERE cas_id = ? ";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
             pstm.setString(1, idCaso);
@@ -146,11 +145,10 @@ public class DaoCaso {
         DateFormat formatoDaData = new SimpleDateFormat("yyyy-MM-dd");
         Date data = new Date();
 
-        if (casoCadastrado == null){
+        if (casoCadastrado == null) {
             caso.setDataDeAbertura(formatoDaData.format(data));
             insert(caso);
-        }
-        else {
+        } else {
             caso.setDataDeAbertura(casoCadastrado.getDataDeAbertura());
 
             if (!casoCadastrado.getStatus().equals("Fechado") && caso.getStatus().equals("Fechado"))
@@ -165,9 +163,9 @@ public class DaoCaso {
     public List<Caso> listarCasosSemProprietarios() {
         try {
             String sql = "SELECT *" +
-                        "FROM caso " +
-                        "WHERE usu_id IS NULL " +
-                        "ORDER BY cas_id desc";
+                    "FROM caso " +
+                    "WHERE usu_id IS NULL " +
+                    "ORDER BY cas_id desc";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
@@ -187,7 +185,6 @@ public class DaoCaso {
                 caso.setMensagem(rs.getString("cas_menssagem"));
                 caso.setStatus(rs.getString("cas_status"));
                 caso.setResolucao(rs.getString("cas_resolucao"));
-
 
 
                 //Clente
@@ -266,14 +263,12 @@ public class DaoCaso {
                 cliente.setEmpresa(empresa);
 
 
-
                 caso.setEmpresa(empresa);
                 caso.setCliente(cliente);
 
                 casos.add(caso);
             }
 
-            System.out.println(casos.size());
             pstm.close();
             return casos;
         } catch (SQLException erro) {
@@ -337,7 +332,6 @@ public class DaoCaso {
                 cliente.setEmpresa(empresa);
 
 
-
                 caso.setEmpresa(empresa);
                 caso.setCliente(cliente);
 
@@ -370,72 +364,72 @@ public class DaoCaso {
     }
 
     public Caso buscarCasoCompleto(int idCaso) {
-            try {
-                String sql = "SELECT * " +
-                            "FROM caso " +
-                            "inner join usuario on caso.usu_id = usuario.usu_id " +
-                            "join empresa " +
-                            "join cliente " +
-                            "WHERE caso.cas_id = ? " +
-                            "ORDER BY cas_id desc";
+        try {
+            String sql = "SELECT * " +
+                    "FROM caso " +
+                    "inner join usuario on caso.usu_id = usuario.usu_id " +
+                    "join empresa " +
+                    "join cliente " +
+                    "WHERE caso.cas_id = ? ";
 
-                PreparedStatement pstm = conexao.prepareStatement(sql);
-                pstm.setInt(1, idCaso);
-                ResultSet rs = pstm.executeQuery();
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setInt(1, idCaso);
+            ResultSet rs = pstm.executeQuery();
 
-                Caso caso = null;
+            Caso caso = null;
 
-                if (rs.next()) {
-                    caso = new Caso();
+            if (rs.next()) {
+                caso = new Caso();
 
-                    //Caso
-                    caso.setIdCaso(rs.getInt("cas_id"));
-                    caso.setAssunto(rs.getString("cas_assusnto"));
-                    caso.setDataDeAbertura(rs.getString("cas_data_de_abertura"));
-                    caso.setDataDeFechamento(rs.getString("cas_data_de_fechamento"));
-                    caso.setMensagem(rs.getString("cas_menssagem"));
-                    caso.setStatus(rs.getString("cas_status"));
-                    caso.setResolucao(rs.getString("cas_resolucao"));
+                //Caso
+                caso.setIdCaso(rs.getInt("cas_id"));
+                caso.setAssunto(rs.getString("cas_assusnto"));
+                caso.setDataDeAbertura(rs.getString("cas_data_de_abertura"));
+                caso.setDataDeFechamento(rs.getString("cas_data_de_fechamento"));
+                caso.setMensagem(rs.getString("cas_menssagem"));
+                caso.setStatus(rs.getString("cas_status"));
+                caso.setResolucao(rs.getString("cas_resolucao"));
 
-                    //Empresa
-                    Empresa empresa = new Empresa();
+                //Empresa
+                Empresa empresa = new Empresa();
 
-                    empresa.setNome(rs.getString("emp_nome"));
-                    empresa.setCnpj(rs.getString("emp_cnpj"));
+                empresa.setNome(rs.getString("emp_nome"));
+                empresa.setCnpj(rs.getString("emp_cnpj"));
 
-                    //Usuario
-                    Usuario usuario = new Usuario();
-                    DadosPessoais dadosPessoaisUsuario = new DadosPessoais();
+                //Usuario
+                Usuario usuario = new Usuario();
+                DadosPessoais dadosPessoaisUsuario = new DadosPessoais();
 
-                    dadosPessoaisUsuario.setNome(rs.getString("usu_nome"));
-                    dadosPessoaisUsuario.setEmail(rs.getString("usu_email"));
-                    usuario.setId(rs.getInt("usu_id"));
+                dadosPessoaisUsuario.setNome(rs.getString("usu_nome"));
+                dadosPessoaisUsuario.setEmail(rs.getString("usu_email"));
+                usuario.setId(rs.getInt("usu_id"));
 
-                    usuario.setDadosPessoais(dadosPessoaisUsuario);
+                usuario.setDadosPessoais(dadosPessoaisUsuario);
 
-                    //Clente
-                    Cliente cliente = new Cliente();
-                    DadosPessoais dadosPessoaisCliente = new DadosPessoais();
+                //Clente
+                Cliente cliente = new Cliente();
+                DadosPessoais dadosPessoaisCliente = new DadosPessoais();
 
-                    dadosPessoaisCliente.setNome(rs.getString("cli_nome"));
-                    dadosPessoaisCliente.setEmail(rs.getString("cli_email"));
-                    dadosPessoaisCliente.setCpf(rs.getString("cli_cpf"));
+                dadosPessoaisCliente.setNome(rs.getString("cli_nome"));
+                dadosPessoaisCliente.setEmail(rs.getString("cli_email"));
+                dadosPessoaisCliente.setCpf(rs.getString("cli_cpf"));
 
-                    cliente.setDadosPessoais(dadosPessoaisCliente);
-                    cliente.setEmpresa(empresa);
+                cliente.setDadosPessoais(dadosPessoaisCliente);
+                cliente.setEmpresa(empresa);
 
 
-                    caso.setEmpresa(empresa);
-                    caso.setCliente(cliente);
+                caso.setEmpresa(empresa);
+                caso.setCliente(cliente);
+                caso.setUsuario(usuario);
 
-                }
-
-                pstm.close();
-                return caso;
-            } catch (SQLException erro) {
-                System.out.println("Erro ao buscar Casos Completo: " + erro);
-                return null;
             }
+
+            pstm.close();
+            return caso;
+        } catch (SQLException erro) {
+            System.out.println("Erro ao buscar Casos Completo: " + erro);
+            return null;
         }
+    }
 
 }

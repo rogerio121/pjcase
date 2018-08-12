@@ -4,11 +4,9 @@ import br.com.pjcase.dao.DaoCliente;
 import br.com.pjcase.model.Cliente;
 import br.com.pjcase.model.DadosPessoais;
 import br.com.pjcase.model.Usuario;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.jws.WebParam;
@@ -49,7 +47,7 @@ public class ControllerCliente {
 
         cliente.setDadosPessoais(dadosPessoais);
 
-        daoCliente.insert(cliente);
+        daoCliente.upsert(cliente);
         ModelAndView mv = new ModelAndView("cliente/clienteView");
         mv.addObject("cliente", cliente);
         return mv;
@@ -111,5 +109,27 @@ public class ControllerCliente {
         }
 
         return mv;
+    }
+
+    @DeleteMapping("/cadastro/{id}")
+    public ResponseEntity<Cliente> deletarCaso(@PathVariable("id") Long id) {
+        ResponseEntity<Cliente> responseEntity = null;
+
+        try {
+            DaoCliente daoCliente = new DaoCliente();
+            daoCliente.delete(String.valueOf(id));
+
+            responseEntity.ok();
+            responseEntity.status(200);
+
+            return responseEntity;
+
+        } catch (Exception e) {
+            responseEntity.status(500);
+            System.out.println("Erro na controller caso: statuscode 500 \n" + e);
+            return responseEntity;
+        }
+
+
     }
 }

@@ -24,15 +24,18 @@
             <br>
             <label>CNPJ da empresa</label><input type="text" name="empresa.cnpj" required value="${caso.empresa.cnpj}"> <br>
             <label>Resolução</label>
-            <textarea rows="5" cols="50" name="resolucao">${caso.resolucao}</textarea>
-
+            <textarea rows="5" cols="50" id="resolucao" name="resolucao">${caso.resolucao}</textarea>
 
             <input type="text" value="${caso.idCaso}" name="idCaso" hidden> <br>
-
-            <button type="submit">Salvar</button>
         </form>
+
+        <button onclick="enviarFormulario()">Salvar</button>
+
         <div hidden> ${usuarioLogado} <div>
+
+
     </body>
+
     <script>
         pegarStatus()
 
@@ -40,5 +43,17 @@
             var status = '${caso.status}'
             document.getElementById('status').value = status
         }
+
+        function enviarFormulario() {
+            console.log('func chamada')
+
+            var resolucao = document.getElementById ('resolucao').value
+            var status = document.getElementById ('status').value
+
+            if(!resolucao && status == 'Fechado') {
+                alert('Resolução é obrigatória em Casos fechados')
+            }
+        }
+
     </script>
 </html>

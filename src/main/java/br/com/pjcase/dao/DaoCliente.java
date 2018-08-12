@@ -49,7 +49,7 @@ public class DaoCliente {
 
             String sql = "UPDATE cliente SET cli_cpf = ?, cli_nome = ?, cli_email = ?, cli_logradouro = ?, cli_bairro = ?," +
                     " cli_cidade = ?, cli_estado = ?, cli_cep = ? " +
-                    "WHERE cli_email = ?";
+                    "WHERE cli_cpf = ?";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
             pstm.setString(1, cliente.getDadosPessoais().getCpf());
@@ -60,7 +60,7 @@ public class DaoCliente {
             pstm.setString(6, cliente.getDadosPessoais().getCidade());
             pstm.setString(7, cliente.getDadosPessoais().getEstado());
             pstm.setString(8, cliente.getDadosPessoais().getCep());
-            pstm.setString(9, cliente.getDadosPessoais().getEmail());
+            pstm.setString(9, cliente.getDadosPessoais().getCpf());
 
             pstm.execute();
             pstm.close();
@@ -77,12 +77,15 @@ public class DaoCliente {
             pstm.setString(1, idCliente);
 
             pstm.execute();
+            pstm.close();
         } catch (SQLException erro) {
             System.out.println("Erro ao deletar Cliente: " + erro);
         }
     }
 
     public Cliente getById(String idCliente) {
+        Cliente cliente = null;
+
         try {
             String sql = "SELECT * " +
                          "FROM cliente " +
@@ -92,7 +95,7 @@ public class DaoCliente {
             pstm.setString(1, idCliente);
             ResultSet rs = pstm.executeQuery();
 
-            Cliente cliente = null;
+
             if (rs.next()) {
                 cliente = new Cliente();
                 DadosPessoais dadosPessoais = new DadosPessoais();
@@ -119,7 +122,7 @@ public class DaoCliente {
     public void upsert(Cliente cliente) {
         Cliente clienteCadastrado = getById(cliente.getDadosPessoais().getCpf());
 
-        if (clienteCadastrado.getDadosPessoais() == null)
+        if (clienteCadastrado == null)
             insert(cliente);
         else
             update(cliente);
@@ -156,7 +159,7 @@ public class DaoCliente {
 
                 clientes.add(cliente);
             }
-
+            pstm.close();
             return clientes;
         } catch (SQLException erro) {
             System.out.println("Erro ao Clientes vinculados a empresa do usuário: " + erro);
@@ -193,6 +196,7 @@ public class DaoCliente {
                 clientes.add(cliente);
             }
 
+            pstm.close();
             return clientes;
         } catch (SQLException erro) {
             System.out.println("Erro ao buscar todos os Clientes: " + erro);

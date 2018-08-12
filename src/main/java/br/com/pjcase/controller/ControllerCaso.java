@@ -9,10 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -130,7 +128,7 @@ public class ControllerCaso {
 
             casosDoUsuarioLogado = daoCaso.listarCasosPorProprietarios(usuario.getId());
 
-            mv = new ModelAndView("caso/meusCasos");
+            mv = new ModelAndView("caso/casos");
             mv.addObject("casos", casosDoUsuarioLogado);
             mv.addObject("usuario", usuario);
 
@@ -154,7 +152,7 @@ public class ControllerCaso {
 
             todosOsCasos = daoCaso.listarTodosOsCasos();
 
-            mv = new ModelAndView("caso/meusCasos");
+            mv = new ModelAndView("caso/casos");
             mv.addObject("casos", todosOsCasos);
             mv.addObject("usuario", usuario);
 
@@ -175,7 +173,6 @@ public class ControllerCaso {
             Caso caso = new Caso();
             caso = daoCaso.buscarCasoCompleto(Math.toIntExact(id));
 
-            System.out.println(caso);
             mv.addObject("caso", caso);
 
         } catch (Exception e) {
@@ -203,5 +200,27 @@ public class ControllerCaso {
 
         }
         return mv;
+    }
+
+    @DeleteMapping("/cadastro/{id}")
+    public ResponseEntity<Caso> deletarCaso(@PathVariable("id") Long id) {
+        ResponseEntity<Caso> responseEntity = null;
+
+        try {
+            DaoCaso daoCaso = new DaoCaso();
+            daoCaso.delete(String.valueOf(id));
+
+            responseEntity.ok();
+            responseEntity.status(200);
+
+            return responseEntity;
+
+        } catch (Exception e) {
+            responseEntity.status(500);
+            System.out.println("Erro na controller caso: statuscode 500 \n" + e);
+            return responseEntity;
+        }
+
+
     }
 }
