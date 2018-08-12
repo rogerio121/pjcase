@@ -112,7 +112,7 @@ public class ControllerCliente {
     }
 
     @DeleteMapping("/cadastro/{id}")
-    public ResponseEntity<Cliente> deletarCaso(@PathVariable("id") Long id) {
+    public ResponseEntity<Cliente> deletarCliente(@PathVariable("id") Long id) {
         ResponseEntity<Cliente> responseEntity = null;
 
         try {

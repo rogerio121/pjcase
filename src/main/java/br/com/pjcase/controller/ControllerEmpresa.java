@@ -5,8 +5,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import br.com.pjcase.conexao.ConexaoBanco;
 import br.com.pjcase.dao.DaoCaso;
+import br.com.pjcase.dao.DaoCliente;
 import br.com.pjcase.model.Caso;
+import br.com.pjcase.model.Cliente;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -110,5 +114,27 @@ public class ControllerEmpresa {
         }
 
         return mv;
+    }
+
+    @DeleteMapping("/cadastro/{id}")
+    public ResponseEntity<Empresa> deletarEmpresa(@PathVariable("id") Long id) {
+        ResponseEntity<Empresa> responseEntity = null;
+
+        try {
+            DaoEmpresa daoEmpresa = new DaoEmpresa();
+            daoEmpresa.delete(String.valueOf(id));
+
+            responseEntity.ok();
+            responseEntity.status(200);
+
+            return responseEntity;
+
+        } catch (Exception e) {
+            responseEntity.status(500);
+            System.out.println("Erro na controller caso: statuscode 500 \n" + e);
+            return responseEntity;
+        }
+
+
     }
 }

@@ -19,6 +19,10 @@
                     <tr>
                         <td onclick="chamaTelaViewEmpresas(${empresa.cnpj})">${empresa.nome}</td>
                         <td>${empresa.cnpj}</td>
+                        <td>
+                            <button onclick="chamaTelaEditarEmpresa(${empresa.cnpj})">Editar</button>
+                            <button onclick="chamaExcluirEmpresa(${empresa.cnpj})">Excluir</button>
+                        </td>
                     </tr>
                 </c:forEach>
             </c:if>
@@ -28,5 +32,34 @@
         function chamaTelaViewEmpresas(idEmpresa) {
             window.location = '/empresa/cadastro/' + idEmpresa
         }
+
+        function chamaTelaEditarEmpresa(id) {
+            window.location = '/empresa/cadastro/editar/' + id
+        }
+
+
+        function chamaExcluirEmpresa(id) {
+            var realmenteQuerExcluir
+            realmenteQuerExcluir = confirm('Deseja realmente excluir a empresa ?')
+
+            if (realmenteQuerExcluir) {
+                fetch('/empresa/cadastro/' + id,
+                    {
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'String'
+                        },
+                        method: "DELETE",
+                    }).then(function (res) {
+                    if (res.status == 200) {
+                        var pagina = window.location.href;
+                        window.location = pagina;
+                    } else {
+                        alert('Erro ao excluir a empresa: ' + id)
+                    }
+                })
+            }
+        }
+
     </script>
 </html>
