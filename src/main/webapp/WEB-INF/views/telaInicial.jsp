@@ -30,7 +30,7 @@
                     <c:if test="${not empty casosSemProprietaio}">
                         <c:forEach items="${casosSemProprietaio }" var="caso">
                             <tr>
-                                <td>${caso.idCaso }</td>
+                                <td onclick="chamaTelaViewCaso(${caso.idCaso})">${caso.idCaso }</td>
                                 <td>${caso.assunto }</td>
                                 <td>${caso.dataDeAbertura }</td>
                                 <td><button  onclick="pegarCaso(${caso.idCaso})" id="${caso.idCaso}"  class="btn btn-primary">Pegar
@@ -41,6 +41,8 @@
                 </table>
             </div>
             <div class="col-sm">
+                ${meusCasosAbertos}
+                ${meusCasosEmAtendimento}
                 <img src="..." alt="..." class="rounded-circle">
                 <img src="..." alt="..." class="rounded-circle">
             </div>
@@ -71,6 +73,10 @@
                         else
                             alert('Erro ao pegar o caso, consulte um administrador')
                     })
+            }
+
+            function chamaTelaViewCaso(id) {
+                window.location = '/caso/cadastro/' + id
             }
         </script>
     </body>

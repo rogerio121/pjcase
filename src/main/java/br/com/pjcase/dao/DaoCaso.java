@@ -432,4 +432,29 @@ public class DaoCaso {
         }
     }
 
+    public Integer buscarNumeroDeCasosPorStatusPorIdDoUsuario(int idUsuario, String status){
+        int result = 0;
+
+        String sql = "SELECT COUNT(*) AS total " +
+                    "FROM caso " +
+                    "WHERE cas_status = ? AND usu_id = ?";
+
+        try {
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setString(1, status);
+            pstm.setInt(2, idUsuario);
+
+            ResultSet rs = pstm.executeQuery();
+            if(rs.next())
+                result = rs.getInt("total") ;
+
+            pstm.close();
+
+        }catch (SQLException e){
+            System.out.println("Erro ao consultar caso por status e Id: " + e);
+        }
+
+        return result;
+    }
+
 }

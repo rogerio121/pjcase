@@ -33,12 +33,21 @@ public class ControllerLogin {
     @RequestMapping("telaInicial")
     public  ModelAndView login2(HttpServletRequest request){
         DaoCaso daoCaso = new DaoCaso();
+        int meusCasosAbertos = 0;
+        int meusCasosEmAtendimento = 0;
+
         List<Caso> casosSemProprietaio = new ArrayList<Caso>();
 
+        Usuario usuarioLogado = new Usuario();
+        usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
         casosSemProprietaio = daoCaso.listarCasosSemProprietarios();
+        meusCasosAbertos = daoCaso.buscarNumeroDeCasosPorStatusPorIdDoUsuario(usuarioLogado.getId(), "Aberto");
+        meusCasosEmAtendimento = daoCaso.buscarNumeroDeCasosPorStatusPorIdDoUsuario(usuarioLogado.getId(), "Em atendimento");
         request.setAttribute("casosSemProprietaio", casosSemProprietaio);
 
         ModelAndView mv = new ModelAndView("telaInicial");
+        mv.addObject("meusCasosAbertos", meusCasosAbertos);
+        mv.addObject("meusCasosEmAtendimento", meusCasosEmAtendimento);
         return mv;
     }
 
