@@ -174,6 +174,7 @@ public class ControllerCaso {
             caso = daoCaso.buscarCasoCompleto(Math.toIntExact(id));
 
             mv.addObject("caso", caso);
+            mv.addObject("usuario", caso.getUsuario());
 
         } catch (Exception e) {
             System.out.println("Erro ao chamar tela de edição de caso: " + e);
