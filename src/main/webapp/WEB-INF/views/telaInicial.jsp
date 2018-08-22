@@ -41,10 +41,17 @@
                 </table>
             </div>
             <div class="col-sm">
-                ${meusCasosAbertos}
-                ${meusCasosEmAtendimento}
-                <img src="..." alt="..." class="rounded-circle">
-                <img src="..." alt="..." class="rounded-circle">
+                <div>
+                    <h5>Meus casos ainda abertos</h5>
+                    <img src="../resources/imagens/circulo-azul.png" class="circulo">
+                    <h1 class="numero">${meusCasosAbertos}</h1>
+                </div>
+
+                <div>
+                    <h5>Meus casos em atendimento</h5>
+                    <img src="../resources/imagens/circulo-azul.png" class="circulo">
+                    <h1 class="numero">${meusCasosEmAtendimento}</h1>
+                </div>
             </div>
         </div>
     </div>

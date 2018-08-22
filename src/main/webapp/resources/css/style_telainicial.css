@@ -1,3 +1,7 @@
+h5{
+    text-align: center;
+}
+
 .container{
     margin-top: 5% !important;
     z-index: -1 !important;
@@ -6,3 +10,15 @@
 .tabela{
     width: 800px !important;
 }
+
+.circulo{
+    width: 50%;
+    margin-left: 24%;
+}
+
+.numero{
+    display: inline-block;
+    position: relative;
+    margin-left: -30%;
+}
+

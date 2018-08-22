@@ -4,7 +4,7 @@
 <label for="bt_menu">&#9776;</label>
 
 <nav class="menu">
-    <ul style="z-index: 1"  >
+    <ul style="z-index: 1">
         <li><a href="/telaInicial"><i class="fas fa-home"></i> Home</a></li>
         <li><a href=""><i class="fas fa-exclamation"></i> Casos</a>
             <ul>

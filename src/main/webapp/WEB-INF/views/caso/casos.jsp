@@ -6,44 +6,65 @@
     </head>
     <header>
         <link rel="stylesheet" type="text/css" href="../resources/css/style_menu.css">
+        <link rel="stylesheet" type="text/css" href="../resources/css/style_geral.css">
+        <link rel="stylesheet" type="text/css" href="../resources/css-bootstrap/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../resources/css-bootstrap/bootstrap-grid.css">
         <c:import url="../menu.jsp"></c:import>
     </header>
     <body>
-        <label>Só ver casos que o status seja: </label>
-        <select name="status" id="status" onclick="filtrarCasos()">
-            <option value="" >Todos os Casos</option>
-            <option value="Aberto" >Casos em aberto</option>
-            <option value="Em atendimento" >Casos em atendimento</option>
-            <option value="Fechado">Casos fechado</option>
-        </select>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <h1 id="titulo"></h1>
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Só ver casos que o status
+                            seja: </label>
+                    </div>
+                    <select name="status" id="status" onclick="filtrarCasos()" id="inputGroupSelect01">
+                        <option value="">Todos os Casos</option>
+                        <option value="Aberto">Casos em aberto</option>
+                        <option value="Em atendimento">Casos em atendimento</option>
+                        <option value="Fechado">Casos fechado</option>
+                    </select>
+                </div>
 
-        <table id="tb-casos">
-            <tr>
-                <th>Id</th>
-                <th>Assunto</th>
-                <th>Status</th>
-                <th>Data de Abertura</th>
-                <th>Data de Fechamento</th>
-                <th>Ações</th>
-            </tr>
-            <c:if test="${not empty casos}">
-                <c:forEach items="${casos}" var="caso">
+                <table id="tb-casos" class="tabela table table-hover">
                     <tr>
-                        <td><span onclick="chamaTelaViewCaso(${caso.idCaso})">${caso.idCaso}</span></td>
-                        <td>${caso.assunto}</td>
-                        <td>${caso.status}</td>
-                        <td>${caso.dataDeAbertura}</td>
-                        <td>${caso.dataDeFechamento}</td>
-                        <td>
-                            <button onclick="chamaTelaEditarCaso(${caso.idCaso})">Editar</button>
-                            <button onclick="chamaExcluirCaso(${caso.idCaso})">Excluir</button>
-                        </td>
+                        <th>Id</th>
+                        <th>Assunto</th>
+                        <th>Status</th>
+                        <th>Data de Abertura</th>
+                        <th>Data de Fechamento</th>
+                        <th>Ações</th>
                     </tr>
-                </c:forEach>
-            </c:if>
-        </table>
+                    <c:if test="${not empty casos}">
+                        <c:forEach items="${casos}" var="caso">
+                            <tr>
+                                <td><span onclick="chamaTelaViewCaso(${caso.idCaso})">${caso.idCaso}</span></td>
+                                <td>${caso.assunto}</td>
+                                <td>${caso.status}</td>
+                                <td>${caso.dataDeAbertura}</td>
+                                <td>${caso.dataDeFechamento}</td>
+                                <td>
+                                    <button onclick="chamaTelaEditarCaso(${caso.idCaso})">Editar</button>
+                                    <button onclick="chamaExcluirCaso(${caso.idCaso})">Excluir</button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
+                </table>
+            </div>
+        </div>
     </body>
     <script>
+
+
+        if(window.location.href.includes('todososcasos'))
+            document.getElementById('titulo').innerText = 'Todos os Casos'
+        else if(window.location.href.includes('meuscasos'))
+            document.getElementById('titulo').innerText = 'Meus Casos'
+
         function chamaTelaViewCaso(id) {
             window.location = '/caso/cadastro/' + id
         }
