@@ -9,10 +9,16 @@
     </head>
     <body>
         <div id="login">
+            <h1>Login</h1>
             <form action="/logar" method="post" id="form-login">
-                <label>Email</label> <input type="email" name="email" required><br>
-                <label>Senha</label> <input type="password" name="senha" required><br>
-
+                <div>
+                    <input type="email" name="email" required>
+                    <label>Email</label>
+                </div>
+                <div>
+                    <input type="password" name="senha" required>
+                    <label>Senha</label>
+                </div>
                 <button onclick="x()">Logar</button>
             </form>
         </div>
