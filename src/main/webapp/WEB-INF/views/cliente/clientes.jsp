@@ -6,28 +6,39 @@
     </head>
     <header>
         <link rel="stylesheet" type="text/css" href="../resources/css/style_menu.css">
+        <link rel="stylesheet" type="text/css" href="../resources/css-bootstrap/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../resources/css-bootstrap/bootstrap-grid.css">
         <c:import url="../menu.jsp"></c:import>
     </header>
     <body>
-        <table>
-            <tr>
-                <td>Nome</td>
-                <td>Email</td>
-                <td>Ação</td>
-            </tr>
-            <c:if test="${not empty clientes}">
-                <c:forEach items="${clientes}" var="cliente">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+
+                <h1>Casos sem proprietário</h1>
+                <table class="tabela table table-hover">
                     <tr>
-                        <td onclick="chamaTelaViewCliente(${cliente.dadosPessoais.cpf})">${cliente.dadosPessoais.nome}</td>
-                        <td>${cliente.dadosPessoais.email}</td>
-                        <td>
-                            <button onclick="chamaTelaEditarCliente(${cliente.dadosPessoais.cpf})">Editar</button>
-                            <button onclick="chamaExcluirCliente(${cliente.dadosPessoais.cpf})">Excluir</button>
-                        </td>
+                        <td>Nome</td>
+                        <td>Email</td>
+                        <td>Ação</td>
                     </tr>
-                </c:forEach>
-            </c:if>
-        </table>
+                    <c:if test="${not empty clientes}">
+                        <c:forEach items="${clientes}" var="cliente">
+                            <tr>
+                                <td onclick="chamaTelaViewCliente(${cliente.dadosPessoais.cpf})">${cliente.dadosPessoais.nome}</td>
+                                <td>${cliente.dadosPessoais.email}</td>
+                                <td>
+                                    <button onclick="chamaTelaEditarCliente(${cliente.dadosPessoais.cpf})">Editar
+                                    </button>
+                                    <button onclick="chamaExcluirCliente(${cliente.dadosPessoais.cpf})">Excluir</button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
+                </table>
+            </div>
+        </div>
+    </div>
     </body>
     <script>
         function chamaTelaViewCliente(id) {

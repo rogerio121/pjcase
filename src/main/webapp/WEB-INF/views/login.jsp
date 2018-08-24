@@ -12,11 +12,11 @@
             <h1>Login</h1>
             <form action="/logar" method="post" id="form-login">
                 <div>
-                    <input type="email" name="email" required>
+                    <input class="form-control input-group" type="email" name="email" required>
                     <label>Email</label>
                 </div>
                 <div>
-                    <input type="password" name="senha" required>
+                    <input class="form-control input-group" type="password" name="senha" required>
                     <label>Senha</label>
                 </div>
                 <button onclick="x()">Logar</button>

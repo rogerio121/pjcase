@@ -174,8 +174,7 @@ public class ControllerCaso {
             caso = daoCaso.buscarCasoCompleto(Math.toIntExact(id));
 
             mv.addObject("caso", caso);
-            System.out.println(caso);
-            //mv.addObject("usuario", caso.getUsuario());
+            mv.addObject("usuario", caso.getUsuario());
 
         } catch (Exception e) {
             System.out.println("Erro ao chamar verCaso: " + e);
