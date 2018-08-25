@@ -36,12 +36,11 @@
                         <th>Status</th>
                         <th>Data de Abertura</th>
                         <th>Data de Fechamento</th>
-                        <th>Ações</th>
                     </tr>
                     <c:if test="${not empty casos}">
                         <c:forEach items="${casos}" var="caso">
                             <tr>
-                                <td><span onclick="chamaTelaViewCaso(${caso.idCaso})">${caso.idCaso}</span></td>
+                                <td><span class="pointer" onclick="chamaTelaViewCaso(${caso.idCaso})">${caso.idCaso}</span></td>
                                 <td>${caso.assunto}</td>
                                 <td>${caso.status}</td>
                                 <td>${caso.dataDeAbertura}</td>

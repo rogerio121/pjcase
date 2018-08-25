@@ -4,6 +4,7 @@
 <html>
     <meta charset="UTF-8"/>
     <head>
+        <link rel="stylesheet" type="text/css" href="../resources/css/style_geral.css">
         <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap-grid.css">
         <link rel="stylesheet" type="text/css" href="../../../resources/css/style_empresa.css">

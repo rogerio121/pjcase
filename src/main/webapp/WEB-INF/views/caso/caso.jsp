@@ -15,8 +15,8 @@
         <c:import url="../menu.jsp"></c:import>
     </header>
     <div class="div-form">
+        <h1 id="titulo"></h1>
         <form action="/caso/salvar" method="POST" id="form-caso">
-            <h1 id="titulo"></h1>
             <table class="caso">
                 <tr>
                     <td><label>Assunto</label></td>

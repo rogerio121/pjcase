@@ -9,3 +9,7 @@ body{
 input[type="checkbox"]{
     cursor: pointer;
 }
+
+.pointer{
+    cursor: pointer;
+}

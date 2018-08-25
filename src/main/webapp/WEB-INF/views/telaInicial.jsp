@@ -30,11 +30,11 @@
                     <c:if test="${not empty casosSemProprietaio}">
                         <c:forEach items="${casosSemProprietaio }" var="caso">
                             <tr>
-                                <td onclick="chamaTelaViewCaso(${caso.idCaso})">${caso.idCaso }</td>
-                                <td>${caso.assunto }</td>
-                                <td>${caso.dataDeAbertura }</td>
-                                <td><button  onclick="pegarCaso(${caso.idCaso})" id="${caso.idCaso}"  class="btn btn-primary">Pegar
-                                    Caso</button></td>
+                                <th onclick="chamaTelaViewCaso(${caso.idCaso})">${caso.idCaso }</th>
+                                <th>${caso.assunto }</th>
+                                <th>${caso.dataDeAbertura }</th>
+                                <th><button  onclick="pegarCaso(${caso.idCaso})" id="${caso.idCaso}"  class="btn btn-primary">Pegar
+                                    Caso</button></th>
                             </tr>
                         </c:forEach>
                     </c:if>

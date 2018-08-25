@@ -6,6 +6,7 @@
     </head>
     <header>
         <link rel="stylesheet" type="text/css" href="../resources/css/style_menu.css">
+        <link rel="stylesheet" type="text/css" href="../resources/css/style_geral.css">
         <link rel="stylesheet" type="text/css" href="../resources/css-bootstrap/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../resources/css-bootstrap/bootstrap-grid.css">
         <c:import url="../menu.jsp"></c:import>
@@ -18,9 +19,8 @@
                 <h1>Casos sem proprietário</h1>
                 <table class="tabela table table-hover">
                     <tr>
-                        <td>Nome</td>
-                        <td>Email</td>
-                        <td>Ação</td>
+                        <th>Nome</th>
+                        <th>Email</th>
                     </tr>
                     <c:if test="${not empty clientes}">
                         <c:forEach items="${clientes}" var="cliente">

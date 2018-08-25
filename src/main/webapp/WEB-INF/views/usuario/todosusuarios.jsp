@@ -5,30 +5,37 @@
         <title>Usuarios Cadastrados</title>
     </head>
     <header>
+        <link rel="stylesheet" type="text/css" href="../../../resources/css/style_geral.css">
+        <link rel="stylesheet" type="text/css" href="../../../resources/css/style_todosusuarios.css">
+        <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap-grid.css">
         <link rel="stylesheet" type="text/css" href="../resources/css/style_menu.css">
         <c:import url="../menu.jsp"></c:import>
     </header>
     <body>
-        <table id="tb-casos">
-            <tr>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Empresa</th>
-            </tr>
-            <c:if test="${not empty usuarios}">
-                <c:forEach items="${usuarios}" var="usuario">
-                    <tr>
-                        <td onclick="chamaTelaViewUsuariio(${usuario.id})">${usuario.dadosPessoais.nome}</td>
-                        <td>${usuario.dadosPessoais.email}</td>
-                        <td>${usuario.idEmpresaRelacionada}</td>
-                        <td>
-                            <button onclick="chamaTelaEditarUsuariio(${usuario.id})">Editar</button>
-                            <button onclick="chamaExcluirUsuario(${usuario.id})">Excluir</button>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </c:if>
-        </table>
+        <div class="div-table">
+            <h1>Usuários cadastrados</h1>
+            <table id="tb-casos" class="tabela table table-hover">
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Empresa</th>
+                </tr>
+                <c:if test="${not empty usuarios}">
+                    <c:forEach items="${usuarios}" var="usuario">
+                        <tr>
+                            <td onclick="chamaTelaViewUsuariio(${usuario.id})"><span class="pointer">${usuario.dadosPessoais.nome}</span></td>
+                            <td>${usuario.dadosPessoais.email}</td>
+                            <td>${usuario.idEmpresaRelacionada}</td>
+                            <td>
+                                <button onclick="chamaTelaEditarUsuariio(${usuario.id})">Editar</button>
+                                <button onclick="chamaExcluirUsuario(${usuario.id})">Excluir</button>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </c:if>
+            </table>
+        </div>
     </body>
     <script>
         function chamaTelaViewUsuariio(id) {

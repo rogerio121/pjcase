@@ -5,28 +5,36 @@
         <title>Empresas</title>
     </head>
     <header>
+        <link rel="stylesheet" type="text/css" href="../resources/css/style_geral.css">
+        <link rel="stylesheet" type="text/css" href="../resources/css/style_empresas.css">
+        <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap-grid.css">
         <link rel="stylesheet" type="text/css" href="../resources/css/style_menu.css">
         <c:import url="../menu.jsp"></c:import>
     </header>
     <body>
-        <table>
-            <tr>
-                <td>Nome</td>
-                <td>CNPJ</td>
-            </tr>
-            <c:if test="${not empty empresasCadastradas}">
-                <c:forEach items="${empresasCadastradas}" var="empresa">
-                    <tr>
-                        <td onclick="chamaTelaViewEmpresas(${empresa.cnpj})">${empresa.nome}</td>
-                        <td>${empresa.cnpj}</td>
-                        <td>
-                            <button onclick="chamaTelaEditarEmpresa(${empresa.cnpj})">Editar</button>
-                            <button onclick="chamaExcluirEmpresa(${empresa.cnpj})">Excluir</button>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </c:if>
-        </table>
+        <div class="div-table">
+            <h1>Empresas cadastradas</h1>
+            <table class="tabela table table-hover">
+                <tr>
+                    <th>Nome</th>
+                    <th>CNPJ</th>
+                </tr>
+                <c:if test="${not empty empresasCadastradas}">
+                    <c:forEach items="${empresasCadastradas}" var="empresa">
+                        <tr>
+                            <td onclick="chamaTelaViewEmpresas(${empresa.cnpj})"><span
+                                    class="pointer">${empresa.nome}</span></td>
+                            <td>${empresa.cnpj}</td>
+                            <td>
+                                <button onclick="chamaTelaEditarEmpresa(${empresa.cnpj})">Editar</button>
+                                <button onclick="chamaExcluirEmpresa(${empresa.cnpj})">Excluir</button>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </c:if>
+            </table>
+        </div>
     </body>
     <script>
         function chamaTelaViewEmpresas(idEmpresa) {
