@@ -29,7 +29,7 @@
                 <tr>
                     <td><label>CNPJ</label></td>
                     <td>
-                        <input class="form-control input-group input-group-sm mb-3" type="text" name="cnpj"
+                        <input class="form-control input-group input-group-sm mb-3" type="text" name="cnpj" id="cnpj"
                                value="${empresa.cnpj}">
                     </td>
                 </tr>
@@ -120,5 +120,10 @@
             var estado = '${empresa.estado}'
             document.getElementById('estado').value = estado
         }
+    </script>
+    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
+    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
+    <script>
+        $("#cnpj").mask("00.000.000/0000-00");
     </script>
 </html>

@@ -36,7 +36,7 @@ public class ControllerCliente {
             System.out.println("Erro no charset ControllerCaso: " + e);
         }
 
-        dadosPessoais.setCpf(request.getParameter("cpf"));
+        dadosPessoais.setCpf(request.getParameter("cpf").replaceAll("[.-]", ""));
         dadosPessoais.setNome(request.getParameter("nome"));
         dadosPessoais.setEmail(request.getParameter("email"));
         dadosPessoais.setLogradouro(request.getParameter("logradouro"));
@@ -55,6 +55,28 @@ public class ControllerCliente {
 
     @RequestMapping("/clientes")
     public ModelAndView buscaClientes(HttpServletRequest request) {
+        List<Cliente> clientes = new ArrayList<Cliente>();
+        DaoCliente daoCliente = new DaoCliente();
+
+        try {
+            Usuario usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
+
+            if (usuarioLogado.getAdmin())
+                clientes = daoCliente.buscaTodosClientes();
+            else
+                clientes = daoCliente.buscaClientesPertecentesEmpresa(usuarioLogado.getIdEmpresaRelacionada());
+
+            ModelAndView mv = new ModelAndView("cliente/clientes");
+            mv.addObject("clientes", clientes);
+            return mv;
+        } catch (Exception e) {
+            System.out.println("Erro ao listar clientes: " + e);
+            return null;
+        }
+    }
+
+    @RequestMapping("/todosclientes")
+    public ModelAndView buscaTodosClientes(HttpServletRequest request) {
         List<Cliente> clientes = new ArrayList<Cliente>();
         DaoCliente daoCliente = new DaoCliente();
 

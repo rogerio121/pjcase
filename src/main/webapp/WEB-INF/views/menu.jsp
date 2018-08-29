@@ -16,20 +16,20 @@
         <li><a href=""><i class="fas fa-users"></i> Clientes</a>
             <ul>
                 <li><a href="/cliente/cadastro"> Novo Cliente</a></li>
-                <li><a href="/cliente/clientes">Clientes "Empresa"</a></li>
-                <li id="todos-os-clientes"><a href="">Todos os Clientes</a></li>
+                <li><a href="/cliente/clientes"> Meus Clientes</a></li>
+                <li id="todos-os-clientes"><a href="/cliente/todosclientes"> Todos os Clientes</a></li>
             </ul>
         </li>
         <li id="empresas"><a href=""><i class="fas fa-building"></i> Empresas</a>
             <ul>
                 <li><a href="/empresa/cadastro"> Nova Empresa</a></li>
-                <li><a href="/empresa/empresas">Todas as Empresas</a></li>
+                <li><a href="/empresa/empresas"> Todas as Empresas</a></li>
             </ul>
         </li>
         <li id="usuarios"><a href=""><i class="fas fa-user"></i>Usuarios</a>
             <ul>
-                <li><a href="/usuario/cadastro">Novo Usuario</a></li>
-                <li><a href="/usuario/usuarios">Todos os Usuarios</a></li>
+                <li><a href="/usuario/cadastro"> Novo Usuario</a></li>
+                <li><a href="/usuario/usuarios"> Todos os Usuarios</a></li>
             </ul>
         </li>
         <li>

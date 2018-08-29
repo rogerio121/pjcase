@@ -49,7 +49,7 @@ public class ControllerEmpresa {
         }
 
         empresa.setNome(request.getParameter("nome"));
-        empresa.setCnpj(request.getParameter("cnpj"));
+        empresa.setCnpj(request.getParameter("cnpj").replaceAll("[.-/]", ""));
         empresa.setLogradouro(request.getParameter("logradouro"));
         empresa.setBairro(request.getParameter("bairro"));
         empresa.setCidade(request.getParameter("cidade"));

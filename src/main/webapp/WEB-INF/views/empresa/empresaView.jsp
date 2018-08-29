@@ -31,7 +31,7 @@
                             <tr>
                                 <td><label>CNPJ: </label></td>
                                 <td>
-                                    <input class="form-control input-group input-group-sm mb-3" type="text" value="${empresa.cnpj}" disabled>
+                                    <input class="form-control input-group input-group-sm mb-3" type="text" value="${empresa.cnpj}" id="cnpj" disabled>
                                 </td>
                             </tr>
                             <tr>
@@ -122,5 +122,10 @@
             if (textArea)
                 textArea.style = 'border: 5px solid #218838;'
         }
+    </script>
+    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
+    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
+    <script>
+        $("#cnpj").mask("00.000.000/0000-00");
     </script>
 </html>
