@@ -4,31 +4,86 @@
 <html>
     <meta charset="UTF-8" />
     <head>
-        <link rel="stylesheet" type="text/css" href="../resources/css/style_menu.css">
+        <link rel="stylesheet" type="text/css" href="../../resources/css/style_geral.css">
+        <link rel="stylesheet" type="text/css" href="../../resources/css/style_empresaView.css">
+        <link rel="stylesheet" type="text/css" href="../../resources/css-bootstrap/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../../resources/css-bootstrap/bootstrap-grid.css">
+        <link rel="stylesheet" type="text/css" href="../../resources/css/style_menu.css">
         <title>Empresa</title>
     </head>
     <header>
         <c:import url="../menu.jsp"></c:import>
     </header>
     <body>
-        <form>
-            <label>Nome: </label> <input type="text" value="${empresa.nome}" disabled> <br>
-            <label>CNPJ: </label> <input type="text" value="${empresa.cnpj}" disabled> <br>
-            <label>Logradouro: </label> <input type="text" value="${empresa.logradouro}" disabled> <br>
-            <label>Bairrro: </label> <input type="text" value="${empresa.bairro}" disabled> <br>
-            <label>Cidade: </label> <input type="text" value="${empresa.cidade}" disabled> <br>
-            <label>Estado: </label> <input type="text" value="${empresa.estado}" disabled> <br>
-        </form>
+        <h1>Empresa Cadastrada</h1>
+        <div class="container">
+            <!--Coluna da esquerda-->
+            <div class="row">
+                <div class="col-sm">
+                    <form>
+                        <table>
+                            <tr>
+                                <td><label>Nome: </label></td>
+                                <td>
+                                    <input class="form-control input-group input-group-sm mb-3" type="text" value="${empresa.nome}" disabled>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>CNPJ: </label></td>
+                                <td>
+                                    <input class="form-control input-group input-group-sm mb-3" type="text" value="${empresa.cnpj}" disabled>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Logradouro: </label></td>
+                                <td>
+                                    <input class="form-control input-group input-group-sm mb-3" type="text" value="${empresa.logradouro}" disabled>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Bairrro: </label></td>
+                                <td>
+                                    <input class="form-control input-group input-group-sm mb-3" type="text" value="${empresa.bairro}" disabled>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Cidade: </label></td>
+                                <td>
+                                    <input class="form-control input-group input-group-sm mb-3" type="text" value="${empresa.cidade}" disabled>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Estado: </label></td>
+                                <td>
+                                    <input class="form-control input-group input-group-sm mb-3" qtype="text" value="${empresa.estado}" disabled>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                    <button type="button" class="btn btn-danger" onclick="cancelar()">Cancelar</button>
+                    <button class="btn btn-primary" onclick="chamaTelaEditarEmpresa(${empresa.cnpj})">Editar</button>
+                </div>
 
-        <button onclick="chamaTelaEditarEmpresa(${empresa.cnpj})">Editar</button>
-        <button onclick="criarFormDeCriacaoDeCasos(${empresa.cnpj})">Gerar Form</button>
-
-        <textarea rows="10" cols="80" name="form-criar-caso" id="form-criar-caso"></textarea>
-
+                <!--Coluna da direita-->
+                <div class="col-sm form-group">
+                    <textarea class="form-control" rows="20" cols="50" name="form-criar-caso" id="form-criar-caso" ></textarea>
+                    <button class="btn btn-info form-control" onclick="criarFormDeCriacaoDeCasos(${empresa.cnpj})">Gerar Form</button>
+                </div>
+            </div>
+        </div>
     </body>
     <script>
         function chamaTelaEditarEmpresa(id) {
             window.location = '/empresa/cadastro/editar/' + id
+        }
+
+        function mudarCorDeTextboxCasoMudeOResultado() {
+            var textArea = document.getElementById('form-criar-caso')
+                textArea.style = 'border: 5px solid #C82333;'
+        }
+
+        function  cancelar() {
+            window.history.back()
         }
 
         function criarFormDeCriacaoDeCasos(id){
@@ -62,6 +117,10 @@
                 '</body>\n' +
                 '</html>'
             document.getElementById('form-criar-caso').innerHTML = form
+
+            var textArea = document.getElementById('form-criar-caso')
+            if (textArea)
+                textArea.style = 'border: 5px solid #218838;'
         }
     </script>
 </html>

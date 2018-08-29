@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
-        <title>Usuarios Cadastrados</title>
+        <title>Usuários Cadastrados</title>
     </head>
     <header>
         <link rel="stylesheet" type="text/css" href="../../../resources/css/style_geral.css">

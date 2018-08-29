@@ -4,7 +4,7 @@
 <html>
     <meta charset="UTF-8"/>
     <head>
-        <title>Usuario</title>
+        <title>Usuário</title>
     </head>
     <header>
         <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap.css">
@@ -59,7 +59,7 @@
                 <input type="text" hidden name="id" value="${usuario.id}">
             </table>
         </form>
-        <button type="button" class="btn btn-danger">Cancelar</button>
+        <button type="button" class="btn btn-danger" onclick="cancelar()">Cancelar</button>
         <button onclick="salvar()" class="btn btn-success">Salvar</button>
     </div>
     </body>
@@ -85,6 +85,9 @@
                 form.submit()
         }
 
+        function cancelar() {
+            window.history.back()
+        }
 
         if (window.location.href.includes('8080/usuario/cadastro/editar/'))
             if (admin)

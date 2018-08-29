@@ -23,18 +23,18 @@
                 <h1>Casos sem proprietário</h1>
                 <table class="tabela table table-hover">
                     <tr>
-                        <td>Id</td>
-                        <td>Assunto</td>
-                        <td>Data de Abertura</td>
+                        <th>Id</th>
+                        <th>Assunto</th>
+                        <th>Data de Abertura</th>
                     </tr>
                     <c:if test="${not empty casosSemProprietaio}">
                         <c:forEach items="${casosSemProprietaio }" var="caso">
                             <tr>
-                                <th onclick="chamaTelaViewCaso(${caso.idCaso})">${caso.idCaso }</th>
-                                <th>${caso.assunto }</th>
-                                <th>${caso.dataDeAbertura }</th>
-                                <th><button  onclick="pegarCaso(${caso.idCaso})" id="${caso.idCaso}"  class="btn btn-primary">Pegar
-                                    Caso</button></th>
+                                <td onclick="chamaTelaViewCaso(${caso.idCaso})">${caso.idCaso }</td>
+                                <td>${caso.assunto }</td>
+                                <td>${caso.dataDeAbertura }</td>
+                                <td><button  onclick="pegarCaso(${caso.idCaso})" id="${caso.idCaso}"  class="btn btn-primary">Pegar
+                                    Caso</button></td>
                             </tr>
                         </c:forEach>
                     </c:if>

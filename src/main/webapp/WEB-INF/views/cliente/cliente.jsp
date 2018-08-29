@@ -18,7 +18,7 @@
     <div class="div-form">
         <h1 id="titulo"></h1>
         <form action="/cliente/salvar" method="post">
-            <table>
+            <table >
                 <tr>
                     <td><label>Nome</label></td>
                     <td>
@@ -41,7 +41,7 @@
                     <td><label>CPF</label></td>
                     <td>
                         <div class="input-group input-group-sm mb-3">
-                            <input class="form-control input-group input-group-sm mb-3" type="text" name="cpf"
+                            <input class="form-control input-group input-group-sm mb-3" type="text" name="cpf" id="cpf"
                                    value="${cliente.dadosPessoais.cpf}">
                         </div>
                     </td>
@@ -120,7 +120,7 @@
                     </td>
                 </tr>
             </table>
-            <button type="button" class="btn btn-danger">Cancelar</button>
+            <button type="button" class="btn btn-danger" onclick="cancelar()">Cancelar</button>
             <button type="submit" class="btn btn-success">Salvar</button>
         </form>
     </div>
@@ -133,6 +133,10 @@
         else
             document.getElementById('titulo').innerText = 'Cadastro de Cliente'
 
+        function  cancelar() {
+            window.history.back()
+        }
+
         function pegarStatus() {
             var status = '${caso.status}'
             if (status)
@@ -143,5 +147,10 @@
             var estado = '${cliente.dadosPessoais.estado}'
             document.getElementById('estado').value = estado
         }
+    </script>
+    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
+    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
+    <script>
+        $("#cpf").mask("000.000.000-00");
     </script>
 </html>

@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <head>
         <link rel="stylesheet" type="text/css" href="../resources/css/style_geral.css">
+        <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap-grid.css">
         <link rel="stylesheet" type="text/css" href="../resources/css/style_login.css">
         <title>Login</title>
     </head>
@@ -19,7 +21,7 @@
                     <input class="form-control input-group" type="password" name="senha" required>
                     <label>Senha</label>
                 </div>
-                <button onclick="x()">Logar</button>
+                <button class="btn btn-primary" onclick="x()">Logar</button>
             </form>
         </div>
 

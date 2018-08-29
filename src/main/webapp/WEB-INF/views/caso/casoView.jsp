@@ -84,13 +84,18 @@
         <input type="text" value="${caso.idCaso}" name="idCaso" hidden> <br>
         </form>
         <div class="div-form">
-            <button onclick="editarCaso(${caso.idCaso})">Editar</button>
+            <button type="button" class="btn btn-danger" onclick="cancelar()">Cancelar</button>
+            <button class="btn btn-primary" onclick="editarCaso(${caso.idCaso})">Editar</button>
     </body>
     <script>
 
         function editarCaso(idCaso) {
             console.log(idCaso)
             window.location = '/caso/cadastro/editar/' + idCaso
+        }
+
+        function  cancelar() {
+            window.history.back()
         }
     </script>
 </html>

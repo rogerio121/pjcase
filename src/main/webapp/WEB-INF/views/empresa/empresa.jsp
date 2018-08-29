@@ -4,11 +4,11 @@
 <html>
     <meta charset="UTF-8"/>
     <head>
-        <link rel="stylesheet" type="text/css" href="../resources/css/style_geral.css">
+        <link rel="stylesheet" type="text/css" href="../../../resources/css/style_geral.css">
         <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap-grid.css">
         <link rel="stylesheet" type="text/css" href="../../../resources/css/style_empresa.css">
-        <link rel="stylesheet" type="text/css" href="../resources/css/style_menu.css">
+        <link rel="stylesheet" type="text/css" href="../../../resources/css/style_menu.css">
         <title>Empresa</title>
     </head>
     <header>
@@ -99,7 +99,7 @@
                     </td>
                 </tr>
             </table>
-            <button type="button" class="btn btn-danger">Cancelar</button>
+            <button type="button" class="btn btn-danger" onclick="cancelar()">Cancelar</button>
             <button type="submit" class="btn btn-success">Salvar</button>
         </form>
     </div>
@@ -111,6 +111,10 @@
             document.getElementById('titulo').innerText = 'Edição de Empresa'
         else
             document.getElementById('titulo').innerText = 'Cadastro de Empresa'
+
+        function  cancelar() {
+            window.history.back()
+        }
 
         function pegarEstado() {
             var estado = '${empresa.estado}'

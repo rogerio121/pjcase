@@ -74,7 +74,7 @@
             <input type="text" value="${caso.idCaso}" name="idCaso" hidden> <br>
         </form>
 
-        <button type="button" class="btn btn-danger">Cancelar</button>
+        <button type="button" class="btn btn-danger" onclick="cancelar()">Cancelar</button>
         <button onclick="enviarFormulario()" class="btn btn-success">Salvar</button>
         <div hidden> ${usuarioLogado}</div>
     </div>
@@ -93,6 +93,10 @@
             var status = '${caso.status}'
             if (status)
                 document.getElementById('status').value = status
+        }
+
+        function  cancelar() {
+            window.history.back()
         }
 
         function enviarFormulario() {

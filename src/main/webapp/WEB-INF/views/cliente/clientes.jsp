@@ -5,10 +5,10 @@
         <title>Clientes</title>
     </head>
     <header>
-        <link rel="stylesheet" type="text/css" href="../resources/css/style_menu.css">
-        <link rel="stylesheet" type="text/css" href="../resources/css/style_geral.css">
-        <link rel="stylesheet" type="text/css" href="../resources/css-bootstrap/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="../resources/css-bootstrap/bootstrap-grid.css">
+        <link rel="stylesheet" type="text/css" href="../../../resources/css/style_menu.css">
+        <link rel="stylesheet" type="text/css" href="../../../resources/css/style_geral.css">
+        <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap-grid.css">
         <c:import url="../menu.jsp"></c:import>
     </header>
     <body>
@@ -25,7 +25,7 @@
                     <c:if test="${not empty clientes}">
                         <c:forEach items="${clientes}" var="cliente">
                             <tr>
-                                <td onclick="chamaTelaViewCliente(${cliente.dadosPessoais.cpf})">${cliente.dadosPessoais.nome}</td>
+                                <td class="pointer" onclick="chamaTelaViewCliente(${cliente.dadosPessoais.cpf})">${cliente.dadosPessoais.nome}</td>
                                 <td>${cliente.dadosPessoais.email}</td>
                                 <td>
                                     <button onclick="chamaTelaEditarCliente(${cliente.dadosPessoais.cpf})">Editar
@@ -72,6 +72,5 @@
                 })
             }
         }
-
     </script>
 </html>

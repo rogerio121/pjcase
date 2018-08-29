@@ -1,3 +1,9 @@
+body{
+    background-image: url("../imagens/login.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 800px;
+}
+
 #login{
     position: absolute;
     top: 50%;
@@ -14,6 +20,7 @@
 #login h1{
     color: #ffff;
     text-align: center;
+    margin-bottom: 10%;
 }
 
 #login div{
@@ -33,7 +40,7 @@
 
 #login div input:focus ~ label,
 #login div input:valid ~ label{
-    top: -20px;
+    top: -30px;
     left: 0;
     color: #0076F5;
 }
