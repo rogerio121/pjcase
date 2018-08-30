@@ -4,6 +4,7 @@ import br.com.pjcase.conexao.ConexaoBanco;
 import br.com.pjcase.model.Cliente;
 import br.com.pjcase.model.DadosPessoais;
 import br.com.pjcase.model.Usuario;
+import com.google.gson.Gson;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -128,6 +129,45 @@ public class DaoCliente {
             update(cliente);
     }
     /*------------FIM-CRUD----------------*/
+
+    public String buscaClientesPertecentesEmpresaJson(String idEmpresa) {
+        List<Cliente> clientes = new ArrayList<Cliente>();
+
+        try {
+            String sql = "SELECT * " +
+                         "FROM cliente c " +
+                        "JOIN cliente_da_empresa ce " +
+                        "ON c.cli_cpf = ce.cli_cpf " +
+                        "WHERE ce.emp_cnpj = ?";
+
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setString(1, idEmpresa);
+            ResultSet rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+                DadosPessoais dadosPessoais = new DadosPessoais();
+
+                dadosPessoais.setCpf(rs.getString("cli_cpf"));
+                dadosPessoais.setNome(rs.getString("cli_nome"));
+                dadosPessoais.setEmail(rs.getString("cli_email"));
+                dadosPessoais.setLogradouro(rs.getString("cli_logradouro"));
+                dadosPessoais.setBairro(rs.getString("cli_bairro"));
+                dadosPessoais.setCidade(rs.getString("cli_cidade"));
+                dadosPessoais.setEstado(rs.getString("cli_estado"));
+                dadosPessoais.setCep(rs.getString("cli_cep"));
+                cliente.setDadosPessoais(dadosPessoais);
+
+                clientes.add(cliente);
+            }
+            pstm.close();
+            return new Gson().toJson(clientes);
+        } catch (SQLException erro) {
+            System.out.println("Erro ao Clientes vinculados a empresa do usuário: " + erro);
+        }
+
+        return null;
+    }
 
     public List<Cliente> buscaClientesPertecentesEmpresa(String idEmpresa) {
         List<Cliente> clientes = new ArrayList<Cliente>();

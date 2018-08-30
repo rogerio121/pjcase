@@ -1,6 +1,7 @@
 package br.com.pjcase.controller;
 
 import br.com.pjcase.dao.DaoCliente;
+import br.com.pjcase.dao.DaoClienteDaEmpresa;
 import br.com.pjcase.model.Cliente;
 import br.com.pjcase.model.DadosPessoais;
 import br.com.pjcase.model.Usuario;
@@ -46,8 +47,15 @@ public class ControllerCliente {
         dadosPessoais.setCep(request.getParameter("cep"));
 
         cliente.setDadosPessoais(dadosPessoais);
-
         daoCliente.upsert(cliente);
+
+        Usuario usuarioLogado = new Usuario();
+        usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
+        if(!usuarioLogado.getAdmin()){
+            DaoClienteDaEmpresa daoClienteDaEmpresa = new DaoClienteDaEmpresa();
+            daoClienteDaEmpresa.insert(cliente.getDadosPessoais().getCpf(), usuarioLogado.getIdEmpresaRelacionada());
+        }
+
         ModelAndView mv = new ModelAndView("cliente/clienteView");
         mv.addObject("cliente", cliente);
         return mv;

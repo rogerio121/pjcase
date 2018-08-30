@@ -16,8 +16,7 @@
         <li><a href=""><i class="fas fa-users"></i> Clientes</a>
             <ul>
                 <li><a href="/cliente/cadastro"> Novo Cliente</a></li>
-                <li><a href="/cliente/clientes"> Meus Clientes</a></li>
-                <li id="todos-os-clientes"><a href="/cliente/todosclientes"> Todos os Clientes</a></li>
+                <li><a href="/cliente/clientes"> Clientes</a></li>
             </ul>
         </li>
         <li id="empresas"><a href=""><i class="fas fa-building"></i> Empresas</a>
@@ -49,7 +48,6 @@
         console.log(${usuarioLogado.admin})
         if(!admin) {
             document.getElementById('todos-os-casos').style.display = "none"
-            document.getElementById('todos-os-clientes').style.display = "none"
             document.getElementById('empresas').style.display = "none"
             document.getElementById('usuarios').style.display = "none"
         }

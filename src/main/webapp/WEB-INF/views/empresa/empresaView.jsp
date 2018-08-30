@@ -61,25 +61,63 @@
                         </table>
                     </form>
                     <button type="button" class="btn btn-danger" onclick="cancelar()">Cancelar</button>
+                    <button class="btn btn-info" onclick="criarFormDeCriacaoDeCasos(${empresa.cnpj})" data-toggle="modal" data-target=".bd-example-modal-lg">Gerar Form</button>
                     <button class="btn btn-primary" onclick="chamaTelaEditarEmpresa(${empresa.cnpj})">Editar</button>
                 </div>
 
                 <!--Coluna da direita-->
                 <div class="col-sm form-group">
-                    <textarea class="form-control" rows="20" cols="50" name="form-criar-caso" id="form-criar-caso" ></textarea>
-                    <button class="btn btn-info form-control" onclick="criarFormDeCriacaoDeCasos(${empresa.cnpj})">Gerar Form</button>
+                    <div class="col-sm">
+                        <h5>Clientes da empresa ${empresa.nome}</h5>
+                        <table class="clientes tabela table table-hover" id="tb-clientes">
+                            <tr>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                            </tr>
+                            <tbody id="corpo-tabela">
+                            </tbody>
+                        </table>
+                        <ol id="numero-das-paginas">
+                            <li><a class="current" href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Copie e cole o código abaxio na página web</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <textarea class="form-control" rows="20" cols="50" name="form-criar-caso" id="form-criar-caso" >
+                        Erro ao gerar Form!
+                    </textarea>
                 </div>
             </div>
         </div>
     </body>
     <script>
+        geraTabelaClientes()
+
+        function geraTabelaClientes() {
+            var clientes = ${clientesDaEmpresaJson}
+
+                for(let i = 0; i < clientes.length; i++ ){
+                    console.log(clientes[i])
+                    document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha"><td>'+clientes[i].dadosPessoais.nome+'</td> ' +
+                        '<td>'+clientes[i].dadosPessoais.cpf+'</td></tr>'
+                }
+        }
         function chamaTelaEditarEmpresa(id) {
             window.location = '/empresa/cadastro/editar/' + id
-        }
-
-        function mudarCorDeTextboxCasoMudeOResultado() {
-            var textArea = document.getElementById('form-criar-caso')
-                textArea.style = 'border: 5px solid #C82333;'
         }
 
         function  cancelar() {
@@ -117,15 +155,37 @@
                 '</body>\n' +
                 '</html>'
             document.getElementById('form-criar-caso').innerHTML = form
-
-            var textArea = document.getElementById('form-criar-caso')
-            if (textArea)
-                textArea.style = 'border: 5px solid #218838;'
         }
     </script>
     <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
     <script src="../../../resources/JavaScript/jquery-mask.js"></script>
+    <script src="../../../resources/JavaScript/bootstrap.min.js"></script>
     <script>
-        $("#cnpj").mask("00.000.000/0000-00");
+        $("#cnpj").mask("00.000.000/0000-00")
+
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
+
+        itensPorPagina = 1
+
+        showPage = function(pagina) {
+            $(".tb-linha").hide();
+            $(".tb-linha").each(function(linhas) {
+                if (linhas >= itensPorPagina * (pagina - 1) && linhas < itensPorPagina * pagina)
+                    $(this).show();
+            })
+        }
+
+        //O numero 1 é a página de inicio
+        showPage(1);
+
+        //PEga o Numero da página corrente e passa para o método showPage
+        $("#numero-das-paginas li a").click(function() {
+            $("#numero-das-paginas li a").removeClass("current");
+            $(this).addClass("current");
+            showPage(parseInt($(this).text()))
+        });
+
     </script>
 </html>

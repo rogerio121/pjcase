@@ -44,7 +44,7 @@ public class DaoUsuario {
         try {
             //Empresa empresaCadastrada = getById(empresa.getCnpj());
 
-            String sql = "UPDATE usuario SET usu_email = ?, usu_nome = ?, usu_senha = ?, usu_admin = ? " +
+            String sql = "UPDATE usuario SET usu_email = ?, usu_nome = ?, usu_senha = ?, usu_admin = ?, emp_cnpj = ?  " +
                     "WHERE usu_id = ?";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
@@ -52,7 +52,8 @@ public class DaoUsuario {
             pstm.setString(2, usuario.getDadosPessoais().getNome());
             pstm.setString(3, usuario.getSenha());
             pstm.setBoolean(4, usuario.getAdmin());
-            pstm.setInt(5, usuario.getId());
+            pstm.setString(5, usuario.getIdEmpresaRelacionada());
+            pstm.setInt(6, usuario.getId());
 
             pstm.execute();
             pstm.close();

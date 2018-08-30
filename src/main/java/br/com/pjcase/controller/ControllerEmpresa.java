@@ -49,7 +49,7 @@ public class ControllerEmpresa {
         }
 
         empresa.setNome(request.getParameter("nome"));
-        empresa.setCnpj(request.getParameter("cnpj").replaceAll("[.-/]", ""));
+        empresa.setCnpj((request.getParameter("cnpj").replaceAll("[./]", "")).replaceAll("-", ""));
         empresa.setLogradouro(request.getParameter("logradouro"));
         empresa.setBairro(request.getParameter("bairro"));
         empresa.setCidade(request.getParameter("cidade"));
@@ -82,12 +82,16 @@ public class ControllerEmpresa {
     public ModelAndView verEmpresa(@PathVariable("id") String id) {
         ModelAndView mv = new ModelAndView("empresa/empresaView");
         DaoEmpresa daoEmpresa = new DaoEmpresa();
+        String clientesDaEmpresaJson = "";
 
         try {
             Empresa empresa = new Empresa();
             empresa = daoEmpresa.getById(String.valueOf(id));
 
+            DaoCliente daoCliente = new DaoCliente();
+            clientesDaEmpresaJson = daoCliente.buscaClientesPertecentesEmpresaJson(empresa.getCnpj());
             mv.addObject("empresa", empresa);
+            mv.addObject("clientesDaEmpresaJson", clientesDaEmpresaJson);
 
         } catch (Exception e) {
             System.out.println("Erro ao chamar tela de view empresa: " + e);

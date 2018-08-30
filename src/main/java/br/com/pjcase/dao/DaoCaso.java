@@ -220,6 +220,7 @@ public class DaoCaso {
             pstm.setInt(1, idUsuario);
             ResultSet rs = pstm.executeQuery();
 
+            System.out.println(pstm);
             Caso caso;
             List<Caso> casos = new ArrayList<Caso>();
 

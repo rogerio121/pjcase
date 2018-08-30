@@ -35,6 +35,13 @@
                     </td>
                 </tr>
                 <tr>
+                    <td><label>Empresa</label></td>
+                    <td>
+                        <input class="form-control input-group input-group-sm mb-3" type="text" name="idEmpresaRelacionada"
+                               value="${usuario.idEmpresaRelacionada}">
+                    </td>
+                </tr>
+                <tr>
                     <td><label>senha</label></td>
                     <td>
                         <input class="form-control input-group input-group-sm mb-3" id="senha" type="password" name="senha"
@@ -65,10 +72,14 @@
     </body>
     <script>
 
-        if (window.location.href.includes('editar'))
-            document.getElementById('titulo').innerText = 'Edição de Usuário'
-        else
-            document.getElementById('titulo').innerText = 'Cadastro de Usuário'
+        titulo()
+
+        function titulo() {
+            if (window.location.href.includes('editar'))
+                document.getElementById('titulo').innerText = 'Edição de Usuário'
+            else
+                document.getElementById('titulo').innerText = 'Cadastro de Usuário'
+        }
 
         function salvar() {
             let form = document.getElementById('form-usuario')
@@ -90,7 +101,7 @@
         }
 
         if (window.location.href.includes('8080/usuario/cadastro/editar/'))
-            if (admin)
+            if (${usuarioLogado.admin})
                 document.getElementById('admin').checked = true
 
 

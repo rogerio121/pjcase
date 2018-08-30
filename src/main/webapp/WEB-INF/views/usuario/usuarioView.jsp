@@ -33,6 +33,13 @@
                         </td>
                     </tr>
                     <tr>
+                        <td><label>Empresa</label></td>
+                        <td>
+                            <input class="form-control input-group input-group-sm mb-3" type="text" name="idEmpresaRelacionada"
+                                   value="${usuario.idEmpresaRelacionada}" disabled>
+                        </td>
+                    </tr>
+                    <tr>
                         <td><label>Administrador</label></td>
                         <td>
                             <label class="checkbox">
