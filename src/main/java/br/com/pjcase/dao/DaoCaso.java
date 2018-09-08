@@ -206,18 +206,33 @@ public class DaoCaso {
         }
     }
 
-    public List<Caso> listarCasosPorProprietarios(int idUsuario) {
+    public List<Caso> listarCasosPorProprietarios(int idUsuario, String status) {
         try {
-            String sql = "SELECT distinct cas_id, cas_data_de_abertura, cas_data_de_fechamento, cas_resolucao, cas_menssagem, cas_status, cas_assusnto, caso.emp_cnpj, caso.usu_id, caso.cli_cpf, usuario.usu_email "+
-                    "FROM caso " +
-                    "inner join usuario on caso.usu_id = usuario.usu_id " +
-                    "join empresa " +
-                    "join cliente " +
-                    "WHERE caso.usu_id = ? " +
-                    "ORDER BY cas_id desc";
+            String sql = "";
+            PreparedStatement pstm;
 
-            PreparedStatement pstm = conexao.prepareStatement(sql);
-            pstm.setInt(1, idUsuario);
+            if(status.equalsIgnoreCase("todososcasos")){
+                sql = "(SELECT distinct cas_id, cas_data_de_abertura, cas_data_de_fechamento, cas_resolucao, cas_menssagem, cas_status, cas_assusnto, caso.emp_cnpj, caso.usu_id, caso.cli_cpf, usuario.usu_email " +
+                        "FROM caso " +
+                        "inner join usuario on caso.usu_id = usuario.usu_id join empresa join cliente " +
+                        "WHERE caso.usu_id = ? " +
+                        "ORDER BY cas_id desc )";
+
+                pstm = conexao.prepareStatement(sql);
+                pstm.setInt(1, idUsuario);
+                System.out.println(pstm);
+            }
+            else {
+                sql = "(SELECT distinct cas_id, cas_data_de_abertura, cas_data_de_fechamento, cas_resolucao, cas_menssagem, cas_status, cas_assusnto, caso.emp_cnpj, caso.usu_id, caso.cli_cpf, usuario.usu_email " +
+                        "FROM caso " +
+                        "inner join usuario on caso.usu_id = usuario.usu_id join empresa join cliente " +
+                        "WHERE caso.usu_id = ? AND caso.cas_status = ? " +
+                        "ORDER BY cas_id desc )";
+                pstm = conexao.prepareStatement(sql);
+                pstm.setInt(1, idUsuario);
+                pstm.setString(2,status);
+            }
+
             ResultSet rs = pstm.executeQuery();
 
             Caso caso;
@@ -272,16 +287,37 @@ public class DaoCaso {
         }
     }
 
-    public List<Caso> listarTodosOsCasos() {
+    public List<Caso> listarCasosPoStatus(String status) {
         try {
-            String sql = "(SELECT distinct cas_id, cas_data_de_abertura, cas_data_de_fechamento, cas_resolucao, cas_menssagem, cas_status, cas_assusnto, caso.emp_cnpj, caso.usu_id, caso.cli_cpf, usuario.usu_email "+
-                            "FROM caso "+
-                            "inner join usuario on caso.usu_id = usuario.usu_id join empresa join cliente ORDER BY cas_id desc) "+
-                            "UNION All "+
-                            "(SELECT distinct cas_id, cas_data_de_abertura, cas_data_de_fechamento, cas_resolucao, cas_menssagem, cas_status, cas_assusnto, caso.emp_cnpj, caso.usu_id, caso.cli_cpf, null "+
-                            "FROM caso "+
-                            "WHERE caso.usu_id is null) ";
-            PreparedStatement pstm = conexao.prepareStatement(sql);
+            String sql = "";
+            PreparedStatement pstm;
+
+            if(status.equalsIgnoreCase("todososcasos")){
+                sql = "(SELECT distinct cas_id, cas_data_de_abertura, cas_data_de_fechamento, cas_resolucao, cas_menssagem, cas_status, cas_assusnto, caso.emp_cnpj, caso.usu_id, caso.cli_cpf, usuario.usu_email " +
+                        "FROM caso " +
+                        "inner join usuario on caso.usu_id = usuario.usu_id join empresa join cliente " +
+                        "ORDER BY cas_id desc )" +
+                        "UNION All " +
+                        "(SELECT distinct cas_id, cas_data_de_abertura, cas_data_de_fechamento, cas_resolucao, cas_menssagem, cas_status, cas_assusnto, caso.emp_cnpj, caso.usu_id, caso.cli_cpf, null " +
+                        "FROM caso " +
+                        "WHERE caso.usu_id is null) ";
+                pstm = conexao.prepareStatement(sql);
+            }
+            else {
+                sql = "(SELECT distinct cas_id, cas_data_de_abertura, cas_data_de_fechamento, cas_resolucao, cas_menssagem, cas_status, cas_assusnto, caso.emp_cnpj, caso.usu_id, caso.cli_cpf, usuario.usu_email " +
+                        "FROM caso " +
+                        "inner join usuario on caso.usu_id = usuario.usu_id join empresa join cliente " +
+                        "WHERE caso.cas_status = ? " +
+                        "ORDER BY cas_id desc )" +
+                        "UNION All " +
+                        "(SELECT distinct cas_id, cas_data_de_abertura, cas_data_de_fechamento, cas_resolucao, cas_menssagem, cas_status, cas_assusnto, caso.emp_cnpj, caso.usu_id, caso.cli_cpf, null " +
+                        "FROM caso " +
+                        "WHERE caso.usu_id is null AND caso.cas_status = ?) ";
+                pstm = conexao.prepareStatement(sql);
+                pstm.setString(1,status);
+                pstm.setString(2,status);
+            }
+
             ResultSet rs = pstm.executeQuery();
 
             Caso caso;

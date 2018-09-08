@@ -9,7 +9,7 @@
         <li><a href="javascript:void(0)"><i class="fas fa-exclamation"></i> Casos</a>
             <ul>
                 <li><a href="/caso/cadastro">Novo Caso</a></li>
-                <li><a href="/caso/meuscasos">Meus Casos</a></li>
+                <li><a href="/caso/meuscasos/todososcasos">Meus Casos</a></li>
                 <li id="todos-os-casos"><a href="/caso/todososcasos">Todos Casos</a></li>
             </ul>
         </li>

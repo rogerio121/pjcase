@@ -130,7 +130,7 @@ public class DaoCliente {
     }
     /*------------FIM-CRUD----------------*/
 
-    public String buscaClientesPertecentesEmpresaJson(String idEmpresa) {
+    public List<Cliente> buscaClientesPertecentesEmpresaJson(String idEmpresa) {
         List<Cliente> clientes = new ArrayList<Cliente>();
 
         try {
@@ -161,7 +161,7 @@ public class DaoCliente {
                 clientes.add(cliente);
             }
             pstm.close();
-            return new Gson().toJson(clientes);
+            return clientes;
         } catch (SQLException erro) {
             System.out.println("Erro ao Clientes vinculados a empresa do usuário: " + erro);
         }

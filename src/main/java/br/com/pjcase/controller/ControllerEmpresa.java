@@ -8,6 +8,7 @@ import br.com.pjcase.dao.DaoCaso;
 import br.com.pjcase.dao.DaoCliente;
 import br.com.pjcase.model.Caso;
 import br.com.pjcase.model.Cliente;
+import com.google.gson.Gson;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -89,7 +90,7 @@ public class ControllerEmpresa {
             empresa = daoEmpresa.getById(String.valueOf(id));
 
             DaoCliente daoCliente = new DaoCliente();
-            clientesDaEmpresaJson = daoCliente.buscaClientesPertecentesEmpresaJson(empresa.getCnpj());
+            clientesDaEmpresaJson = new Gson().toJson(daoCliente.buscaClientesPertecentesEmpresaJson(empresa.getCnpj()));
             mv.addObject("empresa", empresa);
             mv.addObject("clientesDaEmpresaJson", clientesDaEmpresaJson);
 

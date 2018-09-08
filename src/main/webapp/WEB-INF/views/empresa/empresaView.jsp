@@ -89,10 +89,8 @@
                             </tbody>
                         </table>
                         <nav aria-label="...">
-                        <ul id="numero-das-paginas" class="pagination">
-                            <li class="page-item"><a class="page-link current" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link " href="#">2</a></li>
-                        </ul>
+                            <ul id="numero-das-paginas" class="pagination">
+                            </ul>
                         </nav>
                     </div>
                 </div>
@@ -116,16 +114,29 @@
         </div>
     </body>
     <script>
+
+        numeroDePaginasDaTabela()
         geraTabelaClientes()
 
         function geraTabelaClientes() {
             var clientes = ${clientesDaEmpresaJson}
 
                 for(let i = 0; i < clientes.length; i++ ){
-                    console.log(clientes[i])
                     document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha"><td>'+clientes[i].dadosPessoais.nome+'</td> ' +
                         '<td>'+clientes[i].dadosPessoais.cpf+'</td> <td><button onclick="removerCliente('+clientes[i].dadosPessoais.cpf+')">X</button></td></tr>'
                 }
+        }
+
+        function numeroDePaginasDaTabela() {
+            var clientes = ${clientesDaEmpresaJson}
+            var pagina = 0
+            var itensPorPagina = 4
+
+            for(var i = 1; i <=clientes.length ; i+=itensPorPagina ) {
+                pagina++
+                document.getElementById('numero-das-paginas').innerHTML += '<li class="page-item"><a class="page-link " href="#">' + pagina + '</a></li>'
+            }
+
         }
 
         function chamaTelaEditarEmpresa(id) {
@@ -233,7 +244,7 @@
             $('#myInput').trigger('focus')
         })
 
-        itensPorPagina = 1
+        itensPorPagina = 4
 
         showPage = function(pagina) {
             $(".tb-linha").hide();

@@ -4,6 +4,7 @@ import br.com.pjcase.conexao.ConexaoBanco;
 import br.com.pjcase.dao.DaoCaso;
 import br.com.pjcase.dao.DaoUsuario;
 import br.com.pjcase.model.*;
+import com.google.gson.Gson;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -97,8 +98,6 @@ public class ControllerCaso {
 
             caso.setUsuario(usuario);
 
-
-
             daoCaso.pegarCaso(caso);
 
             responseEntity.ok(caso);
@@ -111,25 +110,25 @@ public class ControllerCaso {
             System.out.println("Erro na controller caso: statuscode 500 \n" + e);
             return responseEntity;
         }
-
-
     }
 
 
-    @RequestMapping("/meuscasos")
-    public ModelAndView buscaMeusCasos(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping("/meuscasos/{statusCaso}")
+    public ModelAndView buscaMeusCasos(@PathVariable("statusCaso")String statusCaso, HttpServletRequest request, HttpServletResponse response) {
         DaoCaso daoCaso = new DaoCaso();
-        List<Caso> casosDoUsuarioLogado = new ArrayList<Caso>();
+        String casosDoUsuarioLogadoJson;
 
+        System.out.println(statusCaso);
         ModelAndView mv;
         try {
             Usuario usuario = new Usuario();
             usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
 
-            casosDoUsuarioLogado = daoCaso.listarCasosPorProprietarios(usuario.getId());
+            casosDoUsuarioLogadoJson = new Gson().toJson(daoCaso.listarCasosPorProprietarios(usuario.getId(), statusCaso));
 
             mv = new ModelAndView("caso/casos");
-            mv.addObject("casos", casosDoUsuarioLogado);
+            mv.addObject("casosJson", casosDoUsuarioLogadoJson);
+            mv.addObject("filtroAplicado", statusCaso);
             mv.addObject("usuario", usuario);
 
             return mv;
@@ -140,20 +139,21 @@ public class ControllerCaso {
         }
     }
 
-    @RequestMapping("/todososcasos")
-    public ModelAndView buscaTodosOsCasos(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping("/{statusCaso}")
+    public ModelAndView buscaTodosOsCasos(@PathVariable("statusCaso") String statusCaso, HttpServletRequest request, HttpServletResponse response) {
         DaoCaso daoCaso = new DaoCaso();
-        List<Caso> todosOsCasos = new ArrayList<Caso>();
+        String todosOsCasosJson;
 
         ModelAndView mv;
         try {
             Usuario usuario = new Usuario();
             usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
 
-            todosOsCasos = daoCaso.listarTodosOsCasos();
+            todosOsCasosJson = new Gson().toJson(daoCaso.listarCasosPoStatus(statusCaso));
 
             mv = new ModelAndView("caso/casos");
-            mv.addObject("casos", todosOsCasos);
+            mv.addObject("casosJson", todosOsCasosJson);
+            mv.addObject("filtroAplicado", statusCaso);
             mv.addObject("usuario", usuario);
 
             return mv;

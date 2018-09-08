@@ -2,9 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="../resources/css/style_geral.css">
-        <link rel="stylesheet" type="text/css" href="../resources/css-bootstrap/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="../resources/css-bootstrap/bootstrap-grid.css">
+        <link rel="stylesheet" type="text/css" href="../../resources/css/style_geral.css">
+        <link rel="stylesheet" type="text/css" href="../../resources/css-bootstrap/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../../resources/css-bootstrap/bootstrap-grid.css">
         <title>Casos do(a) ${usuarioLogado.dadosPessoais.nome}</title>
     </head>
     <header>
@@ -21,7 +21,7 @@
                             seja: </label>
                     </div>
                     <select name="status" id="status" onclick="filtrarCasos()" id="inputGroupSelect01">
-                        <option value="">Todos os Casos</option>
+                        <option value="todososcasos">Todos os Casos</option>
                         <option value="Aberto">Casos em aberto</option>
                         <option value="Em atendimento">Casos em atendimento</option>
                         <option value="Fechado">Casos fechado</option>
@@ -36,32 +36,74 @@
                         <th>Data de Abertura</th>
                         <th>Data de Fechamento</th>
                     </tr>
-                    <c:if test="${not empty casos}">
-                        <c:forEach items="${casos}" var="caso">
-                            <tr>
-                                <td><span class="pointer" onclick="chamaTelaViewCaso(${caso.idCaso})">${caso.idCaso}</span></td>
-                                <td>${caso.assunto}</td>
-                                <td>${caso.status}</td>
-                                <td>${caso.dataDeAbertura}</td>
-                                <td>${caso.dataDeFechamento}</td>
-                                <td>
-                                    <button onclick="chamaTelaEditarCaso(${caso.idCaso})">Editar</button>
-                                    <button onclick="chamaExcluirCaso(${caso.idCaso})">Excluir</button>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </c:if>
+                    <tbody id="corpo-tabela">
+                    </tbody>
                 </table>
+                <nav aria-label="...">
+                    <ul id="numero-das-paginas" class="pagination">
+                    </ul>
+                </nav>
             </div>
         </div>
     </body>
     <script>
 
+        titulo()
+        setFiltroStatus()
+        numeroDePaginasDaTabela()
+        geraTabelaCasos()
+        var filtroAplicado = '${filtroAplicado}'
 
-        if(window.location.href.includes('todososcasos'))
-            document.getElementById('titulo').innerText = 'Todos os Casos'
-        else if(window.location.href.includes('meuscasos'))
-            document.getElementById('titulo').innerText = 'Meus Casos'
+        function setFiltroStatus() {
+            let filtroAplicado = '${filtroAplicado}'
+            console.log('${filtroAplicado}')
+            if (filtroAplicado)
+                document.getElementById('status').value = filtroAplicado
+        }
+        function titulo() {
+            if(window.location.href.includes('todososcasos'))
+                document.getElementById('titulo').innerText = 'Todos os Casos'
+            else if(window.location.href.includes('meuscasos'))
+                document.getElementById('titulo').innerText = 'Meus Casos'
+        }
+
+        function geraTabelaCasos() {
+            var casosJson = ${casosJson}
+
+            for(let i = 0; i < casosJson.length; i++ ){
+                var dataAbertura = ''
+                var dataFechamento = ''
+
+                if(casosJson[i].dataDeAbertura)
+                    dataAbertura = casosJson[i].dataDeAbertura
+
+                if(casosJson[i].dataDeFechamento)
+                    dataFechamento = casosJson[i].dataDeFechamento
+
+                document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
+                    '                                <td><span class="pointer" onclick="chamaTelaViewCaso('+casosJson[i].idCaso+')">'+casosJson[i].idCaso+'</span></td>\n' +
+                    '                                <td>'+casosJson[i].assunto+'</td>\n' +
+                    '                                <td>'+casosJson[i].status+'</td>\n' +
+                    '                                <td>'+dataAbertura+'</td>\n' +
+                    '                                <td>'+dataFechamento+'</td>\n' +
+                    '                                <td>\n' +
+                    '                                    <button onclick="chamaTelaEditarCaso('+casosJson[i].idCaso+')">Editar</button>\n' +
+                    '                                    <button onclick="chamaExcluirCaso('+casosJson[i].idCaso+')">Excluir</button>\n' +
+                    '                                </td>\n' +
+                    '                            </tr>'
+            }
+        }
+
+        function numeroDePaginasDaTabela() {
+            var casosJson = ${casosJson}
+            var pagina = 0
+            var itensPorPagina = 5
+
+            for(var i = 0; i <=casosJson.length ; i+=itensPorPagina ) {
+                pagina++
+                document.getElementById('numero-das-paginas').innerHTML += '<li class="page-item"><a class="page-link " href="#">' + pagina + '</a></li>'
+            }
+        }
 
         function chamaTelaViewCaso(id) {
             window.location = '/caso/cadastro/' + id
@@ -94,24 +136,46 @@
             }
         }
 
-
         function filtrarCasos() {
             var filtro, tabela, linhas, coluna
 
             filtro = document.getElementById('status').value
-            tabela = document.getElementById('tb-casos')
-            linhas = tabela.getElementsByTagName('tr')
 
-            for(i = 0; i < linhas.length; i++){
-                coluna = linhas[i].getElementsByTagName('td')[2]
-                if (coluna){
-                    if (coluna.innerHTML.indexOf(filtro) > -1)
-                        linhas[i].style.display = ''
-                    else
-                        linhas[i].style.display = 'none'
-                }
+            if(filtro && filtroAplicado && filtroAplicado != filtro){
+                console.log(filtroAplicado)
+                console.log(filtro)
+                if(window.location.href.includes('meuscasos'))
+                    window.location.href = '/caso/meuscasos/'+filtro
+                else
+                window.location.href = '/caso/'+filtro
             }
         }
+
+    </script>
+    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
+    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
+    <script src="../../../resources/JavaScript/bootstrap.min.js"></script>
+    <script>
+        itensPorPagina = 4
+
+        showPage = function(pagina) {
+            $(".tb-linha").hide()
+            $(".tb-linha").each(function(linhas) {
+                if (linhas >= itensPorPagina * (pagina - 1) && linhas < itensPorPagina * pagina)
+                    $(this).show()
+
+            })
+        }
+
+        //O numero 1 é a página de inicio
+        showPage(1);
+
+        //PEga o Numero da página corrente e passa para o método showPage
+        $("#numero-das-paginas li a").click(function() {
+            $("#numero-das-paginas li a").removeClass("current");
+            $(this).addClass("current");
+            showPage(parseInt($(this).text()))
+        });
     </script>
 
 </html>
