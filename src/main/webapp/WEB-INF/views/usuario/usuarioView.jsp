@@ -5,15 +5,14 @@
 <html>
     <meta charset="UTF-8" />
     <head>
-        <title>View Usuário</title>
-    </head>
-    <header>
         <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap-grid.css">
         <link rel="stylesheet" type="text/css" href="../../../resources/css/style_geral.css">
         <link rel="stylesheet" type="text/css" href="../../../resources/css/style_usuarioView.css">
-        <link rel="stylesheet" type="text/css" href="../../resources/css/style_menu.css">
-        <c:import url="../menu.jsp"></c:import>
+        <title>View Usuário</title>
+    </head>
+    <header>
+        <jsp:include page="../menu.jsp"></jsp:include>
     </header>
     <body>
         <div class="div-table">

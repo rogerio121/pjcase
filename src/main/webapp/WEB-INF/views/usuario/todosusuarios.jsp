@@ -2,15 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
-        <title>Usuários Cadastrados</title>
-    </head>
-    <header>
         <link rel="stylesheet" type="text/css" href="../../../resources/css/style_geral.css">
         <link rel="stylesheet" type="text/css" href="../../../resources/css/style_todosusuarios.css">
         <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap-grid.css">
-        <link rel="stylesheet" type="text/css" href="../resources/css/style_menu.css">
-        <c:import url="../menu.jsp"></c:import>
+        <title>Usuários Cadastrados</title>
+    </head>
+    <header>
+        <jsp:include page="../menu.jsp"></jsp:include>
     </header>
     <body>
         <div class="div-table">

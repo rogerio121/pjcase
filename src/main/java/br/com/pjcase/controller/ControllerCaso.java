@@ -173,8 +173,17 @@ public class ControllerCaso {
             Caso caso = new Caso();
             caso = daoCaso.buscarCasoCompleto(Math.toIntExact(id));
 
+            //Caso o caso não tenha usuário, os detalhes do casos serão trazidos por esse método
+            if(caso ==  null)
+               caso = daoCaso.buscarCasoCompletoSemUsuario(Math.toIntExact(id));
+
             mv.addObject("caso", caso);
-            mv.addObject("usuario", caso.getUsuario());
+
+            try {
+                mv.addObject("usuario", caso.getUsuario());
+            }catch (Exception erro){
+                //Caso sem usuário
+            }
 
         } catch (Exception e) {
             System.out.println("Erro ao chamar verCaso: " + e);

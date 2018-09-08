@@ -69,20 +69,31 @@
                 <div class="col-sm form-group">
                     <div class="col-sm">
                         <h5>Clientes da empresa ${empresa.nome}</h5>
+                        <div>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <button onclick="adicionarCliente()" class="btn btn-outline-secondary" type="button" id="button-addon1">Adicionar cliente</button>
+                                </div>
+                                <input name="cpfCliente" id="cpfCliente" placeholder="CPF do cliente" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                <input name="idEmpresa" id="idEmpresa" hidden value="${empresa.cnpj}">
+                            </div>
+                        </div>
+
                         <table class="clientes tabela table table-hover" id="tb-clientes">
                             <tr>
                                 <th>Nome</th>
                                 <th>CPF</th>
+                                <th></th>
                             </tr>
                             <tbody id="corpo-tabela">
                             </tbody>
                         </table>
-                        <ol id="numero-das-paginas">
-                            <li><a class="current" href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                        </ol>
+                        <nav aria-label="...">
+                        <ul id="numero-das-paginas" class="pagination">
+                            <li class="page-item"><a class="page-link current" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link " href="#">2</a></li>
+                        </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -113,15 +124,70 @@
                 for(let i = 0; i < clientes.length; i++ ){
                     console.log(clientes[i])
                     document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha"><td>'+clientes[i].dadosPessoais.nome+'</td> ' +
-                        '<td>'+clientes[i].dadosPessoais.cpf+'</td></tr>'
+                        '<td>'+clientes[i].dadosPessoais.cpf+'</td> <td><button onclick="removerCliente('+clientes[i].dadosPessoais.cpf+')">X</button></td></tr>'
                 }
         }
+
         function chamaTelaEditarEmpresa(id) {
             window.location = '/empresa/cadastro/editar/' + id
         }
 
         function  cancelar() {
             window.history.back()
+        }
+
+        function adicionarCliente() {
+            var cpfCliente = document.getElementById('cpfCliente').value
+            var idEmpresa  = document.getElementById('idEmpresa').value
+
+            console.log(cpfCliente)
+            console.log(idEmpresa)
+
+            fetch("../../clienteempresa/vincular",
+                {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    method: "POST",
+                    body: JSON.stringify({
+                        cpfCliente: cpfCliente,
+                        idEmpresa: idEmpresa
+                    })
+                })
+                .then(function (res) {
+                    console.log(res)
+                    console.log(res.status)
+                    if (res.status != 200) {
+                        alert("Erro ao inserir cliente!")
+                    }else {
+                        alert("Cliente vinculado")
+                        window.location.reload()
+                    }
+                })
+
+        }
+
+        function removerCliente(id){
+
+            console.log(id)
+            fetch("../../clienteempresa/"+id,
+                {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    method: "DELETE",
+                }).then(function (res) {
+                    console.log(res)
+                    console.log(res.status)
+                    if (res.status != 200) {
+                        alert("Erro ao desvincular cliente!")
+                    }else {
+                        alert("Cliente desvinculado")
+                        window.location.reload()
+                    }
+                })
         }
 
         function criarFormDeCriacaoDeCasos(id){

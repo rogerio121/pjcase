@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +54,11 @@ public class ControllerCliente {
         usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
         if(!usuarioLogado.getAdmin()){
             DaoClienteDaEmpresa daoClienteDaEmpresa = new DaoClienteDaEmpresa();
-            daoClienteDaEmpresa.insert(cliente.getDadosPessoais().getCpf(), usuarioLogado.getIdEmpresaRelacionada());
+            try {
+                daoClienteDaEmpresa.insert(cliente.getDadosPessoais().getCpf(), usuarioLogado.getIdEmpresaRelacionada());
+            } catch (SQLException erro) {
+                System.out.println("Erro ao inserir clienteDaEmpresa: " + erro);
+            }
         }
 
         ModelAndView mv = new ModelAndView("cliente/clienteView");

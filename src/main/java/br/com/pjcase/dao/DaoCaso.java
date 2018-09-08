@@ -208,7 +208,7 @@ public class DaoCaso {
 
     public List<Caso> listarCasosPorProprietarios(int idUsuario) {
         try {
-            String sql = "SELECT * " +
+            String sql = "SELECT distinct cas_id, cas_data_de_abertura, cas_data_de_fechamento, cas_resolucao, cas_menssagem, cas_status, cas_assusnto, caso.emp_cnpj, caso.usu_id, caso.cli_cpf, usuario.usu_email "+
                     "FROM caso " +
                     "inner join usuario on caso.usu_id = usuario.usu_id " +
                     "join empresa " +
@@ -220,7 +220,6 @@ public class DaoCaso {
             pstm.setInt(1, idUsuario);
             ResultSet rs = pstm.executeQuery();
 
-            System.out.println(pstm);
             Caso caso;
             List<Caso> casos = new ArrayList<Caso>();
 
@@ -238,15 +237,12 @@ public class DaoCaso {
 
                 //Empresa
                 Empresa empresa = new Empresa();
-
-                empresa.setNome(rs.getString("emp_nome"));
                 empresa.setCnpj(rs.getString("emp_cnpj"));
 
                 //Usuario
                 Usuario usuario = new Usuario();
                 DadosPessoais dadosPessoaisUsuario = new DadosPessoais();
 
-                dadosPessoaisUsuario.setNome(rs.getString("usu_nome"));
                 dadosPessoaisUsuario.setEmail(rs.getString("usu_email"));
                 usuario.setId(rs.getInt("usu_id"));
 
@@ -256,8 +252,6 @@ public class DaoCaso {
                 Cliente cliente = new Cliente();
                 DadosPessoais dadosPessoaisCliente = new DadosPessoais();
 
-                dadosPessoaisCliente.setNome(rs.getString("cli_nome"));
-                dadosPessoaisCliente.setEmail(rs.getString("cli_email"));
                 dadosPessoaisCliente.setCpf(rs.getString("cli_cpf"));
 
                 cliente.setDadosPessoais(dadosPessoaisCliente);
@@ -280,13 +274,13 @@ public class DaoCaso {
 
     public List<Caso> listarTodosOsCasos() {
         try {
-            String sql = "SELECT * " +
-                    "FROM caso " +
-                    "inner join usuario on caso.usu_id = usuario.usu_id " +
-                    "join empresa " +
-                    "join cliente " +
-                    "ORDER BY cas_id desc";
-
+            String sql = "(SELECT distinct cas_id, cas_data_de_abertura, cas_data_de_fechamento, cas_resolucao, cas_menssagem, cas_status, cas_assusnto, caso.emp_cnpj, caso.usu_id, caso.cli_cpf, usuario.usu_email "+
+                            "FROM caso "+
+                            "inner join usuario on caso.usu_id = usuario.usu_id join empresa join cliente ORDER BY cas_id desc) "+
+                            "UNION All "+
+                            "(SELECT distinct cas_id, cas_data_de_abertura, cas_data_de_fechamento, cas_resolucao, cas_menssagem, cas_status, cas_assusnto, caso.emp_cnpj, caso.usu_id, caso.cli_cpf, null "+
+                            "FROM caso "+
+                            "WHERE caso.usu_id is null) ";
             PreparedStatement pstm = conexao.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
 
@@ -307,15 +301,11 @@ public class DaoCaso {
 
                 //Empresa
                 Empresa empresa = new Empresa();
-
-                empresa.setNome(rs.getString("emp_nome"));
                 empresa.setCnpj(rs.getString("emp_cnpj"));
 
                 //Usuario
                 Usuario usuario = new Usuario();
                 DadosPessoais dadosPessoaisUsuario = new DadosPessoais();
-
-                dadosPessoaisUsuario.setNome(rs.getString("usu_nome"));
                 dadosPessoaisUsuario.setEmail(rs.getString("usu_email"));
                 usuario.setId(rs.getInt("usu_id"));
 
@@ -324,14 +314,10 @@ public class DaoCaso {
                 //Clente
                 Cliente cliente = new Cliente();
                 DadosPessoais dadosPessoaisCliente = new DadosPessoais();
-
-                dadosPessoaisCliente.setNome(rs.getString("cli_nome"));
-                dadosPessoaisCliente.setEmail(rs.getString("cli_email"));
                 dadosPessoaisCliente.setCpf(rs.getString("cli_cpf"));
 
                 cliente.setDadosPessoais(dadosPessoaisCliente);
                 cliente.setEmpresa(empresa);
-
 
                 caso.setEmpresa(empresa);
                 caso.setCliente(cliente);
@@ -423,6 +409,57 @@ public class DaoCaso {
                 caso.setCliente(cliente);
                 caso.setUsuario(usuario);
 
+            }
+
+            pstm.close();
+            return caso;
+        } catch (SQLException erro) {
+            System.out.println("Erro ao buscar Casos Completo: " + erro);
+            return null;
+        }
+    }
+
+    public Caso buscarCasoCompletoSemUsuario(int idCaso) {
+        try {
+            String sql = "SELECT * " +
+                    "FROM caso " +
+                    "WHERE caso.cas_id = ? ";
+
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setInt(1, idCaso);
+            ResultSet rs = pstm.executeQuery();
+
+            Caso caso = null;
+
+            if (rs.next()) {
+                caso = new Caso();
+
+                //Caso
+                caso.setIdCaso(rs.getInt("cas_id"));
+                caso.setAssunto(rs.getString("cas_assusnto"));
+                caso.setDataDeAbertura(rs.getString("cas_data_de_abertura"));
+                caso.setDataDeFechamento(rs.getString("cas_data_de_fechamento"));
+                caso.setMensagem(rs.getString("cas_menssagem"));
+                caso.setStatus(rs.getString("cas_status"));
+                caso.setResolucao(rs.getString("cas_resolucao"));
+
+                //Empresa
+                Empresa empresa = new Empresa();
+                empresa.setCnpj(rs.getString("emp_cnpj"));
+
+                //Usuario
+                Usuario usuario = new Usuario();
+                usuario.setId(rs.getInt("usu_id"));
+
+                //Clente
+                Cliente cliente = new Cliente();
+                DadosPessoais dadosPessoaisCliente = new DadosPessoais();
+                dadosPessoaisCliente.setCpf(rs.getString("cli_cpf"));
+                cliente.setDadosPessoais(dadosPessoaisCliente);
+
+                caso.setEmpresa(empresa);
+                caso.setCliente(cliente);
+                caso.setUsuario(usuario);
             }
 
             pstm.close();

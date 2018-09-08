@@ -2,14 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
-        <title>Casos do(a) ${usuarioLogado.dadosPessoais.nome}</title>
-    </head>
-    <header>
-        <link rel="stylesheet" type="text/css" href="../resources/css/style_menu.css">
         <link rel="stylesheet" type="text/css" href="../resources/css/style_geral.css">
         <link rel="stylesheet" type="text/css" href="../resources/css-bootstrap/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../resources/css-bootstrap/bootstrap-grid.css">
-        <c:import url="../menu.jsp"></c:import>
+        <title>Casos do(a) ${usuarioLogado.dadosPessoais.nome}</title>
+    </head>
+    <header>
+        <jsp:include page="../menu.jsp"></jsp:include>
     </header>
     <body>
     <div class="container">

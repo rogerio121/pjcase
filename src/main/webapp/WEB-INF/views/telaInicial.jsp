@@ -6,13 +6,12 @@
     <head>
         <link rel="stylesheet" type="text/css" href="../resources/css/style_geral.css">
         <link rel="stylesheet" type="text/css" href="../resources/css/style_telainicial.css">
-        <link rel="stylesheet" type="text/css" href="../resources/css/style_menu.css">
         <link rel="stylesheet" type="text/css" href="../resources/css-bootstrap/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../resources/css-bootstrap/bootstrap-grid.css">
         <title>Tela inicial</title>
     </head>
     <header>
-        <c:import url="menu.jsp"></c:import>
+        <jsp:include page="menu.jsp"></jsp:include>
     </header>
     <body>
 
@@ -30,7 +29,7 @@
                     <c:if test="${not empty casosSemProprietaio}">
                         <c:forEach items="${casosSemProprietaio }" var="caso">
                             <tr>
-                                <td onclick="chamaTelaViewCaso(${caso.idCaso})">${caso.idCaso }</td>
+                                <td class="pointer" onclick="chamaTelaViewCaso(${caso.idCaso})">${caso.idCaso }</td>
                                 <td>${caso.assunto }</td>
                                 <td>${caso.dataDeAbertura }</td>
                                 <td><button  onclick="pegarCaso(${caso.idCaso})" id="${caso.idCaso}"  class="btn btn-primary">Pegar

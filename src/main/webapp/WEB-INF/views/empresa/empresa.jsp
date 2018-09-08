@@ -8,11 +8,10 @@
         <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap-grid.css">
         <link rel="stylesheet" type="text/css" href="../../../resources/css/style_empresa.css">
-        <link rel="stylesheet" type="text/css" href="../../../resources/css/style_menu.css">
         <title>Empresa</title>
     </head>
     <header>
-        <c:import url="../menu.jsp"></c:import>
+        <jsp:include page="../menu.jsp"></jsp:include>
     </header>
     <body>
     <div class="div-form">

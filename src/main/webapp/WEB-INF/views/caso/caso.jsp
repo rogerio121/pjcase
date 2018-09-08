@@ -4,15 +4,14 @@
 <html>
     <meta charset="UTF-8" />
     <head>
-        <title>Caso</title>
-    </head>
-    <header>
         <link rel="stylesheet" type="text/css" href="../../../resources/css/style_caso.css">
         <link rel="stylesheet" type="text/css" href="../../../resources/css/style_geral.css">
         <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../../../resources/css-bootstrap/bootstrap-grid.css">
-        <link rel="stylesheet" type="text/css" href="../../../resources/css/style_menu.css">
-        <c:import url="../menu.jsp"></c:import>
+        <title>Caso</title>
+    </head>
+    <header>
+        <jsp:include page="../menu.jsp"></jsp:include>
     </header>
     <div class="div-form">
         <h1 id="titulo"></h1>
