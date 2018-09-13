@@ -20,23 +20,48 @@
                     <th>Nome</th>
                     <th>CNPJ</th>
                 </tr>
-                <c:if test="${not empty empresasCadastradas}">
-                    <c:forEach items="${empresasCadastradas}" var="empresa">
-                        <tr>
-                            <td onclick="chamaTelaViewEmpresas(${empresa.cnpj})"><span
-                                    class="pointer">${empresa.nome}</span></td>
-                            <td>${empresa.cnpj}</td>
-                            <td>
-                                <button onclick="chamaTelaEditarEmpresa(${empresa.cnpj})">Editar</button>
-                                <button onclick="chamaExcluirEmpresa(${empresa.cnpj})">Excluir</button>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </c:if>
+                <tbody id="corpo-tabela">
+                </tbody>
             </table>
+            <nav aria-label="...">
+                <ul id="numero-das-paginas" class="pagination">
+                </ul>
+            </nav>
         </div>
     </body>
     <script>
+
+        numeroDePaginasDaTabela()
+        geraTabelaCasos()
+
+        function geraTabelaCasos() {
+            var empresasJson = ${empresasJson}
+
+            for(let i = 0; i < empresasJson.length; i++ ){
+                document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
+                    '                                <td><span class="pointer" onclick="chamaTelaViewEmpresas('+empresasJson[i].cnpj+')">'+empresasJson[i].nome+'</span></td>\n' +
+                    '                                <td>'+empresasJson[i].cnpj+'</td>\n' +
+                    '                                <td>\n' +
+                    '                                    <button onclick="chamaTelaEditarEmpresa('+empresasJson[i].cnpj+')">Editar</button>\n' +
+                    '                                    <button onclick="chamaExcluirEmpresa('+empresasJson[i].cnpj+')">Excluir</button>\n' +
+                    '                                </td>\n' +
+                    '                            </tr>'
+            }
+        }
+
+
+        function numeroDePaginasDaTabela() {
+            var empresasJson = ${empresasJson}
+            var pagina = 0
+            var itensPorPagina = 6
+
+            console.log(empresasJson.length)
+            for(var i = 1; i <= empresasJson.length ; i+=itensPorPagina ) {
+                pagina++
+                document.getElementById('numero-das-paginas').innerHTML += '<li class="page-item"><a class="page-link " href="#">' + pagina + '</a></li>'
+            }
+        }
+
         function chamaTelaViewEmpresas(idEmpresa) {
             window.location = '/empresa/cadastro/' + idEmpresa
         }
@@ -68,6 +93,30 @@
                 })
             }
         }
+    </script>
+    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
+    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
+    <script src="../../../resources/JavaScript/bootstrap.min.js"></script>
+    <script>
+        itensPorPagina = 6
 
+        showPage = function(pagina) {
+            $(".tb-linha").hide()
+            $(".tb-linha").each(function(linhas) {
+                if (linhas >= itensPorPagina * (pagina - 1) && linhas < itensPorPagina * pagina)
+                    $(this).show()
+
+            })
+        }
+
+        //O numero 1 é a página de inicio
+        showPage(1);
+
+        //PEga o Numero da página corrente e passa para o método showPage
+        $("#numero-das-paginas li a").click(function() {
+            $("#numero-das-paginas li a").removeClass("current");
+            $(this).addClass("current");
+            showPage(parseInt($(this).text()))
+        });
     </script>
 </html>

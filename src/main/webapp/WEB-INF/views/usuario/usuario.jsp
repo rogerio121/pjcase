@@ -67,6 +67,7 @@
         </form>
         <button type="button" class="btn btn-danger" onclick="cancelar()">Cancelar</button>
         <button onclick="salvar()" class="btn btn-success">Salvar</button>
+        <button onclick="alterarASenha()" class="btn btn-success">Alterar senha</button>
     </div>
     </body>
     <script>
@@ -99,8 +100,32 @@
             window.history.back()
         }
 
+        function alterarASenha() {
+            console.log("pegou click alteração de senha")
+            var email = ""
+
+            fetch("/usuario/alterarsenha",
+                {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    method: "POST",
+                    body: JSON.stringify({
+                        email: email
+                    })
+                })
+                .then(function (res) {
+                    console.log(res.status)
+                    if (res.status == 204) {
+                        alert("Login inválido!")
+                        window.location = telaLogin;
+                    }
+                })
+        }
+
         if (window.location.href.includes('8080/usuario/cadastro/editar/'))
-            if (${usuarioLogado.admin})
+            if (${usuario.admin})
                 document.getElementById('admin').checked = true
 
 

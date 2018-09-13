@@ -71,11 +71,11 @@ public class ControllerEmpresa {
     @RequestMapping("/empresas")
     public ModelAndView buscarEmpresasCadastradaas() {
         DaoEmpresa daoEmpresa = new DaoEmpresa();
-        List<Empresa> empresasCadastradas = new ArrayList<Empresa>();
-        empresasCadastradas = daoEmpresa.buscaEmpresasCadastradas();
+        String empresasJson= "";
+        empresasJson = new Gson().toJson(daoEmpresa.buscaEmpresasCadastradas());
 
         ModelAndView mv = new ModelAndView("empresa/empresas");
-        mv.addObject("empresasCadastradas", empresasCadastradas);
+        mv.addObject("empresasJson", empresasJson);
         return mv;
     }
 

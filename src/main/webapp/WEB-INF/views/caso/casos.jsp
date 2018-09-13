@@ -61,10 +61,12 @@
                 document.getElementById('status').value = filtroAplicado
         }
         function titulo() {
-            if(window.location.href.includes('todososcasos'))
-                document.getElementById('titulo').innerText = 'Todos os Casos'
-            else if(window.location.href.includes('meuscasos'))
+            console.log(window.location.href)
+            console.log(window.location.href.includes('meuscasos'))
+            if(window.location.href.includes('meuscasos'))
                 document.getElementById('titulo').innerText = 'Meus Casos'
+            else
+                document.getElementById('titulo').innerText = 'Todos os Casos'
         }
 
         function geraTabelaCasos() {
@@ -97,9 +99,9 @@
         function numeroDePaginasDaTabela() {
             var casosJson = ${casosJson}
             var pagina = 0
-            var itensPorPagina = 5
+            var itensPorPagina = 6
 
-            for(var i = 0; i <=casosJson.length ; i+=itensPorPagina ) {
+            for(var i = 1; i <=casosJson.length ; i+=itensPorPagina ) {
                 pagina++
                 document.getElementById('numero-das-paginas').innerHTML += '<li class="page-item"><a class="page-link " href="#">' + pagina + '</a></li>'
             }
@@ -156,7 +158,7 @@
     <script src="../../../resources/JavaScript/jquery-mask.js"></script>
     <script src="../../../resources/JavaScript/bootstrap.min.js"></script>
     <script>
-        itensPorPagina = 4
+        itensPorPagina = 6
 
         showPage = function(pagina) {
             $(".tb-linha").hide()

@@ -5,6 +5,7 @@ import br.com.pjcase.dao.DaoClienteDaEmpresa;
 import br.com.pjcase.model.Cliente;
 import br.com.pjcase.model.DadosPessoais;
 import br.com.pjcase.model.Usuario;
+import com.google.gson.Gson;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -68,19 +69,19 @@ public class ControllerCliente {
 
     @RequestMapping("/clientes")
     public ModelAndView buscaClientes(HttpServletRequest request) {
-        List<Cliente> clientes = new ArrayList<Cliente>();
+        String clientesJson = "";
         DaoCliente daoCliente = new DaoCliente();
 
         try {
             Usuario usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
 
             if (usuarioLogado.getAdmin())
-                clientes = daoCliente.buscaTodosClientes();
+                clientesJson = new Gson().toJson(daoCliente.buscaTodosClientes());
             else
-                clientes = daoCliente.buscaClientesPertecentesEmpresa(usuarioLogado.getIdEmpresaRelacionada());
+                clientesJson = new Gson().toJson(daoCliente.buscaClientesPertecentesEmpresa(usuarioLogado.getIdEmpresaRelacionada()));
 
             ModelAndView mv = new ModelAndView("cliente/clientes");
-            mv.addObject("clientes", clientes);
+            mv.addObject("clientesJson", clientesJson);
             return mv;
         } catch (Exception e) {
             System.out.println("Erro ao listar clientes: " + e);

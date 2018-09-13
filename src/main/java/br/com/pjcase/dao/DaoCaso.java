@@ -295,12 +295,11 @@ public class DaoCaso {
             if(status.equalsIgnoreCase("todososcasos")){
                 sql = "(SELECT distinct cas_id, cas_data_de_abertura, cas_data_de_fechamento, cas_resolucao, cas_menssagem, cas_status, cas_assusnto, caso.emp_cnpj, caso.usu_id, caso.cli_cpf, usuario.usu_email " +
                         "FROM caso " +
-                        "inner join usuario on caso.usu_id = usuario.usu_id join empresa join cliente " +
-                        "ORDER BY cas_id desc )" +
+                        "inner join usuario on caso.usu_id = usuario.usu_id join empresa join cliente )" +
                         "UNION All " +
                         "(SELECT distinct cas_id, cas_data_de_abertura, cas_data_de_fechamento, cas_resolucao, cas_menssagem, cas_status, cas_assusnto, caso.emp_cnpj, caso.usu_id, caso.cli_cpf, null " +
                         "FROM caso " +
-                        "WHERE caso.usu_id is null) ";
+                        "WHERE caso.usu_id is null) ORDER BY cas_id desc";
                 pstm = conexao.prepareStatement(sql);
             }
             else {

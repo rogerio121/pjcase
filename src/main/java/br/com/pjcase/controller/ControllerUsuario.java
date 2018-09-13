@@ -4,12 +4,12 @@ import br.com.pjcase.conexao.ConexaoBanco;
 import br.com.pjcase.dao.DaoUsuario;
 import br.com.pjcase.model.DadosPessoais;
 import br.com.pjcase.model.Usuario;
+import br.com.pjcase.util.EnvioDeEmail;
+import com.google.gson.Gson;
+import org.apache.commons.mail.EmailException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +44,6 @@ public class ControllerUsuario {
         usuario.setSenha(request.getParameter("senha"));
         usuario.setIdEmpresaRelacionada(request.getParameter("idEmpresaRelacionada"));
 
-        System.out.println(usuario);
         if (!request.getParameter("id").equals(""))
             usuario.setId(Integer.parseInt(request.getParameter("id")));
 
@@ -66,13 +65,13 @@ public class ControllerUsuario {
 
     @RequestMapping("/usuarios")
     public ModelAndView listarUsuarios() {
-        List<Usuario> usuarios = new ArrayList<>();
+        String usuariosJson = "";
         DaoUsuario daoUsuario = new DaoUsuario();
 
-        usuarios = daoUsuario.buscarTodosUsuarios();
+        usuariosJson = new Gson().toJson(daoUsuario.buscarTodosUsuarios());
 
         ModelAndView mv = new ModelAndView("usuario/todosusuarios");
-        mv.addObject("usuarios", usuarios);
+        mv.addObject("usuariosJson", usuariosJson);
 
         return mv;
     }
@@ -135,5 +134,22 @@ public class ControllerUsuario {
         }
 
 
+    }
+
+    @PostMapping("/alterarsenha")
+    public ResponseEntity alterarSenhaDoUsuario(@RequestBody String email){
+        System.out.println("Chamou o método de alteração de senha");
+
+        EnvioDeEmail envioDeEmail = new EnvioDeEmail();
+
+        try {
+            envioDeEmail.enviarEmail("rogeriodominus@gmail.com", "Foi Pelo Java", "Teste Pelo Java");
+            return ResponseEntity.ok().build();
+
+        } catch (EmailException e) {
+            System.out.println("Erro ao enviar email de alteração de senha: " + e );
+            return null;
+
+        }
     }
 }
