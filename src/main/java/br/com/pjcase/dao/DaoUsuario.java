@@ -44,16 +44,15 @@ public class DaoUsuario {
         try {
             //Empresa empresaCadastrada = getById(empresa.getCnpj());
 
-            String sql = "UPDATE usuario SET usu_email = ?, usu_nome = ?, usu_senha = ?, usu_admin = ?, emp_cnpj = ?  " +
+            String sql = "UPDATE usuario SET usu_email = ?, usu_nome = ?, usu_admin = ?, emp_cnpj = ?  " +
                     "WHERE usu_id = ?";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
             pstm.setString(1, usuario.getDadosPessoais().getEmail());
             pstm.setString(2, usuario.getDadosPessoais().getNome());
-            pstm.setString(3, usuario.getSenha());
-            pstm.setBoolean(4, usuario.getAdmin());
-            pstm.setString(5, usuario.getIdEmpresaRelacionada());
-            pstm.setInt(6, usuario.getId());
+            pstm.setBoolean(3, usuario.getAdmin());
+            pstm.setString(4, usuario.getIdEmpresaRelacionada());
+            pstm.setInt(5, usuario.getId());
 
             pstm.execute();
             pstm.close();
@@ -249,4 +248,21 @@ public class DaoUsuario {
             return null;
         }
     }
+
+    public void alterarSenha(Usuario usuario) {
+        try {
+            String sql = "UPDATE usuario SET usu_senha = ?  " +
+                    "WHERE usu_email = ?";
+
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setString(1, usuario.getSenha());
+            pstm.setString(2, usuario.getDadosPessoais().getEmail());
+
+            pstm.execute();
+            pstm.close();
+        } catch (SQLException erro) {
+            System.out.println("Erro ao alterar senha do Usuario: " + erro);
+        }
+    }
+
 }

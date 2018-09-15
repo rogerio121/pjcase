@@ -54,7 +54,7 @@ public class ControllerUsuario {
 
         usuario.setDadosPessoais(dadosPessoais);
 
-        usuarioExistente = daoUsuario.getByEmail(usuario.getDadosPessoais().getEmail());
+        usuarioExistente = daoUsuario.getById(usuario.getId());
         if (usuarioExistente == null)
             daoUsuario.insert(usuario);
         else
@@ -138,18 +138,21 @@ public class ControllerUsuario {
 
     @PostMapping("/alterarsenha")
     public ResponseEntity alterarSenhaDoUsuario(@RequestBody String email){
-        System.out.println("Chamou o método de alteração de senha");
-
         EnvioDeEmail envioDeEmail = new EnvioDeEmail();
-
+        DaoUsuario daoUsuario = new DaoUsuario();
+        Usuario usuario = new Usuario();
+        System.out.println(email);
         try {
-            envioDeEmail.enviarEmail("rogeriodominus@gmail.com", "Foi Pelo Java", "Teste Pelo Java");
+            usuario = daoUsuario.getByEmail(email);
+            usuario.setSenha("");
+            daoUsuario.alterarSenha(usuario);
+
+            //envioDeEmail.enviarEmail(email, "Foi Pelo Java", "Teste Pelo Java");
             return ResponseEntity.ok().build();
 
-        } catch (EmailException e) {
+        } catch (Exception e) {
             System.out.println("Erro ao enviar email de alteração de senha: " + e );
-            return null;
-
+            return ResponseEntity.status(204).build();
         }
     }
 }

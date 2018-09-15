@@ -34,27 +34,29 @@
                 if (!email || !senha)
                     alert("Favor preencher os campos E-mail e Senha")
 
-                fetch("/validarusuario",
-                    {
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        method: "POST",
-                        body: JSON.stringify({
-                            senha: senha,
-                            dadosPessoais: {
-                                email: email
+                else{
+                    fetch("/validarusuario",
+                        {
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            method: "POST",
+                            body: JSON.stringify({
+                                senha: senha,
+                                dadosPessoais: {
+                                    email: email
+                                }
+                            })
+                        })
+                        .then(function (res) {
+                            console.log(res.status)
+                            if (res.status == 204) {
+                                alert("Login inválido!")
+                                window.location = telaLogin;
                             }
                         })
-                    })
-                    .then(function (res) {
-                        console.log(res.status)
-                        if (res.status == 204) {
-                            alert("Login inválido!")
-                            window.location = telaLogin;
-                        }
-                    })
+                }
             }
 
         </script>
