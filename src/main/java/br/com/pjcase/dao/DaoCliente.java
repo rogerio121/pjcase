@@ -22,8 +22,7 @@ public class DaoCliente {
     }
 
     /*----------------CRUD----------------*/
-    public void insert(Cliente cliente) {
-        try {
+    public void insert(Cliente cliente) throws SQLException {
             String sql = "INSERT INTO cliente (cli_cpf, cli_nome, cli_email, cli_logradouro, cli_bairro, cli_cidade, cli_estado, cli_cep, cli_telefone)" +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -40,15 +39,9 @@ public class DaoCliente {
 
             pstm.execute();
             pstm.close();
-        } catch (SQLException erro) {
-            System.out.println("Erro ao inserir Cliente: " + erro);
-        }
     }
 
-    public void update(Cliente cliente) {
-        try {
-            //Empresa empresaCadastrada = getById(empresa.getCnpj());
-
+    public void update(Cliente cliente)throws SQLException {
             String sql = "UPDATE cliente SET cli_cpf = ?, cli_nome = ?, cli_email = ?, cli_logradouro = ?, cli_bairro = ?," +
                     " cli_cidade = ?, cli_estado = ?, cli_cep = ?, cli_telefone = ? " +
                     "WHERE cli_cpf = ?";
@@ -67,9 +60,6 @@ public class DaoCliente {
 
             pstm.execute();
             pstm.close();
-        } catch (SQLException erro) {
-            System.out.println("Erro ao atualizar Cliente: " + erro);
-        }
     }
 
     public void delete(String idCliente) throws SQLException {
@@ -119,7 +109,7 @@ public class DaoCliente {
         }
     }
 
-    public void upsert(Cliente cliente) {
+    public void upsert(Cliente cliente)throws SQLException {
         Cliente clienteCadastrado = getById(cliente.getDadosPessoais().getCpf());
 
         if (clienteCadastrado == null)

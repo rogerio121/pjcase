@@ -14,7 +14,7 @@
         <jsp:include page="../menu.jsp"></jsp:include>
     </header>
     <body>
-        <div class="div-form">
+        <div class="div-form" id="div-form">
             <h1>Cliente Cadastrado</h1>
             <form>
             <table>
@@ -104,14 +104,36 @@
             <button type="button" class="btn btn-danger" onclick="cancelar()">Cancelar</button>
             <button  class="btn btn-primary" onclick="editarCliente(${cliente.dadosPessoais.cpf})">Editar</button>
         </div>
+        <div id="erro">
+            <div class="card">
+                <div class="card-header">
+                    Erro
+                </div>
+                <div class="card-body">
+                    Aconteceu um erro ao salvar o registro
+                </div>
+            </div>
+            <button type="button" class="btn btn-danger" href="/telaInicial">Voltar ao início</button>
+        </div>
+
     </body>
     <script>
+        verificarErros()
+
         function editarCliente(idCliente) {
             window.location = '/cliente/cadastro/editar/' + idCliente
         }
         
         function  cancelar() {
             window.history.back()
+        }
+
+        function verificarErros() {
+            var response = '${response}'
+            if(response){
+                document.getElementById('div-form').style.display = "none";
+                document.getElementById('erro').style.display = "block";
+            }
         }
     </script>
     <script src="../../../resources/JavaScript/jquery-ajax.js"></script>

@@ -32,6 +32,7 @@ public class ControllerCliente {
         Cliente cliente = new Cliente();
         DadosPessoais dadosPessoais = new DadosPessoais();
         DaoCliente daoCliente = new DaoCliente();
+        ModelAndView mv = new ModelAndView("cliente/clienteView");
 
         try {
             request.setCharacterEncoding("UTF-8");
@@ -50,7 +51,13 @@ public class ControllerCliente {
         dadosPessoais.setTelefone(request.getParameter("telefone").replaceAll("[()-]","").replace(" ",""));
 
         cliente.setDadosPessoais(dadosPessoais);
-        daoCliente.upsert(cliente);
+        try {
+            daoCliente.upsert(cliente);
+        }catch (SQLException erro){
+            mv.addObject("response","204");
+            System.out.println("Erro ao fazer o upsert em clientes: " + erro);
+        }
+
 
         Usuario usuarioLogado = new Usuario();
         usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
@@ -63,7 +70,6 @@ public class ControllerCliente {
             }
         }
 
-        ModelAndView mv = new ModelAndView("cliente/clienteView");
         mv.addObject("cliente", cliente);
         return mv;
     }

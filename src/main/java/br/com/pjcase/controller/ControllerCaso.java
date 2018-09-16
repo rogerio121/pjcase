@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,11 +71,13 @@ public class ControllerCaso {
         //Caso seja uma edição o campo IdCaso será populado, do Contrário não
         try {
             caso.setIdCaso(Integer.parseInt(request.getParameter("idCaso")));
-        }catch (Exception e){
+        }catch (Exception e){}
 
+        try {
+            daoCaso.upsert(caso);
+        }catch (Exception erro){
+            System.out.println("Erro ao usar o upsert em Caso: " + erro);
         }
-
-        daoCaso.upsert(caso);
 
         ModelAndView mv = new ModelAndView("caso/casoView");
         mv.addObject("caso", caso);
@@ -232,5 +235,46 @@ public class ControllerCaso {
         }
 
 
+    }
+
+
+    @PostMapping("/salvar-post")
+    public ResponseEntity salvarCasoPost(HttpServletRequest request) {
+        Caso caso = new Caso();
+        DaoCaso daoCaso = new DaoCaso();
+
+        try {
+            request.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            System.out.println("Erro no charset ControllerCaso: " + e);
+        }
+
+        caso.setAssunto(request.getParameter("assunto"));
+        caso.setMensagem(request.getParameter("mensagem"));
+        caso.setStatus("Aberto");
+
+        //Cliente
+        Cliente cliente = new Cliente();
+        DadosPessoais dadosPessoaisCliente = new DadosPessoais();
+        dadosPessoaisCliente.setCpf(request.getParameter("cliente.dadosPessoais.cnpj"));
+        cliente.setDadosPessoais(dadosPessoaisCliente);
+
+        //Empresa
+        Empresa empresa = new Empresa();
+        empresa.setCnpj(request.getParameter("empresa.cnpj"));
+
+        caso.setCliente(cliente);
+        caso.setEmpresa(empresa);
+
+        System.out.println(caso);
+        //Caso seja uma edição o campo IdCaso será populado, do Contrário não
+
+        try {
+            daoCaso.upsert(caso);
+            return ResponseEntity.status(200).build();
+        }catch (SQLException erro){
+            System.out.println("Erro ao inserir cliente via Post: " + erro);
+            return ResponseEntity.status(204).build();
+        }
     }
 }

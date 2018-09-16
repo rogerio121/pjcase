@@ -22,8 +22,7 @@ public class DaoCaso {
     }
 
     /*----------------CRUD----------------*/
-    public void insert(Caso caso) {
-        try {
+    public void insert(Caso caso)throws SQLException {
             String sql;
             if (caso.getUsuario() != null) {
                 sql = "INSERT INTO caso (cas_assusnto, cas_data_de_abertura, cas_data_de_fechamento, cas_menssagem, cas_resolucao, cas_status, emp_cnpj, usu_id, cli_cpf)" +
@@ -59,15 +58,9 @@ public class DaoCaso {
                 pstm.execute();
                 pstm.close();
             }
-
-
-        } catch (SQLException erro) {
-            System.out.println("Erro ao inserir Caso: " + erro);
-        }
     }
 
-    public void update(Caso caso) {
-        try {
+    public void update(Caso caso)throws SQLException {
             String sql = "UPDATE caso SET cas_assusnto = ?, cas_data_de_abertura = ?, cas_data_de_fechamento = ?, cas_menssagem = ?, cas_resolucao = ?, cas_status = ?, " +
                     "emp_cnpj = ?, usu_id = ?, cli_cpf = ?  " +
                     "WHERE cas_id = ?";
@@ -87,9 +80,6 @@ public class DaoCaso {
 
             pstm.execute();
             pstm.close();
-        } catch (SQLException erro) {
-            System.out.println("Erro ao atualizar Caso: " + erro);
-        }
     }
 
     public void delete(String idCaso) {
@@ -138,7 +128,7 @@ public class DaoCaso {
         }
     }
 
-    public void upsert(Caso caso) {
+    public void upsert(Caso caso)throws SQLException {
         Caso casoCadastrado = null;
         casoCadastrado = getById(String.valueOf(caso.getIdCaso()));
 
@@ -147,7 +137,7 @@ public class DaoCaso {
 
         if (casoCadastrado == null) {
             caso.setDataDeAbertura(formatoDaData.format(data));
-            insert(caso);
+                insert(caso);
         } else {
             caso.setDataDeAbertura(casoCadastrado.getDataDeAbertura());
 

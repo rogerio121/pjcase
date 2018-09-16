@@ -28,7 +28,11 @@ public class TesteDaoCliente {
         cliente.setDadosPessoais(dadosPessoais);
 
         DaoCliente daoCliente = new DaoCliente();
-        daoCliente.insert(cliente);
+        try {
+            daoCliente.insert(cliente);
+        }catch (Exception e){
+
+        }
 
         clienteInserido = daoCliente.getById("123");
         Boolean clienteFoiCriado = clienteInserido != null;
@@ -53,7 +57,11 @@ public class TesteDaoCliente {
         cliente.setDadosPessoais(dadosPessoais);
 
         DaoCliente daoCliente = new DaoCliente();
-        daoCliente.update(cliente);
+        try {
+            daoCliente.update(cliente);
+        }catch (Exception e){
+
+        }
 
         clienteEditado = daoCliente.getById("123");
 
@@ -96,7 +104,11 @@ public class TesteDaoCliente {
         dadosPessoais.setEstado("SP");
         cliente.setDadosPessoais(dadosPessoais);
 
-        daoCliente.insert(cliente);
+        try {
+            daoCliente.insert(cliente);
+        }catch (Exception e){
+
+        }
 
         clienteInserido = daoCliente.getById("123");
 

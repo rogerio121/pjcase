@@ -5,3 +5,18 @@ table{
 .div-form{
     margin-left: 15%;
 }
+
+#erro{
+    display: none;
+}
+
+.card-header{
+    background-color: #dc3545;
+    color: #ffffff;
+    font-size: 25px;
+}
+
+.card{
+    width: 40%;
+    margin: auto;
+ }
