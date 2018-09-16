@@ -28,6 +28,7 @@ create table cliente (
 	cli_cpf varchar(18) primary key not null,
 	cli_email varchar(50),
 	cli_nome varchar(50),
+    cli_telefone varchar(10),
     cli_logradouro varchar(50),
     cli_bairro varchar(30),
     cli_cidade varchar(30),

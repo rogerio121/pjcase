@@ -40,7 +40,7 @@
             for(let i = 0; i < empresasJson.length; i++ ){
                 document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
                     '                                <td><span class="pointer" onclick="chamaTelaViewEmpresas('+empresasJson[i].cnpj+')">'+empresasJson[i].nome+'</span></td>\n' +
-                    '                                <td>'+empresasJson[i].cnpj+'</td>\n' +
+                    '                                <td class="cnpj">'+empresasJson[i].cnpj+'</td>\n' +
                     '                                <td>\n' +
                     '                                    <button onclick="chamaTelaEditarEmpresa('+empresasJson[i].cnpj+')">Editar</button>\n' +
                     '                                    <button onclick="chamaExcluirEmpresa('+empresasJson[i].cnpj+')">Excluir</button>\n' +
@@ -84,11 +84,12 @@
                         },
                         method: "DELETE",
                     }).then(function (res) {
+                        console.log(res.status)
                     if (res.status == 200) {
                         var pagina = window.location.href;
                         window.location = pagina;
                     } else {
-                        alert('Erro ao excluir a empresa: ' + id)
+                        alert('Erro ao excluir a empresa: ' + id +'\n Verifique se ele está vinculado a uma Empresa')
                     }
                 })
             }
@@ -118,5 +119,8 @@
             $(this).addClass("current");
             showPage(parseInt($(this).text()))
         });
+    </script>
+    <script>
+        $(".cnpj").mask("00.000.000/0000-00");
     </script>
 </html>

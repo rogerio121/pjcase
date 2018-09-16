@@ -37,6 +37,15 @@
                     </td>
                 </tr>
                 <tr>
+                    <td><label>Telefone</label></td>
+                    <td>
+                        <div class="input-group input-group-sm mb-3">
+                            <input class="form-control input-group input-group-sm mb-3" type="telefone" name="telefone" id="telefone"
+                                   value="${cliente.dadosPessoais.telefone}" disabled>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
                     <td><label>CPF: </label></td>
                     <td>
                         <div class="input-group in  put-group-sm mb-3">
@@ -109,5 +118,6 @@
     <script src="../../../resources/JavaScript/jquery-mask.js"></script>
     <script>
         $("#cpf").mask("000.000.000-00");
+        $("#telefone").mask("(00) 0000-0000");
     </script>
 </html>

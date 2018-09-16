@@ -47,6 +47,7 @@ public class ControllerCliente {
         dadosPessoais.setCidade(request.getParameter("cidade"));
         dadosPessoais.setEstado(request.getParameter("estado"));
         dadosPessoais.setCep(request.getParameter("cep"));
+        dadosPessoais.setTelefone(request.getParameter("telefone").replaceAll("[()-]","").replace(" ",""));
 
         cliente.setDadosPessoais(dadosPessoais);
         daoCliente.upsert(cliente);
@@ -148,24 +149,16 @@ public class ControllerCliente {
     }
 
     @DeleteMapping("/cadastro/{id}")
-    public ResponseEntity<Cliente> deletarCliente(@PathVariable("id") Long id) {
-        ResponseEntity<Cliente> responseEntity = null;
+    public ResponseEntity deletarCliente(@PathVariable("id") Long id) {
+        DaoCliente daoCliente = new DaoCliente();
 
         try {
-            DaoCliente daoCliente = new DaoCliente();
             daoCliente.delete(String.valueOf(id));
+            return ResponseEntity.status(200).build();
 
-            responseEntity.ok();
-            responseEntity.status(200);
-
-            return responseEntity;
-
-        } catch (Exception e) {
-            responseEntity.status(500);
-            System.out.println("Erro na controller caso: statuscode 500 \n" + e);
-            return responseEntity;
+        } catch (SQLException erro) {
+            System.out.println("Erro ao deletar Cliente: " + erro);
+            return ResponseEntity.status(204).build();
         }
-
-
     }
 }

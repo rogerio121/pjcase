@@ -89,7 +89,7 @@
                         var pagina = window.location.href;
                         window.location = pagina;
                     } else {
-                        alert('Erro ao excluir o cliente: ' + id)
+                        alert('Erro ao excluir o cliente: ' + id + '\n Verifique se ele está vinculado a alguma Empresa')
                     }
                 })
             }

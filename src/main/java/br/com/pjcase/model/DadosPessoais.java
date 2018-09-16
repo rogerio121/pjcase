@@ -5,6 +5,7 @@ public class DadosPessoais {
 	
 	String nome;
 	String email;
+	String telefone;
 	String cpf;
 	String logradouro;
 	String cidade;
@@ -35,6 +36,13 @@ public class DadosPessoais {
 		this.email = email;
 	}
 
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
 	public String getLogradouro() {
 		return logradouro;
@@ -82,6 +90,7 @@ public class DadosPessoais {
 		return "DadosPessoais{" +
 				"nome='" + nome + '\'' +
 				", email='" + email + '\'' +
+				", telefone='" + telefone + '\'' +
 				", cpf='" + cpf + '\'' +
 				", logradouro='" + logradouro + '\'' +
 				", cidade='" + cidade + '\'' +
