@@ -16,7 +16,7 @@
             <div class="col-sm">
 
                 <h1>Clientes cadastrados</h1>
-                <input type="search" id="filtro"/><button onclick="filtrarClientes()">Filtrar</button>
+                <input type="search" id="filtro" class="form-control input-group input-group-sm mb-3" placeholder="Filtrar clientes po nome" onkeyup="filtrarClientes()"/>
                 <table class="tabela table table-hover">
                     <tr>
                         <th>Nome</th>
@@ -38,30 +38,32 @@
     <script src="../../../resources/JavaScript/bootstrap.min.js"></script>
     <script>
 
-        numeroDePaginasDaTabela()
+        numeroDePaginasDaTabela(${clientesJson})
         geraTabelaClientes()
         paginacao()
 
         function filtrarClientes(){
             var clientesJson = ${clientesJson}
+            var clientesJsonFiltrados = new Array();
             var filtro = document.getElementById('filtro').value.toUpperCase()
             document.getElementById('corpo-tabela').innerHTML = ""
 
 
             for(let i = 0; i < clientesJson.length; i++ ){
-                if(clientesJson[i].dadosPessoais.nome.toUpperCase().indexOf(filtro) > -1){
-                document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
-                    '                                <td><span class="pointer" onclick="chamaTelaViewCliente('+clientesJson[i].dadosPessoais.cpf+')">'+clientesJson[i].dadosPessoais.nome+'</span></td>\n' +
-                    '                                <td>'+clientesJson[i].dadosPessoais.email+'</td>\n' +
-                    '                                <td>\n' +
-                    '                                    <button onclick="chamaTelaEditarCliente('+clientesJson[i].dadosPessoais.cpf+')">Editar</button>\n' +
-                    '                                    <button onclick="chamaExcluirCliente('+clientesJson[i].dadosPessoais.cpf+')">Excluir</button>\n' +
-                    '                                </td>\n' +
-                    '                            </tr>'
+                if(clientesJson[i].dadosPessoais.nome.toUpperCase().indexOf(filtro) == 0){
+                    clientesJsonFiltrados.push(clientesJson[i])
+                    document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
+                        '                                <td><span class="pointer" onclick="chamaTelaViewCliente('+clientesJson[i].dadosPessoais.cpf+')">'+clientesJson[i].dadosPessoais.nome+'</span></td>\n' +
+                        '                                <td>'+clientesJson[i].dadosPessoais.email+'</td>\n' +
+                        '                                <td>\n' +
+                        '                                    <button onclick="chamaTelaEditarCliente('+clientesJson[i].dadosPessoais.cpf+')">Editar</button>\n' +
+                        '                                    <button onclick="chamaExcluirCliente('+clientesJson[i].dadosPessoais.cpf+')">Excluir</button>\n' +
+                        '                                </td>\n' +
+                        '                            </tr>'
                 }
             }
+            numeroDePaginasDaTabela(clientesJsonFiltrados)
             paginacao()
-            numeroDePaginasDaTabela()
         }
 
         function geraTabelaClientes() {
@@ -80,16 +82,18 @@
         }
 
 
-        function numeroDePaginasDaTabela() {
-            var clientesJson = ${clientesJson}
+        function numeroDePaginasDaTabela(clientesJson) {
             var pagina = 0
-            var itensPorPagina = 1
+            var itensPorPagina = 4
 
             document.getElementById('numero-das-paginas').innerHTML = ""
             for(var i = 1; i <=clientesJson.length ; i+=itensPorPagina ) {
                 pagina++
                 document.getElementById('numero-das-paginas').innerHTML += '<li class="page-item"><a class="page-link " href="#">' + pagina + '</a></li>'
             }
+
+            if (pagina < 2)
+                document.getElementById('numero-das-paginas').innerHTML = ""
         }
         
         function chamaTelaViewCliente(id) {
@@ -124,7 +128,7 @@
         }
 
         function paginacao() {
-            itensPorPagina = 1
+            itensPorPagina = 4
 
             showPage = function (pagina) {
                 $(".tb-linha").hide()

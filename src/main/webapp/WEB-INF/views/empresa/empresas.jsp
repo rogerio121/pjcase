@@ -60,6 +60,9 @@
                 pagina++
                 document.getElementById('numero-das-paginas').innerHTML += '<li class="page-item"><a class="page-link " href="#">' + pagina + '</a></li>'
             }
+
+            if (pagina < 2)
+                document.getElementById('numero-das-paginas').innerHTML = ""
         }
 
         function chamaTelaViewEmpresas(idEmpresa) {

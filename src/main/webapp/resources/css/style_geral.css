@@ -18,3 +18,7 @@ input[type="checkbox"]{
 .pointer{
     cursor: pointer;
 }
+
+#filtro{
+    width: 40% !important;
+}

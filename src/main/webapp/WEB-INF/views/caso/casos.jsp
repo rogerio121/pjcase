@@ -15,6 +15,7 @@
         <div class="row">
             <div class="col-sm">
                 <h1 id="titulo"></h1>
+                <input type="search" id="filtro" class="form-control input-group input-group-sm mb-3" placeholder="Filtrar casos por nome" onkeyup="filtrarClientes()"/>
                 <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Só ver casos que o status
@@ -46,12 +47,16 @@
             </div>
         </div>
     </body>
+
+    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
+    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
+    <script src="../../../resources/JavaScript/bootstrap.min.js"></script>
     <script>
 
         titulo()
         setFiltroStatus()
-        numeroDePaginasDaTabela()
-        geraTabelaCasos()
+        numeroDePaginasDaTabela(${casosJson})
+        filtrarClientes()
         var filtroAplicado = '${filtroAplicado}'
 
         function setFiltroStatus() {
@@ -60,6 +65,7 @@
             if (filtroAplicado)
                 document.getElementById('status').value = filtroAplicado
         }
+
         function titulo() {
             console.log(window.location.href)
             console.log(window.location.href.includes('meuscasos'))
@@ -96,15 +102,55 @@
             }
         }
 
-        function numeroDePaginasDaTabela() {
+        function filtrarClientes(){
             var casosJson = ${casosJson}
+            var casosJsonFiltrados = new Array();
+            var filtro = document.getElementById('filtro').value.toUpperCase()
+            document.getElementById('corpo-tabela').innerHTML = ""
+
+            for(let i = 0; i < casosJson.length; i++ ){
+                console.log(casosJson[i].assunto + casosJson[i].assunto.toUpperCase().indexOf(filtro))
+                if(casosJson[i].assunto.toUpperCase().indexOf(filtro) == 0) {
+                    casosJsonFiltrados.push(casosJson[i])
+                    var dataAbertura = ''
+                    var dataFechamento = ''
+
+                    if (casosJson[i].dataDeAbertura)
+                        dataAbertura = casosJson[i].dataDeAbertura
+
+                    if (casosJson[i].dataDeFechamento)
+                        dataFechamento = casosJson[i].dataDeFechamento
+
+                    document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
+                        '                                <td><span class="pointer" onclick="chamaTelaViewCaso(' + casosJson[i].idCaso + ')">' + casosJson[i].idCaso + '</span></td>\n' +
+                        '                                <td>' + casosJson[i].assunto + '</td>\n' +
+                        '                                <td>' + casosJson[i].status + '</td>\n' +
+                        '                                <td>' + dataAbertura + '</td>\n' +
+                        '                                <td>' + dataFechamento + '</td>\n' +
+                        '                                <td>\n' +
+                        '                                    <button onclick="chamaTelaEditarCaso(' + casosJson[i].idCaso + ')">Editar</button>\n' +
+                        '                                    <button onclick="chamaExcluirCaso(' + casosJson[i].idCaso + ')">Excluir</button>\n' +
+                        '                                </td>\n' +
+                        '                            </tr>'
+                }
+            }
+
+            numeroDePaginasDaTabela(casosJsonFiltrados)
+            paginacao()
+        }
+
+
+        function numeroDePaginasDaTabela(casosJson) {
             var pagina = 0
             var itensPorPagina = 6
 
+            document.getElementById('numero-das-paginas').innerHTML = ""
             for(var i = 1; i <=casosJson.length ; i+=itensPorPagina ) {
                 pagina++
                 document.getElementById('numero-das-paginas').innerHTML += '<li class="page-item"><a class="page-link " href="#">' + pagina + '</a></li>'
             }
+            if (pagina < 2)
+                document.getElementById('numero-das-paginas').innerHTML = ""
         }
 
         function chamaTelaViewCaso(id) {
@@ -153,31 +199,27 @@
             }
         }
 
-    </script>
-    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
-    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
-    <script src="../../../resources/JavaScript/bootstrap.min.js"></script>
-    <script>
-        itensPorPagina = 6
+        function paginacao() {
+            itensPorPagina = 6
 
-        showPage = function(pagina) {
-            $(".tb-linha").hide()
-            $(".tb-linha").each(function(linhas) {
-                if (linhas >= itensPorPagina * (pagina - 1) && linhas < itensPorPagina * pagina)
-                    $(this).show()
+            showPage = function(pagina) {
+                $(".tb-linha").hide()
+                $(".tb-linha").each(function(linhas) {
+                    if (linhas >= itensPorPagina * (pagina - 1) && linhas < itensPorPagina * pagina)
+                        $(this).show()
 
-            })
+                })
+            }
+
+            //O numero 1 é a página de inicio
+            showPage(1);
+
+            //PEga o Numero da página corrente e passa para o método showPage
+            $("#numero-das-paginas li a").click(function() {
+                $("#numero-das-paginas li a").removeClass("current");
+                $(this).addClass("current");
+                showPage(parseInt($(this).text()))
+            });
         }
-
-        //O numero 1 é a página de inicio
-        showPage(1);
-
-        //PEga o Numero da página corrente e passa para o método showPage
-        $("#numero-das-paginas li a").click(function() {
-            $("#numero-das-paginas li a").removeClass("current");
-            $(this).addClass("current");
-            showPage(parseInt($(this).text()))
-        });
     </script>
-
 </html>

@@ -78,6 +78,7 @@ public class ControllerCliente {
     public ModelAndView buscaClientes(HttpServletRequest request) {
         String clientesJson = "";
         DaoCliente daoCliente = new DaoCliente();
+        ModelAndView mv;
 
         try {
             Usuario usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
@@ -87,13 +88,13 @@ public class ControllerCliente {
             else
                 clientesJson = new Gson().toJson(daoCliente.buscaClientesPertecentesEmpresa(usuarioLogado.getIdEmpresaRelacionada()));
 
-            ModelAndView mv = new ModelAndView("cliente/clientes");
+            mv = new ModelAndView("cliente/clientes");
             mv.addObject("clientesJson", clientesJson);
-            return mv;
         } catch (Exception e) {
             System.out.println("Erro ao listar clientes: " + e);
-            return null;
+            mv = new ModelAndView("redirect:/");
         }
+        return mv;
     }
 
     @RequestMapping("/todosclientes")
