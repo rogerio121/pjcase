@@ -14,7 +14,7 @@
     <body>
         <div class="div-table">
             <h1>Usuários cadastrados</h1>
-            <input type="search" id="filtro" class="form-control input-group input-group-sm mb-3" placeholder="Filtrar empresa por nome" onkeyup="geraTabelaUsuarios()"/>
+            <input type="search" id="filtro" class="form-control input-group input-group-sm mb-3" placeholder="Filtrar usuário por nome" onkeyup="geraTabelaUsuarios()"/>
             <table id="tb-casos" class="tabela table table-hover">
                 <tr>
                     <th>Nome</th>
@@ -88,7 +88,6 @@
         function chamaTelaEditarUsuariio(id) {
             window.location = '/usuario/cadastro/editar/' + id
         }
-
 
         function chamaExcluirUsuario(id) {
             var realmenteQuerExcluir

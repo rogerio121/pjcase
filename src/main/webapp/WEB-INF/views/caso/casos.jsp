@@ -57,6 +57,7 @@
         setFiltroStatus()
         numeroDePaginasDaTabela(${casosJson})
         geraTabelaCasos()
+        
         var filtroAplicado = '${filtroAplicado}'
 
         function setFiltroStatus() {

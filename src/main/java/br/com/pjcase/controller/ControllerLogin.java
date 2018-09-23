@@ -4,6 +4,7 @@ import br.com.pjcase.dao.DaoCaso;
 import br.com.pjcase.dao.DaoUsuario;
 import br.com.pjcase.model.Caso;
 import br.com.pjcase.model.Usuario;
+import com.google.gson.Gson;
 import com.sun.deploy.net.HttpResponse;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
@@ -35,19 +36,26 @@ public class ControllerLogin {
         DaoCaso daoCaso = new DaoCaso();
         int meusCasosAbertos = 0;
         int meusCasosEmAtendimento = 0;
+        ModelAndView mv;
 
-        List<Caso> casosSemProprietaio = new ArrayList<Caso>();
+        try {
+            String casosSemProprietaioJson;
 
-        Usuario usuarioLogado = new Usuario();
-        usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
-        casosSemProprietaio = daoCaso.listarCasosSemProprietarios();
-        meusCasosAbertos = daoCaso.buscarNumeroDeCasosPorStatusPorIdDoUsuario(usuarioLogado.getId(), "Aberto");
-        meusCasosEmAtendimento = daoCaso.buscarNumeroDeCasosPorStatusPorIdDoUsuario(usuarioLogado.getId(), "Em atendimento");
-        request.setAttribute("casosSemProprietaio", casosSemProprietaio);
+            Usuario usuarioLogado = new Usuario();
+            usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
+            casosSemProprietaioJson = new Gson().toJson(daoCaso.listarCasosSemProprietarios());
+            meusCasosAbertos = daoCaso.buscarNumeroDeCasosPorStatusPorIdDoUsuario(usuarioLogado.getId(), "Aberto");
+            meusCasosEmAtendimento = daoCaso.buscarNumeroDeCasosPorStatusPorIdDoUsuario(usuarioLogado.getId(), "Em atendimento");
 
-        ModelAndView mv = new ModelAndView("telaInicial");
-        mv.addObject("meusCasosAbertos", meusCasosAbertos);
-        mv.addObject("meusCasosEmAtendimento", meusCasosEmAtendimento);
+            request.setAttribute("casosSemProprietaioJson", casosSemProprietaioJson);
+            mv = new ModelAndView("telaInicial");
+            mv.addObject("meusCasosAbertos", meusCasosAbertos);
+            mv.addObject("meusCasosEmAtendimento", meusCasosEmAtendimento);
+        } catch (Exception erro) {
+            System.out.println("Erro ao acessar a Tela inicial: " + erro);
+            mv = new ModelAndView("redirect:/");
+        }
+
         return mv;
     }
 
@@ -59,15 +67,10 @@ public class ControllerLogin {
         try {
             usuario = daoUsuario.getByEmailESenha(request.getParameter("email"), request.getParameter("senha"));
 
-            if (usuario.getDadosPessoais() != null) {
-
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("usuarioLogado", usuario);
                 //sessao.setMaxInactiveInterval(3000);
                 return "redirect:/telaInicial";
-            }
-            else
-                return "redirect:/";
 
         } catch (Exception e) {
             System.out.println("Erro ao logar: " + e);
@@ -87,11 +90,11 @@ public class ControllerLogin {
                 return ResponseEntity.ok(usuarioValidado);
 
             else
-                return ResponseEntity.noContent().build();
+                return ResponseEntity.status(204).build();
 
         } catch (Exception e) {
             System.out.println("Erro ao validar usuário: " + e);
-            return (ResponseEntity<Usuario>) ResponseEntity.status(500);
+            return ResponseEntity.status(500).build();
         }
     }
 

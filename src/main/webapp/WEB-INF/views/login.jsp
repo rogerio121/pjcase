@@ -21,12 +21,12 @@
                     <input class="form-control input-group" type="password" name="senha" required>
                     <label>Senha</label>
                 </div>
-                <button class="btn btn-primary" onclick="x()">Logar</button>
+                <button class="btn btn-primary" onclick="logar()">Logar</button>
             </form>
         </div>
 
         <script>
-            function x() {
+            function logar() {
                 let email = document.getElementsByName('email')[0].value
                 let senha = document.getElementsByName('senha')[0].value
                 let telaLogin = window.location
@@ -53,7 +53,8 @@
                             console.log(res.status)
                             if (res.status == 204) {
                                 alert("Login inválido!")
-                                window.location = telaLogin;
+                            }else{
+                                window.location.href = "/telaInicial";
                             }
                         })
                 }
