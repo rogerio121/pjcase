@@ -1,17 +1,16 @@
 package br.com.pjcase.model;
 
 public class DadosPessoais {
-	
-	
-	String nome;
-	String email;
-	String telefone;
-	String cpf;
-	String logradouro;
-	String cidade;
-	String bairro;
-	String estado;
-	String cep;
+
+	private String nome;
+	private String email;
+	private String telefone;
+	private String cpf;
+	private String logradouro;
+	private String cidade;
+	private String bairro;
+	private String estado;
+	private String cep;
 
 
 

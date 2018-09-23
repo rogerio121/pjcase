@@ -1,12 +1,12 @@
 package br.com.pjcase.model;
 
 public class Usuario {
-	
-	String senha;
-	String idEmpresaRelacionada;
-	DadosPessoais dadosPessoais;
-	Boolean admin;
-	int id;
+
+	private String senha;
+	private String idEmpresaRelacionada;
+	private DadosPessoais dadosPessoais;
+	private Boolean admin;
+	private int id;
 
 
 	public String getIdEmpresaRelacionada() {

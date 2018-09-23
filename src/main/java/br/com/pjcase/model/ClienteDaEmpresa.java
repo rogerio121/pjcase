@@ -1,8 +1,9 @@
 package br.com.pjcase.model;
 
 public class ClienteDaEmpresa {
-    String cpfCliente;
-    String idEmpresa;
+
+    private String cpfCliente;
+    private String idEmpresa;
 
     public String getCpfCliente() {
         return cpfCliente;

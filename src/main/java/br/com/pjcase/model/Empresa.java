@@ -1,14 +1,14 @@
 package br.com.pjcase.model;
 
 public class Empresa {
-	
-	String nome;
-	String cnpj;
-	String logradouro;
-	String cidade;
-	String bairro;
-	String estado;
-	String cep;
+
+	private String nome;
+	private String cnpj;
+	private String logradouro;
+	private String cidade;
+	private String bairro;
+	private String estado;
+	private String cep;
 
 
 	public String getNome() {

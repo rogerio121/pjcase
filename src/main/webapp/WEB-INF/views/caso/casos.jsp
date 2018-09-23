@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-sm">
                 <h1 id="titulo"></h1>
-                <input type="search" id="filtro" class="form-control input-group input-group-sm mb-3" placeholder="Filtrar casos por nome" onkeyup="filtrarClientes()"/>
+                <input type="search" id="filtro" class="form-control input-group input-group-sm mb-3" placeholder="Filtrar casos por assunto" onkeyup="geraTabelaCasos()"/>
                 <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Só ver casos que o status
@@ -56,7 +56,7 @@
         titulo()
         setFiltroStatus()
         numeroDePaginasDaTabela(${casosJson})
-        filtrarClientes()
+        geraTabelaCasos()
         var filtroAplicado = '${filtroAplicado}'
 
         function setFiltroStatus() {
@@ -75,34 +75,7 @@
                 document.getElementById('titulo').innerText = 'Todos os Casos'
         }
 
-        function geraTabelaCasos() {
-            var casosJson = ${casosJson}
-
-            for(let i = 0; i < casosJson.length; i++ ){
-                var dataAbertura = ''
-                var dataFechamento = ''
-
-                if(casosJson[i].dataDeAbertura)
-                    dataAbertura = casosJson[i].dataDeAbertura
-
-                if(casosJson[i].dataDeFechamento)
-                    dataFechamento = casosJson[i].dataDeFechamento
-
-                document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
-                    '                                <td><span class="pointer" onclick="chamaTelaViewCaso('+casosJson[i].idCaso+')">'+casosJson[i].idCaso+'</span></td>\n' +
-                    '                                <td>'+casosJson[i].assunto+'</td>\n' +
-                    '                                <td>'+casosJson[i].status+'</td>\n' +
-                    '                                <td>'+dataAbertura+'</td>\n' +
-                    '                                <td>'+dataFechamento+'</td>\n' +
-                    '                                <td>\n' +
-                    '                                    <button onclick="chamaTelaEditarCaso('+casosJson[i].idCaso+')">Editar</button>\n' +
-                    '                                    <button onclick="chamaExcluirCaso('+casosJson[i].idCaso+')">Excluir</button>\n' +
-                    '                                </td>\n' +
-                    '                            </tr>'
-            }
-        }
-
-        function filtrarClientes(){
+        function geraTabelaCasos(){
             var casosJson = ${casosJson}
             var casosJsonFiltrados = new Array();
             var filtro = document.getElementById('filtro').value.toUpperCase()

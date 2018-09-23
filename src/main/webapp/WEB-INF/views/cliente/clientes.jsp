@@ -16,7 +16,7 @@
             <div class="col-sm">
 
                 <h1>Clientes cadastrados</h1>
-                <input type="search" id="filtro" class="form-control input-group input-group-sm mb-3" placeholder="Filtrar clientes po nome" onkeyup="filtrarClientes()"/>
+                <input type="search" id="filtro" class="form-control input-group input-group-sm mb-3" placeholder="Filtrar clientes por nome" onkeyup="geraTabelaClientes()"/>
                 <table class="tabela table table-hover">
                     <tr>
                         <th>Nome</th>
@@ -42,7 +42,7 @@
         geraTabelaClientes()
         paginacao()
 
-        function filtrarClientes(){
+        function geraTabelaClientes(){
             var clientesJson = ${clientesJson}
             var clientesJsonFiltrados = new Array();
             var filtro = document.getElementById('filtro').value.toUpperCase()
@@ -65,22 +65,6 @@
             numeroDePaginasDaTabela(clientesJsonFiltrados)
             paginacao()
         }
-
-        function geraTabelaClientes() {
-            var clientesJson = ${clientesJson}
-
-            for(let i = 0; i < clientesJson.length; i++ ){
-                document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
-                    '                                <td><span class="pointer" onclick="chamaTelaViewCliente('+clientesJson[i].dadosPessoais.cpf+')">'+clientesJson[i].dadosPessoais.nome+'</span></td>\n' +
-                    '                                <td>'+clientesJson[i].dadosPessoais.email+'</td>\n' +
-                    '                                <td>\n' +
-                    '                                    <button onclick="chamaTelaEditarCliente('+clientesJson[i].dadosPessoais.cpf+')">Editar</button>\n' +
-                    '                                    <button onclick="chamaExcluirCliente('+clientesJson[i].dadosPessoais.cpf+')">Excluir</button>\n' +
-                    '                                </td>\n' +
-                    '                            </tr>'
-            }
-        }
-
 
         function numeroDePaginasDaTabela(clientesJson) {
             var pagina = 0

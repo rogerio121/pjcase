@@ -64,7 +64,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label>Bairrro</label></td>
+                    <td><label>Bairro</label></td>
                     <td>
                         <div class="input-group in  put-group-sm mb-3">
                             <input class="form-control input-group input-group-sm mb-3" type="text"

@@ -41,7 +41,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>Bairrro: </label></td>
+                                <td><label>Bairro: </label></td>
                                 <td>
                                     <input class="form-control input-group input-group-sm mb-3" type="text" value="${empresa.bairro}" disabled>
                                 </td>

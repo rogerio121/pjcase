@@ -14,6 +14,7 @@
     <body>
         <div class="div-table">
             <h1>Usuários cadastrados</h1>
+            <input type="search" id="filtro" class="form-control input-group input-group-sm mb-3" placeholder="Filtrar empresa por nome" onkeyup="geraTabelaUsuarios()"/>
             <table id="tb-casos" class="tabela table table-hover">
                 <tr>
                     <th>Nome</th>
@@ -29,35 +30,45 @@
             </nav>
         </div>
     </body>
+
+    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
+    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
+    <script src="../../../resources/JavaScript/bootstrap.min.js"></script>
     <script>
 
-        numeroDePaginasDaTabela()
-        geraTabelaCasos()
+        numeroDePaginasDaTabela(${usuariosJson})
+        geraTabelaUsuarios()
 
-        function geraTabelaCasos() {
+        function geraTabelaUsuarios() {
             var usuariosJson = ${usuariosJson}
+            var usuariossJsonFiltrados = new Array()
+            var filtro = document.getElementById('filtro').value.toUpperCase()
+            document.getElementById('corpo-tabela').innerHTML = ""
 
-            for(let i = 0; i < usuariosJson.length; i++ ){
+            for(let i = 0; i < usuariosJson.length; i++ ) {
                 var empresa = ''
 
-                if(usuariosJson[i].idEmpresaRelacionada)
+                if (usuariosJson[i].idEmpresaRelacionada)
                     empresa = usuariosJson[i].idEmpresaRelacionada
-
-                document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
-                    '                                <td><span class="pointer" onclick="chamaTelaViewUsuariio('+usuariosJson[i].id+')">'+usuariosJson[i].dadosPessoais.nome+'</span></td>\n' +
-                    '                                <td>'+usuariosJson[i].dadosPessoais.email+'</td>\n' +
-                    '                                <td>'+empresa+'</td>\n' +
-                    '                                <td>\n' +
-                    '                                    <button onclick="chamaTelaEditarUsuariio('+usuariosJson[i].id+')">Editar</button>\n' +
-                    '                                    <button onclick="chamaExcluirUsuario('+usuariosJson[i].id+')">Excluir</button>\n' +
-                    '                                </td>\n' +
-                    '                            </tr>'
+                if (usuariosJson[i].dadosPessoais.nome.toUpperCase().indexOf(filtro) == 0) {
+                    usuariossJsonFiltrados.push(usuariosJson[i])
+                    document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
+                        '                                <td><span class="pointer" onclick="chamaTelaViewUsuariio(' + usuariosJson[i].id + ')">' + usuariosJson[i].dadosPessoais.nome + '</span></td>\n' +
+                        '                                <td>' + usuariosJson[i].dadosPessoais.email + '</td>\n' +
+                        '                                <td>' + empresa + '</td>\n' +
+                        '                                <td>\n' +
+                        '                                    <button onclick="chamaTelaEditarUsuariio(' + usuariosJson[i].id + ')">Editar</button>\n' +
+                        '                                    <button onclick="chamaExcluirUsuario(' + usuariosJson[i].id + ')">Excluir</button>\n' +
+                        '                                </td>\n' +
+                        '                            </tr>'
+                }
             }
+            numeroDePaginasDaTabela(usuariossJsonFiltrados)
+            paginacao()
         }
 
 
-        function numeroDePaginasDaTabela() {
-            var usuariosJson = ${usuariosJson}
+        function numeroDePaginasDaTabela(usuariosJson) {
             var pagina = 0
             var itensPorPagina = 6
 
@@ -101,30 +112,28 @@
                 })
             }
         }
-    </script>
-    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
-    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
-    <script src="../../../resources/JavaScript/bootstrap.min.js"></script>
-    <script>
-        itensPorPagina = 6
 
-        showPage = function(pagina) {
-            $(".tb-linha").hide()
-            $(".tb-linha").each(function(linhas) {
-                if (linhas >= itensPorPagina * (pagina - 1) && linhas < itensPorPagina * pagina)
-                    $(this).show()
+        function paginacao() {
+            itensPorPagina = 6
 
-            })
+            showPage = function (pagina) {
+                $(".tb-linha").hide()
+                $(".tb-linha").each(function (linhas) {
+                    if (linhas >= itensPorPagina * (pagina - 1) && linhas < itensPorPagina * pagina)
+                        $(this).show()
+
+                })
+            }
+
+            //O numero 1 é a página de inicio
+            showPage(1);
+
+            //PEga o Numero da página corrente e passa para o método showPage
+            $("#numero-das-paginas li a").click(function () {
+                $("#numero-das-paginas li a").removeClass("current");
+                $(this).addClass("current");
+                showPage(parseInt($(this).text()))
+            });
         }
-
-        //O numero 1 é a página de inicio
-        showPage(1);
-
-        //PEga o Numero da página corrente e passa para o método showPage
-        $("#numero-das-paginas li a").click(function() {
-            $("#numero-das-paginas li a").removeClass("current");
-            $(this).addClass("current");
-            showPage(parseInt($(this).text()))
-        });
     </script>
 </html>

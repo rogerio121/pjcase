@@ -4,16 +4,16 @@ import java.sql.Date;
 
 public class Caso {
 
-    int idCaso;
-    String assunto;
-    String dataDeAbertura;
-    String dataDeFechamento;
-    String mensagem;
-    String status;
-    Empresa empresa;
-    Usuario usuario;
-    Cliente cliente;
-    String resolucao;
+    private int idCaso;
+    private String assunto;
+    private String dataDeAbertura;
+    private String dataDeFechamento;
+    private String mensagem;
+    private String status;
+    private Empresa empresa;
+    private Usuario usuario;
+    private Cliente cliente;
+    private String resolucao;
 
 
     public String getAssunto() {

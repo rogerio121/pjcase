@@ -15,6 +15,7 @@
     <body>
         <div class="div-table">
             <h1>Empresas cadastradas</h1>
+            <input type="search" id="filtro" class="form-control input-group input-group-sm mb-3" placeholder="Filtrar empresa por nome" onkeyup="geraTabelaEmpresas()"/>
             <table class="tabela table table-hover">
                 <tr>
                     <th>Nome</th>
@@ -29,33 +30,45 @@
             </nav>
         </div>
     </body>
+
+    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
+    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
+    <script src="../../../resources/JavaScript/bootstrap.min.js"></script>
     <script>
 
-        numeroDePaginasDaTabela()
-        geraTabelaCasos()
+        numeroDePaginasDaTabela(${empresasJson})
+        geraTabelaEmpresas()
 
-        function geraTabelaCasos() {
+        function geraTabelaEmpresas() {
             var empresasJson = ${empresasJson}
+            var empresasJsonFiltradas = new Array()
+            var filtro = document.getElementById('filtro').value.toUpperCase()
+            document.getElementById('corpo-tabela').innerHTML = ""
 
-            for(let i = 0; i < empresasJson.length; i++ ){
-                document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
-                    '                                <td><span class="pointer" onclick="chamaTelaViewEmpresas('+empresasJson[i].cnpj+')">'+empresasJson[i].nome+'</span></td>\n' +
-                    '                                <td class="cnpj">'+empresasJson[i].cnpj+'</td>\n' +
-                    '                                <td>\n' +
-                    '                                    <button onclick="chamaTelaEditarEmpresa('+empresasJson[i].cnpj+')">Editar</button>\n' +
-                    '                                    <button onclick="chamaExcluirEmpresa('+empresasJson[i].cnpj+')">Excluir</button>\n' +
-                    '                                </td>\n' +
-                    '                            </tr>'
+
+            for(let i = 0; i < empresasJson.length; i++ ) {
+                if (empresasJson[i].nome.toUpperCase().indexOf(filtro) == 0) {
+                    empresasJsonFiltradas.push(empresasJson[i])
+                    document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
+                        '                                <td><span class="pointer" onclick="chamaTelaViewEmpresas(' + empresasJson[i].cnpj + ')">' + empresasJson[i].nome + '</span></td>\n' +
+                        '                                <td class="cnpj">' + empresasJson[i].cnpj + '</td>\n' +
+                        '                                <td>\n' +
+                        '                                    <button onclick="chamaTelaEditarEmpresa(' + empresasJson[i].cnpj + ')">Editar</button>\n' +
+                        '                                    <button onclick="chamaExcluirEmpresa(' + empresasJson[i].cnpj + ')">Excluir</button>\n' +
+                        '                                </td>\n' +
+                        '                            </tr>'
+                }
             }
+            numeroDePaginasDaTabela(empresasJsonFiltradas)
+            paginacao()
         }
 
 
-        function numeroDePaginasDaTabela() {
-            var empresasJson = ${empresasJson}
+        function numeroDePaginasDaTabela(empresasJson) {
             var pagina = 0
             var itensPorPagina = 6
 
-            console.log(empresasJson.length)
+            document.getElementById('numero-das-paginas').innerHTML = ""
             for(var i = 1; i <= empresasJson.length ; i+=itensPorPagina ) {
                 pagina++
                 document.getElementById('numero-das-paginas').innerHTML += '<li class="page-item"><a class="page-link " href="#">' + pagina + '</a></li>'
@@ -97,31 +110,29 @@
                 })
             }
         }
-    </script>
-    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
-    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
-    <script src="../../../resources/JavaScript/bootstrap.min.js"></script>
-    <script>
-        itensPorPagina = 6
 
-        showPage = function(pagina) {
-            $(".tb-linha").hide()
-            $(".tb-linha").each(function(linhas) {
-                if (linhas >= itensPorPagina * (pagina - 1) && linhas < itensPorPagina * pagina)
-                    $(this).show()
+        function paginacao(){
+            itensPorPagina = 6
 
-            })
+            showPage = function(pagina) {
+                $(".tb-linha").hide()
+                $(".tb-linha").each(function(linhas) {
+                    if (linhas >= itensPorPagina * (pagina - 1) && linhas < itensPorPagina * pagina)
+                        $(this).show()
+
+                })
+            }
+
+            //O numero 1 é a página de inicio
+            showPage(1);
+
+            //PEga o Numero da página corrente e passa para o método showPage
+            $("#numero-das-paginas li a").click(function() {
+                $("#numero-das-paginas li a").removeClass("current");
+                $(this).addClass("current");
+                showPage(parseInt($(this).text()))
+            });
         }
-
-        //O numero 1 é a página de inicio
-        showPage(1);
-
-        //PEga o Numero da página corrente e passa para o método showPage
-        $("#numero-das-paginas li a").click(function() {
-            $("#numero-das-paginas li a").removeClass("current");
-            $(this).addClass("current");
-            showPage(parseInt($(this).text()))
-        });
     </script>
     <script>
         $(".cnpj").mask("00.000.000/0000-00");

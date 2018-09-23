@@ -4,8 +4,8 @@ package br.com.pjcase.model;
 
 public class Cliente {
 
-    Empresa empresa;
-    DadosPessoais dadosPessoais;
+    private Empresa empresa;
+    private DadosPessoais dadosPessoais;
 
     public Empresa getEmpresa() {
         return empresa;
