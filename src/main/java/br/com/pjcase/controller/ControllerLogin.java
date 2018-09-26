@@ -19,7 +19,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -34,23 +38,32 @@ public class ControllerLogin {
     @RequestMapping("telaInicial")
     public  ModelAndView login2(HttpServletRequest request){
         DaoCaso daoCaso = new DaoCaso();
-        int meusCasosAbertos = 0;
-        int meusCasosEmAtendimento = 0;
         ModelAndView mv;
 
         try {
+            int mesAtual;
+            int meusCasosAbertos = 0;
+            int meusCasosEmAtendimento = 0;
+            int meusCasosFechados = 0;
             String casosSemProprietaioJson;
 
             Usuario usuarioLogado = new Usuario();
             usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
             casosSemProprietaioJson = new Gson().toJson(daoCaso.listarCasosSemProprietarios());
-            meusCasosAbertos = daoCaso.buscarNumeroDeCasosPorStatusPorIdDoUsuario(usuarioLogado.getId(), "Aberto");
-            meusCasosEmAtendimento = daoCaso.buscarNumeroDeCasosPorStatusPorIdDoUsuario(usuarioLogado.getId(), "Em atendimento");
+
+            Date dataDeHoje = new Date();
+            LocalDate localDate = dataDeHoje.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            mesAtual = localDate.getMonthValue();
+
+            meusCasosAbertos = daoCaso.buscarNumeroDeCasosPorStatusPorIdDoUsuarioPorMes(usuarioLogado.getId(), "Aberto", mesAtual);
+            meusCasosEmAtendimento = daoCaso.buscarNumeroDeCasosPorStatusPorIdDoUsuarioPorMes(usuarioLogado.getId(), "Em atendimento", mesAtual);
 
             request.setAttribute("casosSemProprietaioJson", casosSemProprietaioJson);
             mv = new ModelAndView("telaInicial");
             mv.addObject("meusCasosAbertos", meusCasosAbertos);
             mv.addObject("meusCasosEmAtendimento", meusCasosEmAtendimento);
+            mv.addObject("meusCasosFechados", meusCasosFechados);
+
         } catch (Exception erro) {
             System.out.println("Erro ao acessar a Tela inicial: " + erro);
             mv = new ModelAndView("redirect:/");

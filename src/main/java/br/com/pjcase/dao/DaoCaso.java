@@ -495,17 +495,18 @@ public class DaoCaso {
         }
     }
 
-    public Integer buscarNumeroDeCasosPorStatusPorIdDoUsuario(int idUsuario, String status){
+    public Integer buscarNumeroDeCasosPorStatusPorIdDoUsuarioPorMes(int idUsuario, String status, int mes){
         int result = 0;
 
         String sql = "SELECT COUNT(*) AS total " +
                     "FROM caso " +
-                    "WHERE cas_status = ? AND usu_id = ?";
+                    "WHERE cas_status = ? AND usu_id = ? AND MONTH(cas_data_de_abertura) = ? ";
 
         try {
             PreparedStatement pstm = conexao.prepareStatement(sql);
             pstm.setString(1, status);
             pstm.setInt(2, idUsuario);
+            pstm.setInt(3, mes);
 
             ResultSet rs = pstm.executeQuery();
             if(rs.next())

@@ -48,9 +48,9 @@
                 </div>
 
                 <div>
-                    <h5>Meus casos em atendimento</h5>
+                    <h5>Meus casos fechados</h5>
                     <img src="../resources/imagens/circulo-azul.png" class="circulo">
-                    <h1 class="numero">${meusCasosEmAtendimento}</h1>
+                    <h1 class="numero">${meusCasosFechados}</h1>
                 </div>
             </div>
         </div>
