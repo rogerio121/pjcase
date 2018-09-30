@@ -2,14 +2,17 @@ package br.com.pjcase.controller;
 
 import br.com.pjcase.conexao.ConexaoBanco;
 import br.com.pjcase.dao.DaoCaso;
+import br.com.pjcase.dao.DaoCliente;
 import br.com.pjcase.dao.DaoUsuario;
 import br.com.pjcase.model.*;
+import br.com.pjcase.util.EnvioDeEmail;
 import com.google.gson.Gson;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.rmi.CORBA.Util;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
@@ -28,9 +31,11 @@ public class ControllerCaso {
 
     @RequestMapping("/salvar")
     public ModelAndView salvarCaso(HttpServletRequest request) {
+        ModelAndView mv;
         Caso caso = new Caso();
         Caso casoExistente = null;
         DaoCaso daoCaso = new DaoCaso();
+
 
         try {
             request.setCharacterEncoding("UTF-8");
@@ -57,32 +62,36 @@ public class ControllerCaso {
         Empresa empresa = new Empresa();
         empresa.setCnpj(request.getParameter("empresa.cnpj"));
 
-        /*
-        //Usuario
-        Usuario usuario = new Usuario();
-        DadosPessoais dadosPessoaisUsuario = new DadosPessoais();
-        dadosPessoaisUsuario.setCpf(request.getParameter("usuario.dadospessoais.cpf"));
-        usuario.setDadosPessoais(dadosPessoaisCliente);
-        */
-
         caso.setCliente(cliente);
         caso.setEmpresa(empresa);
 
         //Caso seja uma edição o campo IdCaso será populado, do Contrário não
         try {
             caso.setIdCaso(Integer.parseInt(request.getParameter("idCaso")));
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
         try {
             daoCaso.upsert(caso);
-        }catch (Exception erro){
+
+            // Se o caso for fechado o cliente receberá um email informando sobre o fechamento do mesmo
+            if (caso.fechouHoje("yyyy-MM-dd")) {
+                EnvioDeEmail envioDeEmail = new EnvioDeEmail();
+                DaoCliente daoCliente = new DaoCliente();
+
+                //Sobrescrevo a variável cliente com o retorno do banco
+                cliente = daoCliente.getById(cliente.getDadosPessoais().getCpf());
+                envioDeEmail.enviarEmail(cliente.getDadosPessoais().getEmail(), "Caso Fechado", "Fechou");
+
+                mv = new ModelAndView("caso/casoView");
+                mv.addObject("caso", caso);
+            }
+
+        } catch (Exception erro) {
             System.out.println("Erro ao usar o upsert em Caso: " + erro);
+
         }
 
-        ModelAndView mv = new ModelAndView("caso/casoView");
-        mv.addObject("caso", caso);
-
-        ConexaoBanco.FecharConexao();
         return mv;
     }
 
@@ -117,7 +126,7 @@ public class ControllerCaso {
 
 
     @RequestMapping("/meuscasos/{statusCaso}")
-    public ModelAndView buscaMeusCasos(@PathVariable("statusCaso")String statusCaso, HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView buscaMeusCasos(@PathVariable("statusCaso") String statusCaso, HttpServletRequest request, HttpServletResponse response) {
         DaoCaso daoCaso = new DaoCaso();
         String casosDoUsuarioLogadoJson;
 
@@ -136,7 +145,7 @@ public class ControllerCaso {
 
             return mv;
 
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Erro ao carregar 'meusCasos': " + e);
             return null;
         }
@@ -161,7 +170,7 @@ public class ControllerCaso {
 
             return mv;
 
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Erro ao carregar 'todosOsCasos': " + e);
             return null;
         }
@@ -177,14 +186,14 @@ public class ControllerCaso {
             caso = daoCaso.buscarCasoCompleto(Math.toIntExact(id));
 
             //Caso o caso não tenha usuário, os detalhes do casos serão trazidos por esse método
-            if(caso ==  null)
-               caso = daoCaso.buscarCasoCompletoSemUsuario(Math.toIntExact(id));
+            if (caso == null)
+                caso = daoCaso.buscarCasoCompletoSemUsuario(Math.toIntExact(id));
 
             mv.addObject("caso", caso);
 
             try {
                 mv.addObject("usuario", caso.getUsuario());
-            }catch (Exception erro){
+            } catch (Exception erro) {
                 //Caso sem usuário
             }
 
@@ -272,7 +281,7 @@ public class ControllerCaso {
         try {
             daoCaso.upsert(caso);
             return ResponseEntity.status(200).build();
-        }catch (SQLException erro){
+        } catch (SQLException erro) {
             System.out.println("Erro ao inserir cliente via Post: " + erro);
             return ResponseEntity.status(204).build();
         }

@@ -1,6 +1,7 @@
 package br.com.pjcase.model;
 
-import java.sql.Date;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class Caso {
 
@@ -102,6 +103,14 @@ public class Caso {
         this.cliente = cliente;
     }
 
+
+    public Boolean fechouHoje(String formatoDaData){
+        String hojeS;
+        Date hojeD = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat(formatoDaData);
+        hojeS = formato.format(hojeD);
+        return this.getDataDeFechamento().equalsIgnoreCase(hojeS);
+    }
 
     @Override
     public String toString() {

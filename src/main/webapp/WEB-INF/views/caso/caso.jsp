@@ -105,6 +105,8 @@
 
             if(!resolucao && status == 'Fechado') {
                 alert('Resolução é obrigatória em Casos fechados')
+            }else{
+                document.getElementById('form-caso').submit();
             }
         }
 

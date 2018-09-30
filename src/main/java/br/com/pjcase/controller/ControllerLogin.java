@@ -57,6 +57,7 @@ public class ControllerLogin {
 
             meusCasosAbertos = daoCaso.buscarNumeroDeCasosPorStatusPorIdDoUsuarioPorMes(usuarioLogado.getId(), "Aberto", mesAtual);
             meusCasosEmAtendimento = daoCaso.buscarNumeroDeCasosPorStatusPorIdDoUsuarioPorMes(usuarioLogado.getId(), "Em atendimento", mesAtual);
+            meusCasosFechados = daoCaso.buscarNumeroDeCasosPorStatusPorIdDoUsuarioPorMes(usuarioLogado.getId(), "Fechado", mesAtual);
 
             request.setAttribute("casosSemProprietaioJson", casosSemProprietaioJson);
             mv = new ModelAndView("telaInicial");

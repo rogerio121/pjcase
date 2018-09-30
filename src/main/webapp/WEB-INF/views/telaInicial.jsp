@@ -112,7 +112,7 @@
                             '                                <td>' + casosJson[i].assunto + '</td>\n' +
                             '                                <td>' + dataAbertura + '</td>\n' +
                             '                                <td>\n' +
-                            '                                    <button onclick="chamaTelaEditarCaso(' + casosJson[i].idCaso + ')">Editar</button>\n' +
+                            '                                    <button onclick="pegarCaso(' + casosJson[i].idCaso + ')">Pegar Caso</button>\n' +
                             '                                    <button onclick="chamaExcluirCaso(' + casosJson[i].idCaso + ')">Excluir</button>\n' +
                             '                                </td>\n' +
                             '                            </tr>'
