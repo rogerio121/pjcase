@@ -82,15 +82,15 @@ public class ControllerCaso {
                 //Sobrescrevo a variável cliente com o retorno do banco
                 cliente = daoCliente.getById(cliente.getDadosPessoais().getCpf());
                 envioDeEmail.enviarEmail(cliente.getDadosPessoais().getEmail(), "Caso Fechado", "Fechou");
-
-                mv = new ModelAndView("caso/casoView");
-                mv.addObject("caso", caso);
             }
 
         } catch (Exception erro) {
             System.out.println("Erro ao usar o upsert em Caso: " + erro);
-
         }
+
+        mv = new ModelAndView("caso/casoView");
+        mv.addObject("caso", caso);
+
 
         return mv;
     }

@@ -112,8 +112,8 @@
                             '                                <td>' + casosJson[i].assunto + '</td>\n' +
                             '                                <td>' + dataAbertura + '</td>\n' +
                             '                                <td>\n' +
-                            '                                    <button onclick="pegarCaso(' + casosJson[i].idCaso + ')">Pegar Caso</button>\n' +
-                            '                                    <button onclick="chamaExcluirCaso(' + casosJson[i].idCaso + ')">Excluir</button>\n' +
+                            '                                    <button class="btn btn-primary" onclick="pegarCaso(' + casosJson[i].idCaso + ')">Pegar Caso</button>\n' +
+                            '                                    <button class="btn btn-danger" onclick="chamaExcluirCaso(' + casosJson[i].idCaso + ')"><i class="fas fa-trash-alt"></i> Excluir</button>\n' +
                             '                                </td>\n' +
                             '                            </tr>'
                     }

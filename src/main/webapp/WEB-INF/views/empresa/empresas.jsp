@@ -53,8 +53,8 @@
                         '                                <td><span class="pointer" onclick="chamaTelaViewEmpresas(' + empresasJson[i].cnpj + ')">' + empresasJson[i].nome + '</span></td>\n' +
                         '                                <td class="cnpj">' + empresasJson[i].cnpj + '</td>\n' +
                         '                                <td>\n' +
-                        '                                    <button onclick="chamaTelaEditarEmpresa(' + empresasJson[i].cnpj + ')">Editar</button>\n' +
-                        '                                    <button onclick="chamaExcluirEmpresa(' + empresasJson[i].cnpj + ')">Excluir</button>\n' +
+                        '                                    <button class="btn btn-primary" onclick="chamaTelaEditarEmpresa(' + empresasJson[i].cnpj + ')"> <i class="fas fa-pencil-alt"></i> Editar</button>\n' +
+                        '                                    <button class="btn btn-danger" onclick="chamaExcluirEmpresa(' + empresasJson[i].cnpj + ')"> <i class="fas fa-trash-alt"></i> Excluir</button>\n' +
                         '                                </td>\n' +
                         '                            </tr>'
                 }
@@ -66,7 +66,7 @@
 
         function numeroDePaginasDaTabela(empresasJson) {
             var pagina = 0
-            var itensPorPagina = 6
+            var itensPorPagina = 4
 
             document.getElementById('numero-das-paginas').innerHTML = ""
             for(var i = 1; i <= empresasJson.length ; i+=itensPorPagina ) {
@@ -112,7 +112,7 @@
         }
 
         function paginacao(){
-            itensPorPagina = 6
+            itensPorPagina = 4
 
             showPage = function(pagina) {
                 $(".tb-linha").hide()

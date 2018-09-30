@@ -102,8 +102,8 @@
                         '                                <td>' + dataAbertura + '</td>\n' +
                         '                                <td>' + dataFechamento + '</td>\n' +
                         '                                <td>\n' +
-                        '                                    <button onclick="chamaTelaEditarCaso(' + casosJson[i].idCaso + ')">Editar</button>\n' +
-                        '                                    <button onclick="chamaExcluirCaso(' + casosJson[i].idCaso + ')">Excluir</button>\n' +
+                        '                                    <button class="btn btn-primary" onclick="chamaTelaEditarCaso(' + casosJson[i].idCaso + ')" > <i class="fas fa-pencil-alt"></i> Editar</button>\n' +
+                        '                                    <button class="btn btn-danger" onclick="chamaExcluirCaso(' + casosJson[i].idCaso + ')"> <i class="fas fa-trash-alt"></i> Excluir</button>\n' +
                         '                                </td>\n' +
                         '                            </tr>'
                 }
@@ -116,7 +116,7 @@
 
         function numeroDePaginasDaTabela(casosJson) {
             var pagina = 0
-            var itensPorPagina = 6
+            var itensPorPagina = 4
 
             document.getElementById('numero-das-paginas').innerHTML = ""
             for(var i = 1; i <=casosJson.length ; i+=itensPorPagina ) {
@@ -174,7 +174,7 @@
         }
 
         function paginacao() {
-            itensPorPagina = 6
+            itensPorPagina = 4
 
             showPage = function(pagina) {
                 $(".tb-linha").hide()

@@ -57,8 +57,8 @@
                         '                                <td>' + usuariosJson[i].dadosPessoais.email + '</td>\n' +
                         '                                <td>' + empresa + '</td>\n' +
                         '                                <td>\n' +
-                        '                                    <button onclick="chamaTelaEditarUsuariio(' + usuariosJson[i].id + ')">Editar</button>\n' +
-                        '                                    <button onclick="chamaExcluirUsuario(' + usuariosJson[i].id + ')">Excluir</button>\n' +
+                        '                                    <button class="btn btn-primary" onclick="chamaTelaEditarUsuariio(' + usuariosJson[i].id + ')"> <i class="fas fa-pencil-alt"></i> Editar</button>\n' +
+                        '                                    <button class="btn btn-danger" onclick="chamaExcluirUsuario(' + usuariosJson[i].id + ')"> <i class="fas fa-trash-alt"></i> Excluir</button>\n' +
                         '                                </td>\n' +
                         '                            </tr>'
                 }
@@ -70,7 +70,7 @@
 
         function numeroDePaginasDaTabela(usuariosJson) {
             var pagina = 0
-            var itensPorPagina = 6
+            var itensPorPagina = 4
 
             for(var i = 1; i <= usuariosJson.length ; i+=itensPorPagina ) {
                 pagina++
@@ -113,7 +113,7 @@
         }
 
         function paginacao() {
-            itensPorPagina = 6
+            itensPorPagina = 4
 
             showPage = function (pagina) {
                 $(".tb-linha").hide()

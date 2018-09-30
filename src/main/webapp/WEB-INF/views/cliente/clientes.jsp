@@ -56,8 +56,8 @@
                         '                                <td><span class="pointer" onclick="chamaTelaViewCliente('+clientesJson[i].dadosPessoais.cpf+')">'+clientesJson[i].dadosPessoais.nome+'</span></td>\n' +
                         '                                <td>'+clientesJson[i].dadosPessoais.email+'</td>\n' +
                         '                                <td>\n' +
-                        '                                    <button onclick="chamaTelaEditarCliente('+clientesJson[i].dadosPessoais.cpf+')">Editar</button>\n' +
-                        '                                    <button onclick="chamaExcluirCliente('+clientesJson[i].dadosPessoais.cpf+')">Excluir</button>\n' +
+                        '                                    <button class="btn btn-primary" onclick="chamaTelaEditarCliente('+clientesJson[i].dadosPessoais.cpf+')"> <i class="fas fa-pencil-alt"></i> Editar</button>\n' +
+                        '                                    <button class="btn btn-danger" onclick="chamaExcluirCliente('+clientesJson[i].dadosPessoais.cpf+')"> <i class="fas fa-trash-alt"></i> Excluir</button>\n' +
                         '                                </td>\n' +
                         '                            </tr>'
                 }
