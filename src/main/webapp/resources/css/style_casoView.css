@@ -5,3 +5,7 @@ table{
 .div-form{
     margin-left: 15%;
 }
+
+.cpf-cnpj{
+    width: 30% !important;
+}

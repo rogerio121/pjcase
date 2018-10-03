@@ -55,12 +55,12 @@ public class ControllerCaso {
         //Cliente
         Cliente cliente = new Cliente();
         DadosPessoais dadosPessoaisCliente = new DadosPessoais();
-        dadosPessoaisCliente.setCpf(request.getParameter("cliente.dadosPessoais.cnpj"));
+        dadosPessoaisCliente.setCpf((request.getParameter("cliente.dadosPessoais.cnpj").replaceAll("[^0-9]+", "")));
         cliente.setDadosPessoais(dadosPessoaisCliente);
 
         //Empresa
         Empresa empresa = new Empresa();
-        empresa.setCnpj(request.getParameter("empresa.cnpj"));
+        empresa.setCnpj((request.getParameter("empresa.cnpj").replaceAll("[^0-9]+", "")));
 
         caso.setCliente(cliente);
         caso.setEmpresa(empresa);
@@ -90,7 +90,6 @@ public class ControllerCaso {
 
         mv = new ModelAndView("caso/casoView");
         mv.addObject("caso", caso);
-
 
         return mv;
     }

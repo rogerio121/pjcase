@@ -35,8 +35,8 @@
                 <tr>
                     <td><label>CPF do cliente </label></td>
                     <td>
-                        <div class="input-group input-group-sm mb-3">
-                            <input type="text" name="cliente.dadosPessoais.cnpj"
+                        <div class="input-group input-group-sm mb-3 cpf-cnpj">
+                            <input type="text" name="cliente.dadosPessoais.cnpj" id="cpf"
                                    class="form-control input-group input-group-sm mb-3" required
                                    value="${caso.cliente.dadosPessoais.cpf}">
                         </div>
@@ -57,8 +57,8 @@
                 <tr>
                     <td><label>CNPJ da empresa</label></td>
                     <td>
-                        <div class="input-group input-group-sm mb-3">
-                            <input type="text" name="empresa.cnpj" class="form-control input-group input-group-sm mb-3"
+                        <div class="input-group input-group-sm mb-3 cpf-cnpj">
+                            <input type="text" name="empresa.cnpj" id="cnpj" class="form-control input-group input-group-sm mb-3"
                                    required value="${caso.empresa.cnpj}">
                         </div>
                     </td>
@@ -109,6 +109,11 @@
                 document.getElementById('form-caso').submit();
             }
         }
-
+    </script>
+    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
+    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
+    <script>
+        $("#cnpj").mask("00.000.000/0000-00");
+        $("#cpf").mask("000.000.000-00");
     </script>
 </html>

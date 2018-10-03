@@ -13,3 +13,7 @@ p{
 .caso input{
     margin-top: 2%;
 }
+
+.cpf-cnpj{
+    width: 30% !important;
+}

@@ -32,7 +32,7 @@
             </ul>
         </li>
         <li>
-            <a href="javascript:void(0)"><i class="fas fa-user-circle"></i> ${usuarioLogado.dadosPessoais.nome}</a>
+            <a href="javascript:void(0)"><i class="fas fa-user-circle"></i> <span id="nomeUser"> </span></a>
             <ul>
                 <li><a href="/logout">Sair</a></li>
             </ul>
@@ -41,6 +41,8 @@
 </nav>
 <script>
     funcoesDeAdminNoMenu()
+    pegaPrimeiroNomeUsuariLogado()
+
 
     function funcoesDeAdminNoMenu() {
         var admin = ${usuarioLogado.admin}
@@ -51,7 +53,14 @@
             document.getElementById('empresas').style.display = "none"
             document.getElementById('usuarios').style.display = "none"
         }
+    }
 
+
+    function pegaPrimeiroNomeUsuariLogado() {
+        nomeCompleto = '${usuarioLogado.dadosPessoais.nome}'
+        var nomeAbreviado
+        nomeCompleto = nomeCompleto.split(" ")
+        document.getElementById('nomeUser').innerHTML = nomeCompleto[0]
     }
 </script>
 
