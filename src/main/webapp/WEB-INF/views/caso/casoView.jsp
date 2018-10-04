@@ -35,7 +35,7 @@
                 <tr>
                     <td><label>CPF do cliente </label></td>
                     <td>
-                        <div class="input-group input-group-sm mb-3">
+                        <div class="input-group input-group-sm mb-3 cpf-cnpj">
                             <input type="text" name="cliente.dadosPessoais.cnpj"
                                    class="form-control input-group input-group-sm mb-3" required id="cpf"
                                    value="${caso.cliente.dadosPessoais.cpf}" disabled>
@@ -57,7 +57,7 @@
                 <tr>
                     <td><label>CNPJ da empresa</label></td>
                     <td>
-                        <div class="input-group input-group-sm mb-3">
+                        <div class="input-group input-group-sm mb-3 cpf-cnpj">
                             <input type="text" name="empresa.cnpj" class="form-control input-group input-group-sm mb-3" id="cnpj"
                                    required value="${caso.empresa.cnpj}" disabled>
                         </div>

@@ -30,7 +30,7 @@
                 <tr>
                     <td><label>E-mail</label></td>
                     <td>
-                        <div class="input-group in  put-group-sm mb-3">
+                        <div class="input-group in  put-group-sm mb-3 email">
                             <input class="form-control input-group input-group-sm mb-3" type="text"
                                    value="${cliente.dadosPessoais.email}" disabled>
                         </div>
@@ -39,7 +39,7 @@
                 <tr>
                     <td><label>Telefone</label></td>
                     <td>
-                        <div class="input-group input-group-sm mb-3">
+                        <div class="input-group input-group-sm mb-3 telefone">
                             <input class="form-control input-group input-group-sm mb-3" type="telefone" name="telefone" id="telefone"
                                    value="${cliente.dadosPessoais.telefone}" disabled>
                         </div>
@@ -48,7 +48,7 @@
                 <tr>
                     <td><label>CPF: </label></td>
                     <td>
-                        <div class="input-group in  put-group-sm mb-3">
+                        <div class="input-group in  put-group-sm mb-3 cpf">
                             <input class="form-control input-group input-group-sm mb-3" type="text"
                                    value="${cliente.dadosPessoais.cpf}" id="cpf" disabled>
                         </div>
@@ -93,8 +93,8 @@
                 <tr>
                     <td><label>CEP</label></td>
                     <td>
-                        <div class="input-group in  put-group-sm mb-3">
-                            <input class="form-control input-group input-group-sm mb-3" type="text"
+                        <div class="input-group in  put-group-sm mb-3 cep">
+                            <input class="form-control input-group input-group-sm mb-3" type="text" id="cep"
                                    value="${cliente.dadosPessoais.cep}" disabled>
                         </div>
                     </td>
@@ -141,5 +141,6 @@
     <script>
         $("#cpf").mask("000.000.000-00");
         $("#telefone").mask("(00) 0000-0000");
+        $("#cep").mask("00000-000");
     </script>
 </html>

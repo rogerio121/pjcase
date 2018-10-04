@@ -28,7 +28,7 @@
                 <tr>
                     <td><label>CNPJ</label></td>
                     <td>
-                        <input class="form-control input-group input-group-sm mb-3" type="text" name="cnpj" id="cnpj"
+                        <input class="form-control input-group input-group-sm mb-3 cnpj" type="text" name="cnpj" id="cnpj"
                                value="${empresa.cnpj}">
                     </td>
                 </tr>
@@ -93,7 +93,7 @@
                 <tr>
                     <td><label>CEP</label></td>
                     <td>
-                        <input class="form-control input-group input-group-sm mb-3" type="text" name="cep"
+                        <input class="form-control input-group input-group-sm mb-3 cep" type="text" name="cep" id="cep"
                                value="${empresa.cep}">
                     </td>
                 </tr>
@@ -124,5 +124,6 @@
     <script src="../../../resources/JavaScript/jquery-mask.js"></script>
     <script>
         $("#cnpj").mask("00.000.000/0000-00");
+        $("#cep").mask("00000-000");
     </script>
 </html>

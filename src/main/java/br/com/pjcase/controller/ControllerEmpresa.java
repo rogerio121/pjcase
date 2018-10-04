@@ -55,7 +55,7 @@ public class ControllerEmpresa {
         empresa.setBairro(request.getParameter("bairro"));
         empresa.setCidade(request.getParameter("cidade"));
         empresa.setEstado(request.getParameter("estado"));
-        empresa.setCep(request.getParameter("cep"));
+        empresa.setCep(request.getParameter("cep").replaceAll("[^0-9]+", ""));
 
         DaoEmpresa daoEmpresa = new DaoEmpresa();
 

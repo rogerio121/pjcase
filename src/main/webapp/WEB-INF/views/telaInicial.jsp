@@ -63,6 +63,7 @@
 
         numeroDePaginasDaTabela(${casosSemProprietaioJson})
         geraTabelaCasos()
+        funcoesDeAdminNoMenu()
 
             function pegarCaso(id){
                 var url = window.location.href
@@ -113,7 +114,7 @@
                             '                                <td>' + dataAbertura + '</td>\n' +
                             '                                <td>\n' +
                             '                                    <button class="btn btn-primary" onclick="pegarCaso(' + casosJson[i].idCaso + ')">Pegar Caso</button>\n' +
-                            '                                    <button class="btn btn-danger" onclick="chamaExcluirCaso(' + casosJson[i].idCaso + ')"><i class="fas fa-trash-alt"></i> Excluir</button>\n' +
+                            '                                    <button class="btn btn-danger adm" onclick="chamaExcluirCaso(' + casosJson[i].idCaso + ')"><i class="fas fa-trash-alt"></i> Excluir</button>\n' +
                             '                                </td>\n' +
                             '                            </tr>'
                     }
@@ -136,7 +137,7 @@
                     document.getElementById('numero-das-paginas').innerHTML = ""
             }
 
-        function paginacao() {
+            function paginacao() {
             itensPorPagina = 6
 
             showPage = function(pagina) {
@@ -157,6 +158,18 @@
                 $(this).addClass("current");
                 showPage(parseInt($(this).text()))
             });
+        }
+
+            function funcoesDeAdminNoMenu() {
+            var admin = ${usuarioLogado.admin}
+
+            if(!admin) {
+                numeroDeItens = document.getElementsByClassName('adm').length
+
+                for (i = 0; i < numeroDeItens; i++) {
+                    document.getElementsByClassName('adm')[i].style.display = "none"
+                }
+            }
         }
         </script>
     </body>

@@ -14,3 +14,11 @@ h1{
 .clientes{
     width: 100% !important;
 }
+
+.cnpj{
+    width: 30% !important;
+}
+
+.cep{
+    width: 30% !important;
+}

@@ -31,7 +31,7 @@
                             <tr>
                                 <td><label>CNPJ: </label></td>
                                 <td>
-                                    <input class="form-control input-group input-group-sm mb-3" type="text" value="${empresa.cnpj}" id="cnpj" disabled>
+                                    <input class="form-control input-group input-group-sm mb-3 cnpj" type="text" value="${empresa.cnpj}" id="cnpj" disabled>
                                 </td>
                             </tr>
                             <tr>
@@ -56,6 +56,12 @@
                                 <td><label>Estado: </label></td>
                                 <td>
                                     <input class="form-control input-group input-group-sm mb-3" qtype="text" value="${empresa.estado}" disabled>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>CEP</label></td>
+                                <td>
+                                    <input class="form-control input-group input-group-sm mb-3" type="text" name="cep" id="cep" value="${empresa.cep}"disabled>
                                 </td>
                             </tr>
                         </table>
@@ -227,6 +233,7 @@
     <script src="../../../resources/JavaScript/bootstrap.min.js"></script>
     <script>
         $("#cnpj").mask("00.000.000/0000-00")
+        $("#cep").mask("00000-000")
 
         $('#myModal').on('shown.bs.modal', function () {
             $('#myInput').trigger('focus')

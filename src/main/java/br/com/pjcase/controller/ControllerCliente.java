@@ -40,15 +40,15 @@ public class ControllerCliente {
             System.out.println("Erro no charset ControllerCaso: " + e);
         }
 
-        dadosPessoais.setCpf(request.getParameter("cpf").replaceAll("[.-]", ""));
+        dadosPessoais.setCpf(request.getParameter("cpf").replaceAll("[^0-9]+", ""));
         dadosPessoais.setNome(request.getParameter("nome"));
         dadosPessoais.setEmail(request.getParameter("email"));
         dadosPessoais.setLogradouro(request.getParameter("logradouro"));
         dadosPessoais.setBairro(request.getParameter("bairro"));
         dadosPessoais.setCidade(request.getParameter("cidade"));
         dadosPessoais.setEstado(request.getParameter("estado"));
-        dadosPessoais.setCep(request.getParameter("cep"));
-        dadosPessoais.setTelefone(request.getParameter("telefone").replaceAll("[()-]","").replace(" ",""));
+        dadosPessoais.setCep(request.getParameter("cep").replaceAll("[^0-9]+", ""));
+        dadosPessoais.setTelefone(request.getParameter("telefone").replaceAll("[^0-9]+", ""));
 
         cliente.setDadosPessoais(dadosPessoais);
         try {

@@ -41,6 +41,8 @@
         numeroDePaginasDaTabela(${clientesJson})
         geraTabelaClientes()
         paginacao()
+        funcoesDeAdminNoMenu()
+
 
         function geraTabelaClientes(){
             var clientesJson = ${clientesJson}
@@ -57,7 +59,7 @@
                         '                                <td>'+clientesJson[i].dadosPessoais.email+'</td>\n' +
                         '                                <td>\n' +
                         '                                    <button class="btn btn-primary" onclick="chamaTelaEditarCliente('+clientesJson[i].dadosPessoais.cpf+')"> <i class="fas fa-pencil-alt"></i> Editar</button>\n' +
-                        '                                    <button class="btn btn-danger" onclick="chamaExcluirCliente('+clientesJson[i].dadosPessoais.cpf+')"> <i class="fas fa-trash-alt"></i> Excluir</button>\n' +
+                        '                                    <button class="btn btn-danger adm" onclick="chamaExcluirCliente('+clientesJson[i].dadosPessoais.cpf+')"> <i class="fas fa-trash-alt"></i> Excluir</button>\n' +
                         '                                </td>\n' +
                         '                            </tr>'
                 }
@@ -131,6 +133,18 @@
                 $(this).addClass("current");
                 showPage(parseInt($(this).text()))
             });
+        }
+
+        function funcoesDeAdminNoMenu() {
+            var admin = ${usuarioLogado.admin}
+
+            if(!admin) {
+                numeroDeItens = document.getElementsByClassName('adm').length
+
+                for (i = 0; i < numeroDeItens; i++) {
+                    document.getElementsByClassName('adm')[i].style.display = "none"
+                }
+            }
         }
     </script>
 </html>

@@ -20,3 +20,19 @@ table{
     width: 40%;
     margin: auto;
  }
+
+.cpf{
+    width: 30% !important;
+}
+
+.cep{
+    width: 30% !important;
+}
+
+.email{
+    width: 50% !important;
+}
+
+.telefone{
+    width: 30% !important;
+}

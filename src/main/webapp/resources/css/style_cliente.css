@@ -5,3 +5,19 @@ table{
 .div-form{
     margin-left: 15%;
 }
+
+.cpf{
+    width: 30% !important;
+}
+
+.cep{
+    width: 30% !important;
+}
+
+.email{
+    width: 50% !important;
+}
+
+.telefone{
+    width: 30% !important;
+}

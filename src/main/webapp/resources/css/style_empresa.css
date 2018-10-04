@@ -5,3 +5,13 @@ table{
 .div-form{
     margin-left: 15%;
 }
+
+.cnpj{
+    width: 30% !important;
+}
+
+.cep{
+    width: 30% !important;
+}
+
+
