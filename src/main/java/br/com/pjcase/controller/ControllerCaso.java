@@ -7,6 +7,7 @@ import br.com.pjcase.dao.DaoUsuario;
 import br.com.pjcase.model.*;
 import br.com.pjcase.util.EnvioDeEmail;
 import com.google.gson.Gson;
+import org.apache.commons.mail.EmailException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -31,11 +32,10 @@ public class ControllerCaso {
 
     @RequestMapping("/salvar")
     public ModelAndView salvarCaso(HttpServletRequest request) {
-        ModelAndView mv;
+        ModelAndView mv = new ModelAndView("caso/casoView");
         Caso caso = new Caso();
         Caso casoExistente = null;
         DaoCaso daoCaso = new DaoCaso();
-
 
         try {
             request.setCharacterEncoding("UTF-8");
@@ -66,10 +66,10 @@ public class ControllerCaso {
         caso.setEmpresa(empresa);
 
         //Caso seja uma edição o campo IdCaso será populado, do Contrário não
-        try {
+        String idCaso = request.getParameter("idCaso");
+        String stringNull = null;
+        if(!idCaso.isEmpty() || !stringNull.equals(idCaso))
             caso.setIdCaso(Integer.parseInt(request.getParameter("idCaso")));
-        } catch (Exception e) {
-        }
 
         try {
             daoCaso.upsert(caso);
@@ -84,11 +84,15 @@ public class ControllerCaso {
                 envioDeEmail.enviarEmail(cliente.getDadosPessoais().getEmail(), "Caso Fechado", "Fechou");
             }
 
-        } catch (Exception erro) {
+        } catch (SQLException erro) {
             System.out.println("Erro ao usar o upsert em Caso: " + erro);
         }
+        catch (EmailException erro) {
+            mv.addObject("erroEmail", true);
+        }
+        catch (NullPointerException nullPointer) {
+        }
 
-        mv = new ModelAndView("caso/casoView");
         mv.addObject("caso", caso);
 
         return mv;

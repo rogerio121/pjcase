@@ -11,7 +11,6 @@ public class EnvioDeEmail {
     }
 
     public void enviarEmail(String emailDeDestino, String assunto, String corpo)throws EmailException {
-        System.out.println(emailDeDestino);
 
         Email email = new SimpleEmail();
         email.setHostName("smtp.googlemail.com");

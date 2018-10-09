@@ -15,6 +15,7 @@
     <div class="div-form">
         <h1>Caso ${caso.idCaso}</h1>
         <form action="/caso/salvar" method="POST" id="form-caso">
+            <c:if test="${erroEmail == true}"> <h1 class="alert-danger" style="width: 70%;> Ocorreu um erro ao envia o e-mail ao cliente! </h1></c:if>
             <h1 id="titulo"></h1>
             <table class="caso">
                 <tr>
