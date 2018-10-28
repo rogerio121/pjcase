@@ -137,7 +137,7 @@ public class DaoCaso {
 
         if (casoCadastrado == null) {
             caso.setDataDeAbertura(formatoDaData.format(data));
-                insert(caso);
+            insert(caso);
         } else {
             caso.setDataDeAbertura(casoCadastrado.getDataDeAbertura());
 

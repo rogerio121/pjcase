@@ -15,7 +15,8 @@
     <div class="div-form">
         <h1>Caso ${caso.idCaso}</h1>
         <form action="/caso/salvar" method="POST" id="form-caso">
-            <c:if test="${erroEmail == true}"> <h1 class="alert-danger" style="width: 70%;> Ocorreu um erro ao envia o e-mail ao cliente! </h1></c:if>
+            <c:if test="${erroAoCriarCaso}"> <h1 class="alert-danger" style="width: 70%;"> Ocorreu um erro ao criar caso! </h1></c:if>
+            <c:if test="${erroEmail == true}"> <h1 class="alert-danger" style="width: 70%;"> Ocorreu um erro ao envia o e-mail ao cliente! </h1></c:if>
             <h1 id="titulo"></h1>
             <table class="caso">
                 <tr>
@@ -75,7 +76,7 @@
                     <td><label>Usuario</label></td>
                     <td>
                         <div class="input-group input-group-sm mb-3">
-                            <input class="form-control input-group input-group-sm mb-3" type="email" value="${usuario.dadosPessoais.email}" name="usuario.dadosPessoais.email"
+                            <input class="form-control input-group input-group-sm mb-3" type="email" value="${caso.usuario.dadosPessoais.email}" name="usuario.dadosPessoais.email"
                                disabled>
                         </div>
                 </tr>

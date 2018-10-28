@@ -1,9 +1,8 @@
 package br.com.pjcase.util;
 
-import org.apache.commons.mail.DefaultAuthenticator;
-import org.apache.commons.mail.Email;
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.SimpleEmail;
+import org.apache.commons.mail.*;
+
+import java.net.URL;
 
 public class EnvioDeEmail {
 
@@ -12,18 +11,22 @@ public class EnvioDeEmail {
 
     public void enviarEmail(String emailDeDestino, String assunto, String corpo)throws EmailException {
 
-        Email email = new SimpleEmail();
+        HtmlEmail email = new HtmlEmail();
         email.setHostName("smtp.googlemail.com");
-        //não é necessário, caso não passe ele usa a padrão
-        email.setSmtpPort(465);
-        email.setDebug(true);
+        email.setFrom("rogeriodominus@gmail.com");
+        email.setSubject(assunto);
+
+        // set the html message
+        email.setTextMsg("Your email client does not support HTML messages");
         email.setAuthenticator(new DefaultAuthenticator("rogeriodominus@gmail.com", "Cavaleiros123"));
         //email.setAuthentication("rogeriodominus@gmail.com", "Cavaleiros123");
         email.setSSLOnConnect(true);
-        email.setFrom("rogeriodominus@gmail.com");
+        email.setFrom(emailDeDestino);
         email.setSubject(assunto);
-        email.setMsg(corpo);
+        //email.setMsg(corpo);
+        email.setHtmlMsg("<html>The apache logo - <h1>Foi</h1></html>");
         email.addTo(emailDeDestino);
         email.send();
+
     }
 }

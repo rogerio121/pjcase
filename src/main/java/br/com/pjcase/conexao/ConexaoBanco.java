@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConexaoBanco {
+public class    ConexaoBanco {
 
     public static String statusBanco = "Não conectado ...";
 

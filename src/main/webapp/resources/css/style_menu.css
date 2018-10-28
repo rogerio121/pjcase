@@ -4,6 +4,10 @@
     font-family: 'Arial';
 }
 
+#menu-canto{
+    margin-left: 88%;
+}
+
 .menu {
     margin-bottom: 2%;
     width: 100%;

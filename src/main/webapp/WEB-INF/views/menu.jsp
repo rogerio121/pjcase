@@ -31,6 +31,8 @@
                 <li><a href="/usuario/usuarios"> Todos os Usuarios</a></li>
             </ul>
         </li>
+    </ul>
+    <ul id="menu-canto">
         <li>
             <a href="javascript:void(0)"><i class="fas fa-user-circle"></i> <span id="nomeUser"> </span></a>
             <ul>

@@ -2,11 +2,8 @@ package br.com.pjcase.controller;
 
 import br.com.pjcase.dao.DaoCaso;
 import br.com.pjcase.dao.DaoUsuario;
-import br.com.pjcase.model.Caso;
 import br.com.pjcase.model.Usuario;
 import com.google.gson.Gson;
-import com.sun.deploy.net.HttpResponse;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,10 +18,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 @RequestMapping("/")

@@ -22,3 +22,23 @@ input[type="checkbox"]{
 #filtro{
     width: 40% !important;
 }
+
+#cpf, #cnpj{
+    width: 200px;
+}
+
+.cpf-cnpj{
+    width: 100% !important;
+    display: -webkit-box !important;
+}
+
+.erro-campo{
+    border: 1px solid red;
+    -webkit-box-shadow: 1px 0px 7px red!important;
+}
+
+.erro-validar {
+    position: relative;
+    margin-top: 3%;
+    margin-left: 3%;
+}

@@ -66,10 +66,12 @@ public class ControllerCaso {
         caso.setEmpresa(empresa);
 
         //Caso seja uma edição o campo IdCaso será populado, do Contrário não
-        String idCaso = request.getParameter("idCaso");
-        String stringNull = null;
-        if(!idCaso.isEmpty() || !stringNull.equals(idCaso))
+        try {
             caso.setIdCaso(Integer.parseInt(request.getParameter("idCaso")));
+        }
+        catch (Exception e){
+
+        }
 
         try {
             daoCaso.upsert(caso);
@@ -86,6 +88,7 @@ public class ControllerCaso {
 
         } catch (SQLException erro) {
             System.out.println("Erro ao usar o upsert em Caso: " + erro);
+            mv.addObject("erroAoCriarCaso", true);
         }
         catch (EmailException erro) {
             mv.addObject("erroEmail", true);
@@ -278,7 +281,6 @@ public class ControllerCaso {
         caso.setCliente(cliente);
         caso.setEmpresa(empresa);
 
-        System.out.println(caso);
         //Caso seja uma edição o campo IdCaso será populado, do Contrário não
 
         try {

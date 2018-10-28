@@ -38,7 +38,8 @@
                         <div class="input-group input-group-sm mb-3 cpf-cnpj">
                             <input type="text" name="cliente.dadosPessoais.cnpj" id="cpf"
                                    class="form-control input-group input-group-sm mb-3" required
-                                   value="${caso.cliente.dadosPessoais.cpf}">
+                                   value="${caso.cliente.dadosPessoais.cpf}" >
+                            <label class="erro-validar" id="cpfInvalido" style="display: none">CPF inválido !</label>
                         </div>
                     </td>
                 </tr>
@@ -60,9 +61,9 @@
                         <div class="input-group input-group-sm mb-3 cpf-cnpj">
                             <input type="text" name="empresa.cnpj" id="cnpj" class="form-control input-group input-group-sm mb-3"
                                    required value="${caso.empresa.cnpj}">
+                            <label class="erro-validar" id="cnpjInvalido" style="display: none">CNPJ inválido !</label>
                         </div>
                     </td>
-                </tr>
                 <tr>
                     <td><label>Resolução</label></td>
                     <td><textarea rows="3" cols="50" id="resolucao"
@@ -100,15 +101,120 @@
 
         function enviarFormulario() {
 
-            var resolucao = document.getElementById ('resolucao').value
-            var status = document.getElementById ('status').value
+            let resolucao = document.getElementById ('resolucao').value
+            let status = document.getElementById ('status').value
+            let cpf = $("#cpf").val()
+            let cnpj = $("#cnpj").val()
 
             if(!resolucao && status == 'Fechado') {
                 alert('Resolução é obrigatória em Casos fechados')
             }else{
-                document.getElementById('form-caso').submit();
+                if(validaCPF(cpf) && validaCNPJ(cnpj))
+                    document.getElementById('form-caso').submit()
+                else
+                    validaCampoCpfCnpj()
             }
         }
+
+        function validaCampoCpfCnpj(){
+            let cpf = $("#cpf").val()
+            let cnpj = $("#cnpj").val()
+
+
+            if (!validaCPF(cpf)) {
+                document.getElementById('cpfInvalido').style.display = 'block'
+                document.getElementById('cpf').classList.add('erro-campo')
+            }
+
+            if (!validaCNPJ(cnpj)) {
+                document.getElementById('cnpjInvalido').style.display = 'block'
+                document.getElementById('cnpj').classList.add('erro-campo')
+            }
+        }
+
+        function validaCPF(strCPF) {
+            var soma
+            var resto
+            soma = 0
+
+            let cpf = strCPF.replace(".", "").replace(".", "")
+            cpf = cpf.replace("-", "")
+
+            if (cpf == "00000000000")
+                return false
+
+            for (i=1; i<=9; i++)
+                soma = soma + parseInt(cpf.substring(i-1, i)) * (11 - i)
+
+            resto = (soma * 10) % 11
+
+            if ((resto == 10) || (resto == 11))
+                resto = 0
+
+            if (resto != parseInt(cpf.substring(9, 10)) )
+                return false
+
+            soma = 0;
+            for (i = 1; i <= 10; i++) soma = soma + parseInt(cpf.substring(i-1, i)) * (12 - i)
+            resto = (soma * 10) % 11
+
+            if ((resto == 10) || (resto == 11))
+                resto = 0
+
+            if (resto != parseInt(cpf.substring(10, 11) ) )
+                return false
+
+            return true
+        }
+
+        function validaCNPJ(strCNPJ) {
+
+            let cnpj = strCNPJ.replace(".", "").replace(".", "").replace("/", "").replace("-", "")
+
+            // Elimina CNPJs invalidos conhecidos
+            if (cnpj == "00000000000000" ||
+                cnpj == "11111111111111" ||
+                cnpj == "22222222222222" ||
+                cnpj == "33333333333333" ||
+                cnpj == "44444444444444" ||
+                cnpj == "55555555555555" ||
+                cnpj == "66666666666666" ||
+                cnpj == "77777777777777" ||
+                cnpj == "88888888888888" ||
+                cnpj == "99999999999999")
+                return false;
+
+            // Valida DVs
+            tamanho = cnpj.length - 2
+            numeros = cnpj.substring(0,tamanho);
+            digitos = cnpj.substring(tamanho);
+            soma = 0;
+            pos = tamanho - 7;
+            for (i = tamanho; i >= 1; i--) {
+                soma += numeros.charAt(tamanho - i) * pos--;
+                if (pos < 2)
+                    pos = 9;
+            }
+            resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+            if (resultado != digitos.charAt(0))
+                return false;
+
+            tamanho = tamanho + 1;
+            numeros = cnpj.substring(0,tamanho);
+            soma = 0;
+            pos = tamanho - 7;
+            for (i = tamanho; i >= 1; i--) {
+                soma += numeros.charAt(tamanho - i) * pos--;
+                if (pos < 2)
+                    pos = 9;
+            }
+            resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+            if (resultado != digitos.charAt(1))
+                return false;
+
+            return true;
+        }
+
     </script>
     <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
     <script src="../../../resources/JavaScript/jquery-mask.js"></script>
