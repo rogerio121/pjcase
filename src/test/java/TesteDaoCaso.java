@@ -100,9 +100,9 @@ public class TesteDaoCaso {
 
     @Test
     public void buscaCasosSemDono() throws Exception{
-        DaoCaso daoCaso = new DaoCaso();
-        List<Caso> casos = daoCaso.listarCasosSemProprietarios();
-        System.out.println(casos.size());
+        //DaoCaso daoCaso = new DaoCaso();
+        // List<Caso> casos = daoCaso.listarCasosSemProprietarios();
+        //System.out.println(casos.size());
         //Assert.assertEquals(false, erro);
     }
 

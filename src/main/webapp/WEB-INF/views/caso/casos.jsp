@@ -83,7 +83,7 @@
             document.getElementById('corpo-tabela').innerHTML = ""
 
             for(let i = 0; i < casosJson.length; i++ ){
-                console.log(casosJson[i].assunto + casosJson[i].assunto.toUpperCase().indexOf(filtro))
+
                 if(casosJson[i].assunto.toUpperCase().indexOf(filtro) == 0) {
                     casosJsonFiltrados.push(casosJson[i])
                     var dataAbertura = ''

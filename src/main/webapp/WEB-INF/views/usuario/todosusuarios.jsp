@@ -55,7 +55,7 @@
                     document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
                         '                                <td><span class="pointer" onclick="chamaTelaViewUsuariio(' + usuariosJson[i].id + ')">' + usuariosJson[i].dadosPessoais.nome + '</span></td>\n' +
                         '                                <td>' + usuariosJson[i].dadosPessoais.email + '</td>\n' +
-                        '                                <td>' + empresa + '</td>\n' +
+                        '                                <td class="cnpj">' + empresa + '</td>\n' +
                         '                                <td>\n' +
                         '                                    <button class="btn btn-primary" onclick="chamaTelaEditarUsuariio(' + usuariosJson[i].id + ')"> <i class="fas fa-pencil-alt"></i> Editar</button>\n' +
                         '                                    <button class="btn btn-danger" onclick="chamaExcluirUsuario(' + usuariosJson[i].id + ')"> <i class="fas fa-trash-alt"></i> Excluir</button>\n' +
@@ -134,5 +134,8 @@
                 showPage(parseInt($(this).text()))
             });
         }
+    </script>
+    <script>
+        $(".cnpj").mask("00.000.000/0000-00");
     </script>
 </html>

@@ -7,7 +7,16 @@ table{
 }
 
 .cpf{
-    width: 30% !important;
+    width: 100% !important;
+    display: -webkit-box !important;
+}
+
+.input-group{
+    height: 40px !important;
+}
+
+.erro-validar{
+    margin-top: 1% !important;
 }
 
 .cep{

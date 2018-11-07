@@ -150,14 +150,29 @@ public class DaoCaso {
     }
     /*------------FIM-CRUD----------------*/
 
-    public List<Caso> listarCasosSemProprietarios() {
+    public List<Caso> listarCasosSemProprietarios(Usuario usuario) {
         try {
-            String sql = "SELECT *" +
-                    "FROM caso " +
-                    "WHERE usu_id IS NULL " +
-                    "ORDER BY cas_id desc";
+            String sql;
+            PreparedStatement pstm;
+            if(usuario.getAdmin()) {
+                sql = "SELECT *" +
+                        "FROM caso " +
+                        "WHERE usu_id IS NULL " +
+                        "ORDER BY cas_id desc";
 
-            PreparedStatement pstm = conexao.prepareStatement(sql);
+                pstm = conexao.prepareStatement(sql);
+            }else{
+                sql = "SELECT *" +
+                      "FROM caso " +
+                      "WHERE emp_cnpj = ? AND usu_id IS NULL " +
+                      "ORDER BY cas_id desc";
+
+
+                pstm = conexao.prepareStatement(sql);
+                pstm.setString(1, usuario.getIdEmpresaRelacionada());
+            }
+
+
             ResultSet rs = pstm.executeQuery();
 
             Caso caso;

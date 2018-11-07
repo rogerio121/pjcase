@@ -90,6 +90,14 @@
     </body>
     <script>
 
+        pegarStatus()
+
+        function pegarStatus() {
+            var status = '${caso.status}'
+            if (status)
+                document.getElementById('status').value = status
+        }
+
         function editarCaso(idCaso) {
             console.log(idCaso)
             window.location = '/caso/cadastro/editar/' + idCaso

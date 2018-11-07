@@ -16,14 +16,14 @@
     <body>
     <div class="div-form">
         <h1 id="titulo"></h1>
-        <form action="/cliente/salvar" method="post">
+        <form action="/cliente/salvar" method="post" id="form">
             <table >
                 <tr>
                     <td><label>Nome</label></td>
                     <td>
                         <div class="input-group in  put-group-sm mb-3">
                             <input class="form-control input-group input-group-sm mb-3" type="text" name="nome"
-                                   value="${cliente.dadosPessoais.nome}">
+                                   value="${cliente.dadosPessoais.nome}" required>
                         </div>
                     </td>
                 </tr>
@@ -32,7 +32,7 @@
                     <td>
                         <div class="input-group input-group-sm mb-3 email">
                             <input class="form-control input-group input-group-sm mb-3" type="email" name="email"
-                                   value="${cliente.dadosPessoais.email}">
+                                   value="${cliente.dadosPessoais.email}"  required>
                         </div>
                     </td>
                 </tr>
@@ -50,7 +50,8 @@
                     <td>
                         <div class="input-group input-group-sm mb-3 cpf">
                             <input class="form-control input-group input-group-sm mb-3" type="text" name="cpf" id="cpf"
-                                   value="${cliente.dadosPessoais.cpf}">
+                                   value="${cliente.dadosPessoais.cpf}" required>
+                            <label class="erro-validar" id="cpfInvalido" style="display: none;">CPF inválido !</label>
                         </div>
                     </td>
                 </tr>
@@ -128,36 +129,38 @@
                     </td>
                 </tr>
             </table>
-            <button type="button" class="btn btn-danger" onclick="cancelar()">Cancelar</button>
-            <button type="submit" class="btn btn-success">Salvar</button>
         </form>
+        <button type="button" class="btn btn-danger" onclick="cancelar()">Cancelar</button>
+        <button id="submit" class="btn btn-success">Salvar</button>
     </div>
     </body>
+
+    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
+    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
+    <script src="../../../resources/JavaScript/script_geral.js"></script>
     <script>
         pegarEstado()
 
+        document.getElementById("submit").onclick = function(){
+            let scpf = $("#cpf").val()
+            if(validaCPF(scpf)){
+                document.getElementById("form").submit();
+            }else{
+                document.getElementById('cpfInvalido').style.display = 'block'
+                document.getElementById('cpf').classList.add('erro-campo')
+            }
+        }
         if (window.location.href.includes('editar'))
             document.getElementById('titulo').innerText = 'Edição de Cliente'
         else
             document.getElementById('titulo').innerText = 'Cadastro de Cliente'
 
-        function  cancelar() {
-            window.history.back()
-        }
-
-        function pegarStatus() {
-            var status = '${caso.status}'
-            if (status)
-                document.getElementById('status').value = status
-        }
-
         function pegarEstado() {
             var estado = '${cliente.dadosPessoais.estado}'
             document.getElementById('estado').value = estado
         }
+
     </script>
-    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
-    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
     <script>
         $("#cpf").mask("000.000.000-00");
         $("#telefone").mask("(00) 0000-0000");

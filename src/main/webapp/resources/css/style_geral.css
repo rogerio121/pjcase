@@ -3,6 +3,15 @@
     padding: 0;
 }
 
+i{
+    cursor: pointer;
+}
+
+html{
+    height: 100% !important;
+    width: 100% !important;
+}
+
 ul{
     z-index: 1 !important;
 }
@@ -24,7 +33,7 @@ input[type="checkbox"]{
 }
 
 #cpf, #cnpj{
-    width: 200px;
+    width: 200px !important;
 }
 
 .cpf-cnpj{
@@ -33,12 +42,13 @@ input[type="checkbox"]{
 }
 
 .erro-campo{
-    border: 1px solid red;
-    -webkit-box-shadow: 1px 0px 7px red!important;
+    border: 1px solid #bd2130;
+    -webkit-box-shadow: 1px 0px 7px #bd2130!important;
 }
 
 .erro-validar {
     position: relative;
     margin-top: 3%;
     margin-left: 3%;
+    color: #bd2130;
 }

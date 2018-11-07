@@ -7,11 +7,19 @@ table{
 }
 
 .cnpj{
-    width: 30% !important;
+    width: 1000% !important;
 }
 
 .cep{
     width: 30% !important;
+}
+
+.erro-validar {
+    margin-top: 1% !important;
+}
+
+#cnpj{
+    width: 200px !important;
 }
 
 

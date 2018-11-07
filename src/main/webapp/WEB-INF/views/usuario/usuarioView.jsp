@@ -32,10 +32,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label>Empresa</label></td>
+                        <td><label>CNPJ Empresa</label></td>
                         <td>
                             <input class="form-control input-group input-group-sm mb-3" type="text" name="idEmpresaRelacionada"
-                                   value="${usuario.idEmpresaRelacionada}" disabled>
+                                   value="${usuario.idEmpresaRelacionada}" disabled id="cnpj">
                         </td>
                     </tr>
                     <tr>
@@ -53,7 +53,8 @@
             <button onclick="chamarTelaEditarUsuario(${usuario.id})" class="btn btn-primary">Editar</button>
         </div>
     </body>
-
+    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
+    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
     <script>
         if(${usuario.admin})
         document.getElementById('admin').checked = true
@@ -67,5 +68,8 @@
         function  cancelar() {
             window.history.back()
         }
+    </script>
+    <script>
+        $("#cnpj").mask("00.000.000/0000-00");
     </script>
 </html>

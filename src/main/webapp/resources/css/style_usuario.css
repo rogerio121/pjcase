@@ -3,6 +3,16 @@ table{
     margin-bottom: 5%;
 }
 
+#cnpj{
+    width: 200px !important;
+}
+
+#alterar-senha{
+    left: 170px;
+    top: -38px;
+    position: relative;
+}
+
 .div-form{
     margin-left: 15%;
 }

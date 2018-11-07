@@ -16,20 +16,24 @@
     <body>
     <div class="div-form">
         <h1 id="titulo"></h1>
-        <form action="/empresa/salvar" method="post">
+        <form action="/empresa/salvar" method="post" id="form">
             <table>
                 <tr>
                     <td><label>Nome</label></td>
                     <td>
+
                         <input class="form-control input-group input-group-sm mb-3" type="text" name="nome"
-                               value="${empresa.nome}">
+                               value="${empresa.nome}" required>
                     </td>
                 </tr>
                 <tr>
                     <td><label>CNPJ</label></td>
                     <td>
-                        <input class="form-control input-group input-group-sm mb-3 cnpj" type="text" name="cnpj" id="cnpj"
-                               value="${empresa.cnpj}">
+                        <div class="input-group input-group-sm mb-3 cpf-cnpj">
+                            <input class="form-control cnpj" type="text" name="cnpj" id="cnpj"
+                                   value="${empresa.cnpj}" required>
+                            <label class="erro-validar" id="cnpjInvalido" style="display: none">CNPJ inválido !</label>
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -98,30 +102,39 @@
                     </td>
                 </tr>
             </table>
-            <button type="button" class="btn btn-danger" onclick="cancelar()">Cancelar</button>
-            <button type="submit" class="btn btn-success">Salvar</button>
         </form>
+        <button type="button" class="btn btn-danger">Cancelar</button>
+        <button id="submit" class="btn btn-success">Salvar</button>
     </div>
     </body>
+
+    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
+    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
+    <script src="../../../resources/JavaScript/script_geral.js"></script>
     <script>
         pegarEstado()
+
+        document.getElementById("submit").onclick = function(){
+            let scnpj = $("#cnpj").val()
+            if(validaCNPJ(scnpj)){
+                document.getElementById("form").submit();
+            }else{
+                document.getElementById('cnpjInvalido').style.display = 'block'
+                document.getElementById('cnpj').classList.add('erro-campo')
+            }
+        }
 
         if (window.location.href.includes('editar'))
             document.getElementById('titulo').innerText = 'Edição de Empresa'
         else
             document.getElementById('titulo').innerText = 'Cadastro de Empresa'
 
-        function  cancelar() {
-            window.history.back()
-        }
-
         function pegarEstado() {
             var estado = '${empresa.estado}'
             document.getElementById('estado').value = estado
         }
     </script>
-    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
-    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
+
     <script>
         $("#cnpj").mask("00.000.000/0000-00");
         $("#cep").mask("00000-000");

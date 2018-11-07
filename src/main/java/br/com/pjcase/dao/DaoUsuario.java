@@ -76,6 +76,7 @@ public class DaoUsuario {
     }
 
     public Usuario getById(int idUsuario) {
+        Usuario usuario = null;
         try {
             String sql = "SELECT * " +
                     "FROM usuario " +
@@ -85,8 +86,8 @@ public class DaoUsuario {
             pstm.setInt(1, idUsuario);
             ResultSet rs = pstm.executeQuery();
 
-            Usuario usuario = new Usuario();
             if (rs.next()) {
+                usuario = new Usuario();
                 DadosPessoais dadosPessoais = new DadosPessoais();
 
                 dadosPessoais.setNome(rs.getString("usu_nome"));

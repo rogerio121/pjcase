@@ -31,7 +31,7 @@ public class ControllerLogin {
 
     @RequestMapping("telaInicial")
     public  ModelAndView login2(HttpServletRequest request){
-        DaoCaso daoCaso = new DaoCaso();
+                DaoCaso daoCaso = new DaoCaso();
         ModelAndView mv;
 
         try {
@@ -43,7 +43,8 @@ public class ControllerLogin {
 
             Usuario usuarioLogado = new Usuario();
             usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
-            casosSemProprietaioJson = new Gson().toJson(daoCaso.listarCasosSemProprietarios());
+
+            casosSemProprietaioJson = new Gson().toJson(daoCaso.listarCasosSemProprietarios(usuarioLogado));
 
             Date dataDeHoje = new Date();
             LocalDate localDate = dataDeHoje.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();

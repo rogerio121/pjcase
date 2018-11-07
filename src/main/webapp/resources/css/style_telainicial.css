@@ -19,6 +19,16 @@ h5{
 .numero{
     display: inline-block;
     position: relative;
-    margin-left: -30%;
+    top: 7px;
+    left: -84px;
 }
 
+@media(max-width: 800px) {
+    .numero {
+        font-size: 107px;
+        display: inline-block;
+        position: relative;
+        top: 29px;
+        left: -202px;
+    }
+}

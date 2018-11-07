@@ -2,6 +2,10 @@ table{
     width: 800px;
 }
 
+#cnpj{
+    width: 200px !important;
+}
+
 .div-table{
     margin-left: 15%;
 }

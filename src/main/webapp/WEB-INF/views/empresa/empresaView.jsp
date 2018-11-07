@@ -129,7 +129,7 @@
 
                 for(let i = 0; i < clientes.length; i++ ){
                     document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha"><td>'+clientes[i].dadosPessoais.nome+'</td> ' +
-                        '<td>'+clientes[i].dadosPessoais.cpf+'</td> <td><button onclick="removerCliente('+clientes[i].dadosPessoais.cpf+')">X</button></td></tr>'
+                        '<td>'+clientes[i].dadosPessoais.cpf+'</td> <td> <i class="fas fa-trash-alt" onclick="removerCliente(\'+clientes[i].dadosPessoais.cpf+\')"></i></td></tr>'
                 }
         }
 
@@ -140,7 +140,12 @@
 
             for(var i = 1; i <=clientes.length ; i+=itensPorPagina ) {
                 pagina++
-                document.getElementById('numero-das-paginas').innerHTML += '<li class="page-item"><a class="page-link " href="#">' + pagina + '</a></li>'
+                if(pagina > 1){
+                    pagina++
+                    document.getElementById('numero-das-paginas').innerHTML += '<li class="page-item"><a class="page-link " href="#">' + pagina + '</a></li>'
+                }
+                if (pagina < 2)
+                    document.getElementById('numero-das-paginas').innerHTML = ""
             }
 
         }
@@ -253,7 +258,7 @@
         showPage(1);
 
         //PEga o Numero da página corrente e passa para o método showPage
-        $("#numero-das-paginas li a").click(function() {
+        $("#numero-das-paginasumero-das-paginas li a").click(function() {
             $("#numero-das-paginas li a").removeClass("current");
             $(this).addClass("current");
             showPage(parseInt($(this).text()))

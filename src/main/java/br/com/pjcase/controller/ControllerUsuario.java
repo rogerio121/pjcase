@@ -42,7 +42,7 @@ public class ControllerUsuario {
         dadosPessoais.setNome(request.getParameter("nome"));
         dadosPessoais.setEmail(request.getParameter("email"));
         usuario.setSenha(request.getParameter("senha"));
-        usuario.setIdEmpresaRelacionada(request.getParameter("idEmpresaRelacionada"));
+        usuario.setIdEmpresaRelacionada(request.getParameter("idEmpresaRelacionada").replaceAll("[^0-9]+", ""));
 
         if (!request.getParameter("id").equals(""))
             usuario.setId(Integer.parseInt(request.getParameter("id")));

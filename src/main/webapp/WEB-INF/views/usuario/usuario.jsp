@@ -33,10 +33,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label>Empresa</label></td>
+                    <td><label>CNPJ Empresa</label></td>
                     <td>
-                        <input class="form-control input-group input-group-sm mb-3" type="text" name="idEmpresaRelacionada"
-                               value="${usuario.idEmpresaRelacionada}">
+                        <div>
+                            <input class="form-control input-group input-group-sm mb-3" type="text" name="idEmpresaRelacionada"
+                                   value="${usuario.idEmpresaRelacionada}" id="cnpj">
+                            <label class="erro-validar" id="cnpjInvalido" style="display: none">CNPJ inválido !</label>
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -65,14 +68,28 @@
             </table>
         </form>
         <button type="button" class="btn btn-danger" onclick="cancelar()">Cancelar</button>
-        <button onclick="salvar()" class="btn btn-success">Salvar</button>
-        <button onclick="alterarASenha()" class="btn btn-success">Alterar senha</button>
+        <button id="submit" class="btn btn-success">Salvar</button>
+        <button onclick="alterarASenha()" class="btn btn-success" id="alterar-senha">Alterar senha</button>
     </div>
     </body>
+
+    <script src="../../../resources/JavaScript/jquery-ajax.js"></script>
+    <script src="../../../resources/JavaScript/jquery-mask.js"></script>
+    <script src="../../../resources/JavaScript/script_geral.js"></script>
     <script>
 
         titulo()
         aoCarregarAPagina()
+
+        document.getElementById("submit").onclick = function(){
+            let scnpj = $("#cnpj").val()
+            if(validaCNPJ(scnpj)){
+                document.getElementById("form-usuario").submit();
+            }else{
+                document.getElementById('cnpjInvalido').style.display = 'block'
+                document.getElementById('cnpj').classList.add('erro-campo')
+            }
+        }
 
         function titulo() {
             if (window.location.href.includes('editar'))
@@ -121,17 +138,23 @@
         }
 
         function aoCarregarAPagina() {
-            if (window.location.href.includes('8080/usuario/cadastro/editar/'))
-                if (${usuario.admin})
+            if (window.location.href.includes('8080/usuario/cadastro/editar/')){
+                let usuarioAdm = '${usuario.admin}'
+
+                if (usuarioAdm)
                     document.getElementById('admin').checked = true
 
-            var labelsenha = document.getElementById('label-senha').style.display = "none"
-            var senha = document.getElementById('senha').style.display = "none"
-            var labelConferirsenha = document.getElementById('label-conferesenha').style.display = "none"
-            var conferirSenha = document.getElementById('conf-senha').style.display = "none"
-
-            console.log(senha)
-            console.log(conferirSenha)
+                var labelsenha = document.getElementById('label-senha').style.display = "none"
+                var senha = document.getElementById('senha').style.display = "none"
+                var labelConferirsenha = document.getElementById('label-conferesenha').style.display = "none"
+                var conferirSenha = document.getElementById('conf-senha').style.display = "none"
+                var alterarSenha = document.getElementById('alterar-senha').style.display = "block"
+            }else{
+                var alterarSenha = document.getElementById('alterar-senha').style.display = "none"
+            }
         }
+    </script>
+    <script>
+        $("#cnpj").mask("00.000.000/0000-00");
     </script>
 </html>
