@@ -102,8 +102,7 @@
                     }).then(function (res) {
                         console.log(res.status)
                     if (res.status == 200) {
-                        var pagina = window.location.href;
-                        window.location = pagina;
+                        location.reload()
                     } else {
                         alert('Erro ao excluir a empresa: ' + id +'\n Verifique se ele está vinculado a uma Empresa')
                     }

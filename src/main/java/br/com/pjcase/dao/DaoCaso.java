@@ -40,6 +40,7 @@ public class DaoCaso {
                 pstm.setInt(8, caso.getUsuario().getId());
                 pstm.setString(9, caso.getCliente().getDadosPessoais().getCpf());
 
+                System.out.println(pstm);
                 pstm.execute();
                 pstm.close();
             } else {
@@ -132,7 +133,7 @@ public class DaoCaso {
         Caso casoCadastrado = null;
         casoCadastrado = getById(String.valueOf(caso.getIdCaso()));
 
-        DateFormat formatoDaData = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat formatoDaData = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date data = new Date();
 
         if (casoCadastrado == null) {
@@ -171,7 +172,6 @@ public class DaoCaso {
                 pstm = conexao.prepareStatement(sql);
                 pstm.setString(1, usuario.getIdEmpresaRelacionada());
             }
-
 
             ResultSet rs = pstm.executeQuery();
 
@@ -514,8 +514,8 @@ public class DaoCaso {
         int result = 0;
 
         String sql = "SELECT COUNT(*) AS total " +
-                    "FROM caso " +
-                    "WHERE cas_status = ? AND usu_id = ? AND MONTH(cas_data_de_abertura) = ? ";
+                "FROM caso " +
+                "WHERE cas_status = ? AND usu_id = ? AND MONTH(cas_data_de_abertura) = ? ";
 
         try {
             PreparedStatement pstm = conexao.prepareStatement(sql);
@@ -535,5 +535,4 @@ public class DaoCaso {
 
         return result;
     }
-
 }

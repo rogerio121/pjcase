@@ -104,8 +104,7 @@
                         method: "DELETE",
                     }).then(function (res) {
                     if (res.status == 200) {
-                        var pagina = window.location.href;
-                        window.location = pagina;
+                        location.reload()
                     } else {
                         alert('Erro ao excluir o cliente: ' + id + '\n Verifique se ele está vinculado a alguma Empresa')
                     }

@@ -83,7 +83,13 @@
 
         document.getElementById("submit").onclick = function(){
             let scnpj = $("#cnpj").val()
+            let senha = document.getElementById('senha').value
+            let confFenha = document.getElementById('conf-senha').value
+
             if(validaCNPJ(scnpj)){
+                if (senha != confFenha)
+                    alert("Senha não confere")
+
                 document.getElementById("form-usuario").submit();
             }else{
                 document.getElementById('cnpjInvalido').style.display = 'block'
@@ -96,23 +102,6 @@
                 document.getElementById('titulo').innerText = 'Edição de Usuário'
             else
                 document.getElementById('titulo').innerText = 'Cadastro de Usuário'
-        }
-
-        function salvar() {
-            let form = document.getElementById('form-usuario')
-            let senha = document.getElementById('senha').value
-            let confFenha = document.getElementById('conf-senha').value
-
-            console.log(senha != confFenha)
-
-            if (senha != confFenha)
-                alert("Senha não confere")
-            else
-                form.submit()
-        }
-
-        function cancelar() {
-            window.history.back()
         }
 
         function alterarASenha() {
@@ -141,7 +130,7 @@
             if (window.location.href.includes('8080/usuario/cadastro/editar/')){
                 let usuarioAdm = '${usuario.admin}'
 
-                if (usuarioAdm)
+                if(usuarioAdm == 'true')
                     document.getElementById('admin').checked = true
 
                 var labelsenha = document.getElementById('label-senha').style.display = "none"

@@ -96,3 +96,23 @@ function validaCNPJ(strCNPJ) {
 function  cancelar() {
     window.history.back()
 }
+function formataDataBr(dataHora) {
+    if (dataHora) {
+        dataHoraSplit = dataHora.split(" ")
+        dataSplit = dataHoraAberturaSplit[0].split("-")
+
+        data = dataSplit[2] + "/" + dataSplit[1] + "/" + dataSplit[0]
+        return data
+    }else
+        return null
+}
+
+function formataHoraBr(dataHora) {
+    if(dataHora) {
+        dataHoraSplit = dataHora.split(" ")
+        hora = dataHoraSplit[1]
+
+        return hora
+    }else
+        return null
+}

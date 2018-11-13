@@ -68,8 +68,6 @@
             function pegarCaso(id){
                 var url = window.location.href
                 var usuario = "${usuarioLogado.id}"
-                console.log(id)
-                console.log(usuario)
 
                 fetch('caso/cadastro/' + id,
                     {
@@ -81,7 +79,6 @@
                         body: usuario
                     })
                     .then(function (res) {
-                        console.log(res)
                         if(res.status == 200)
                             location.reload()
                         else
@@ -100,14 +97,19 @@
                 document.getElementById('corpo-tabela').innerHTML = ""
 
                 for(let i = 0; i < casosJson.length; i++ ){
-                    console.log(casosJson[i].assunto + casosJson[i].assunto.toUpperCase().indexOf(filtro))
+
                     if(casosJson[i].assunto.toUpperCase().indexOf(filtro) == 0) {
                         casosJsonFiltrados.push(casosJson[i])
                         var dataAbertura = ''
 
-                        if (casosJson[i].dataDeAbertura)
-                            dataAbertura = casosJson[i].dataDeAbertura
+                        if (casosJson[i].dataDeAbertura) {
+                            dataHoraAbertura = casosJson[i].dataDeAbertura
+                            dataHoraAberturaSplit = dataHoraAbertura.split(" ")
+                            dataAberturaSplit = dataHoraAberturaSplit[0].split("-")
+                            somenteHoraAbertura = dataHoraAberturaSplit[1]
 
+                            dataAbertura = dataAberturaSplit[2] + "/" + dataAberturaSplit[1] + "/" + dataAberturaSplit[0] + " " + somenteHoraAbertura
+                        }
                         document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
                             '                                <td><span class="pointer" onclick="chamaTelaViewCaso(' + casosJson[i].idCaso + ')">' + casosJson[i].idCaso + '</span></td>\n' +
                             '                                <td>' + casosJson[i].assunto + '</td>\n' +

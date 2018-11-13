@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<meta charset="UTF-8" />
+
 <link rel="stylesheet" type="text/css" href="../../../resources/css/style_menu.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <input type="checkbox" id="bt_menu">
@@ -25,12 +28,13 @@
                 <li><a href="/empresa/empresas"> Todas as Empresas</a></li>
             </ul>
         </li>
-        <li id="usuarios"><a href="javascript:void(0)"><i class="fas fa-user"></i>Usuarios</a>
+        <li id="usuarios"><a href="javascript:void(0)"><i class="fas fa-user"></i>Usuários</a>
             <ul>
-                <li><a href="/usuario/cadastro"> Novo Usuario</a></li>
-                <li><a href="/usuario/usuarios"> Todos os Usuarios</a></li>
+                <li><a href="/usuario/cadastro"> Novo Usuário</a></li>
+                <li><a href="/usuario/usuarios"> Todos os Usuários</a></li>
             </ul>
         </li>
+        <li><a href="/graficos"><i class="fas fa-chart-line"></i> Gráficos</a></li>
     </ul>
     <ul id="menu-canto">
         <li>

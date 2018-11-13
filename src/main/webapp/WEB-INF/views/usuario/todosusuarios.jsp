@@ -72,6 +72,8 @@
             var pagina = 0
             var itensPorPagina = 4
 
+            document.getElementById('numero-das-paginas').innerHTML = ''
+
             for(var i = 1; i <= usuariosJson.length ; i+=itensPorPagina ) {
                 pagina++
                 document.getElementById('numero-das-paginas').innerHTML += '<li class="page-item"><a class="page-link " href="#">' + pagina + '</a></li>'
@@ -103,8 +105,7 @@
                         method: "DELETE",
                     }).then(function (res) {
                     if (res.status == 200) {
-                        var pagina = window.location.href;
-                        window.location = pagina;
+                        location.reload()
                     } else {
                         alert('Erro ao excluir o usuário: ' + id)
                     }

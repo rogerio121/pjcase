@@ -57,8 +57,22 @@
         setFiltroStatus()
         numeroDePaginasDaTabela(${casosJson})
         geraTabelaCasos()
+        funcoesDeAdmin()
         
         var filtroAplicado = '${filtroAplicado}'
+
+
+        function funcoesDeAdmin() {
+            var admin = ${usuarioLogado.admin}
+
+            if(!admin) {
+                numeroDeItens = document.getElementsByClassName('adm').length
+
+                for (i = 0; i < numeroDeItens; i++) {
+                    document.getElementsByClassName('adm')[i].style.display = "none"
+                }
+            }
+        }
 
         function setFiltroStatus() {
             let filtroAplicado = '${filtroAplicado}'
@@ -89,11 +103,22 @@
                     var dataAbertura = ''
                     var dataFechamento = ''
 
-                    if (casosJson[i].dataDeAbertura)
-                        dataAbertura = casosJson[i].dataDeAbertura
+                    if (casosJson[i].dataDeAbertura) {
+                        dataHoraAbertura = casosJson[i].dataDeAbertura
+                        dataHoraAberturaSplit = dataHoraAbertura.split(" ")
+                        dataAberturaSplit = dataHoraAberturaSplit[0].split("-")
+                        somenteHoraAbertura = dataHoraAberturaSplit[1]
 
-                    if (casosJson[i].dataDeFechamento)
-                        dataFechamento = casosJson[i].dataDeFechamento
+                        dataAbertura = dataAberturaSplit[2]+"/"+dataAberturaSplit[1]+"/"+dataAberturaSplit[0]+" "+somenteHoraAbertura
+                    }
+                    if (casosJson[i].dataDeFechamento) {
+                        dataHoraFechamento = casosJson[i].dataDeFechamento
+                        dataHoraFechamentoSplit = dataHoraFechamento.split(" ")
+                        dataFechamentoSplit = dataHoraFechamentoSplit[0].split("-")
+                        somenteHoraFechamento = dataHoraFechamentoSplit[1]
+
+                        dataAbertura = dataFechamentoSplit[2]+"/"+dataFechamentoSplit[1]+"/"+dataFechamentoSplit[0]+" "+somenteHoraFechamento
+                    }
 
                     document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
                         '                                <td><span class="pointer" onclick="chamaTelaViewCaso(' + casosJson[i].idCaso + ')">' + casosJson[i].idCaso + '</span></td>\n' +
@@ -103,7 +128,7 @@
                         '                                <td>' + dataFechamento + '</td>\n' +
                         '                                <td>\n' +
                         '                                    <button class="btn btn-primary" onclick="chamaTelaEditarCaso(' + casosJson[i].idCaso + ')" > <i class="fas fa-pencil-alt"></i> Editar</button>\n' +
-                        '                                    <button class="btn btn-danger" onclick="chamaExcluirCaso(' + casosJson[i].idCaso + ')"> <i class="fas fa-trash-alt"></i> Excluir</button>\n' +
+                        '                                    <button class="btn btn-danger adm" onclick="chamaExcluirCaso(' + casosJson[i].idCaso + ')"> <i class="fas fa-trash-alt"></i> Excluir</button>\n' +
                         '                                </td>\n' +
                         '                            </tr>'
                 }

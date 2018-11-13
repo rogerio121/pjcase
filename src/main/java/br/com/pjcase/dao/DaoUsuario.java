@@ -24,14 +24,15 @@ public class DaoUsuario {
     /*----------------CRUD----------------*/
     public void insert(Usuario usuario) {
         try {
-            String sql = "INSERT INTO usuario (usu_email, usu_nome, usu_senha, usu_admin)" +
-                    "VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO usuario (usu_email, usu_nome, usu_senha, usu_admin, emp_cnpj)" +
+                    "VALUES (?, ?, ?, ?, ?)";
 
             PreparedStatement pstm = conexao.prepareStatement(sql);
             pstm.setString(1, usuario.getDadosPessoais().getEmail());
             pstm.setString(2, usuario.getDadosPessoais().getNome());
             pstm.setString(3, usuario.getSenha());
             pstm.setBoolean(4, usuario.getAdmin());
+            pstm.setString(5, usuario.getIdEmpresaRelacionada());
 
             pstm.execute();
             pstm.close();
