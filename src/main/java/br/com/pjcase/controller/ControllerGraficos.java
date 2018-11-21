@@ -19,11 +19,14 @@ public class ControllerGraficos {
     public ModelAndView chamarTelaGraficos(){
         DaoGrafico daoGrafico = new DaoGrafico();
         String dadosGraficoJson = "";
+        String dadosTempoGastoParaFechamentoDoCaso = "";
 
         dadosGraficoJson = new Gson().toJson(daoGrafico.buscarCasosParaGraficoCasosPorUsuário());
+        dadosTempoGastoParaFechamentoDoCaso = new Gson().toJson(daoGrafico.buscarTempoMedioGastoParaFecharUmCAso());
 
         ModelAndView mv = new ModelAndView("graficos");
         mv.addObject("dadosCasosPorUsuario",dadosGraficoJson);
+        mv.addObject("dadosTempoGastoParaFechamentoDoCaso",dadosTempoGastoParaFechamentoDoCaso);
 
         return mv;
     }

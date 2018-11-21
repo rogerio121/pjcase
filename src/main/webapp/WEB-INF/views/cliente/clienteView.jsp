@@ -21,18 +21,16 @@
                 <tr>
                     <td><label>Nome</label></td>
                     <td>
-                        <div class="input-group in  put-group-sm mb-3">
-                            <input class="form-control input-group input-group-sm mb-3" type="text"
-                                   value="${cliente.dadosPessoais.nome}" disabled>
+                        <div class="input-group input-group-sm mb-3">
+                            <input class="form-control" type="text" value="${cliente.dadosPessoais.nome}" disabled>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>E-mail</label></td>
                     <td>
-                        <div class="input-group in  put-group-sm mb-3 email">
-                            <input class="form-control input-group input-group-sm mb-3" type="text"
-                                   value="${cliente.dadosPessoais.email}" disabled>
+                        <div class="input-group input-group-sm mb-3 email">
+                            <input class="form-control" type="text" value="${cliente.dadosPessoais.email}" disabled>
                         </div>
                     </td>
                 </tr>
@@ -40,7 +38,7 @@
                     <td><label>Telefone</label></td>
                     <td>
                         <div class="input-group input-group-sm mb-3 telefone">
-                            <input class="form-control input-group input-group-sm mb-3" type="telefone" name="telefone" id="telefone"
+                            <input class="form-control" type="telefone" name="telefone" id="telefone"
                                    value="${cliente.dadosPessoais.telefone}" disabled>
                         </div>
                     </td>
@@ -48,54 +46,48 @@
                 <tr>
                     <td><label>CPF: </label></td>
                     <td>
-                        <div class="input-group in  put-group-sm mb-3 cpf">
-                            <input class="form-control input-group input-group-sm mb-3" type="text"
-                                   value="${cliente.dadosPessoais.cpf}" id="cpf" disabled>
+                        <div class="input-group input-group-sm mb-3 cpf">
+                            <input class="form-control" type="text" value="${cliente.dadosPessoais.cpf}" id="cpf" disabled>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Logradouro</label></td>
                     <td>
-                        <div class="input-group in  put-group-sm mb-3">
-                            <input class="form-control input-group input-group-sm mb-3" type="text"
-                                   value="${cliente.dadosPessoais.logradouro}" disabled>
+                        <div class="input-group input-group-sm mb-3">
+                            <input class="form-control" type="text" value="${cliente.dadosPessoais.logradouro}" disabled>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Bairro</label></td>
                     <td>
-                        <div class="input-group in  put-group-sm mb-3">
-                            <input class="form-control input-group input-group-sm mb-3" type="text"
-                                   value="${cliente.dadosPessoais.bairro}" disabled>
+                        <div class="input-group input-group-sm mb-3">
+                            <input class="form-control" type="text" value="${cliente.dadosPessoais.bairro}" disabled>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Cidade</label></td>
                     <td>
-                        <div class="input-group in  put-group-sm mb-3">
-                            <input class="form-control input-group input-group-sm mb-3" type="text"
-                                   value="${cliente.dadosPessoais.cidade}" disabled>
+                        <div class="input-group input-group-sm mb-3">
+                            <input class="form-control" type="text" value="${cliente.dadosPessoais.cidade}" disabled>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Estado</label></td>
                     <td>
-                        <div class="input-group in  put-group-sm mb-3">
-                            <input class="form-control input-group input-group-sm mb-3" type="text"
-                                   value="${cliente.dadosPessoais.estado}" disabled>
+                        <div class="input-group input-group-sm mb-3">
+                            <input class="form-control" type="text" value="${cliente.dadosPessoais.estado}" disabled>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>CEP</label></td>
                     <td>
-                        <div class="input-group in  put-group-sm mb-3 cep">
-                            <input class="form-control input-group input-group-sm mb-3" type="text" id="cep"
-                                   value="${cliente.dadosPessoais.cep}" disabled>
+                        <div class="input-group input-group-sm mb-3 cep">
+                            <input class="form-control" type="text" id="cep" value="${cliente.dadosPessoais.cep}" disabled>
                         </div>
                     </td>
                 </tr>

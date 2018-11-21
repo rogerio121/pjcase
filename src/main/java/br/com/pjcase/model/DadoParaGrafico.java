@@ -1,7 +1,9 @@
 package br.com.pjcase.model;
 
 public class DadoParaGrafico {
+    private int avg;
     private int count;
+    private String dadoReferenteAoAvg;
     private String dadoReferenteAoCont;
     private String statusDoCaso;
     private String dataAberturaDoCaso;
@@ -46,5 +48,25 @@ public class DadoParaGrafico {
 
     public void getDataFechamentoDoCaso(String dataFechamentoDoCaso) {
         this.dataFechamentoDoCaso = dataFechamentoDoCaso;
+    }
+
+    public int getAvg() {
+        return avg;
+    }
+
+    public void setAvg(int avg) {
+        this.avg = avg;
+    }
+
+    public String getDadoReferenteAoAvg() {
+        return dadoReferenteAoAvg;
+    }
+
+    public void setDadoReferenteAoAvg(String dadoReferenteAoAvg) {
+        this.dadoReferenteAoAvg = dadoReferenteAoAvg;
+    }
+
+    public String getDataFechamentoDoCaso() {
+        return dataFechamentoDoCaso;
     }
 }

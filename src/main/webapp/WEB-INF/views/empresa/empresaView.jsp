@@ -25,43 +25,57 @@
                             <tr>
                                 <td><label>Nome: </label></td>
                                 <td>
-                                    <input class="form-control input-group input-group-sm mb-3" type="text" value="${empresa.nome}" disabled>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <input class="form-control" type="text" value="${empresa.nome}" disabled>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td><label>CNPJ: </label></td>
                                 <td>
-                                    <input class="form-control input-group input-group-sm mb-3 cnpj" type="text" value="${empresa.cnpj}" id="cnpj" disabled>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <input class="form-control cnpj" type="text" value="${empresa.cnpj}" id="cnpj" disabled>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td><label>Logradouro: </label></td>
                                 <td>
-                                    <input class="form-control input-group input-group-sm mb-3" type="text" value="${empresa.logradouro}" disabled>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <input class="form-control" type="text" value="${empresa.logradouro}" disabled>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td><label>Bairro: </label></td>
                                 <td>
-                                    <input class="form-control input-group input-group-sm mb-3" type="text" value="${empresa.bairro}" disabled>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <input class="form-control" type="text" value="${empresa.bairro}" disabled>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td><label>Cidade: </label></td>
                                 <td>
-                                    <input class="form-control input-group input-group-sm mb-3" type="text" value="${empresa.cidade}" disabled>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <input class="form-control" type="text" value="${empresa.cidade}" disabled>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td><label>Estado: </label></td>
                                 <td>
-                                    <input class="form-control input-group input-group-sm mb-3" qtype="text" value="${empresa.estado}" disabled>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <input class="form-control" qtype="text" value="${empresa.estado}" disabled>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td><label>CEP</label></td>
                                 <td>
-                                    <input class="form-control input-group input-group-sm mb-3" type="text" name="cep" id="cep" value="${empresa.cep}"disabled>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <input class="form-control" type="text" name="cep" id="cep" value="${empresa.cep}"disabled>
+                                    </div>
                                 </td>
                             </tr>
                         </table>

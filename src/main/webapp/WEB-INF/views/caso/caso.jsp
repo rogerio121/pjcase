@@ -21,23 +21,24 @@
                     <td><label>Assunto</label></td>
                     <td>
                         <div class="input-group input-group-sm mb-3">
-                            <input type="text" name="assunto" class="form-control input-group input-group-sm mb-3"
+                            <input type="text" name="assunto" class="form-control input-group input-group-sm "
                                    value="${caso.assunto}" required>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Mensagem</label></td>
-                    <td><textarea rows="3" cols="50" name="mensagem"
-                                  class="form-control input-group input-group-sm mb-3">${caso.mensagem}</textarea>
+                    <td>
+                        <div class="input-group input-group-sm mb-3">
+                            <textarea rows="3" cols="50" name="mensagem" class="form-control">${caso.mensagem}</textarea>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>CPF do cliente </label></td>
                     <td>
                         <div class="input-group input-group-sm mb-3 cpf-cnpj">
-                            <input type="text" name="cliente.dadosPessoais.cnpj" id="cpf"
-                                   class="form-control input-group input-group-sm mb-3" required
+                            <input type="text" name="cliente.dadosPessoais.cnpj" id="cpf" class="form-control" required
                                    value="${caso.cliente.dadosPessoais.cpf}" required>
                             <label class="erro-validar" id="cpfInvalido" style="display: none">CPF inválido !</label>
                         </div>
@@ -59,19 +60,21 @@
                     <td><label>CNPJ da empresa</label></td>
                     <td>
                         <div class="input-group input-group-sm mb-3 cpf-cnpj">
-                            <input type="text" name="empresa.cnpj" id="cnpj" class="form-control input-group input-group-sm mb-3"
-                                   required value="${caso.empresa.cnpj}"  required>
+                            <input type="text" name="empresa.cnpj" id="cnpj" class="form-control" required value="${caso.empresa.cnpj}">
                             <label class="erro-validar" id="cnpjInvalido" style="display: none">CNPJ inválido !</label>
                         </div>
                     </td>
                 <tr>
                     <td><label>Resolução</label></td>
-                    <td><textarea rows="3" cols="50" id="resolucao"
-                                  class="form-control input-group input-group-sm mb-3"
-                                  name="resolucao">${caso.resolucao}</textarea></td>
+                    <td>
+                        <div class="input-group input-group-sm mb-3">
+                            <textarea rows="3" cols="50" id="resolucao" class="form-control" name="resolucao">${caso.resolucao}</textarea>
+                        </div>
+                    </td>
                 </tr>
             </table>
             <input type="text" value="${caso.idCaso}" name="idCaso" hidden> <br>
+            <input type="text" value="${caso.dataDeFechamento}" name="dataDeFechamento" hidden> <br>
         </form>
 
         <button type="button" class="btn btn-danger" onclick="cancelar()">Cancelar</button>

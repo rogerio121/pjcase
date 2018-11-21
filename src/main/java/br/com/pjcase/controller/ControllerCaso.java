@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -36,6 +38,7 @@ public class ControllerCaso {
         Caso caso = new Caso();
         Caso casoExistente = null;
         DaoCaso daoCaso = new DaoCaso();
+        Boolean fechadoHoje = false;
 
         try {
             request.setCharacterEncoding("UTF-8");
@@ -51,6 +54,14 @@ public class ControllerCaso {
         caso.setStatus(request.getParameter("status"));
         caso.setUsuario(usuarioLogado);
         caso.setResolucao(request.getParameter("resolucao"));
+        caso.setDataDeFechamento(request.getParameter("dataDeFechamento"));
+
+        if(caso.getStatus().equals("Fechado") && caso.getDataDeFechamento() == null || caso.getDataDeFechamento().equals("")) {
+            Date hoje = new Date();
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            caso.setDataDeFechamento(formato.format(hoje));
+            fechadoHoje = true;
+        }
 
         //Cliente
         Cliente cliente = new Cliente();
@@ -77,13 +88,14 @@ public class ControllerCaso {
             daoCaso.upsert(caso);
 
             // Se o caso for fechado o cliente receberá um email informando sobre o fechamento do mesmo
-            if (caso.fechouHoje("yyyy-MM-dd")) {
+            if (fechadoHoje) {
                 EnvioDeEmail envioDeEmail = new EnvioDeEmail();
                 DaoCliente daoCliente = new DaoCliente();
 
                 //Sobrescrevo a variável cliente com o retorno do banco
                 cliente = daoCliente.getById(cliente.getDadosPessoais().getCpf());
-                envioDeEmail.enviarEmail(cliente.getDadosPessoais().getEmail(), "Caso Fechado", "Fechou");
+                String corpoEmail = "Caro "+caso.getCliente().getDadosPessoais().getNome() + "Seu caso foi fechados \n"+"Resolução: "+caso.getResolucao();
+                envioDeEmail.enviarEmail(cliente.getDadosPessoais().getEmail(), "Caso Fechado", corpoEmail);
             }
 
         } catch (SQLException erro) {

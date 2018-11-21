@@ -21,22 +21,24 @@
                 <tr>
                     <td><label>Nome</label></td>
                     <td>
-                        <input class="form-control input-group input-group-sm mb-3" type="text" name="nome"
-                               value="${usuario.dadosPessoais.nome}">
+                        <div class="input-group input-group-sm mb-3">
+                            <input class="form-control" type="text" name="nome" value="${usuario.dadosPessoais.nome}">
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>E-mail</label></td>
                     <td>
-                        <input class="form-control input-group input-group-sm mb-3" type="email" name="email" id="email"
-                               value="${usuario.dadosPessoais.email}">
+                        <div class="input-group input-group-sm mb-3">
+                            <input class="form-control" type="email" name="email" id="email" value="${usuario.dadosPessoais.email}">
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>CNPJ Empresa</label></td>
                     <td>
-                        <div>
-                            <input class="form-control input-group input-group-sm mb-3" type="text" name="idEmpresaRelacionada"
+                        <div class="input-group input-group-sm mb-3">
+                            <input class="form-control" type="text" name="idEmpresaRelacionada"
                                    value="${usuario.idEmpresaRelacionada}" id="cnpj">
                             <label class="erro-validar" id="cnpjInvalido" style="display: none">CNPJ inválido !</label>
                         </div>
@@ -45,14 +47,17 @@
                 <tr>
                     <td><label id="label-senha">senha</label></td>
                     <td>
-                        <input class="form-control input-group input-group-sm mb-3" id="senha" type="password" name="senha"
-                               value="">
+                        <div class="input-group input-group-sm mb-3">
+                            <input class="form-control" id="senha" type="password" name="senha" value="">
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label id="label-conferesenha">Confirme a senha</label></td>
                     <td>
-                        <input class="form-control input-group input-group-sm mb-3" id="conf-senha" type="password">
+                        <div class="input-group input-group-sm mb-3">
+                            <input class="form-control" id="conf-senha" type="password">
+                        </div>
                     </td>
                 </tr>
                 <tr>

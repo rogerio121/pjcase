@@ -23,8 +23,8 @@ public class EnvioDeEmail {
         email.setSSLOnConnect(true);
         email.setFrom(emailDeDestino);
         email.setSubject(assunto);
-        //email.setMsg(corpo);
-        email.setHtmlMsg("<html>The apache logo - <h1>Foi</h1></html>");
+        email.setMsg(corpo);
+        email.setHtmlMsg("<html>The apache logo - <p>"+corpo+"</p></html>");
         email.addTo(emailDeDestino);
         email.send();
 

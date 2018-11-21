@@ -117,7 +117,7 @@
                         dataFechamentoSplit = dataHoraFechamentoSplit[0].split("-")
                         somenteHoraFechamento = dataHoraFechamentoSplit[1]
 
-                        dataAbertura = dataFechamentoSplit[2]+"/"+dataFechamentoSplit[1]+"/"+dataFechamentoSplit[0]+" "+somenteHoraFechamento
+                        dataFechamento = dataFechamentoSplit[2]+"/"+dataFechamentoSplit[1]+"/"+dataFechamentoSplit[0]+" "+somenteHoraFechamento
                     }
 
                     document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +

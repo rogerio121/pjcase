@@ -21,9 +21,9 @@
                 <tr>
                     <td><label>Nome</label></td>
                     <td>
-
-                        <input class="form-control input-group input-group-sm mb-3" type="text" name="nome"
-                               value="${empresa.nome}" required>
+                        <div class="input-group input-group-sm mb-3">
+                            <input class="form-control" type="text" name="nome" value="${empresa.nome}" required>
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -39,22 +39,25 @@
                 <tr>
                     <td><label>Logradouro</label></td>
                     <td>
-                        <input class="form-control input-group input-group-sm mb-3" type="text" name="logradouro"
-                               value="${empresa.logradouro}">
+                        <div class="input-group input-group-sm mb-3">
+                            <input class="form-control" type="text" name="logradouro" value="${empresa.logradouro}">
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Bairro</label></td>
                     <td>
-                        <input class="form-control input-group input-group-sm mb-3" type="text" name="bairro"
-                               value="${empresa.bairro}">
+                        <div class="input-group input-group-sm mb-3">
+                            <input class="form-control" type="text" name="bairro" value="${empresa.bairro}">
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Cidade</label></td>
                     <td>
-                        <input class="form-control input-group input-group-sm mb-3" type="text" name="cidade"
-                               value="${empresa.cidade}">
+                        <div class="input-group input-group-sm mb-3">
+                            <input class="form-control" type="text" name="cidade" value="${empresa.cidade}">
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -97,8 +100,9 @@
                 <tr>
                     <td><label>CEP</label></td>
                     <td>
-                        <input class="form-control input-group input-group-sm mb-3 cep" type="text" name="cep" id="cep"
-                               value="${empresa.cep}">
+                        <div class="input-group input-group-sm mb-3">
+                            <input class="form-control cep" type="text" name="cep" id="cep" value="${empresa.cep}">
+                        </div>
                     </td>
                 </tr>
             </table>

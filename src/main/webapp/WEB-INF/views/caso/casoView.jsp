@@ -23,23 +23,23 @@
                     <td><label>Assunto</label></td>
                     <td>
                         <div class="input-group input-group-sm mb-3">
-                            <input type="text" name="assunto" class="form-control input-group input-group-sm mb-3"
-                                   value="${caso.assunto}" disabled>
+                            <input type="text" name="assunto" class="form-control" value="${caso.assunto}" disabled>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Mensagem</label></td>
-                    <td><textarea rows="3" cols="50" name="mensagem"
-                                  class="form-control input-group input-group-sm mb-3" disabled>${caso.mensagem}</textarea>
+                    <td>
+                        <div class="input-group input-group-sm mb-3">
+                            <textarea rows="3" cols="50" name="mensagem" class="form-control" disabled>${caso.mensagem}</textarea>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>CPF do cliente </label></td>
                     <td>
                         <div class="input-group input-group-sm mb-3 cpf-cnpj">
-                            <input type="text" name="cliente.dadosPessoais.cnpj"
-                                   class="form-control input-group input-group-sm mb-3" required id="cpf"
+                            <input type="text" name="cliente.dadosPessoais.cnpj" class="form-control" required id="cpf"
                                    value="${caso.cliente.dadosPessoais.cpf}" disabled>
                         </div>
                     </td>
@@ -60,28 +60,27 @@
                     <td><label>CNPJ da empresa</label></td>
                     <td>
                         <div class="input-group input-group-sm mb-3 cpf-cnpj">
-                            <input type="text" name="empresa.cnpj" class="form-control input-group input-group-sm mb-3" id="cnpj"
-                                   required value="${caso.empresa.cnpj}" disabled>
+                            <input type="text" name="empresa.cnpj" class="form-control" id="cnpj" required value="${caso.empresa.cnpj}" disabled>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Resolução</label></td>
-                    <td><textarea rows="3" cols="50" id="resolucao"
-                                  class="form-control input-group input-group-sm mb-3"
-                                  name="resolucao" disabled>${caso.resolucao}</textarea>
+                    <td>
+                        <div class="input-group input-group-sm mb-3">
+                            <textarea rows="3" cols="50" id="resolucao" class="form-control" name="resolucao" disabled>${caso.resolucao}</textarea>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Usuario</label></td>
                     <td>
                         <div class="input-group input-group-sm mb-3">
-                            <input class="form-control input-group input-group-sm mb-3" type="email" value="${caso.usuario.dadosPessoais.email}" name="usuario.dadosPessoais.email"
+                            <input class="form-control" type="email" value="${caso.usuario.dadosPessoais.email}" name="usuario.dadosPessoais.email"
                                disabled>
                         </div>
                 </tr>
             </table>
-        </form>
         <input type="text" value="${caso.idCaso}" name="idCaso" hidden> <br>
         </form>
         <div class="div-form">

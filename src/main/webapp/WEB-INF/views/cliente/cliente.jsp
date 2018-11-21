@@ -17,13 +17,12 @@
     <div class="div-form">
         <h1 id="titulo"></h1>
         <form action="/cliente/salvar" method="post" id="form">
-            <table >
+            <table>
                 <tr>
                     <td><label>Nome</label></td>
                     <td>
-                        <div class="input-group in  put-group-sm mb-3">
-                            <input class="form-control input-group input-group-sm mb-3" type="text" name="nome"
-                                   value="${cliente.dadosPessoais.nome}" required>
+                        <div class="input-group input-group-sm mb-3">
+                            <input class="form-control" type="text" name="nome" value="${cliente.dadosPessoais.nome}" required>
                         </div>
                     </td>
                 </tr>
@@ -31,8 +30,7 @@
                     <td><label>E-mail</label></td>
                     <td>
                         <div class="input-group input-group-sm mb-3 email">
-                            <input class="form-control input-group input-group-sm mb-3" type="email" name="email"
-                                   value="${cliente.dadosPessoais.email}"  required>
+                            <input class="form-control" type="email" name="email" value="${cliente.dadosPessoais.email}"  required>
                         </div>
                     </td>
                 </tr>
@@ -40,8 +38,7 @@
                     <td><label>Telefone</label></td>
                     <td>
                         <div class="input-group input-group-sm mb-3 telefone">
-                            <input class="form-control input-group input-group-sm mb-3" type="telefone" name="telefone" id="telefone"
-                                   value="${cliente.dadosPessoais.telefone}">
+                            <input class="form-control" type="telefone" name="telefone" id="telefone" value="${cliente.dadosPessoais.telefone}">
                         </div>
                     </td>
                 </tr>
@@ -49,8 +46,7 @@
                     <td><label>CPF</label></td>
                     <td>
                         <div class="input-group input-group-sm mb-3 cpf">
-                            <input class="form-control input-group input-group-sm mb-3" type="text" name="cpf" id="cpf"
-                                   value="${cliente.dadosPessoais.cpf}" required>
+                            <input class="form-control" type="text" name="cpf" id="cpf" value="${cliente.dadosPessoais.cpf}" required>
                             <label class="erro-validar" id="cpfInvalido" style="display: none;">CPF inválido !</label>
                         </div>
                     </td>
@@ -59,8 +55,7 @@
                     <td><label>Logradouro</label></td>
                     <td>
                         <div class="input-group input-group-sm mb-3">
-                            <input class="form-control input-group input-group-sm mb-3" type="text" name="logradouro"
-                                   value="${cliente.dadosPessoais.logradouro}">
+                            <input class="form-control" type="text" name="logradouro" value="${cliente.dadosPessoais.logradouro}">
                         </div>
                     </td>
                 </tr>
@@ -68,8 +63,7 @@
                     <td><label>Bairro</label></td>
                     <td>
                         <div class="input-group input-group-sm mb-3">
-                            <input class="form-control input-group input-group-sm mb-3" type="text" name="bairro"
-                                   value="${cliente.dadosPessoais.bairro}">
+                            <input class="form-control" type="text" name="bairro" value="${cliente.dadosPessoais.bairro}">
                         </div>
                     </td>
                 </tr>
@@ -77,8 +71,7 @@
                     <td><label>Cidade</label></td>
                     <td>
                         <div class="input-group input-group-sm mb-3">
-                            <input class="form-control input-group input-group-sm mb-3" type="text" name="cidade"
-                                   value="${cliente.dadosPessoais.cidade}">
+                            <input class="form-control" type="text" name="cidade" value="${cliente.dadosPessoais.cidade}">
                         </div>
                     </td>
                 </tr>
@@ -123,8 +116,7 @@
                     <td><label>CEP</label</td>
                     <td>
                         <div class="input-group input-group-sm mb-3 cep">
-                            <input class="form-control input-group input-group-sm mb-3" type="text" name="cep" id="cep"
-                                   value="${cliente.dadosPessoais.cep}">
+                            <input class="form-control" type="text" name="cep" id="cep" value="${cliente.dadosPessoais.cep}">
                         </div>
                     </td>
                 </tr>

@@ -19,6 +19,10 @@
 <body>
 
     <style>
+        body{
+            overflow: hidden;
+        }
+
         input{
             width: 110px !important;
         }
@@ -42,11 +46,12 @@
         #carouselExampleFade{
             width: 80%;
             margin: auto;
+            margin-top: 4px;
         }
 
-        .graficoDeLinhas{
+        canvas{
             width: 100% !important;
-            height: 70% !important;
+            height: 80% !important;
         }
 
         .div-grafico{
@@ -59,7 +64,8 @@
         .carousel-control-prev, .carousel-control-next{
             background-color: #222222;
             width: 30px !important;
-            height: 410px;
+            height: 420px;
+            margin-top: 35px;
         }
 
         </style>
@@ -99,7 +105,7 @@
                     <div class="div-grafico carrocel-item1"></div>
                 </div>
                 <div class="carousel-item">
-                    Dois
+                    <div class="div-grafico carrocel-item1"></div>
                 </div>
                 <div class="carousel-item">
                     Tres
@@ -123,6 +129,7 @@
 
         let dadosGraficoQuantidadeDeCasosPorUsuario = ${dadosCasosPorUsuario}
         gerarGraficoCasosPorUsuarioEStatus()
+        gerarGraficoTempoMedioFechamentoDeCaso()
 
         function gerarGraficoCasosPorUsuarioEStatus(dadosGraficoQuantidadeDeCasosPorUsuarioSemFiltro) {
             document.getElementsByClassName('div-grafico')[0].innerHTML = '<canvas class="graficoDeLinhas"></canvas>'
@@ -153,6 +160,15 @@
                         labels: {
                             fontSize: 15
                         }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
                     }
                 }
             });
@@ -210,9 +226,87 @@
                 }
             }
 
+
+        function gerarGraficoTempoMedioFechamentoDeCaso() {
+            document.getElementsByClassName('div-grafico')[1].innerHTML = '<canvas class="graficoPolarArea"></canvas>'
+            let contexto = document.getElementsByClassName('graficoPolarArea')
+            let dadosDaPesquisa = ${dadosTempoGastoParaFechamentoDoCaso}
+
+            let chartGrafico = new Chart(contexto, {
+                type: 'bar',
+                data:{
+                    labels: getNomeUsuarioPorTempo(dadosDaPesquisa),
+                    datasets:[{
+                        label: "Horas até o fechamento do caso",
+                        data: getTempoParaFechamento(dadosDaPesquisa),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                    }]
+                },
+                options:{
+                    title:{
+                        display: true,
+                        fontSize: 20,
+                        text:"Tempo médio para fechamento de casos em horas",
+                    },
+                    labels:{
+                        fontSize: 15
+                    },
+                    legend:{
+                        display: true,
+                        labels: {
+                            fontSize: 15
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+        function getNomeUsuarioPorTempo(casosPorUsuario) {
+            let nomes = new Array()
+            for (i in casosPorUsuario){
+                let nome = casosPorUsuario[i].dadoReferenteAoAvg
+                nomes.push(nome)
+            }
+            return nomes
+        }
+
+        function getTempoParaFechamento(casosPorUsuario) {
+            let numeroDeCasos = new Array()
+            for (i in casosPorUsuario){
+                let numero = casosPorUsuario[i].avg
+                numeroDeCasos.push(numero)
+            }
+            console.log(numeroDeCasos)
+            return numeroDeCasos
+        }
+
         $("#inp-ate, #inp-de").mask("00/00/0000");
         $('.carousel').carousel({
-            interval: 2000
+            interval: 20000
         })
     </script>
 </body>

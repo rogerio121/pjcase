@@ -141,11 +141,6 @@ public class DaoCaso {
             insert(caso);
         } else {
             caso.setDataDeAbertura(casoCadastrado.getDataDeAbertura());
-
-            if (!casoCadastrado.getStatus().equals("Fechado") && caso.getStatus().equals("Fechado"))
-                caso.setDataDeFechamento(formatoDaData.format(data));
-            else
-                caso.setDataDeFechamento(null);
             update(caso);
         }
     }

@@ -24,6 +24,10 @@ input[type="checkbox"]{
     cursor: pointer;
 }
 
+textarea{
+    height: 70px !important;
+}
+
 .pointer{
     cursor: pointer;
 }

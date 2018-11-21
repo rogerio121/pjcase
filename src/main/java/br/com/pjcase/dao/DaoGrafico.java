@@ -113,4 +113,37 @@ public class DaoGrafico {
 
         return dadosParaGrafico;
     }
+
+    public List<DadoParaGrafico> buscarTempoMedioGastoParaFecharUmCAso(){
+
+        String sql = "SELECT AVG(TIMESTAMPDIFF(SECOND,cas_data_de_abertura, cas_data_de_fechamento)) as tempoGastoParaFechamento, usu_nome " +
+                     "FROM caso INNER JOIN usuario ON caso.usu_id = usuario.usu_id " +
+                     "WHERE cas_status = ? " +
+                     "GROUP BY usu_nome " +
+                     "LIMIT 1000 ";
+
+        List <DadoParaGrafico> dadosParaGrafico = new ArrayList<>();
+
+        try {
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setString(1,"Fechado");
+
+            ResultSet rs = pstm.executeQuery();
+            while(rs.next()){
+                DadoParaGrafico dadoParaGrafico = new DadoParaGrafico();
+
+                dadoParaGrafico.setAvg(rs.getInt("tempoGastoParaFechamento"));
+                dadoParaGrafico.setDadoReferenteAoAvg(rs.getString("usu_nome"));
+
+                dadosParaGrafico.add(dadoParaGrafico);
+            }
+
+            pstm.close();
+
+        }catch (SQLException e){
+            System.out.println("Erro ao consultar caso para gráfico: " + e);
+        }
+
+        return dadosParaGrafico;
+    }
 }
