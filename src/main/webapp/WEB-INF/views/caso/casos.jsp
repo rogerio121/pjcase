@@ -120,13 +120,13 @@
                         dataFechamento = dataFechamentoSplit[2]+"/"+dataFechamentoSplit[1]+"/"+dataFechamentoSplit[0]+" "+somenteHoraFechamento
                     }
 
-                    document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
-                        '                                <td><span class="pointer" onclick="chamaTelaViewCaso(' + casosJson[i].idCaso + ')">' + casosJson[i].idCaso + '</span></td>\n' +
+                    document.getElementById('corpo-tabela').innerHTML += '<tr class="pointer tb-linha" onclick="chamaTelaViewCaso(' + casosJson[i].idCaso + ')">\n' +
+                        '                                <td><span>' + casosJson[i].idCaso + '</span></td>\n' +
                         '                                <td>' + casosJson[i].assunto + '</td>\n' +
                         '                                <td>' + casosJson[i].status + '</td>\n' +
                         '                                <td>' + dataAbertura + '</td>\n' +
                         '                                <td>' + dataFechamento + '</td>\n' +
-                        '                                <td>\n' +
+                        '                                <td class="sem-evento">\n' +
                         '                                    <button class="btn btn-primary" onclick="chamaTelaEditarCaso(' + casosJson[i].idCaso + ')" > <i class="fas fa-pencil-alt"></i> Editar</button>\n' +
                         '                                    <button class="btn btn-danger adm" onclick="chamaExcluirCaso(' + casosJson[i].idCaso + ')"> <i class="fas fa-trash-alt"></i> Excluir</button>\n' +
                         '                                </td>\n' +

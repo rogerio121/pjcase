@@ -54,10 +54,10 @@
             for(let i = 0; i < clientesJson.length; i++ ){
                 if(clientesJson[i].dadosPessoais.nome.toUpperCase().indexOf(filtro) == 0){
                     clientesJsonFiltrados.push(clientesJson[i])
-                    document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
-                        '                                <td><span class="pointer" onclick="chamaTelaViewCliente('+clientesJson[i].dadosPessoais.cpf+')">'+clientesJson[i].dadosPessoais.nome+'</span></td>\n' +
+                    document.getElementById('corpo-tabela').innerHTML += '<tr class="pointer tb-linha" onclick="chamaTelaViewCliente('+clientesJson[i].dadosPessoais.cpf+')">\n' +
+                        '                                <td><span>'+clientesJson[i].dadosPessoais.nome+'</span></td>\n' +
                         '                                <td>'+clientesJson[i].dadosPessoais.email+'</td>\n' +
-                        '                                <td>\n' +
+                        '                                <td class="sem-evento">\n' +
                         '                                    <button class="btn btn-primary" onclick="chamaTelaEditarCliente('+clientesJson[i].dadosPessoais.cpf+')"> <i class="fas fa-pencil-alt"></i> Editar</button>\n' +
                         '                                    <button class="btn btn-danger adm" onclick="chamaExcluirCliente('+clientesJson[i].dadosPessoais.cpf+')"> <i class="fas fa-trash-alt"></i> Excluir</button>\n' +
                         '                                </td>\n' +

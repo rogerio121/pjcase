@@ -56,3 +56,7 @@ textarea{
     margin-left: 3%;
     color: #bd2130;
 }
+
+.sem-evento{
+    pointer-events: none;
+}

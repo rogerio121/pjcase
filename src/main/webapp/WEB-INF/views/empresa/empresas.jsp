@@ -49,10 +49,10 @@
             for(let i = 0; i < empresasJson.length; i++ ) {
                 if (empresasJson[i].nome.toUpperCase().indexOf(filtro) == 0) {
                     empresasJsonFiltradas.push(empresasJson[i])
-                    document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha">\n' +
-                        '                                <td><span class="pointer" onclick="chamaTelaViewEmpresas(' + empresasJson[i].cnpj + ')">' + empresasJson[i].nome + '</span></td>\n' +
+                    document.getElementById('corpo-tabela').innerHTML += '<tr class="pointer tb-linha" onclick="chamaTelaViewEmpresas(' + empresasJson[i].cnpj + ')">\n' +
+                        '                                <td><span>' + empresasJson[i].nome + '</span></td>\n' +
                         '                                <td class="cnpj">' + empresasJson[i].cnpj + '</td>\n' +
-                        '                                <td>\n' +
+                        '                                <td class="sem-evento">\n' +
                         '                                    <button class="btn btn-primary" onclick="chamaTelaEditarEmpresa(' + empresasJson[i].cnpj + ')"> <i class="fas fa-pencil-alt"></i> Editar</button>\n' +
                         '                                    <button class="btn btn-danger" onclick="chamaExcluirEmpresa(' + empresasJson[i].cnpj + ')"> <i class="fas fa-trash-alt"></i> Excluir</button>\n' +
                         '                                </td>\n' +

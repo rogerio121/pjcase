@@ -11,25 +11,11 @@
   <component name="ChangeListManager">
     <list default="true" id="61cbec97-094f-4ff1-92a2-1e58ce4b3756" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCaso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCaso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerGraficos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerGraficos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoCaso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoCaso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/pjcase/model/DadoParaGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/pjcase/model/DadoParaGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/pjcase/util/EnvioDeEmail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/pjcase/util/EnvioDeEmail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/caso/caso.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/caso/caso.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/caso/casoView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/caso/casoView.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/caso/casos.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/caso/casos.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/cliente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/cliente.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clienteView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clienteView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresa.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresa.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresaView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresaView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/graficos.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/graficos.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/usuario/usuario.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/usuario/usuario.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/usuario/usuarioView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/usuario/usuarioView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clientes.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clientes.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresas.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresas.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/usuario/todosusuarios.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/usuario/todosusuarios.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/style_geral.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/style_geral.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/style_telainicial.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/style_telainicial.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/pjcase/dao/DaoCaso.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/pjcase/dao/DaoCaso.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/pjcase.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/pjcase.war" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -73,84 +59,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ControllerCaso.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCaso.java">
+      <file leaf-file-name="empresas.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresas.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="112" selection-start-line="112" selection-end-line="112" />
+            <state relative-caret-position="918">
+              <caret line="54" column="78" selection-start-line="54" selection-start-column="78" selection-end-line="54" selection-end-column="78" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InvocableHandlerMethod.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.5.RELEASE/spring-web-4.3.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <file leaf-file-name="todosusuarios.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/usuario/todosusuarios.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="56" selection-start-line="56" selection-end-line="56" />
+            <state relative-caret-position="91">
+              <caret line="54" column="159" selection-start-line="54" selection-start-column="159" selection-end-line="54" selection-end-column="159" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="casoView.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/caso/casoView.jsp">
+      <file leaf-file-name="style_geral.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/css/style_geral.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="69" column="34" selection-start-line="69" selection-start-column="34" selection-end-line="69" selection-end-column="34" />
+            <state relative-caret-position="238">
+              <caret line="60" column="24" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="casos.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="casos.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/caso/casos.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="119" column="38" selection-start-line="119" selection-start-column="38" selection-end-line="119" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="caso.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/caso/caso.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="76" column="86" selection-start-line="76" selection-start-column="86" selection-end-line="76" selection-end-column="86" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Caso.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/model/Caso.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1241">
-              <caret line="114" column="13" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EnvioDeEmail.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/util/EnvioDeEmail.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="13" selection-start-line="13" selection-end-line="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DaoCaso.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoCaso.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="145" selection-start-line="145" selection-end-line="145" />
-              <folding>
-                <element signature="method#insert#0;class#DaoCaso#0" />
-                <element signature="method#update#0;class#DaoCaso#0" />
-                <element signature="method#delete#0;class#DaoCaso#0" />
-                <element signature="method#listarCasosPorProprietarios#0;class#DaoCaso#0" />
-                <element signature="method#listarCasosPoStatus#0;class#DaoCaso#0" />
-                <element signature="method#pegarCaso#0;class#DaoCaso#0" />
-                <element signature="method#buscarCasoCompletoSemUsuario#0;class#DaoCaso#0" />
-                <element signature="method#buscarNumeroDeCasosPorStatusPorIdDoUsuarioPorMes#0;class#DaoCaso#0" />
-              </folding>
+            <state relative-caret-position="170">
+              <caret line="128" column="78" selection-start-line="128" selection-start-column="78" selection-end-line="128" selection-end-column="78" />
             </state>
           </provider>
         </entry>
@@ -235,9 +175,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/resources/css/style_todosusuarios.css" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerLogin.java" />
         <option value="$PROJECT_DIR$/src/test/java/TesteDaoCaso.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/usuario/todosusuarios.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clientes.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresas.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/telaInicial.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/model/GraficoCount.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoUsuario.java" />
@@ -249,7 +186,6 @@
         <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerGraficos.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoGrafico.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/css/style_telainicial.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/resources/css/style_geral.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clienteView.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/cliente.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/usuario/usuario.jsp" />
@@ -262,7 +198,11 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/caso/caso.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCaso.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoCaso.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/resources/css/style_geral.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clientes.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresas.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/caso/casos.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/usuario/todosusuarios.jsp" />
       </list>
     </option>
   </component>
@@ -317,18 +257,6 @@
       <foldersAlwaysOnTop value="false" />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="pjcase" type="58d84e3e:PackageViewProjectNode" />
-              <item name="pjcase" type="616d4139:PackageViewModuleNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -489,6 +417,18 @@
         </subPane>
         <option name="show-excluded-files" value="false" />
       </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="pjcase" type="58d84e3e:PackageViewProjectNode" />
+              <item name="pjcase" type="616d4139:PackageViewModuleNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -1194,7 +1134,8 @@
       <workItem from="1542066990411" duration="7941000" />
       <workItem from="1542245498757" duration="5339000" />
       <workItem from="1542285966620" duration="3570000" />
-      <workItem from="1542678679983" duration="9245000" />
+      <workItem from="1542678679983" duration="12477000" />
+      <workItem from="1543026776882" duration="1168000" />
     </task>
     <servers />
   </component>
@@ -1231,7 +1172,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="692592000" />
+    <option name="totallyTimeSpent" value="696992000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1257,7 +1198,7 @@
       <window_info id="Structure" order="1" sideWeight="0.32741117" side_tool="true" weight="0.23524962" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.40480274" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.40480274" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32838285" />
       <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.49924356" weight="0.32590052" />
       <window_info anchor="right" id="Palette&#9;" order="9" />
@@ -1265,17 +1206,17 @@
       <window_info anchor="bottom" id="Java Enterprise" order="15" weight="0.32838285" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32838285" />
-      <window_info anchor="bottom" x="22" y="265" width="1322" height="197" id="Run" order="2" sideWeight="0.89334345" weight="0.4219554" />
+      <window_info anchor="bottom" x="22" y="265" width="1322" height="197" id="Run" order="2" sideWeight="0.89334345" visible="true" weight="0.4219554" />
       <window_info anchor="bottom" id="Spring" order="4" sideWeight="0.49924356" weight="0.32761577" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.406518" />
       <window_info id="Persistence" order="7" sideWeight="0.5036855" side_tool="true" weight="0.22768533" />
-      <window_info active="true" content_ui="combo" x="510" y="152" width="346" height="423" id="Project" order="0" sideWeight="0.6725888" visible="true" weight="0.17473525" />
+      <window_info active="true" content_ui="combo" x="510" y="152" width="346" height="423" id="Project" order="0" sideWeight="0.6725888" visible="true" weight="0.17700455" />
       <window_info id="Web" order="8" sideWeight="0.5036855" side_tool="true" weight="0.22768533" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3290938" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info id="Favorites" order="5" sideWeight="0.5036855" side_tool="true" weight="0.22768533" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="3" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3290938" />
       <window_info anchor="bottom" id="TypeScript" order="14" />
       <window_info anchor="bottom" id="Message" order="7" />
       <window_info anchor="right" id="CDI" order="0" />
@@ -1674,13 +1615,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresas.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="104" column="41" selection-start-line="104" selection-start-column="41" selection-end-line="104" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/css/style_clienteView.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
@@ -1716,13 +1650,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clientes.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="53" column="43" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -1775,13 +1702,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/usuario/todosusuarios.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1819">
-          <caret line="107" column="24" selection-start-line="107" selection-start-column="24" selection-end-line="107" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/menu.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
@@ -1825,13 +1745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
           <caret line="60" column="43" selection-start-line="60" selection-start-column="43" selection-end-line="60" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/css/style_geral.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1926,30 +1839,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/model/Caso.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCaso.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1241">
-          <caret line="114" column="13" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="13" />
+        <state relative-caret-position="1513">
+          <caret line="112" selection-start-line="112" selection-end-line="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.5.RELEASE/spring-web-4.3.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/caso/casoView.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="69" column="34" selection-start-line="69" selection-start-column="34" selection-end-line="69" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/caso/caso.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
+        <state relative-caret-position="17">
           <caret line="76" column="86" selection-start-line="76" selection-start-column="86" selection-end-line="76" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/model/Caso.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="114" column="13" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/util/EnvioDeEmail.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
+        <state relative-caret-position="17">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/dao/DaoCaso.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
+        <state relative-caret-position="17">
           <caret line="145" selection-start-line="145" selection-end-line="145" />
           <folding>
             <element signature="method#insert#0;class#DaoCaso#0" />
@@ -1964,31 +1898,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/pjcase/controller/ControllerCaso.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cliente/clientes.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="112" selection-start-line="112" selection-end-line="112" />
+        <state relative-caret-position="85">
+          <caret line="56" column="169" lean-forward="true" selection-start-line="56" selection-start-column="169" selection-end-line="56" selection-end-column="169" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.5.RELEASE/spring-web-4.3.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/css/style_geral.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="56" selection-start-line="56" selection-end-line="56" />
+        <state relative-caret-position="238">
+          <caret line="60" column="24" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/caso/casoView.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empresa/empresas.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="69" column="34" selection-start-line="69" selection-start-column="34" selection-end-line="69" selection-end-column="34" />
+        <state relative-caret-position="918">
+          <caret line="54" column="78" selection-start-line="54" selection-start-column="78" selection-end-line="54" selection-end-column="78" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/caso/casos.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="119" column="38" selection-start-line="119" selection-start-column="38" selection-end-line="119" selection-end-column="38" />
+        <state relative-caret-position="170">
+          <caret line="128" column="78" selection-start-line="128" selection-start-column="78" selection-end-line="128" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/usuario/todosusuarios.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="54" column="159" selection-start-line="54" selection-start-column="159" selection-end-line="54" selection-end-column="159" />
         </state>
       </provider>
     </entry>
