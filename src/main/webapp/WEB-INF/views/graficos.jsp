@@ -107,9 +107,6 @@
                 <div class="carousel-item">
                     <div class="div-grafico carrocel-item1"></div>
                 </div>
-                <div class="carousel-item">
-                    Tres
-                </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

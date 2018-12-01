@@ -283,7 +283,7 @@ public class ControllerCaso {
         //Cliente
         Cliente cliente = new Cliente();
         DadosPessoais dadosPessoaisCliente = new DadosPessoais();
-        dadosPessoaisCliente.setCpf(request.getParameter("cliente.dadosPessoais.cnpj"));
+        dadosPessoaisCliente.setCpf(request.getParameter("cliente.dadosPessoais.cnpj").replaceAll("[^0-9]+", ""));
         cliente.setDadosPessoais(dadosPessoaisCliente);
 
         //Empresa

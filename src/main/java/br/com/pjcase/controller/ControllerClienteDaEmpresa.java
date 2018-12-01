@@ -18,8 +18,6 @@ public class ControllerClienteDaEmpresa {
     public ResponseEntity<ClienteDaEmpresa> salvar(@RequestBody ClienteDaEmpresa clienteDaEmpresa){
         DaoClienteDaEmpresa daoClienteDaEmpresa = new DaoClienteDaEmpresa();
 
-        System.out.println(clienteDaEmpresa);
-
         try {
             daoClienteDaEmpresa.insert(clienteDaEmpresa.getCpfCliente(), clienteDaEmpresa.getIdEmpresa());
             return (ResponseEntity<ClienteDaEmpresa>) ResponseEntity.ok(clienteDaEmpresa);
@@ -31,7 +29,7 @@ public class ControllerClienteDaEmpresa {
 
     @DeleteMapping("{id}")
     public ResponseEntity deletar(@PathVariable("id") String id){
-        System.out.println(id);
+
         try {
             DaoClienteDaEmpresa daoClienteDaEmpresa = new DaoClienteDaEmpresa();
             daoClienteDaEmpresa.delete(id);

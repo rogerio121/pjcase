@@ -11,6 +11,9 @@ h1{
     margin-left: 9%;
 }
 
+#form-criar-caso{
+    height: auto !important;
+}
 .clientes{
     width: 100% !important;
 }

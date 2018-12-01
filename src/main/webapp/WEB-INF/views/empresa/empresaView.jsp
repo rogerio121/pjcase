@@ -54,6 +54,7 @@
                                     </div>
                                 </td>
                             </tr>
+                            </tr>
                             <tr>
                                 <td><label>Cidade: </label></td>
                                 <td>
@@ -143,7 +144,7 @@
 
                 for(let i = 0; i < clientes.length; i++ ){
                     document.getElementById('corpo-tabela').innerHTML += '<tr class="tb-linha"><td>'+clientes[i].dadosPessoais.nome+'</td> ' +
-                        '<td>'+clientes[i].dadosPessoais.cpf+'</td> <td> <i class="fas fa-trash-alt" onclick="removerCliente(\'+clientes[i].dadosPessoais.cpf+\')"></i></td></tr>'
+                        '<td class="cpfCliente">'+clientes[i].dadosPessoais.cpf+'</td> <td> <i class="fas fa-trash-alt" onclick="removerCliente('+clientes[i].dadosPessoais.cpf+')"></i></td></tr>'
                 }
         }
 
@@ -173,11 +174,8 @@
         }
 
         function adicionarCliente() {
-            var cpfCliente = document.getElementById('cpfCliente').value
+            var cpfCliente = document.getElementById('cpfCliente').value.replace(".", "").replace("-", "").replace(".", "")
             var idEmpresa  = document.getElementById('idEmpresa').value
-
-            console.log(cpfCliente)
-            console.log(idEmpresa)
 
             fetch("../../clienteempresa/vincular",
                 {
@@ -206,7 +204,6 @@
 
         function removerCliente(id){
 
-            console.log(id)
             fetch("../../clienteempresa/"+id,
                 {
                     headers: {
@@ -253,6 +250,8 @@
     <script>
         $("#cnpj").mask("00.000.000/0000-00")
         $("#cep").mask("00000-000")
+        $("#cpfCliente").mask("000.000.000-00")
+        $(".cpfCliente").mask("000.000.000-00")
 
         $('#myModal').on('shown.bs.modal', function () {
             $('#myInput').trigger('focus')
