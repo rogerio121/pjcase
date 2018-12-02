@@ -65,9 +65,10 @@ public class ControllerCaso {
 
         //Cliente
         Cliente cliente = new Cliente();
+        DaoCliente daoCliente1 = new DaoCliente();
         DadosPessoais dadosPessoaisCliente = new DadosPessoais();
-        dadosPessoaisCliente.setCpf((request.getParameter("cliente.dadosPessoais.cnpj").replaceAll("[^0-9]+", "")));
-        cliente.setDadosPessoais(dadosPessoaisCliente);
+        String cpfCliente =request.getParameter("cliente.dadosPessoais.cnpj").replaceAll("[^0-9]+", "");
+        cliente = daoCliente1.getById(cpfCliente);
 
         //Empresa
         Empresa empresa = new Empresa();
@@ -94,7 +95,7 @@ public class ControllerCaso {
 
                 //Sobrescrevo a variável cliente com o retorno do banco
                 cliente = daoCliente.getById(cliente.getDadosPessoais().getCpf());
-                String corpoEmail = "Caro "+caso.getCliente().getDadosPessoais().getNome() + "Seu caso foi fechados \n"+"Resolução: "+caso.getResolucao();
+                String corpoEmail = "Caro "+caso.getCliente().getDadosPessoais().getNome() + " seu caso foi fechado <br/>"+"<strong>Resolução:</strong> "+caso.getResolucao();
                 envioDeEmail.enviarEmail(cliente.getDadosPessoais().getEmail(), "Caso Fechado", corpoEmail);
             }
 

@@ -24,7 +24,7 @@ public class EnvioDeEmail {
         email.setFrom(emailDeDestino);
         email.setSubject(assunto);
         email.setMsg(corpo);
-        email.setHtmlMsg("<html>The apache logo - <p>"+corpo+"</p></html>");
+        email.setHtmlMsg("<html>---Resolução de caso---<p>"+corpo+"</p></html>");
         email.addTo(emailDeDestino);
         email.send();
 

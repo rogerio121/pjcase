@@ -120,13 +120,13 @@
                         dataFechamento = dataFechamentoSplit[2]+"/"+dataFechamentoSplit[1]+"/"+dataFechamentoSplit[0]+" "+somenteHoraFechamento
                     }
 
-                    document.getElementById('corpo-tabela').innerHTML += '<tr class="pointer tb-linha" onclick="chamaTelaViewCaso(' + casosJson[i].idCaso + ')">\n' +
-                        '                                <td><span>' + casosJson[i].idCaso + '</span></td>\n' +
-                        '                                <td>' + casosJson[i].assunto + '</td>\n' +
-                        '                                <td>' + casosJson[i].status + '</td>\n' +
-                        '                                <td>' + dataAbertura + '</td>\n' +
-                        '                                <td>' + dataFechamento + '</td>\n' +
-                        '                                <td class="sem-evento">\n' +
+                    document.getElementById('corpo-tabela').innerHTML += '<tr class="pointer tb-linha">\n' +
+                        '                                <td onclick="chamaTelaViewCaso('+ casosJson[i].idCaso +')"><span>' + casosJson[i].idCaso + '</span></td>\n' +
+                        '                                <td onclick="chamaTelaViewCaso('+ casosJson[i].idCaso +')"> ' + casosJson[i].assunto + '</td>\n' +
+                        '                                <td onclick="chamaTelaViewCaso('+ casosJson[i].idCaso +')"> ' + casosJson[i].status + '</td>\n' +
+                        '                                <td onclick="chamaTelaViewCaso('+ casosJson[i].idCaso +')">' + dataAbertura + '</td>\n' +
+                        '                                <td onclick="chamaTelaViewCaso('+ casosJson[i].idCaso +')">' + dataFechamento + '</td>\n' +
+                        '                                <td>\n' +
                         '                                    <button class="btn btn-primary" onclick="chamaTelaEditarCaso(' + casosJson[i].idCaso + ')" > <i class="fas fa-pencil-alt"></i> Editar</button>\n' +
                         '                                    <button class="btn btn-danger adm" onclick="chamaExcluirCaso(' + casosJson[i].idCaso + ')"> <i class="fas fa-trash-alt"></i> Excluir</button>\n' +
                         '                                </td>\n' +
