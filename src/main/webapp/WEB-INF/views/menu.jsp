@@ -34,7 +34,7 @@
                 <li><a href="/usuario/usuarios"> Todos os Usuários</a></li>
             </ul>
         </li>
-        <li><a href="/graficos"><i class="fas fa-chart-line"></i> Gráficos</a></li>
+        <li id="graficos"><a href="/graficos"><i class="fas fa-chart-line"></i> Gráficos</a></li>
     </ul>
     <ul id="menu-canto">
         <li>
@@ -53,11 +53,11 @@
     function funcoesDeAdminNoMenu() {
         var admin = ${usuarioLogado.admin}
 
-        console.log(${usuarioLogado.admin})
         if(!admin) {
             document.getElementById('todos-os-casos').style.display = "none"
             document.getElementById('empresas').style.display = "none"
             document.getElementById('usuarios').style.display = "none"
+            document.getElementById('graficos').style.display = "none"
         }
     }
 
